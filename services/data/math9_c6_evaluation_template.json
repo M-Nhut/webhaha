@@ -1,0 +1,13 @@
+[
+  {
+    "id": "teacher-label-001",
+    "question": {
+      "question_text": "Tung một đồng xu. Hãy lập không gian mẫu, xác định biến cố và tính xác suất xuất hiện mặt ngửa.",
+      "question_type": "single",
+      "options": []
+    },
+    "scope": {"grade": "9", "chapters": ["8"], "lessons": ["i"]},
+    "expected_primary_code": "9C8-i-3",
+    "expected_difficulty_level": "van_dung"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-19",
+  "args": [
+    "tests/test_class_lesson4_report.py",
+    "tests/test_ai_gateway_review.py",
+    "tests/test_phase5_reports.py",
+    "tests/test_route_contract.py",
+    "-q",
+    "--tb=short",
+    "--disable-warnings"
+  ],
+  "exitCode": 0,
+  "passed": 42,
+  "failed": 0,
+  "skipped": 0,
+  "collectionErrors": [],
+  "subtests": [],
+  "failedCases": [],
+  "skippedCases": [],
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storageTemporary": true,
+  "blockedRequests": [],
+  "blockedSockets": [],
+  "regularTestsPassed": 39,
+  "subtestsPassed": 3,
+  "passCountNote": "The runner passed list also includes pytest-subtests reports; terminal summary is 39 regular tests + 3 subtests."
+}

@@ -1,0 +1,1807 @@
+{
+  "date": "2026-10-19",
+  "scope": "Runtime templates, application CSS/JS and their route/service consumers. No app import or real data/keys.",
+  "method": [
+    "AST of routes/**/*.py and app.py render_template calls",
+    "Jinja2 AST with include/extends/import dependency closure",
+    "Manual dynamic errors/{status_code}.html branch review and master fallback",
+    "Jinja AST url_for(static, filename=literal) and CSS url/@import resolution",
+    "Exact-boundary source searches across templates, CSS, JS, routes, services and app.py for retired token/class names",
+    "Manual dynamic flash/auth-notice, Alpine state, formula/math/media renderer and content-data producers retained; root browser runtime evidence covers deferred rendering"
+  ],
+  "counts": {
+    "templates": 49,
+    "top_level_pages": 32,
+    "components": 10,
+    "error_templates": 6,
+    "application_css": 31,
+    "application_js": 32,
+    "removed_compatibility_tokens": 37,
+    "removed_class_names": 20
+  },
+  "templates": {
+    "templates/ai_reports.html": {
+      "render_sites": [
+        {
+          "source": "routes/ai_reports.py",
+          "line": 59
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/assessment_from_bank.html": {
+      "render_sites": [
+        {
+          "source": "routes/assessments.py",
+          "line": 61
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/assessment_import.html": {
+      "render_sites": [
+        {
+          "source": "routes/assessments.py",
+          "line": 123
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/assessment_list.html": {
+      "render_sites": [
+        {
+          "source": "routes/assessments.py",
+          "line": 78
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/assessment_matrix.html": {
+      "render_sites": [
+        {
+          "source": "routes/assessments.py",
+          "line": 150
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/base.html": {
+      "render_sites": [],
+      "dependencies": [
+        "components/navigation.html",
+        "components/header.html",
+        "components/flash_messages.html",
+        "components/footer.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/classification_evaluation.html": {
+      "render_sites": [
+        {
+          "source": "routes/question_bank.py",
+          "line": 528
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/components/bank_overview.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/bank_pagination.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/flash_messages.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/footer.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/header.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/id6_picker.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/import_duplicates.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/navigation.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/practice_skill_matrix.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/components/selection_audit.html": {
+      "render_sites": [],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/course_detail.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 239
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/course_form.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 168
+        },
+        {
+          "source": "routes/academic.py",
+          "line": 197
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/courses.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 140
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/curriculum_catalog.html": {
+      "render_sites": [
+        {
+          "source": "routes/curriculum.py",
+          "line": 121
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/diagnostic_form.html": {
+      "render_sites": [
+        {
+          "source": "routes/diagnostics.py",
+          "line": 288
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/diagnostic_list.html": {
+      "render_sites": [
+        {
+          "source": "routes/diagnostics.py",
+          "line": 140
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/edit_user.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 494
+        },
+        {
+          "source": "routes/academic.py",
+          "line": 481
+        },
+        {
+          "source": "routes/academic.py",
+          "line": 491
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/400.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 56,
+          "kind": "dynamic_error_status_template"
+        }
+      ],
+      "dependencies": [
+        "errors/error.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/403.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 56,
+          "kind": "dynamic_error_status_template"
+        }
+      ],
+      "dependencies": [
+        "errors/error.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/404.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 56,
+          "kind": "dynamic_error_status_template"
+        }
+      ],
+      "dependencies": [
+        "errors/error.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/405.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 56,
+          "kind": "dynamic_error_status_template"
+        }
+      ],
+      "dependencies": [
+        "errors/error.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/500.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 56,
+          "kind": "dynamic_error_status_template"
+        }
+      ],
+      "dependencies": [
+        "errors/error.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/errors/error.html": {
+      "render_sites": [
+        {
+          "source": "routes/errors.py",
+          "line": 75
+        }
+      ],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/exam_result.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice_runtime.py",
+          "line": 429
+        },
+        {
+          "source": "routes/practice_runtime.py",
+          "line": 472
+        },
+        {
+          "source": "routes/practice_runtime.py",
+          "line": 450
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/selection_audit.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/exam_take.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice_runtime.py",
+          "line": 392
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/selection_audit.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/index.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 122
+        },
+        {
+          "source": "routes/academic.py",
+          "line": 63
+        },
+        {
+          "source": "routes/academic.py",
+          "line": 99
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/login.html": {
+      "render_sites": [
+        {
+          "source": "routes/auth.py",
+          "line": 56
+        }
+      ],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/manage_users.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 405
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/my_students.html": {
+      "render_sites": [
+        {
+          "source": "routes/academic.py",
+          "line": 394
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/practice_draft.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice.py",
+          "line": 1029
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/selection_audit.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/practice_home.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice.py",
+          "line": 359
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/practice_skill_matrix.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/practice_progress.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice.py",
+          "line": 518
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/practice_skill_matrix.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/profile.html": {
+      "render_sites": [
+        {
+          "source": "routes/auth.py",
+          "line": 99
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/question_bank_classification.html": {
+      "render_sites": [
+        {
+          "source": "routes/question_bank.py",
+          "line": 424
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/id6_picker.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/question_bank_detail.html": {
+      "render_sites": [
+        {
+          "source": "routes/question_bank.py",
+          "line": 323
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/id6_picker.html",
+        "components/bank_overview.html",
+        "components/bank_pagination.html",
+        "components/bank_pagination.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/question_bank_form.html": {
+      "render_sites": [
+        {
+          "source": "routes/question_bank.py",
+          "line": 192
+        },
+        {
+          "source": "routes/question_bank.py",
+          "line": 623
+        },
+        {
+          "source": "routes/question_bank.py",
+          "line": 180
+        },
+        {
+          "source": "routes/question_bank.py",
+          "line": 616
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/question_bank_import.html": {
+      "render_sites": [
+        {
+          "source": "routes/imports.py",
+          "line": 103
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/id6_picker.html",
+        "components/import_duplicates.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/question_banks.html": {
+      "render_sites": [
+        {
+          "source": "routes/question_bank.py",
+          "line": 159
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/register.html": {
+      "render_sites": [
+        {
+          "source": "routes/auth.py",
+          "line": 43
+        }
+      ],
+      "dependencies": [],
+      "runtime_reachable": true
+    },
+    "templates/teacher_ai_settings.html": {
+      "render_sites": [
+        {
+          "source": "routes/ai_settings.py",
+          "line": 142
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/teacher_practice_detail.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice.py",
+          "line": 823
+        }
+      ],
+      "dependencies": [
+        "base.html",
+        "components/practice_skill_matrix.html"
+      ],
+      "runtime_reachable": true
+    },
+    "templates/teacher_practice_list.html": {
+      "render_sites": [
+        {
+          "source": "routes/practice.py",
+          "line": 726
+        }
+      ],
+      "dependencies": [
+        "base.html"
+      ],
+      "runtime_reachable": true
+    }
+  },
+  "application_assets": {
+    "static/css/ai-reports.css": {
+      "consumers": [
+        {
+          "source": "templates/ai_reports.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "910dfd16593d010e2732a9c252d55b8b251ae7d9dbedc4261679ff464b30a527"
+    },
+    "static/css/assessments.css": {
+      "consumers": [
+        {
+          "source": "templates/assessment_list.html",
+          "line": 5,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/assessment_matrix.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "93c378409b4d9367134e7c261598fc34b3c60b00a7f6ccd50f17c0e9660a8002"
+    },
+    "static/css/auth.css": {
+      "consumers": [
+        {
+          "source": "templates/login.html",
+          "line": 11,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/register.html",
+          "line": 28,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "22f870d43f4296ee65779c20464258897d77ca4dd5792c2ae916109e753a290a"
+    },
+    "static/css/base.css": {
+      "consumers": [
+        {
+          "source": "static/css/main.css",
+          "kind": "css_url"
+        }
+      ],
+      "sha256": "705dd794fc898fdf0ed4f04121a73fd49b305aff4827394644ee4219b91a1e03"
+    },
+    "static/css/components.css": {
+      "consumers": [
+        {
+          "source": "static/css/main.css",
+          "kind": "css_url"
+        }
+      ],
+      "sha256": "3d0f5f74249e2054b66164ab73302dea86c3c4e2f0b8d6977fdf45b91a0bcdc3"
+    },
+    "static/css/diagnostic-wizard.css": {
+      "consumers": [
+        {
+          "source": "templates/diagnostic_form.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "838a054db411cb5eae8b2eb45aa38b25ea7c91f5316756905b33009ca77ff142"
+    },
+    "static/css/errors.css": {
+      "consumers": [
+        {
+          "source": "templates/errors/error.html",
+          "line": 23,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "80713be5970931523d3739bad47943bd6c1295d6da9a121cbe8363a9f8a8ce76"
+    },
+    "static/css/id6.css": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_classification.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 12,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 9,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "ce6d7063ce493418b91643d3266b2258cebbf746f238b41e5c5514c3e3d6f5cc"
+    },
+    "static/css/import_duplicates.css": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 10,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "14c8a2cdb8a7cb660b57a5b67d800eee93ce30cb45e7fc90bb1f35a4e7bb59bf"
+    },
+    "static/css/learning.css": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 11,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "de1cef0b89fed50b779325aefb8d3c0ea2fbfa0863e75d79792daa7b4df9f579"
+    },
+    "static/css/main.css": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 10,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/errors/error.html",
+          "line": 22,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/login.html",
+          "line": 10,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/register.html",
+          "line": 27,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "3f901c9d79f5b5c7ce01407ce1a658462f9a42064edb3dacceb3f8efe6a45dbe"
+    },
+    "static/css/pages/ai-settings.css": {
+      "consumers": [
+        {
+          "source": "templates/teacher_ai_settings.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "43f40eed5d14538e0c316d3ebf3c88c6b5e8a31169e7dcf34d3afde3dd67de73"
+    },
+    "static/css/pages/assessment-composer.css": {
+      "consumers": [
+        {
+          "source": "templates/assessment_from_bank.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/assessment_import.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "1703919d8253a851ffb18326650c0d15836a4dcd02386d320e39e897a1b1d26a"
+    },
+    "static/css/pages/bank-form.css": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_form.html",
+          "line": 16,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "105214a68a8ae2ffb317456d8bca23971e5f69aff4bcf20b3cd27846a6aab54c"
+    },
+    "static/css/pages/bank-list.css": {
+      "consumers": [
+        {
+          "source": "templates/question_banks.html",
+          "line": 73,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "3c36fe9c245ce4dfe7a0ef1b8ed20811a7ba5eff04669a11ebad644c5db719d1"
+    },
+    "static/css/pages/courses.css": {
+      "consumers": [
+        {
+          "source": "templates/course_detail.html",
+          "line": 6,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/course_form.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/courses.html",
+          "line": 5,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "a8e543a913aaf66635edc9243150ab9b2875f57afb42bdd519fce1589fc93cad"
+    },
+    "static/css/pages/dashboard.css": {
+      "consumers": [
+        {
+          "source": "templates/index.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "036dc2372ca3970856f4e3b77465a480aa3499fb9785db07bf745be2690a2cb8"
+    },
+    "static/css/pages/diagnostics.css": {
+      "consumers": [
+        {
+          "source": "templates/diagnostic_list.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "cf73a2ac0898d75d0dd32df0bc66c44fcbf96322f1be1f47336d3237abaab730"
+    },
+    "static/css/pages/exam-results.css": {
+      "consumers": [
+        {
+          "source": "templates/exam_result.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "fe186b3da37537c4ebbe058e6e91a34a1d8f64110b74a260c35bf76070dee8d8"
+    },
+    "static/css/pages/exam-taking.css": {
+      "consumers": [
+        {
+          "source": "templates/exam_take.html",
+          "line": 6,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "1f22e13577836635c81926d12ffbda83bcc8033a6552cd69f24df61d72d524e7"
+    },
+    "static/css/pages/import-wizard.css": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 8,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "0c18a14b9a81f66f17ebc19ea5802e8d84dc36671881506aaff588475ad7272a"
+    },
+    "static/css/pages/knowledge.css": {
+      "consumers": [
+        {
+          "source": "templates/classification_evaluation.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/curriculum_catalog.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_classification.html",
+          "line": 6,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "8d73393651a5929c27e92c0485f9bf542de50a9c77334da1cd2f43e447a3a3ab"
+    },
+    "static/css/pages/people.css": {
+      "consumers": [
+        {
+          "source": "templates/edit_user.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/manage_users.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/my_students.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "92ebf80d7bda01c1b77fea823fd7c66d892ef3989bd8f8cb6b5c2e7aede9ebe9"
+    },
+    "static/css/pages/practice-student.css": {
+      "consumers": [
+        {
+          "source": "templates/practice_home.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/practice_progress.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "bf4cfebbd0295f48a8950dc23ed307225d2cff44347e9a3ee3824cfb877df2c0"
+    },
+    "static/css/pages/practice-teacher.css": {
+      "consumers": [
+        {
+          "source": "templates/practice_draft.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/teacher_practice_detail.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/teacher_practice_list.html",
+          "line": 4,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "4d2237d8832abb56380f774f04ebd3c47dde9fb304c0e2695dd934d4a5871a4a"
+    },
+    "static/css/profile.css": {
+      "consumers": [
+        {
+          "source": "templates/profile.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "934983e766bc39bcdd60017e41ced2070f96c04916c522ab8d8152bbaed1cc87"
+    },
+    "static/css/question-bank.css": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 11,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "f461df7b078aa0ed908db4006cead2f1fb24b90b6f73867c4ba22711b6d5ef68"
+    },
+    "static/css/question-content.css": {
+      "consumers": [
+        {
+          "source": "static/css/main.css",
+          "kind": "css_url"
+        }
+      ],
+      "sha256": "f55d1891aa0fc1ef2d5a00e5b447915be043545302368a1ff3fe17e599d8a079"
+    },
+    "static/css/question-document.css": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 12,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "906c9442b4ce1d720c6e708627cfa9a14c67d8089e75189b5e32c9578c7a096d"
+    },
+    "static/css/shell.css": {
+      "consumers": [
+        {
+          "source": "static/css/main.css",
+          "kind": "css_url"
+        }
+      ],
+      "sha256": "d313503763a0bcd8814b49643650341624fa3bacec47e78cad6ffc18fbc2869b"
+    },
+    "static/css/tokens.css": {
+      "consumers": [
+        {
+          "source": "static/css/main.css",
+          "kind": "css_url"
+        }
+      ],
+      "sha256": "ad4e925b973e4ec1f2282a6693209a128b7f464f487a46450066c49753a6f674"
+    },
+    "static/js/ai-report-context.js": {
+      "consumers": [
+        {
+          "source": "templates/ai_reports.html",
+          "line": 88,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "31c08469ed187608850d41a15ebaad0583ac222474a039659e5e205e9118152b"
+    },
+    "static/js/ai-settings.js": {
+      "consumers": [
+        {
+          "source": "templates/teacher_ai_settings.html",
+          "line": 65,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "5bd88621d90d72f32a5f310be971b2e23a9799893497950261fefe28ba1b02bc"
+    },
+    "static/js/assessment-matrix.js": {
+      "consumers": [
+        {
+          "source": "templates/assessment_matrix.html",
+          "line": 55,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "97fba7b592c6fe704a720512c481dec2e473e3daf60907224e83f1378d8c6df5"
+    },
+    "static/js/assessment_from_bank.js": {
+      "consumers": [
+        {
+          "source": "templates/assessment_from_bank.html",
+          "line": 51,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "6fe17b5726ec072de56b3bb95266c9a062a7b3750ccf8ffb55d68e2f4c5125c9"
+    },
+    "static/js/bank-form.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_form.html",
+          "line": 17,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "b9656c3b7d835ff03425b1dbdb0b4ddffb801d4c8932a15b9462d107c92f7a22"
+    },
+    "static/js/bank-list.js": {
+      "consumers": [
+        {
+          "source": "templates/question_banks.html",
+          "line": 74,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "eed924a5d4d545b8082dd80d934bae5ea694d9aee5e9258322dfa8c3e3265d6b"
+    },
+    "static/js/bank_formula_scheduler.js": {
+      "consumers": [
+        {
+          "source": "templates/diagnostic_form.html",
+          "line": 39,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 134,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "861c08b3734e6c318d2174ff7aef61e7b9c9f78eed37120095ab402fe69a82d9"
+    },
+    "static/js/courses.js": {
+      "consumers": [
+        {
+          "source": "templates/course_detail.html",
+          "line": 28,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/course_form.html",
+          "line": 29,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/courses.html",
+          "line": 31,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "3d64e7b7c975285f97f0433dedb10349956e313e79d80307ccef7cb351b21122"
+    },
+    "static/js/diagnostic-list.js": {
+      "consumers": [
+        {
+          "source": "templates/diagnostic_list.html",
+          "line": 37,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "d2ebebc03060d51742c90522c9da33f9eb5344896d8fbd27ecba5b99ec8af413"
+    },
+    "static/js/error-page.js": {
+      "consumers": [
+        {
+          "source": "templates/errors/error.html",
+          "line": 25,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "b61d72ef0a7a4754ddb7e6ca9743ec3c1bc30e7d96b4339d2d274c1905252a81"
+    },
+    "static/js/exam-results.js": {
+      "consumers": [
+        {
+          "source": "templates/exam_result.html",
+          "line": 93,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "9abdc3070184a2749afad504790d2377b6415ee9ad6bfcf7d04ada1bccd9cfa8"
+    },
+    "static/js/formula_renderer.js": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 14,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "74c15fc77dbf0f7c1a08cd3671d803a78f1c689535735113adf879f3aeac9ea7"
+    },
+    "static/js/id6_picker.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_classification.html",
+          "line": 78,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 135,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 226,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "1dc42b38ef99f7b4cd80b2316e18ab85c2c504645637e7fd21514d5ea22080c7"
+    },
+    "static/js/import_duplicates.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 225,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "07094b9de2f5cfe8ee3ab32c5dc036a051c9988846d5ddc87d6d076f42f40477"
+    },
+    "static/js/import_scope.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 224,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "a08fd7e686a950e7ad07f41b38afd70492fd3fe2cd7b29aaa5e4693fce5aaa0e"
+    },
+    "static/js/knowledge.js": {
+      "consumers": [
+        {
+          "source": "templates/classification_evaluation.html",
+          "line": 27,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/curriculum_catalog.html",
+          "line": 42,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/question_bank_classification.html",
+          "line": 78,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "703955ed7bdf246a4baf806fb4801c03e54cd34a178a16501ef0c74639b7a4ec"
+    },
+    "static/js/login.js": {
+      "consumers": [
+        {
+          "source": "templates/login.html",
+          "line": 73,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/register.html",
+          "line": 101,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "08f9174485d06478d58ed538b4f1c77af2c55abbb187ec3072881c129ba016ca"
+    },
+    "static/js/manual_question.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 136,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "a8e191f5b23c42c8b1aa5c23499c001469a79f58a013883badb5204e48dd1d01"
+    },
+    "static/js/math-config.js": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 13,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "ac1393fc67815bc59d78b4d3c38701bd6653ada83a90f0f5b4ed231ea40a251c"
+    },
+    "static/js/modules/ai_reports.js": {
+      "consumers": [
+        {
+          "source": "templates/ai_reports.html",
+          "line": 89,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "d4b92e1f96c60f8019c36647663190cedc37ef87853ff7531006b6d7f340464b"
+    },
+    "static/js/modules/assessment_editor.js": {
+      "consumers": [
+        {
+          "source": "templates/assessment_import.html",
+          "line": 40,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "b1eac48a7e5ff2a0bdc61122f4e256e0ff01b6bc9f392ef625cf6f50b5e0425b"
+    },
+    "static/js/modules/diagnostic_wizard.js": {
+      "consumers": [
+        {
+          "source": "templates/diagnostic_form.html",
+          "line": 39,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "04ddb6facad856f7d34d024003459b25d84433dff4d18e077ae4b82d7e291ea7"
+    },
+    "static/js/modules/exam_take.js": {
+      "consumers": [
+        {
+          "source": "templates/exam_take.html",
+          "line": 7,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "47aea14285994ed9c3711a3fb5b7a269f7e2fbea112befca3cfd35549e50e1bc"
+    },
+    "static/js/modules/import_wizard.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_import.html",
+          "line": 227,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "ffda7ed1d2753bf1e3c2ea272cbd2979a383f1ed7637d9f0a18334f32e131ad9"
+    },
+    "static/js/modules/practice_progress.js": {
+      "consumers": [
+        {
+          "source": "templates/practice_progress.html",
+          "line": 42,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "6a74f64261014b1b3dcec7857c68768b0470e249d638169107b6d89b3aeb8dd3"
+    },
+    "static/js/modules/question_bank_detail.js": {
+      "consumers": [
+        {
+          "source": "templates/question_bank_detail.html",
+          "line": 137,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "184a9f869108357b649600171736269c982aca0cd647ea5132b0bca954e9f326"
+    },
+    "static/js/modules/teacher_practice_detail.js": {
+      "consumers": [
+        {
+          "source": "templates/teacher_practice_detail.html",
+          "line": 33,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "9fd22d39e3e82c83244bdd50617d5e55fc34ac1dbd6c939e559c4ecce0cf6c4a"
+    },
+    "static/js/native-dialog.js": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 16,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "27465c36bcb9bd335e4bc30142738a4ed4fe5cf6cc20f18d68c6a2f31d0a3cfd"
+    },
+    "static/js/people.js": {
+      "consumers": [
+        {
+          "source": "templates/edit_user.html",
+          "line": 25,
+          "kind": "jinja_url_for"
+        },
+        {
+          "source": "templates/manage_users.html",
+          "line": 27,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "bae5f81a0a6e0e6ebd8eeef972c249261bcde6c88d587e6a4a3ffefd654c8bad"
+    },
+    "static/js/practice-draft.js": {
+      "consumers": [
+        {
+          "source": "templates/practice_draft.html",
+          "line": 30,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "58b0fc3eef19953d57ef8e2d9cd4c5bd0c84afde82ae22ca01bdd9ea2b92a0a6"
+    },
+    "static/js/profile.js": {
+      "consumers": [
+        {
+          "source": "templates/profile.html",
+          "line": 149,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "3e778596b96d607448c9ab3b60a47cf43c460ee064b963f3ce11f97cdf191c48"
+    },
+    "static/js/ui-shell.js": {
+      "consumers": [
+        {
+          "source": "templates/base.html",
+          "line": 17,
+          "kind": "jinja_url_for"
+        }
+      ],
+      "sha256": "9a6b85a7bee8920f98baf0663fff61e0af72d6e401e41a7422df1ab0f1525903"
+    }
+  },
+  "css_import_dependencies": {
+    "static/css/ai-reports.css": [],
+    "static/css/assessments.css": [],
+    "static/css/auth.css": [],
+    "static/css/base.css": [],
+    "static/css/components.css": [],
+    "static/css/diagnostic-wizard.css": [],
+    "static/css/errors.css": [],
+    "static/css/id6.css": [],
+    "static/css/import_duplicates.css": [],
+    "static/css/learning.css": [],
+    "static/css/main.css": [
+      "static/css/tokens.css",
+      "static/css/base.css",
+      "static/css/components.css",
+      "static/css/shell.css",
+      "static/css/question-content.css"
+    ],
+    "static/css/pages/ai-settings.css": [],
+    "static/css/pages/assessment-composer.css": [],
+    "static/css/pages/bank-form.css": [],
+    "static/css/pages/bank-list.css": [],
+    "static/css/pages/courses.css": [],
+    "static/css/pages/dashboard.css": [],
+    "static/css/pages/diagnostics.css": [],
+    "static/css/pages/exam-results.css": [],
+    "static/css/pages/exam-taking.css": [],
+    "static/css/pages/import-wizard.css": [],
+    "static/css/pages/knowledge.css": [],
+    "static/css/pages/people.css": [],
+    "static/css/pages/practice-student.css": [],
+    "static/css/pages/practice-teacher.css": [],
+    "static/css/profile.css": [],
+    "static/css/question-bank.css": [],
+    "static/css/question-content.css": [],
+    "static/css/question-document.css": [],
+    "static/css/shell.css": [],
+    "static/css/tokens.css": []
+  },
+  "dynamic_review": [
+    {
+      "kind": "errors",
+      "source": "routes/errors.py:56",
+      "retained": "Five status templates plus errors/error.html fallback, including 429 and other HTTP errors."
+    },
+    {
+      "kind": "flash_classes",
+      "source": "templates/components/flash_messages.html",
+      "retained": "flash-success, flash-error and other flash-{{ category }} variants despite no full literal consumer."
+    },
+    {
+      "kind": "auth_notice_classes",
+      "source": "templates/login.html; templates/register.html",
+      "retained": "auth-notice-success/error/danger/warning category variants."
+    },
+    {
+      "kind": "runtime_badges",
+      "source": "static/js/modules/ai_reports.js",
+      "retained": "badge-present/absent/upcoming produced for correct/wrong/partial evidence."
+    },
+    {
+      "kind": "math_media",
+      "source": "static/js/formula_renderer.js; services/latex_parser.py; services/html_sanitizer.py",
+      "retained": "Formula placeholders, MathJax, TeX table wrappers, formula image retry/zoom, body data-can-retry-formulas and document-image-zoomable."
+    },
+    {
+      "kind": "import_scope_helper",
+      "source": "static/js/import_scope.js; static/js/modules/import_wizard.js",
+      "retained": "restoreImport remains mixed into active wizard; no retired import scope form restored."
+    },
+    {
+      "kind": "data_driven_assets",
+      "source": "content/avatar/upload rendering routes and templates",
+      "retained": "Avatar uploads, formula/generated/LaTeX assets, frozen question images, vendor bundles and font trees are not deleted by filename-reference heuristics."
+    },
+    {
+      "kind": "alpine_and_dom_states",
+      "source": "static/js and templates x-bind/:class/classList/data hooks",
+      "retained": "State classes, component hook names and no-JS sidebar fallback kept; no role/API/scoring/source contracts changed."
+    },
+    {
+      "kind": "shared_formula_dialog",
+      "source": "static/js/formula_renderer.js:_openImageLightbox",
+      "retained": "Public FormulaRenderer.openImageLightbox still called by bank/import image handlers. All fixed overlay/error/review/retry styles now scoped token CSS. Native dialog accessibility is browser-tested separately."
+    }
+  ],
+  "removed_files": [
+    {
+      "path": "templates/teacher_analytics.html",
+      "reason": "No render_template, Jinja include/extends/import or preview/test reference to filename. routes/practice.py:1040 remains a compatibility redirect to teacher_practice_list or teacher_practice_detail; route endpoint retained.",
+      "inline_style_attributes_removed": 26
+    },
+    {
+      "path": "static/js/.DS_Store",
+      "reason": "macOS Finder metadata, no runtime consumer or user content."
+    }
+  ],
+  "removed_tokens": [
+    {
+      "name": "--bg",
+      "replacement": "--color-canvas",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--surface",
+      "replacement": "--color-surface",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--surface-1",
+      "replacement": "--color-surface",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--surface-2",
+      "replacement": "--slate-50",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--surface-3",
+      "replacement": "--slate-100",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-1",
+      "replacement": "--color-text",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-2",
+      "replacement": "--color-text-secondary",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-3",
+      "replacement": "--color-text-muted",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--accent",
+      "replacement": "--color-primary",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--accent-hover",
+      "replacement": "--color-primary-hover",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--accent-light",
+      "replacement": "--color-primary-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--accent-soft",
+      "replacement": "--color-primary-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--primary",
+      "replacement": "--color-primary",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--success",
+      "replacement": "--color-success",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--success-light",
+      "replacement": "--color-success-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--danger",
+      "replacement": "--color-danger",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--danger-light",
+      "replacement": "--color-danger-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--warning",
+      "replacement": "--color-warning",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--warning-light",
+      "replacement": "--color-warning-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--info",
+      "replacement": "--color-primary",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--info-light",
+      "replacement": "--color-primary-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--border",
+      "replacement": "--color-border",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--border-strong",
+      "replacement": "--color-input-border",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-xs",
+      "replacement": "--size-xs",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-sm",
+      "replacement": "--size-sm",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-base",
+      "replacement": "--size-base",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-md",
+      "replacement": "--size-md",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-lg",
+      "replacement": "--size-lg",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-xl",
+      "replacement": "--size-xl",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-2xl",
+      "replacement": "--size-2xl",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--text-3xl",
+      "replacement": "--size-2xl",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--font-body",
+      "replacement": "--font-sans",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--font-heading",
+      "replacement": "--font-sans",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--radius-lg",
+      "replacement": "--radius-md",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--shadow-sm",
+      "replacement": "--shadow-subtle",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--shadow-md",
+      "replacement": "--shadow-overlay",
+      "runtime_references_after_cleanup": []
+    },
+    {
+      "name": "--ease",
+      "replacement": "--duration-fast",
+      "runtime_references_after_cleanup": []
+    }
+  ],
+  "removed_classes": [
+    {
+      "name": "visually-hidden",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/base.css"
+      ]
+    },
+    {
+      "name": "text-small",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/base.css"
+      ]
+    },
+    {
+      "name": "text-success",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/base.css"
+      ]
+    },
+    {
+      "name": "text-right",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/base.css"
+      ]
+    },
+    {
+      "name": "text-center",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/base.css"
+      ]
+    },
+    {
+      "name": "btn-new-course",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "btn-success",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "card-header",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "card-title",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "panel-heading",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "table-container",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "badge-active",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "badge-open",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "badge-inactive",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "badge-closed",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "form-errors",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "warning-light-bg",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "danger-light-bg",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "success-light-bg",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/components.css"
+      ]
+    },
+    {
+      "name": "formula-zoom-control",
+      "runtime_references_after_cleanup": [],
+      "before_css_files": [
+        "static/css/pages/import-wizard.css"
+      ]
+    }
+  ],
+  "checks": {
+    "jinja_parse_errors": [],
+    "missing_template_dependencies": [],
+    "unreachable_templates": [],
+    "missing_static_literals_and_css_urls": [],
+    "application_assets_without_consumers": [],
+    "undefined_css_variables": [],
+    "retired_token_references": 0,
+    "retired_class_references": 0
+  },
+  "limits": [
+    "This source graph does not treat arbitrary uploaded/content URLs as literal app assets; those paths are deliberately retained.",
+    "Source references alone do not prove behavior, rights, keyboard or visual correctness; use root whole-system browser and regression evidence for those.",
+    "Historical phase inventories are snapshots and intentionally still describe previous file names."
+  ],
+  "shared_formula_ui_migration": {
+    "source": "static/js/formula_renderer.js; static/css/question-content.css",
+    "fixed_inline_style_assignments_removed": 6,
+    "retired_unstyled_class_removed": "fst-italic",
+    "behavior": "Native dialog replaces unfocused overlay div; named dialog, visible close button, Escape/backdrop closing, focus containment and return to original image. Existing actual image URLs, formula parsing/fallback/retry endpoints, CSRF, temporary import branch and math/table layout unchanged.",
+    "classes": [
+      "formula-error",
+      "formula-retry-button",
+      "formula-needs-review",
+      "formula-block-review",
+      "formula-svg-lightbox",
+      "formula-lightbox-heading",
+      "formula-lightbox-image"
+    ],
+    "dynamic_styles_retained": "TeX cell alignment and intrinsic inline/block formula dimensions are content/layout semantics, not old theme UI.",
+    "cache_version": "20261019-phase9 for foundation CSS imports/layout references and formula_renderer.js"
+  }
+}

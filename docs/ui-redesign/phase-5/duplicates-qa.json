@@ -1,0 +1,253 @@
+{
+  "passed": 44,
+  "checks": [
+    {
+      "name": "workspace no horizontal overflow 375",
+      "passed": true
+    },
+    {
+      "name": "native comparison dialog 375",
+      "passed": true
+    },
+    {
+      "name": "comparison focus contained 375",
+      "passed": true
+    },
+    {
+      "name": "both copies labeled 375",
+      "passed": true
+    },
+    {
+      "name": "dialog no horizontal overflow 375",
+      "passed": true,
+      "detail": {
+        "width": 351,
+        "scrollWidth": 349,
+        "clientWidth": 349,
+        "columns": "317px"
+      }
+    },
+    {
+      "name": "mobile stack or desktop pair 375",
+      "passed": true,
+      "detail": {
+        "width": 351,
+        "scrollWidth": 349,
+        "clientWidth": 349,
+        "columns": "317px"
+      }
+    },
+    {
+      "name": "keyboard avoids background 375",
+      "passed": true
+    },
+    {
+      "name": "keyboard returns to dialog 375",
+      "passed": true,
+      "detail": {
+        "active": "BUTTON",
+        "open": true
+      }
+    },
+    {
+      "name": "comparison model cleared 375",
+      "passed": true
+    },
+    {
+      "name": "focus restored 375",
+      "passed": true
+    },
+    {
+      "name": "workspace no horizontal overflow 768",
+      "passed": true
+    },
+    {
+      "name": "native comparison dialog 768",
+      "passed": true
+    },
+    {
+      "name": "comparison focus contained 768",
+      "passed": true
+    },
+    {
+      "name": "both copies labeled 768",
+      "passed": true
+    },
+    {
+      "name": "dialog no horizontal overflow 768",
+      "passed": true,
+      "detail": {
+        "width": 720,
+        "scrollWidth": 718,
+        "clientWidth": 718,
+        "columns": "327px 327px"
+      }
+    },
+    {
+      "name": "mobile stack or desktop pair 768",
+      "passed": true,
+      "detail": {
+        "width": 720,
+        "scrollWidth": 718,
+        "clientWidth": 718,
+        "columns": "327px 327px"
+      }
+    },
+    {
+      "name": "keyboard avoids background 768",
+      "passed": true
+    },
+    {
+      "name": "keyboard returns to dialog 768",
+      "passed": true,
+      "detail": {
+        "active": "BUTTON",
+        "open": true
+      }
+    },
+    {
+      "name": "comparison model cleared 768",
+      "passed": true
+    },
+    {
+      "name": "focus restored 768",
+      "passed": true
+    },
+    {
+      "name": "workspace no horizontal overflow 1024",
+      "passed": true
+    },
+    {
+      "name": "native comparison dialog 1024",
+      "passed": true
+    },
+    {
+      "name": "comparison focus contained 1024",
+      "passed": true
+    },
+    {
+      "name": "both copies labeled 1024",
+      "passed": true
+    },
+    {
+      "name": "dialog no horizontal overflow 1024",
+      "passed": true,
+      "detail": {
+        "width": 976,
+        "scrollWidth": 974,
+        "clientWidth": 974,
+        "columns": "455px 455px"
+      }
+    },
+    {
+      "name": "mobile stack or desktop pair 1024",
+      "passed": true,
+      "detail": {
+        "width": 976,
+        "scrollWidth": 974,
+        "clientWidth": 974,
+        "columns": "455px 455px"
+      }
+    },
+    {
+      "name": "keyboard avoids background 1024",
+      "passed": true
+    },
+    {
+      "name": "keyboard returns to dialog 1024",
+      "passed": true,
+      "detail": {
+        "active": "BUTTON",
+        "open": true
+      }
+    },
+    {
+      "name": "comparison model cleared 1024",
+      "passed": true
+    },
+    {
+      "name": "focus restored 1024",
+      "passed": true
+    },
+    {
+      "name": "workspace no horizontal overflow 1440",
+      "passed": true
+    },
+    {
+      "name": "native comparison dialog 1440",
+      "passed": true
+    },
+    {
+      "name": "comparison focus contained 1440",
+      "passed": true
+    },
+    {
+      "name": "both copies labeled 1440",
+      "passed": true
+    },
+    {
+      "name": "dialog no horizontal overflow 1440",
+      "passed": true,
+      "detail": {
+        "width": 1160,
+        "scrollWidth": 1158,
+        "clientWidth": 1158,
+        "columns": "547px 547px"
+      }
+    },
+    {
+      "name": "mobile stack or desktop pair 1440",
+      "passed": true,
+      "detail": {
+        "width": 1160,
+        "scrollWidth": 1158,
+        "clientWidth": 1158,
+        "columns": "547px 547px"
+      }
+    },
+    {
+      "name": "keyboard avoids background 1440",
+      "passed": true
+    },
+    {
+      "name": "keyboard returns to dialog 1440",
+      "passed": true,
+      "detail": {
+        "active": "BUTTON",
+        "open": true
+      }
+    },
+    {
+      "name": "comparison model cleared 1440",
+      "passed": true
+    },
+    {
+      "name": "focus restored 1440",
+      "passed": true
+    },
+    {
+      "name": "destination change confirmation native",
+      "passed": true
+    },
+    {
+      "name": "destination label scoped",
+      "passed": true
+    },
+    {
+      "name": "readonly QA no data POST",
+      "passed": true,
+      "detail": [
+        "/login"
+      ]
+    },
+    {
+      "name": "no JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "posts": [
+    "/login"
+  ]
+}

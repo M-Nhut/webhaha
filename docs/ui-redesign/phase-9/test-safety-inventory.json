@@ -1,0 +1,728 @@
+[
+  {
+    "path": "tests/test_adaptive_personalization.py",
+    "imports": [],
+    "network_markers": [
+      "541:fake = FakeSession([",
+      "546:\"AI_ANALYSIS_API_URL\": \"https://ai.example/v1/chat/completions\",",
+      "571:fake = FakeSession([FakeResponse({\"choices\": [{\"message\": {\"content\": json.dumps(invalid)}}]})])",
+      "573:with patch.dict(os.environ, {\"AI_ANALYSIS_API_URL\": \"https://ai.example\", \"AI_ANALYSIS_RETRIES\": \"0\"}):"
+    ],
+    "isolation_markers": [
+      "9:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "15:config.load_local_environment = lambda *args, **kwargs: None",
+      "55:db.drop_all()",
+      "56:db.create_all()",
+      "74:self.db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_ai_gateway_review.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "52:\"AI_ANALYSIS_API_URL\": \"https://legacy.example/api\","
+    ],
+    "isolation_markers": [
+      "10:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "12:config.load_local_environment = lambda *args, **kwargs: None",
+      "60:db.drop_all()",
+      "61:db.create_all()",
+      "78:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_aptga.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_assessment_matrix.py",
+    "imports": [
+      "from tests.test_personalization_v2 import bank, app, db",
+      "from tests.test_standalone_assessment import uploaded, form, login"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_assessment_scoring.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_bank_import_phase2_visibility.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "94:session = ImportSession("
+    ],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "14:config.load_local_environment = lambda project_root=config.PROJECT_ROOT: None",
+      "52:db.drop_all()",
+      "53:db.create_all()",
+      "82:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_bank_list_phase3.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "8:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "11:config.load_local_environment = lambda project_root=config.PROJECT_ROOT: None",
+      "24:db.drop_all()",
+      "25:db.create_all()",
+      "52:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_bank_selection_phase4.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "114:session = PracticeSession("
+    ],
+    "isolation_markers": [
+      "10:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "14:config.load_local_environment = lambda *args, **kwargs: None",
+      "42:db.drop_all()",
+      "43:db.create_all()",
+      "76:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_bank_visibility_phase1.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "17:config.load_local_environment = lambda *args, **kwargs: None",
+      "39:db.drop_all()",
+      "40:db.create_all()",
+      "66:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_bank_visibility_phase5.py",
+    "imports": [
+      "import subprocess",
+      "from services.bank_visibility_phase5 import (\n    apply_plan,\n    build_plan,\n    connect_readonly,\n    public_plan,\n)"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_chapter6_migration.py",
+    "imports": [
+      "from services.curriculum_migration import (\n    CatalogMigrationBlocked, apply_chapter6_migration, inspect_chapter6_migration,\n    rollback_chapter6_migration,\n)"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "34:db.create_all()"
+    ]
+  },
+  {
+    "path": "tests/test_chapter6_only_catalog.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": [
+      "53:metadata.create_all(engine)"
+    ]
+  },
+  {
+    "path": "tests/test_class_lesson4_report.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "172:fake = _Session({\"choices\": [{\"message\": {\"content\": json.dumps({",
+      "179:with patch.dict(os.environ, {\"AI_ANALYSIS_API_URL\": \"https://example.invalid\", \"AI_ANALYSIS_RETRIES\": \"0\"}, clear=False):",
+      "208:fake = _Session(body)",
+      "209:with patch.dict(os.environ, {\"AI_ANALYSIS_API_URL\": \"https://example.invalid\", \"AI_ANALYSIS_RETRIES\": \"0\"}, clear=False):"
+    ],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "15:config.load_local_environment = lambda *args, **kwargs: None",
+      "70:db.drop_all()",
+      "71:db.create_all()",
+      "94:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_classification_evaluation.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_curriculum_classification.py",
+    "imports": [],
+    "network_markers": [
+      "314:with Session(engine) as session:",
+      "323:with Session(engine) as session:"
+    ],
+    "isolation_markers": [
+      "9:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "28:db.drop_all()",
+      "29:db.create_all()",
+      "66:self.db.drop_all()",
+      "313:self.db.metadata.create_all(engine)"
+    ]
+  },
+  {
+    "path": "tests/test_diagnostic_delete_and_explanation.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "6:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "9:config.load_local_environment = lambda *args, **kwargs: None",
+      "24:db.drop_all()",
+      "25:db.create_all()",
+      "60:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_diagnostic_phase2.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "7:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "10:config.load_local_environment = lambda *args, **kwargs: None",
+      "31:db.drop_all()",
+      "32:db.create_all()",
+      "47:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_diagnostic_report_contract.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_error_pages.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_evaluation_dataset.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_formulas.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": [
+      "14:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "33:db.drop_all()",
+      "34:db.create_all()",
+      "38:user_code=\"FORMULA\",",
+      "49:self.db.drop_all()",
+      "82:\"services.import_service.UPLOAD_TEMP_DIR\", directory"
+    ]
+  },
+  {
+    "path": "tests/test_general_bank.py",
+    "imports": [
+      "from tests.test_personalization_v2 import bank, app, db"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_id6_import.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": [
+      "8:os.environ['DATABASE_URL'] = 'sqlite:///:memory:'",
+      "26:db.drop_all(); db.create_all(); seed_math9_catalog()",
+      "36:self.upload_patch = patch('services.import_service.UPLOAD_TEMP_DIR', self.temp.name)",
+      "41:self.db.session.remove(); self.db.drop_all(); self.context.pop()"
+    ]
+  },
+  {
+    "path": "tests/test_import_duplicates.py",
+    "imports": [
+      "import test_phase2_import as phase2"
+    ],
+    "network_markers": [
+      "199:row=ImportSession(user_id=uid,bank_id=bid,filename='race.tex',file_type='tex',status='preview')"
+    ],
+    "isolation_markers": [
+      "170:from services.import_service import UPLOAD_TEMP_DIR",
+      "172:source=Path(UPLOAD_TEMP_DIR)/f'{row.id}_source.tex'",
+      "194:db.create_all();seed_math9_catalog()"
+    ]
+  },
+  {
+    "path": "tests/test_import_regression_guard.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": [
+      "18:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "37:db.drop_all()",
+      "38:db.create_all()",
+      "47:self.db.drop_all()",
+      "64:patch(\"services.import_service.UPLOAD_TEMP_DIR\", self.temp_dir.name),",
+      "74:with patch(\"services.import_service.UPLOAD_TEMP_DIR\", self.temp_dir.name):"
+    ]
+  },
+  {
+    "path": "tests/test_latex_display_v3.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_learning_loop_phase4.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "54:session = PracticeSession("
+    ],
+    "isolation_markers": [
+      "8:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "11:config.load_local_environment = lambda *args, **kwargs: None",
+      "29:db.drop_all()",
+      "30:db.create_all()",
+      "43:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_learning_workspace.py",
+    "imports": [
+      "from tests.test_personalization_v2 import app, db, bank"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_lesson4_cleanup.py",
+    "imports": [
+      "from services.lesson4_cleanup import apply_lesson4_cleanup, inspect_lesson4_cleanup"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "40:db.metadata.create_all(self.engine)"
+    ]
+  },
+  {
+    "path": "tests/test_local_tex_bank.py",
+    "imports": [],
+    "network_markers": [
+      "34:assert 'https://' not in svg",
+      "38:svg = '<svg xmlns=\"http://www.w3.org/2000/svg\" onload=\"evil()\"><script>evil()</script><foreignObject/><image href=\"https://evil/\"/><path style=\"fill:url(https://evil)\"/><use href=\"#safe\"/></svg>'",
+      "47:monkeypatch.setenv('LATEX_RENDERER_URL', 'https://old-renderer.invalid')"
+    ],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_personalization_mvp.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "17:config.load_local_environment = lambda *args, **kwargs: None",
+      "57:db.drop_all()",
+      "58:db.create_all()",
+      "90:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_personalization_v2.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "142:session = ImportSession(user_id=bank.teacher.id, bank_id=bank.bank.id,",
+      "202:session = PracticeSession(student_id=bank.student.id, course_id=bank.course.id,",
+      "287:session = PracticeSession(student_id=bank.student.id, course_id=bank.course.id,"
+    ],
+    "isolation_markers": [
+      "8:os.environ['DATABASE_URL'] = 'sqlite:///:memory:'",
+      "11:config.load_local_environment = lambda *args, **kwargs: None",
+      "29:with TemporaryDirectory(prefix='fnweb-test-import-') as upload_dir, patch('services.import_service.UPLOAD_TEMP_DIR', upload_dir), app.app_context():",
+      "31:db.drop_all()",
+      "32:db.create_all()",
+      "64:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_phase1_import_review.py",
+    "imports": [],
+    "network_markers": [
+      "84:session = ImportSession("
+    ],
+    "isolation_markers": [
+      "7:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "62:db.drop_all()",
+      "63:db.create_all()",
+      "78:self.db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_phase2_import.py",
+    "imports": [],
+    "network_markers": [
+      "43:row=ImportSession(user_id=self.user.id, bank_id=self.bank.id, filename='chapter6.tex', file_type='tex', status='preview')"
+    ],
+    "isolation_markers": [
+      "8:os.environ['DATABASE_URL'] = 'sqlite:///:memory:'",
+      "29:db.drop_all(); db.create_all(); seed_math9_catalog()",
+      "39:self.db.session.remove(); self.db.drop_all(); self.context.pop()"
+    ]
+  },
+  {
+    "path": "tests/test_phase5_reports.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "7:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "9:config.load_local_environment = lambda *args, **kwargs: None",
+      "24:db.drop_all()",
+      "25:db.create_all()",
+      "40:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_practice22.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "10:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "13:config.load_local_environment = lambda *args, **kwargs: None",
+      "30:db.drop_all()",
+      "31:db.create_all()",
+      "107:db.drop_all()",
+      "333:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_practice_same_level_transfer.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_practice_source_inventory.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_question_classification.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_question_overlay_phase2.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "135:session = ImportSession("
+    ],
+    "isolation_markers": [
+      "8:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "13:config.load_local_environment = lambda *args, **kwargs: None",
+      "71:db.drop_all()",
+      "72:db.create_all()",
+      "102:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_question_overlay_phase3.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "10:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "15:config.load_local_environment = lambda *args, **kwargs: None",
+      "43:db.drop_all()",
+      "44:db.create_all()",
+      "83:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_question_overlay_selection.py",
+    "imports": [
+      "from tests import test_question_scope_phase1 as fixtures"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_question_scope_phase1.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "15:config.load_local_environment = lambda *args, **kwargs: None",
+      "39:db.drop_all()",
+      "40:db.create_all()",
+      "94:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_route_contract.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "12:os.environ.setdefault(\"DATABASE_URL\", \"sqlite:///:memory:\")"
+    ]
+  },
+  {
+    "path": "tests/test_source_resolver_phase4.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "218:session = PracticeSession("
+    ],
+    "isolation_markers": [
+      "14:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "19:config.load_local_environment = lambda *args, **kwargs: None",
+      "51:db.drop_all()",
+      "52:db.create_all()",
+      "79:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_standalone_assessment.py",
+    "imports": [
+      "from tests.test_personalization_v2 import bank, app, db"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_teacher_ai_simplified.py",
+    "imports": [
+      "import requests",
+      "from app import app"
+    ],
+    "network_markers": [
+      "60:\"AI_ANALYSIS_API_URL\": \"https://legacy.invalid/api\",",
+      "91:provider = _Session([_Reply(), _Reply()])",
+      "120:source=\"teacher_group\", provider=\"gemini-openai-compatible\", endpoint=\"https://fake.invalid\",",
+      "132:gateway = GeminiAIGateway(http_session=_Session([_Reply(status, body)]))",
+      "139:gateway = GeminiAIGateway(http_session=_Session([requests.ConnectionError(\"Bearer private-key-never-logged\")]))",
+      "160:provider = _Session([])",
+      "176:provider = _Session([_Reply()])"
+    ],
+    "isolation_markers": [
+      "10:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "13:config.load_local_environment = lambda *args, **kwargs: None",
+      "68:db.drop_all()",
+      "69:db.create_all()",
+      "77:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_teacher_keys_phase3.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "56:\"AI_ANALYSIS_API_URL\": \"https://legacy.invalid/api\",",
+      "151:provider = _Session([_Reply(503), _Reply(200)])",
+      "172:service = ClassLesson4ReportService(http_session=_Session([]))"
+    ],
+    "isolation_markers": [
+      "11:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "14:config.load_local_environment = lambda *args, **kwargs: None",
+      "65:db.drop_all()",
+      "66:db.create_all()",
+      "95:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_teacher_keys_phase4.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "124:one = _Session([_Reply()])",
+      "128:two = _Session([_Reply()])",
+      "139:provider = _Session([_Reply(",
+      "163:provider = _Session([",
+      "175:provider = _Session([_Reply(401), _Reply()])",
+      "183:probe = _Session([_Reply()])",
+      "192:provider = _Session([_Reply(400, {\"error\": {\"message\": \"private student data\"}}), _Reply()])",
+      "202:model_provider = _Session([_Reply(404, {\"error\": {\"message\": \"model not found\"}}), _Reply()])",
+      "211:provider = _Session([_Reply(503), _Reply(503), _Reply()])"
+    ],
+    "isolation_markers": [
+      "13:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "16:config.load_local_environment = lambda *args, **kwargs: None",
+      "73:db.drop_all()",
+      "74:db.create_all()",
+      "91:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_teacher_keys_phase5.py",
+    "imports": [
+      "from services.teacher_keys_phase5 import (\n    FIXED_MODEL,\n    apply_plan,\n    build_plan,\n    connect_readonly,\n    public_plan,\n)"
+    ],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_three_type_import.py",
+    "imports": [],
+    "network_markers": [],
+    "isolation_markers": []
+  },
+  {
+    "path": "tests/test_ui_phase8_user_validation.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "13:from scripts.preview_ui_phase4 import isolate_environment, isolate_storage",
+      "16:isolate_environment(_storage.name)",
+      "37:db.drop_all()",
+      "38:db.create_all()",
+      "54:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase3.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "12:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "20:config.load_local_environment = lambda *args, **kwargs: None",
+      "22:\"UPLOAD_FOLDER_AVATARS\": str(Path(_uploads.name) / \"avatars\"),",
+      "23:\"UPLOAD_FOLDER_COURSES\": str(Path(_uploads.name) / \"courses\"),",
+      "47:previous = {key: app.config.get(key) for key in (\"TESTING\", \"WTF_CSRF_ENABLED\", \"UPLOAD_FOLDER_AVATARS\")}",
+      "48:app.config.update(TESTING=True, WTF_CSRF_ENABLED=True, UPLOAD_FOLDER_AVATARS=str(Path(_uploads.name) / \"avatars\"))",
+      "49:Path(app.config[\"UPLOAD_FOLDER_AVATARS\"]).mkdir(exist_ok=True)",
+      "51:db.drop_all()",
+      "52:db.create_all()",
+      "61:db.drop_all()",
+      "167:assert (Path(app.config[\"UPLOAD_FOLDER_AVATARS\"]) / filename).read_bytes() == payload",
+      "168:assert Path(app.config[\"UPLOAD_FOLDER_AVATARS\"]).is_relative_to(Path(_uploads.name))"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase4.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "13:from scripts.preview_ui_phase4 import isolate_environment, isolate_storage, seed_data",
+      "16:isolate_environment(_storage.name)",
+      "38:db.drop_all()",
+      "231:assert Path(app.root_path).is_relative_to(Path(_storage.name))"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase5.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "18:isolate_environment, isolate_phase5, seed_data,",
+      "22:isolate_environment(_storage.name)",
+      "26:isolate_phase5(app, _storage.name)",
+      "38:isolate_phase5(app, _storage.name)",
+      "44:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase6.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "13:from scripts.preview_ui_phase6 import isolate_environment, isolate_phase5, seed_data",
+      "16:isolate_environment(_storage.name)",
+      "20:isolate_phase5(app,_storage.name)",
+      "32:isolate_phase5(app,_storage.name)",
+      "37:db.session.remove();db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase7.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "12:from scripts.preview_ui_phase7 import isolate_environment, isolate_phase5, seed_data",
+      "15:isolate_environment(_storage.name)",
+      "27:isolate_phase5(app,_storage.name)",
+      "33:db.session.remove();db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_ui_redesign_phase8.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [],
+    "isolation_markers": [
+      "10:from scripts.preview_ui_phase8 import isolate_phase8_environment, isolate_phase5, seed_data, synthetic_providers",
+      "13:isolate_phase8_environment(_storage.name)",
+      "23:isolate_phase5(app, _storage.name)",
+      "30:db.drop_all()"
+    ]
+  },
+  {
+    "path": "tests/test_unified_practice_phase3.py",
+    "imports": [
+      "from app import app"
+    ],
+    "network_markers": [
+      "151:session = PracticeSession("
+    ],
+    "isolation_markers": [
+      "8:os.environ[\"DATABASE_URL\"] = \"sqlite:///:memory:\"",
+      "11:config.load_local_environment = lambda *args, **kwargs: None",
+      "28:db.drop_all()",
+      "29:db.create_all()",
+      "56:db.drop_all()"
+    ]
+  }
+]

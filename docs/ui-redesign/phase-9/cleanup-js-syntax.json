@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-19",
+  "application_js_files": 32,
+  "passed": true,
+  "results": [
+    {
+      "path": "static/js/ai-report-context.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/ai-settings.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/assessment-matrix.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/assessment_from_bank.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/bank-form.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/bank-list.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/bank_formula_scheduler.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/courses.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/diagnostic-list.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/error-page.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/exam-results.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/formula_renderer.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/id6_picker.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/import_duplicates.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/import_scope.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/knowledge.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/login.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/manual_question.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/math-config.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/ai_reports.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/assessment_editor.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/diagnostic_wizard.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/exam_take.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/import_wizard.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/practice_progress.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/question_bank_detail.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/modules/teacher_practice_detail.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/native-dialog.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/people.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/practice-draft.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/profile.js",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "path": "static/js/ui-shell.js",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ]
+}

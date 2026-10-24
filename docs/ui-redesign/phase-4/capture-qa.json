@@ -1,0 +1,1486 @@
+{
+  "date": "2026-10-14",
+  "captureOnly": true,
+  "checks": [
+    {
+      "name": "synthetic fixture loaded",
+      "passed": true
+    },
+    {
+      "name": "native login teacher",
+      "passed": true
+    },
+    {
+      "name": "bank-list/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-list/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-list/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-list/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-list/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-list/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-form/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-form/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-form/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-form/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-form/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-general/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-general/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-general/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-general/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-general/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-research/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-research/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-research/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-research/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-research/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "classification/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "classification/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "classification/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "classification/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "evaluation/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "evaluation/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "evaluation/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "evaluation/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "evaluation/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-teacher/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/768 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-teacher/768 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/768 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/768 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1024 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-teacher/1024 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1024 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1024 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-teacher/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-teacher/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-common/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-common/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-common/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-common/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-empty/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-empty/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-empty/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "bank-empty/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification-empty/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "classification-empty/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification-empty/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "classification-empty/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "local MathJax renders question",
+      "passed": true
+    },
+    {
+      "name": "native login admin",
+      "passed": true
+    },
+    {
+      "name": "catalog-admin/375 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-admin/375 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-admin/375 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-admin/375 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-admin/1440 HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "catalog-admin/1440 responsive",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-admin/1440 headings and IDs",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "catalog-admin/1440 local font/icons/media",
+      "passed": true,
+      "detail": {
+        "viewport": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "icons": 0,
+        "duplicates": [],
+        "missingImages": []
+      }
+    },
+    {
+      "name": "capture has no browser JS errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "capture has no external requests",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

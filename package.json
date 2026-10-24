@@ -1,0 +1,11 @@
+{
+  "name": "fnweb2-local-tex",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build_local_assets.cjs"
+  },
+  "dependencies": {
+    "node-tikzjax": "1.0.5"
+  }
+}

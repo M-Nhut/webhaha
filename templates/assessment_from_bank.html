@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% set selected_mode = request.form.get('mode', 'manual') %}
+{% set selected_questions = request.form.getlist('question_ids') %}
+{% set levels = {'nhan_biet':'Nhận biết','thong_hieu':'Thông hiểu','van_dung':'Vận dụng','van_dung_cao':'Vận dụng cao'} %}
+{% block title %}Tạo đề từ ngân hàng · LMath{% endblock %}
+{% block page_title %}Tạo đề từ ngân hàng{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/assessment-composer.css', v='20261023-answer-review') }}">{% endblock %}
+{% block content %}
+<div class="assessment-workspace">
+  <header class="page-header">
+    <div class="page-title-area"><h1>Tạo đề từ ngân hàng</h1></div>
+    <a href="{{ url_for('assessment_list') }}" class="btn btn-ghost"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách đề</a>
+  </header>
+  <section class="panel assessment-source-panel" aria-labelledby="source-title">
+    <div class="assessment-section-title"><span class="assessment-step" aria-hidden="true">1</span><div><h2 id="source-title">Lớp học và nguồn câu hỏi</h2><p>Chỉ hiển thị nguồn được phép sử dụng cho giáo viên phụ trách lớp.</p></div></div>
+    <form method="get" data-assessment-source-form>
+      <div class="field assessment-course-field"><label for="source-course">Lớp nhận đề</label><select name="course_id" id="source-course"><option value="">Chọn lớp học</option>{% for item in courses %}<option value="{{ item.id }}" {% if course and course.id == item.id %}selected{% endif %}>{{ item.course_name }}</option>{% endfor %}</select><p class="form-hint">Đổi lớp sẽ tải lại các nguồn phù hợp với lớp đó.</p></div>
+      {% if course %}
+        {% if banks %}<fieldset class="assessment-bank-choices"><legend>Ngân hàng câu hỏi</legend><div class="assessment-bank-grid">{% for bank in banks %}<label class="assessment-bank-choice"><input type="checkbox" name="bank_ids" value="{{ bank.id }}" {% if bank.id in bank_ids %}checked{% endif %}><span><strong>{{ bank.name }}</strong><small>{{ bank.subject }}{% if bank.grade %} · {{ bank.grade }}{% endif %}{% if bank.visibility == 'shared' %} · Dùng chung{% else %} · Riêng tư của giáo viên phụ trách{% endif %}</small></span></label>{% endfor %}</div></fieldset>
+        <div class="assessment-source-actions"><button type="submit" class="btn btn-secondary"><i data-lucide="list-filter" aria-hidden="true"></i>Xem câu hỏi đủ điều kiện</button><p class="form-hint">Sau khi đổi nguồn, bấm xem để cập nhật danh sách câu hỏi.</p></div>
+        {% else %}<div class="assessment-empty"><i data-lucide="library" aria-hidden="true"></i><h3>Lớp chưa có nguồn câu hỏi phù hợp</h3><p>Chọn lớp khác hoặc bổ sung ngân hàng được phép sử dụng cho giáo viên phụ trách.</p></div>{% endif %}
+      {% else %}<div class="assessment-empty assessment-empty-compact"><p>{{ 'Chọn một lớp đang hoạt động để xem các ngân hàng có thể sử dụng.' if courses else 'Chưa có lớp đang hoạt động để tạo đề. Bạn cần có lớp học trước khi lập bản nháp.' }}</p></div><button type="submit" class="btn btn-secondary">Xem nguồn của lớp</button>{% endif %}
+    </form>
+  </section>
+  {% if course and bank_ids %}
+  <form method="post" class="assessment-selection-form" data-assessment-selection-form>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="course_id" value="{{ course.id }}">{% for id in bank_ids %}<input type="hidden" name="bank_ids" value="{{ id }}">{% endfor %}
+    <section class="validation-summary assessment-selection-errors" data-selection-errors tabindex="-1" aria-labelledby="selection-error-title" hidden><h2 id="selection-error-title">Kiểm tra lại cách chọn câu</h2><ul data-selection-error-list></ul></section>
+    <div class="assessment-composer-grid">
+      <aside class="panel assessment-selection-summary" aria-labelledby="selection-title">
+        <div class="assessment-section-title"><span class="assessment-step" aria-hidden="true">2</span><div><h2 id="selection-title">Cấu trúc bản nháp</h2><p>{{ course.course_name }} · {{ bank_ids|length }} nguồn</p></div></div>
+        <fieldset class="assessment-mode"><legend>Cách chọn câu</legend><label><input type="radio" name="mode" value="manual" {% if selected_mode != 'auto' %}checked{% endif %}>Chọn thủ công</label><label><input type="radio" name="mode" value="auto" {% if selected_mode == 'auto' %}checked{% endif %}>Lấy ngẫu nhiên theo phần</label></fieldset>
+        <p class="form-hint" data-mode-hint>Chọn câu trong danh sách và đặt điểm cho các phần có câu.</p>
+        <div class="assessment-section-budgets">{% for kind,label in kinds.items() %}<section class="assessment-budget-group" data-budget-kind="{{ kind }}" data-available="{{ available[kind] }}" data-kind-label="{{ label }}"><div class="assessment-budget-heading"><h3>{{ label }}</h3><span>{{ available[kind] }} câu có thể chọn</span></div><div class="assessment-budget-controls"><div class="field"><label for="count-{{ kind }}">Số câu ngẫu nhiên</label><input id="count-{{ kind }}" name="count_{{ kind }}" type="number" min="0" max="100" step="1" value="{{ request.form.get('count_' ~ kind, 0) }}" aria-describedby="count-hint-{{ kind }}"><p id="count-hint-{{ kind }}" class="form-hint" data-count-hint>Chỉ sử dụng khi chọn ngẫu nhiên.</p></div><div class="field"><label for="budget-{{ kind }}">Điểm cả phần</label><input id="budget-{{ kind }}" name="budget_{{ kind }}" type="number" min="0" max="10" step="0.01" required value="{{ request.form.get('budget_' ~ kind, 0) }}"></div></div><p class="assessment-kind-selection" data-kind-selection>Đang chọn: 0 câu</p></section>{% endfor %}</div>
+        <div class="assessment-selection-totals" role="status" aria-live="polite"><div><span>Tổng số câu</span><strong data-selection-count>0</strong></div><div><span>Tổng điểm</span><strong data-budget-total>0 / 10</strong></div></div>
+        <p class="form-hint">Từ 1 đến 100 câu. Phần có câu cần có điểm; phần không có câu đặt 0 điểm. Tổng điểm phải bằng 10.</p>
+        <button type="submit" class="btn btn-primary assessment-create-draft" data-create-draft {% if not questions %}disabled{% endif %}><i data-lucide="file-plus-2" aria-hidden="true"></i>Tạo bản nháp để kiểm tra</button><p class="assessment-submit-status" role="status" data-create-status hidden>Đang tạo bản nháp…</p>
+        <p class="form-hint assessment-scoring-hint">Điểm câu được chia theo trọng số trong bản nháp. Đúng/Sai chấm theo tỷ lệ số ý đúng.</p>
+      </aside>
+      <section class="assessment-source-questions" id="source-questions" aria-labelledby="questions-title">
+        <div class="assessment-question-list-heading"><div><h2 id="questions-title">Câu hỏi đủ điều kiện <span class="badge">{{ questions|length }}</span></h2><p>Đã duyệt và đủ đáp án. Bản nháp giữ thứ tự các câu bạn chọn.</p></div><a href="#selection-title" class="btn btn-ghost assessment-mobile-summary-link">Xem cấu trúc đề</a></div>
+        <p class="assessment-auto-note" data-auto-note hidden>Lấy ngẫu nhiên từ các nguồn này theo số câu ở từng phần. Những lựa chọn thủ công được giữ lại khi đổi cách chọn.</p>
+        {% for q in questions %}
+          {% set kind = 'true_false' if q.question_type == 'truefalse' else q.question_type %}
+          <article class="panel assessment-pool-question" data-pool-question data-question-kind="{{ kind }}">
+            <div class="assessment-pool-heading">
+              <label class="assessment-select-question" for="select-q-{{ q.id }}">
+                <input id="select-q-{{ q.id }}" type="checkbox" name="question_ids" value="{{ q.id }}" {% if q.id|string in selected_questions %}checked{% endif %} aria-label="Chọn câu {{ loop.index }}">
+                <strong>Câu {{ loop.index }}</strong>
+              </label>
+              <span class="badge">{{ kinds.get(kind, kind) }}</span>
+            </div>
+            <p class="assessment-question-source">{{ q.bank.name }} · {{ levels.get(q.difficulty_level, q.difficulty_level or 'Chưa ghi mức độ') }}{% if question_sources|default({}) and question_sources.get(q.id) %} · {{ question_sources[q.id] }}{% endif %}</p>
+            {% if q.context %}<div class="assessment-pool-context" data-bank-preview>{{ q.context }}</div>{% endif %}
+            <div class="assessment-question-text" data-bank-preview>{{ q.question_text }}</div>
+            {% if q.image_url %}
+              <figure class="assessment-composer-figure">
+                <img src="{{ q.image_url }}" alt="Hình minh họa câu {{ loop.index }}" loading="lazy" data-composer-image>
+                <p class="assessment-image-error" hidden>Không tải được hình. Kiểm tra nguồn trước khi giao đề.</p>
+              </figure>
+            {% endif %}
+            <details class="assessment-answer-disclosure">
+              <summary>Xem đáp án và lời giải</summary>
+              <div class="assessment-answer-content">
+                {% if kind == 'single' %}
+                  <h4>Đáp án</h4>
+                  <div class="assessment-answer-preview-list">
+                    {% for option in q.options %}
+                      <div class="assessment-answer-preview">
+                        <strong>{{ 'ABCD'[loop.index0] }}</strong>
+                        <span class="assessment-render" data-bank-preview>{{ option.option_text }}</span>
+                        {% if option.is_correct %}<span class="assessment-answer-indicator">Đáp án đúng</span>{% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% elif kind == 'true_false' %}
+                  <h4>Đáp án từng ý</h4>
+                  <div class="assessment-answer-preview-list">
+                    {% for option in q.options %}
+                      <div class="assessment-answer-preview">
+                        <strong>{{ 'abcd'[loop.index0] }}</strong>
+                        <span class="assessment-render" data-bank-preview>{{ option.option_text }}</span>
+                        <span class="assessment-answer-indicator">{{ 'Đúng' if option.is_correct else 'Sai' }}</span>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% elif kind == 'short_answer' %}
+                  <h4>Đáp án chấp nhận</h4>
+                  <div class="assessment-short-preview">
+                    <ul class="assessment-accepted-answer-list">
+                      {% for option in q.options %}{% if option.is_correct %}<li class="assessment-render" data-bank-preview>{{ option.option_text }}</li>{% endif %}{% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+                <section class="assessment-answer-explanation">
+                  <h4>Lời giải</h4>
+                  {% if q.explanation %}<div class="assessment-render" data-bank-preview>{{ q.explanation }}</div>{% else %}<p>Ngân hàng chưa có lời giải cho câu này.</p>{% endif %}
+                </section>
+              </div>
+            </details>
+          </article>
+        {% else %}<div class="panel assessment-empty"><i data-lucide="file-question" aria-hidden="true"></i><h3>Chưa có câu hỏi đủ điều kiện</h3><p>Chọn nguồn khác hoặc hoàn thiện nội dung, đáp án và trạng thái duyệt trong ngân hàng.</p><a href="{{ url_for('question_bank_list') }}" class="btn btn-secondary">Xem ngân hàng câu hỏi</a></div>{% endfor %}
+      </section>
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}<script id="assessment-bank-formulas" type="application/json">{{ formulas|tojson }}</script><script src="{{ url_for('static', filename='js/assessment_from_bank.js', v='20261015-phase5') }}" defer></script>{% endblock %}

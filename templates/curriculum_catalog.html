@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Danh mục kiến thức · LMath{% endblock %}
+{% block page_title %}Danh mục kiến thức{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/knowledge.css') }}?v=20261020-content-cleanup-v2">{% endblock %}
+{% block content %}
+{% set is_admin = current_user.role == 'admin' %}{% set grade_filter = request.args.get('grade', '') %}{% set chapter_filter = request.args.get('chapter', '') %}
+<section class="knowledge-page" data-curriculum-workspace>
+  <div class="page-header"><div class="page-title-area"><h1>Danh mục kiến thức</h1></div>{% if is_admin %}<a class="btn btn-primary" href="#catalog-management" data-catalog-open><i data-lucide="plus" aria-hidden="true"></i> Quản lý danh mục</a>{% else %}<span class="badge badge-neutral">Chỉ đọc</span>{% endif %}</div>
+  <form class="panel knowledge-filter knowledge-catalog-filter" method="GET" action="{{ url_for('curriculum_catalog') }}" aria-label="Lọc danh mục kiến thức">
+    <div class="field knowledge-filter-search"><label for="catalog-search">Tìm kiến thức</label><input type="search" id="catalog-search" name="q" value="{{ request.args.get('q', '') }}" placeholder="Mã tham chiếu, chương, bài hoặc tên dạng"></div>
+    <div class="field"><label for="catalog-grade">Lớp</label><select name="grade" id="catalog-grade"><option value="">Tất cả lớp</option>{% for grade in grades %}<option value="{{ grade }}" {% if grade_filter == grade %}selected{% endif %}>Lớp {{ grade }}</option>{% endfor %}{% if grade_filter and grade_filter not in grades %}<option value="{{ grade_filter }}" selected>Lớp {{ grade_filter }}</option>{% endif %}</select></div>
+    <div class="field"><label for="catalog-chapter">Mã chương</label><input type="text" id="catalog-chapter" name="chapter" value="{{ chapter_filter }}" placeholder="Tất cả chương"></div>
+    <label class="knowledge-checkbox knowledge-filter-check"><input type="checkbox" name="inactive" value="1" {% if request.args.get('inactive') == '1' %}checked{% endif %}> Hiện mục ngừng dùng</label>
+    <div class="knowledge-actions"><button class="btn btn-secondary" type="submit">Lọc danh mục</button><a class="btn btn-ghost" href="{{ url_for('curriculum_catalog') }}">Đặt lại</a></div>
+  </form>
+  <section class="panel knowledge-catalog-results" aria-labelledby="catalog-results-title">
+    <div class="knowledge-section-heading"><div><h2 id="catalog-results-title">{{ nodes|length }} dạng kiến thức</h2></div></div>
+    {% if nodes %}<div class="table-wrap" tabindex="0" role="region" aria-label="Danh sách dạng kiến thức"><table class="knowledge-catalog-table"><caption class="sr-only">Danh mục kiến thức theo bộ lọc hiện tại</caption><thead><tr><th scope="col">Dạng kiến thức</th><th scope="col">Mã tham chiếu</th><th scope="col">Trạng thái</th>{% if is_admin %}<th scope="col"><span class="sr-only">Thao tác</span></th>{% endif %}</tr></thead>
+      {% set catalog_group = namespace(key=none) %}
+      {% for node in nodes %}
+      {% set group_key = (node.grade, node.chapter_code, node.lesson_code) %}
+      {% if catalog_group.key != group_key %}
+        {% if not loop.first %}</tbody>{% endif %}
+        <tbody>
+          <tr class="knowledge-catalog-group"><th scope="rowgroup" colspan="{{ 4 if is_admin else 3 }}"><strong>Lớp {{ node.grade }} · Chương {{ node.chapter_code }}: {{ node.chapter_name }}</strong><span>Bài {{ node.lesson_code }}: {{ node.lesson_name }}</span></th></tr>
+        {% set catalog_group.key = group_key %}
+      {% endif %}
+      <tr><td class="knowledge-catalog-name"><strong>{{ node.category_name }}</strong></td><td data-label="Mã tham chiếu"><code>{{ node.canonical_code }}</code></td><td data-label="Trạng thái"><div class="knowledge-meta"><span class="badge {{ 'badge-success' if node.is_active else 'badge-neutral' }}">{{ 'Đang dùng' if node.is_active else 'Ngừng dùng' }}</span>{% if node.is_advanced %}<span class="badge badge-warning">Nâng cao</span>{% endif %}</div></td>
+      {% if is_admin %}<td class="knowledge-catalog-row-actions">{% if node.grade|string == '9' and node.chapter_code|string == '8' and node.lesson_code|string|lower == 'i' and node.category_code|string in ['1','2','3','4','5','6','7','8'] %}<button type="button" class="btn btn-secondary btn-sm" data-catalog-edit data-grade="{{ node.grade }}" data-chapter-code="{{ node.chapter_code }}" data-chapter-name="{{ node.chapter_name }}" data-lesson-code="{{ node.lesson_code }}" data-lesson-name="{{ node.lesson_name }}" data-category-code="{{ node.category_code }}" data-category-name="{{ node.category_name }}" data-advanced="{{ 'true' if node.is_advanced else 'false' }}" data-canonical="{{ node.canonical_code }}" aria-label="Sửa dạng {{ node.canonical_code }}">Sửa</button>{% else %}<span class="knowledge-table-secondary">Ngoài phạm vi biên tập</span>{% endif %}<form method="POST" action="{{ url_for('toggle_curriculum_node', node_id=node.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-ghost btn-sm" type="submit" aria-label="{{ 'Ngừng dùng' if node.is_active else 'Kích hoạt' }} dạng {{ node.canonical_code }}">{{ 'Ngừng dùng' if node.is_active else 'Kích hoạt' }}</button></form></td>{% endif %}</tr>{% endfor %}
+    </tbody></table></div>{% else %}<div class="knowledge-empty"><i data-lucide="list-filter" aria-hidden="true"></i><h3>Chưa có dạng kiến thức phù hợp</h3><p>Thử thay đổi từ khóa, lớp hoặc mã chương; bật “Hiện mục ngừng dùng” để kiểm tra các mục đã tắt.</p><a class="btn btn-secondary" href="{{ url_for('curriculum_catalog') }}">Đặt lại bộ lọc</a></div>{% endif %}
+  </section>
+  {% if is_admin %}
+  <details class="panel knowledge-management" id="catalog-management"><summary>Quản lý danh mục kiến thức <span>Thêm, cập nhật hoặc nhập nhiều dạng</span></summary>
+    <div class="knowledge-notice"><i data-lucide="info" aria-hidden="true"></i><p>Biên tập hiện hỗ trợ Toán 9 · Chương 8 · Bài kết hợp i, mã dạng 1–8. Lưu mã đã có sẽ cập nhật tên và kích hoạt lại dạng đó.</p></div>
+    <div class="knowledge-management-grid">
+      <form method="POST" action="{{ url_for('curriculum_catalog') }}" data-catalog-editor id="catalog-editor"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="add_single">
+        <div class="knowledge-section-heading"><h3 data-catalog-editor-title>Thêm hoặc cập nhật một dạng</h3><button type="button" class="btn btn-ghost btn-sm" data-catalog-reset>Nhập dạng khác</button></div>
+        <div class="form-grid-3"><div class="field"><label for="catalog-edit-grade">Lớp</label><input type="text" id="catalog-edit-grade" name="grade" value="9" readonly required></div><div class="field"><label for="catalog-edit-chapter">Mã chương</label><input type="text" id="catalog-edit-chapter" name="chapter_code" value="8" readonly required></div><div class="field"><label for="catalog-edit-lesson">Mã bài</label><input type="text" id="catalog-edit-lesson" name="lesson_code" value="i" readonly required></div></div>
+        <div class="field"><label for="catalog-edit-chapter-name">Tên chương</label><input type="text" id="catalog-edit-chapter-name" name="chapter_name" value="Thống kê và xác suất" required></div>
+        <div class="field"><label for="catalog-edit-lesson-name">Tên bài</label><input type="text" id="catalog-edit-lesson-name" name="lesson_name" value="{{ catalog_lesson_name }}" readonly required></div>
+        <div class="form-grid-2"><div class="field"><label for="catalog-edit-code">Mã dạng (1–8)</label><input type="text" id="catalog-edit-code" name="category_code" pattern="[1-8]" maxlength="1" inputmode="numeric" placeholder="1" required></div><div class="field"><label for="catalog-edit-name">Tên dạng</label><input type="text" id="catalog-edit-name" name="category_name" placeholder="Tên dạng kiến thức" required></div></div>
+        <label class="knowledge-checkbox"><input type="checkbox" name="is_advanced" value="1"> Dạng nâng cao</label><p class="form-hint" role="status" aria-live="polite" data-catalog-edit-feedback>Lưu sẽ thêm mới hoặc cập nhật theo mã dạng.</p><button class="btn btn-primary" type="submit">Lưu dạng kiến thức</button>
+      </form>
+      <form method="POST" action="{{ url_for('curriculum_catalog') }}" data-catalog-bulk><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="action" value="bulk_add"><h3>Nhập danh mục hàng loạt</h3><p>Mỗi dòng gồm 7 cột, phân cách bằng dấu <code>|</code> hoặc tab: lớp, mã chương, tên chương, mã bài, tên bài, mã dạng, tên dạng.</p><div class="field"><label for="catalog-rows">Các dòng danh mục</label><textarea id="catalog-rows" name="catalog_rows" rows="10" required aria-describedby="catalog-rows-example" placeholder="Dán các dòng danh mục tại đây"></textarea></div><details class="knowledge-format-example"><summary>Xem ví dụ một dòng hợp lệ</summary><pre id="catalog-rows-example">9|8|Thống kê và xác suất|i|{{ catalog_lesson_name }}|1|Viết tập hợp không gian mẫu của một phép thử</pre></details><button class="btn btn-secondary" type="submit">Kiểm tra và lưu danh mục</button></form>
+    </div>
+  </details>
+  {% endif %}
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/knowledge.js') }}?v=20261014-phase4"></script>{% endblock %}

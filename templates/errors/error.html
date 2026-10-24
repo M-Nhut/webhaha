@@ -1,0 +1,81 @@
+{% set error_code = status_code|default(500, true) %}
+{% set error_name = status_name|default('Error', true) %}
+{% set error_title = title|default('Đã xảy ra sự cố', true) %}
+{% set error_message = message|default('Hệ thống chưa thể hoàn tất yêu cầu. Vui lòng kiểm tra lại liên kết hoặc quay lại trang trước để tiếp tục.', true) %}
+{% set translated_defaults = {
+  'The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.': 'Trang hoặc tài nguyên bạn tìm kiếm không tồn tại. Kiểm tra đường dẫn hoặc về trang chủ để tiếp tục.',
+  'The browser (or proxy) sent a request that this server could not understand.': 'Yêu cầu chưa hợp lệ. Vui lòng kiểm tra thông tin và thực hiện lại từ giao diện.',
+  "You don't have the permission to access the requested resource. It is either read-protected or not readable by the server.": 'Bạn không có quyền truy cập vào nội dung này. Quay lại trang trước hoặc chọn chức năng phù hợp với tài khoản.',
+  'This user has exceeded an allotted request count. Try again later.': 'Bạn đã gửi nhiều yêu cầu trong thời gian ngắn. Vui lòng chờ ít phút và thử lại.'
+} %}
+{% set error_message = translated_defaults.get(error_message, error_message) %}
+{% set authenticated = current_user is defined and current_user.is_authenticated %}
+{% set home_url = url_for('index') %}
+{% set fallback_url = home_url if authenticated else url_for('login') %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ error_title }} — HTTP {{ error_code }} | LMath</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-transparent.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v='20261019-persistent-frame') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/errors.css', v='20261019-readable-shell') }}">
+  <script src="{{ url_for('static', filename='vendor/lucide/lucide.min.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/error-page.js', v='academy-phase3') }}" defer></script>
+</head>
+<body class="error-page">
+  <a class="skip-link" href="#error-content">Bỏ qua điều hướng</a>
+  <header class="error-header">
+    <div class="error-header-inner">
+      <a class="error-brand" href="{{ fallback_url }}" aria-label="LMath — {{ 'Trang chủ' if authenticated else 'Đăng nhập' }}">
+        <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" width="34" height="40" alt="">
+        <span class="error-brand-copy"><strong>LMath</strong><span>Học tập và phát triển</span></span>
+      </a>
+      <nav class="error-header-navigation" aria-label="Điều hướng tài khoản">
+        {% if authenticated %}
+        <a href="{{ url_for('profile') }}">Tài khoản của tôi</a>
+        {% else %}
+        <a href="{{ url_for('login') }}">Đăng nhập</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="error-main" id="error-content" tabindex="-1">
+    <article class="error-card" aria-labelledby="error-title">
+      <div class="error-status">
+        <span class="error-status-code">HTTP {{ error_code }}</span>
+        <span class="error-status-label">{{ badge_text|default('LỖI HỆ THỐNG', true) }}</span>
+      </div>
+      <h1 id="error-title">{{ error_title }}</h1>
+      <p class="error-message">{{ error_message }}</p>
+
+      <div class="error-actions">
+        <a class="btn btn-primary" href="{{ home_url }}"><i data-lucide="house" aria-hidden="true"></i><span>Về trang chủ</span></a>
+        <button class="btn btn-secondary" type="button" data-error-back data-fallback-url="{{ fallback_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i><span>Quay lại trang trước</span></button>
+      </div>
+      <p class="error-support">Nếu cần hỗ trợ, bạn có thể cung cấp mã tham chiếu bên dưới.</p>
+
+      <details class="error-technical">
+        <summary>Thông tin kỹ thuật <span class="error-summary-note">Mã tham chiếu</span></summary>
+        <div class="error-technical-body">
+          <dl class="error-facts">
+            <dt>Mã trạng thái</dt><dd>{{ error_code }} · {{ error_name }}</dd>
+            <dt>Đường dẫn</dt><dd><code>{{ request.path if request is defined else 'Không có thông tin' }}</code></dd>
+            <dt>Phương thức</dt><dd>{{ request.method if request is defined else 'Không có thông tin' }}</dd>
+            {% if now is defined and now %}<dt>Thời gian</dt><dd>{{ now.strftime('%d/%m/%Y %H:%M:%S') }}</dd>{% endif %}
+            <dt>Mã tham chiếu</dt><dd><code class="error-reference" id="error-reference" tabindex="0">{{ request_id|default('ERR-' ~ (error_code|string), true) }}</code></dd>
+            {% if details %}<dt>Chi tiết</dt><dd><pre class="error-detail">{{ details }}</pre></dd>{% endif %}
+          </dl>
+          <div class="error-copy-row">
+            <button type="button" class="btn btn-secondary" data-copy-request-id><i data-lucide="copy" aria-hidden="true"></i><span>Sao chép mã tham chiếu</span></button>
+            <p class="error-copy-feedback" id="error-copy-feedback" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </details>
+    </article>
+  </main>
+  <footer class="error-footer">LMath · Hệ thống học tập</footer>
+</body>
+</html>

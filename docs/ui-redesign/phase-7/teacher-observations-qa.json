@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-16",
+  "checks": 20,
+  "passed": [
+    "Observed errors GET 200 @375",
+    "Observed error disclosure exists @375",
+    "Keyboard opens observed errors @375",
+    "At most twenty genuine observations @375",
+    "Each observation has label claim and date @375",
+    "Observed errors remain read-only @375",
+    "Observed disclosure does not overflow page @375",
+    "Original standalone evidence heading retained @375",
+    "Keyboard collapse preserves summary focus @375",
+    "Observed errors GET 200 @1440",
+    "Observed error disclosure exists @1440",
+    "Keyboard opens observed errors @1440",
+    "At most twenty genuine observations @1440",
+    "Each observation has label claim and date @1440",
+    "Observed errors remain read-only @1440",
+    "Observed disclosure does not overflow page @1440",
+    "Original standalone evidence heading retained @1440",
+    "Keyboard collapse preserves summary focus @1440",
+    "No profile or evidence writes during read",
+    "No JavaScript errors"
+  ],
+  "errors": [],
+  "writes": [],
+  "screenshots": [
+    "screenshots/teacher-observations-375.png",
+    "screenshots/teacher-observations-1440.png"
+  ]
+}

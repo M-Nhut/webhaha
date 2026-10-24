@@ -1,0 +1,28 @@
+<nav class="bank-pagination" aria-label="Phân trang câu hỏi">
+  <p class="bank-pagination-summary">
+    {% if pagination.total %}Câu <strong>{{ pagination.first }}–{{ pagination.last }}</strong> / {{ pagination.total }}{% else %}0 câu phù hợp{% endif %}
+    <span>Trang {{ pagination.page }} / {{ pagination.pages }}</span>
+  </p>
+  {% if pagination.pages > 1 %}
+  <div class="bank-pagination-links">
+    {% if pagination.previous_url %}
+      <a class="btn btn-secondary btn-sm" href="{{ pagination.previous_url }}" rel="prev">← Trước</a>
+    {% else %}
+      <span class="bank-page-disabled" aria-disabled="true">← Trước</span>
+    {% endif %}
+    {% for link in pagination.links %}
+      {% if link.number is none %}
+        <span class="bank-page-ellipsis" aria-hidden="true">…</span>
+      {% else %}
+        <a class="btn btn-sm {% if link.number == pagination.page %}btn-primary{% else %}btn-secondary{% endif %}"
+           href="{{ link.url }}" aria-label="Trang {{ link.number }}" {% if link.number == pagination.page %}aria-current="page"{% endif %}>{{ link.number }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if pagination.next_url %}
+      <a class="btn btn-secondary btn-sm" href="{{ pagination.next_url }}" rel="next">Sau →</a>
+    {% else %}
+      <span class="bank-page-disabled" aria-disabled="true">Sau →</span>
+    {% endif %}
+  </div>
+  {% endif %}
+</nav>

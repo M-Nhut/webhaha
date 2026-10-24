@@ -1,0 +1,95 @@
+{% macro comparison_copy(question, kind) %}
+<section class="question-surface duplicate-copy" data-comparison-copy="{{ kind }}" {% if kind == 'existing' %}:data-match-token="match.token"{% endif %}>
+  <div class="duplicate-copy-heading">
+    <h4 class="question-label">{{ 'Đang nhập' if kind == 'incoming' else 'Hiện có' }}</h4>
+    <span class="duplicate-copy-source" x-text="{{ 'comparisonQuestion?.source_label' if kind == 'incoming' else 'match?.label' }}"></span>
+  </div>
+  <div class="duplicate-copy-body">
+    <p class="question-context duplicate-context duplicate-content katex-render" x-show="({{ question }})?.context" x-text="({{ question }})?.context"></p>
+    <template x-if="({{ question }})?.image_url">
+      <figure class="duplicate-image" x-data="{loaded: false, failed: false}">
+        <p class="duplicate-media-status" role="status" x-show="!loaded && !failed">Đang tải hình…</p>
+        <img :src="({{ question }})?.image_url" :data-source-url="({{ question }})?.image_url" alt="{{ 'Hình trong câu đang nhập' if kind == 'incoming' else 'Hình trong câu hiện có' }}" @load="loaded = true; failed = false" @error="failed = true; loaded = false" x-show="!failed">
+        <figcaption class="duplicate-media-error" x-show="failed"><span>Không tải được hình. Hãy thử lại trước khi đối chiếu.</span><button type="button" class="btn btn-secondary btn-sm" @click="failed = false; loaded = false; retryComparisonImage($el.closest('figure'))">Tải lại hình</button></figcaption>
+      </figure>
+    </template>
+    <p class="question-reading duplicate-question duplicate-content katex-render" x-text="({{ question }})?.question_text"></p>
+    <div class="duplicate-answers">
+      <template x-if="({{ question }})?.question_type === 'short_answer'"><div class="question-answer-box duplicate-answer-summary"><strong>Đáp án mẫu</strong><span data-latex-answer class="question-reading katex-render" x-text="(({{ question }})?.options || []).map(o => o.text || o.option_text).join(' | ') || 'Chưa có đáp án'"></span></div></template>
+      <template x-if="({{ question }})?.question_type !== 'short_answer'">
+        <div class="duplicate-answer-list">
+          <template x-for="(row, ridx) in getQuestionRows({{ question }})" :key="ridx"><div class="question-option duplicate-answer-row" :class="row.badgeText ? 'has-answer' : ''"><div class="duplicate-answer-text"><strong class="question-letter" x-text="row.label.replace(/[.)]$/, '')"></strong><span class="question-option-text katex-render" x-text="row.text"></span></div><span x-show="row.badgeText" class="badge duplicate-answer-badge" :class="row.badgeClass" x-text="row.badgeText"></span></div></template>
+          <p class="duplicate-empty-answer" x-show="!getQuestionRows({{ question }}).length">Chưa có dữ liệu đáp án để đối chiếu.</p>
+        </div>
+      </template>
+    </div>
+    <section class="question-solution duplicate-explanation" x-show="({{ question }})?.explanation"><h5>Lời giải</h5><div class="question-reading duplicate-content katex-render" x-text="({{ question }})?.explanation"></div></section>
+    {% if kind == 'existing' %}<a class="duplicate-original-link" x-show="match.bank_question_id" :href="'/question-banks/' + duplicateReport.bank_id + '?question_id=' + match.bank_question_id + '#qcard-' + match.bank_question_id" target="_blank" rel="noopener">Mở câu gốc trong ngân hàng <span class="sr-only">(tab mới)</span></a>{% endif %}
+  </div>
+</section>
+{% endmacro %}
+
+<section class="duplicate-toolbar" aria-labelledby="duplicate-review-heading">
+  <div class="duplicate-toolbar-heading"><h3 id="duplicate-review-heading">Kiểm tra câu trùng</h3><span class="duplicate-total" x-text="questions.length + ' câu trong phiên'"></span></div>
+  <div class="duplicate-filter-row" role="group" aria-label="Lọc theo kết quả dò trùng">
+    <button type="button" class="duplicate-filter" :disabled="duplicateBusy" :class="{'is-active': filterDuplicate === 'all'}" :aria-pressed="filterDuplicate === 'all'" @click="filterDuplicate = 'all'">Tất cả <span x-text="questions.length"></span></button>
+    <button type="button" class="duplicate-filter" :disabled="duplicateBusy" :class="{'is-active': filterDuplicate === 'new'}" :aria-pressed="filterDuplicate === 'new'" @click="filterDuplicate = 'new'">Câu mới <span x-text="duplicateReport.new || 0"></span></button>
+    <button type="button" class="duplicate-filter" :disabled="duplicateBusy" :class="{'is-active': filterDuplicate === 'duplicate'}" :aria-pressed="filterDuplicate === 'duplicate'" @click="filterDuplicate = 'duplicate'">Bỏ qua câu trùng <span x-text="duplicateReport.duplicate || 0"></span></button>
+    <button type="button" class="duplicate-filter" :disabled="duplicateBusy" :class="{'is-active': filterDuplicate === 'review'}" :aria-pressed="filterDuplicate === 'review'" @click="filterDuplicate = 'review'">Cần đối chiếu <span x-text="duplicateReport.review || 0"></span></button>
+    <button type="button" class="duplicate-filter" :disabled="duplicateBusy" x-show="duplicateReport.imported > 0" :class="{'is-active': filterDuplicate === 'imported'}" :aria-pressed="filterDuplicate === 'imported'" @click="filterDuplicate = 'imported'">Đã lưu <span x-text="duplicateReport.imported || 0"></span></button>
+  </div>
+  <p class="duplicate-note">Kết quả dò trùng nằm ở từng câu. Câu trùng được bỏ qua khi lưu; câu gần giống cần đối chiếu nội dung, hình và đáp án.</p>
+  <details class="import-destination">
+    <summary>Ngân hàng nhận: <strong x-text="duplicateReport.bank_name || 'Ngân hàng mới'"></strong></summary>
+    <div class="duplicate-destination"><div class="duplicate-destination-field"><label for="duplicate-destination">Đổi ngân hàng nhận</label><select id="duplicate-destination" x-model="destinationDraft" :disabled="duplicateReport.imported > 0 || duplicateBusy"><option value="">Ngân hàng mới</option>{% for bank in banks %}<option value="{{ bank.id }}">{{ bank.name }}</option>{% endfor %}</select></div><button type="button" class="btn btn-secondary" @click="requestDestinationChange()" :disabled="duplicateReport.imported > 0 || duplicateBusy || !destinationChanged">Đổi đích và dò lại</button></div>
+    <p class="duplicate-destination-hint" x-show="!duplicateReport.imported">Đổi đích sẽ dò trùng lại và xóa những quyết định đối chiếu trước đó trong phiên.</p>
+    <p class="duplicate-destination-hint" x-show="duplicateReport.imported > 0">Phiên đã lưu câu hỏi vào ngân hàng này. Tiếp tục xử lý phần còn lại với cùng đích nhận.</p>
+  </details>
+  <p role="alert" class="duplicate-error" x-show="duplicateError" x-text="duplicateError"></p>
+  <button type="button" class="btn btn-secondary btn-sm" x-show="duplicateNeedsRefresh" @click="refreshDuplicateReport()" :disabled="duplicateBusy">Tải lại kết quả đối chiếu</button>
+  <p class="duplicate-status" role="status" x-show="duplicateNotice" x-text="duplicateNotice"></p>
+
+  <dialog id="import-duplicate-dialog" class="academy-dialog duplicate-comparison" data-native-dialog aria-labelledby="duplicate-dialog-title" aria-describedby="duplicate-dialog-description" @keydown.tab="trapComparisonFocus($event)" @cancel="comparisonUid = null" @close="comparisonUid = null">
+    <div class="duplicate-dialog-heading"><div><h2 id="duplicate-dialog-title">Đối chiếu câu hỏi</h2><p id="duplicate-dialog-description" x-text="comparisonQuestion?.source_label || 'So sánh hai bản trước khi quyết định'"></p></div><button type="button" class="btn btn-secondary btn-sm" @click="closeComparison()" autofocus>Đóng đối chiếu</button></div>
+    <div class="duplicate-dialog-body">
+      <p class="duplicate-dialog-intro">So sánh cả hai bản trước khi chọn. Quyết định sẽ được lưu vào phiên nhập; việc thêm hoặc thay thế câu hỏi diễn ra khi xác nhận lưu.</p>
+      <a class="duplicate-source-link" :href="`/question-banks/import/${sessionId}/source`">Tải file nguồn để kiểm tra</a>
+      <p role="alert" class="duplicate-error" x-show="duplicateError" x-text="duplicateError"></p>
+      <button type="button" class="btn btn-secondary btn-sm" x-show="duplicateNeedsRefresh" @click="refreshDuplicateReport()" :disabled="duplicateBusy">Tải lại kết quả đối chiếu</button>
+      <p class="duplicate-status" role="status" x-show="savingDecision" aria-live="polite">Đang lưu quyết định…</p>
+      <p class="duplicate-status" role="status" x-show="duplicateNotice && !savingDecision" x-text="duplicateNotice"></p>
+      <template x-if="comparisonQuestion">
+        <div class="duplicate-match-list">
+          <template x-for="match in (comparisonQuestion?.duplicate?.matches || [])" :key="match.token">
+            <article class="duplicate-match" :data-match-token="match.token" x-effect="match; comparisonQuestion; $nextTick(() => renderAllComparisonFormulas())">
+              <div class="duplicate-match-heading"><h3 x-text="match.label"></h3><p x-text="match.reason"></p></div>
+              <div class="duplicate-pair">{{ comparison_copy('comparisonQuestion', 'incoming') }}{{ comparison_copy('match?.question', 'existing') }}</div>
+              <div class="duplicate-notices">
+                <p class="duplicate-warning" x-show="match.answer_conflict"><strong>Đáp án khác nhau.</strong> Kiểm tra lời giải trước khi chọn bản giữ lại.</p>
+                <p class="duplicate-warning" x-show="match.answer_missing">Một bản chưa có đáp án đầy đủ; chưa thể kết luận hai đáp án mâu thuẫn.</p>
+                <p class="duplicate-advice" x-show="match.preferred === 'incoming'">Bản đang nhập có lời giải. Kiểm tra nội dung và đáp án trước khi quyết định giữ bản này.</p>
+                <p class="duplicate-advice" x-show="match.preferred === 'existing' && match?.question?.explanation && !comparisonQuestion?.explanation">Bản hiện có có lời giải và đáp án đầy đủ. Kiểm tra lại trước khi giữ bản này.</p>
+                <p class="duplicate-policy" x-show="match.bank_question_id && !match.can_replace">Bạn có thể giữ bản hiện có hoặc giữ cả hai; quyền hiện tại không cho phép thay thế câu gốc trong ngân hàng.</p>
+                <p class="duplicate-policy" x-show="match.bank_question_id && match.can_replace">Chọn bản đang nhập sẽ thay thế câu gốc trong ngân hàng khi bạn xác nhận lưu phiên.</p>
+              </div>
+              <p class="duplicate-choice-status" x-show="match.decision" x-text="'Đã chọn: ' + decisionLabel(match.decision)"></p>
+              <div class="duplicate-actions" x-show="match.reviewable" :aria-busy="savingDecision">
+                <button type="button" class="btn btn-primary" @click="decideDuplicate(comparisonQuestion, match, 'duplicate')" :disabled="duplicateBusy">Giữ bản hiện có</button>
+                <button type="button" class="btn btn-secondary" x-show="match.can_replace" @click="decideDuplicate(comparisonQuestion, match, 'incoming')" :disabled="duplicateBusy" x-text="match.bank_question_id ? 'Thay bằng bản đang nhập' : 'Giữ bản đang nhập'"></button>
+                <button type="button" class="btn btn-secondary" @click="decideDuplicate(comparisonQuestion, match, 'different')" :disabled="duplicateBusy">Giữ cả hai</button>
+                <div class="duplicate-destructive" x-show="!match.bank_question_id"><button type="button" class="btn btn-danger" @click="decideDuplicate(comparisonQuestion, match, 'neither')" :disabled="duplicateBusy">Bỏ cả hai khỏi lần nhập</button></div>
+              </div>
+            </article>
+          </template>
+          <p class="duplicate-no-matches" x-show="!(comparisonQuestion?.duplicate?.matches || []).length">Không còn bản cần đối chiếu trong kết quả mới nhất.</p>
+        </div>
+      </template>
+    </div>
+  </dialog>
+
+  <dialog id="import-destination-dialog" class="academy-dialog duplicate-destination-dialog" data-native-dialog aria-labelledby="destination-dialog-title" @keydown.tab="trapComparisonFocus($event)">
+    <div class="dialog-heading"><h2 id="destination-dialog-title">Đổi ngân hàng nhận?</h2></div>
+    <div class="dialog-body"><p>Phiên sẽ dò trùng lại với đích nhận đã chọn. Các quyết định đối chiếu cũ sẽ được xóa.</p><p class="duplicate-new-destination">Đích nhận: <strong x-text="duplicateDestinationLabel"></strong></p><p role="alert" class="duplicate-error" x-show="duplicateError" x-text="duplicateError"></p></div>
+    <div class="dialog-actions"><button type="button" class="btn btn-secondary" data-dialog-close :disabled="changingDestination" autofocus>Giữ đích hiện tại</button><button type="button" class="btn btn-primary" @click="changeDestination()" :disabled="duplicateBusy" x-text="changingDestination ? 'Đang dò lại…' : 'Đổi đích và dò lại'"></button></div>
+  </dialog>
+</section>

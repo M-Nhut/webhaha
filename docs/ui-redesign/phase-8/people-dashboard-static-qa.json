@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "isolatedJinjaRenders": 24,
+  "cases": [
+    "index.html:center-empty",
+    "index.html:center-rich",
+    "index.html:center-missing-time",
+    "index.html:center-string-time",
+    "index.html:teacher-empty",
+    "index.html:teacher-rich",
+    "index.html:teacher-missing-time",
+    "index.html:teacher-string-time",
+    "index.html:student-empty",
+    "index.html:student-rich",
+    "index.html:student-missing-time",
+    "index.html:student-string-time",
+    "manage_users.html:student-empty",
+    "manage_users.html:student-rich",
+    "manage_users.html:teacher-empty",
+    "manage_users.html:teacher-rich",
+    "edit_user.html:admin-True",
+    "edit_user.html:admin-False",
+    "edit_user.html:student-True",
+    "edit_user.html:student-False",
+    "edit_user.html:teacher-True",
+    "edit_user.html:teacher-False",
+    "my_students.html:empty",
+    "my_students.html:rich"
+  ],
+  "cssParseErrors": [],
+  "undefinedCSSTokens": [],
+  "cleanup": {
+    "index": {
+      "inlineStyleBefore": 0,
+      "inlineStyleAfter": 0,
+      "inlineEventsBefore": 0,
+      "inlineEventsAfter": 0,
+      "alpineBefore": 0,
+      "alpineAfter": 0
+    },
+    "my_students": {
+      "inlineStyleBefore": 7,
+      "inlineStyleAfter": 0,
+      "inlineEventsBefore": 0,
+      "inlineEventsAfter": 0,
+      "alpineBefore": 0,
+      "alpineAfter": 0
+    },
+    "manage_users": {
+      "inlineStyleBefore": 16,
+      "inlineStyleAfter": 0,
+      "inlineEventsBefore": 1,
+      "inlineEventsAfter": 0,
+      "alpineBefore": 9,
+      "alpineAfter": 0
+    },
+    "edit_user": {
+      "inlineStyleBefore": 6,
+      "inlineStyleAfter": 0,
+      "inlineEventsBefore": 1,
+      "inlineEventsAfter": 0,
+      "alpineBefore": 3,
+      "alpineAfter": 0
+    }
+  },
+  "note": "Synthetic renderer overrides base only; no Flask app, environment secrets, database or external services imported."
+}

@@ -1,0 +1,37 @@
+{% macro id6_picker(question, required=false) %}
+<div class="id6-picker" x-data="id6Picker({{ question }}, {{ 'true' if required else 'false' }})">
+  <p class="id6-context" x-text="question.curriculum_mode === 'general' ? (question.grade ? 'Khối / Lớp ' + question.grade : 'Kiến thức tổng quát') : 'Toán 9 · Chương 8 · Không gian mẫu và xác suất'"></p>
+  <div class="id6-fields">
+    <label x-show="question.curriculum_mode !== 'general'" x-cloak>Dạng kiến thức
+      <select x-model="category" x-effect="category; $nextTick(() => { $el.value = category; })" @change="changed()" :disabled="!section || question.curriculum_mode === 'general'" :required="required && question.curriculum_mode !== 'general'">
+        <option value="">Chọn dạng</option>
+        <template x-for="n in categories" :key="n.category"><option :value="n.category" x-text="'Dạng ' + n.category + ' · ' + n.category_name"></option></template>
+      </select>
+    </label>
+    <label x-show="question.curriculum_mode === 'general'" x-cloak>Dạng kiến thức
+      <input type="text" name="question_category" x-model="question.question_category" maxlength="100" placeholder="Ví dụ: Các phép toán vectơ" :disabled="question.curriculum_mode !== 'general'">
+    </label>
+    <label>Mức nhận thức
+      <select name="difficulty_level" x-model="question.difficulty_level" @change="changed()" required>
+        <option value="nhan_biet">Nhận biết</option>
+        <option value="thong_hieu">Thông hiểu</option>
+        <option value="van_dung">Vận dụng</option>
+        <option value="van_dung_cao">Vận dụng cao</option>
+      </select>
+    </label>
+    <label>Hình thức trả lời
+      <select name="question_type" x-model="question.question_type" @change="changeType()" required>
+        <option value="single">Chọn một đáp án</option>
+        <option value="true_false">Đúng/Sai</option>
+        <option value="short_answer">Trả lời ngắn</option>
+        <option value="" disabled>Chọn hình thức</option>
+      </select>
+    </label>
+  </div>
+  <p class="id6-empty" x-show="!['single', 'true_false', 'short_answer'].includes(question.question_type)">Chọn một trong ba hình thức: Trắc nghiệm, Đúng/Sai hoặc Trả lời ngắn.</p>
+  <p class="id6-path" x-show="selectedNode" x-text="selectedNode ? selectedNode.chapter_name + ' → ' + selectedNode.lesson_name + ' → ' + selectedNode.category_name : ''"></p>
+  <input type="hidden" name="curriculum_node_id" :value="question.curriculum_node_id || ''">
+  <p class="id6-empty">Xác nhận kiến thức, mức nhận thức và đáp án trước khi lưu câu hỏi.</p>
+  <p x-show="question.curriculum_mode !== 'general' && grade && !chapters.length" class="id6-empty">Chương 8, bài kết hợp i chưa có danh mục tương ứng.</p>
+</div>
+{% endmacro %}

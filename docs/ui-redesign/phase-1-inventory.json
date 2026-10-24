@@ -1,0 +1,6177 @@
+{
+  "date": "2026-10-13",
+  "scope": "Static source inspection only; no app import, DB access, runtime UI or browser verification.",
+  "limitations": [
+    "Literal dependency extraction; dynamic template/static construction may require manual review.",
+    "Static route extraction excludes implicit Flask HEAD/OPTIONS and built-in static endpoint.",
+    "Effective assets are transitive set membership; do not infer runtime load order from this list.",
+    "Style attribute counts are lexical source counts, not rendered DOM counts.",
+    "No-runtime-reference is a review candidate, not automatic deletion authorization.",
+    "Routes are associated with renders at function level; conditional aliases such as ai_reports may redirect instead of rendering."
+  ],
+  "summary": {
+    "template_files": 52,
+    "top_level_page_templates": 33,
+    "shared_base_templates": 1,
+    "component_templates": 12,
+    "error_templates": 6,
+    "css_files": 12,
+    "application_js_files": 17,
+    "inline_style_attributes": 788,
+    "style_blocks": 2,
+    "inline_script_blocks": 16,
+    "route_definitions": 94,
+    "fixture_route_count": 79,
+    "route_fixture_difference": {
+      "observed_only": [
+        [
+          "ai_report_data",
+          "/api/ai-reports/<int:course_id>",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "ai_reports",
+          "/ai-reports",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "ai_reports_class",
+          "/ai-reports/class",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "ai_reports_individual",
+          "/ai-reports/individual",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "assessment_from_bank",
+          "/assessments/from-bank",
+          [
+            "GET",
+            "POST"
+          ]
+        ],
+        [
+          "assessment_import",
+          "/assessments/import/<session_id>",
+          [
+            "GET",
+            "POST"
+          ]
+        ],
+        [
+          "assessment_list",
+          "/assessments",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "assessment_matrix",
+          "/assessments/<int:exam_id>/matrix",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "assessment_result",
+          "/assessments/<int:exam_id>/result",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "assessment_take",
+          "/assessments/<int:exam_id>/take",
+          [
+            "GET",
+            "POST"
+          ]
+        ],
+        [
+          "delete_diagnostic",
+          "/diagnostics/<int:exam_id>/delete",
+          [
+            "POST"
+          ]
+        ],
+        [
+          "diagnostic_question_choices",
+          "/api/diagnostics/question-choices",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "favicon",
+          "/favicon.ico",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "question_bank_question_detail_json",
+          "/api/question-banks/<int:bank_id>/questions/<int:question_id>",
+          [
+            "GET"
+          ]
+        ],
+        [
+          "review_diagnostic",
+          "/api/diagnostics/review",
+          [
+            "POST"
+          ]
+        ],
+        [
+          "teacher_ai_retry_key",
+          "/teacher/ai-settings/keys/<int:key_id>/retry",
+          [
+            "GET",
+            "POST"
+          ]
+        ],
+        [
+          "teacher_ai_test_key",
+          "/teacher/ai-settings/keys/<int:key_id>/test",
+          [
+            "GET",
+            "POST"
+          ]
+        ]
+      ],
+      "fixture_only": [
+        [
+          "teacher_ai_retry_key",
+          "/teacher/ai-settings/keys/<int:key_id>/retry",
+          [
+            "POST"
+          ]
+        ],
+        [
+          "teacher_ai_test_key",
+          "/teacher/ai-settings/keys/<int:key_id>/test",
+          [
+            "POST"
+          ]
+        ]
+      ]
+    },
+    "templates_without_runtime_reference": [
+      "components/diagnostic_report.html",
+      "components/import_scope.html",
+      "teacher_analytics.html"
+    ],
+    "missing_literal_template_dependencies": [],
+    "missing_direct_static_assets": [],
+    "vendor_files": 26
+  },
+  "templates": [
+    {
+      "template": "ai_reports.html",
+      "lines": 81,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/ai-reports.css",
+        "js/modules/ai_reports.js"
+      ],
+      "endpoint_references": [
+        "ai_report_data",
+        "ai_reports_class",
+        "ai_reports_individual",
+        "courses",
+        "generate_course_lesson4_report",
+        "review_course_lesson4_report"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "ai-archive",
+        "ai-archive-section",
+        "ai-bars",
+        "ai-cause-list",
+        "ai-causes",
+        "ai-content",
+        "ai-context-form",
+        "ai-course",
+        "ai-detail-link",
+        "ai-distribution",
+        "ai-donut",
+        "ai-evidence",
+        "ai-evidence-pagination",
+        "ai-evidence-section",
+        "ai-filters",
+        "ai-generate",
+        "ai-initial-data",
+        "ai-kpis",
+        "ai-message",
+        "ai-meta",
+        "ai-outcome",
+        "ai-person",
+        "ai-progress",
+        "ai-progress-section",
+        "ai-recommendation-list",
+        "ai-recommendations",
+        "ai-reload",
+        "ai-report-workspace",
+        "ai-reset",
+        "ai-review",
+        "ai-risk-list",
+        "ai-risks",
+        "ai-roster-count",
+        "ai-skill",
+        "ai-skill-table",
+        "ai-source",
+        "ai-status",
+        "ai-student-table",
+        "ai-summary",
+        "ai-type",
+        "ai-updated"
+      ],
+      "data_attribute_names": [
+        "data-api-url",
+        "data-detail",
+        "data-generate-url",
+        "data-lucide",
+        "data-page-url",
+        "data-personal-url",
+        "data-refresh",
+        "data-review-url",
+        "data-student-id"
+      ],
+      "form_names": [
+        "course_id",
+        "question_type",
+        "skill",
+        "source",
+        "student_id",
+        "{{ key }}"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/ai_reports.py",
+          "function": "ai_reports",
+          "line": 59,
+          "template": "ai_reports.html",
+          "expression": "'ai_reports.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "ai_reports",
+          "rule": "/ai-reports",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        },
+        {
+          "endpoint": "ai_reports_class",
+          "rule": "/ai-reports/class",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        },
+        {
+          "endpoint": "ai_reports_individual",
+          "rule": "/ai-reports/individual",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/ai-reports.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/modules/ai_reports.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "assessment_from_bank.html",
+      "lines": 20,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 2,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "bank_ids",
+        "budget_{{ kind }}",
+        "count_{{ kind }}",
+        "course_id",
+        "csrf_token",
+        "mode",
+        "question_ids"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/assessments.py",
+          "function": "assessment_from_bank",
+          "line": 60,
+          "template": "assessment_from_bank.html",
+          "expression": "'assessment_from_bank.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_from_bank",
+          "rule": "/assessments/from-bank",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "assessment_import.html",
+      "lines": 49,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/assessments.css",
+        "js/modules/assessment_editor.js"
+      ],
+      "endpoint_references": [
+        "assessment_list",
+        "assessment_matrix"
+      ],
+      "inline_style_attributes": 1,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "assessment-matrix-link",
+        "assessment-points-status",
+        "assessment-save-status"
+      ],
+      "data_attribute_names": [
+        "data-formulas",
+        "data-item-points",
+        "data-preview-field",
+        "data-question-index",
+        "data-question-kind"
+      ],
+      "form_names": [
+        "action",
+        "budget_{{ kind }}",
+        "course_id",
+        "csrf_token",
+        "duration_minutes",
+        "reviewed",
+        "title",
+        "{{ prefix }}answer",
+        "{{ prefix }}context",
+        "{{ prefix }}correct",
+        "{{ prefix }}difficulty_level",
+        "{{ prefix }}explanation",
+        "{{ prefix }}option{{ j }}",
+        "{{ prefix }}question_text",
+        "{{ prefix }}report_category",
+        "{{ prefix }}report_chapter",
+        "{{ prefix }}report_code",
+        "{{ prefix }}report_confirmed",
+        "{{ prefix }}truth{{ j }}",
+        "{{ prefix }}weight"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/assessments.py",
+          "function": "assessment_import",
+          "line": 121,
+          "template": "assessment_import.html",
+          "expression": "'assessment_import.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_import",
+          "rule": "/assessments/import/<session_id>",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/assessments.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/modules/assessment_editor.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "assessment_list.html",
+      "lines": 14,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "assessment_from_bank",
+        "assessment_import",
+        "assessment_matrix",
+        "assessment_result",
+        "assessment_take",
+        "import_questions_page"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/assessments.py",
+          "function": "assessment_list",
+          "line": 76,
+          "template": "assessment_list.html",
+          "expression": "'assessment_list.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_list",
+          "rule": "/assessments",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "assessment_matrix.html",
+      "lines": 49,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/assessments.css"
+      ],
+      "endpoint_references": [
+        "assessment_import",
+        "assessment_list",
+        "assessment_matrix"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/assessments.py",
+          "function": "assessment_matrix",
+          "line": 148,
+          "template": "assessment_matrix.html",
+          "expression": "'assessment_matrix.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_matrix",
+          "rule": "/assessments/<int:exam_id>/matrix",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/assessments.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "base.html",
+      "lines": 67,
+      "references": [
+        {
+          "kind": "include",
+          "template": "components/navigation.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/header.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/flash_messages.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/footer.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js"
+      ],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "main-content"
+      ],
+      "data_attribute_names": [
+        "data-avatar-fallback",
+        "data-can-retry-formulas"
+      ],
+      "form_names": [
+        "csrf-token",
+        "viewport"
+      ],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "classification_evaluation.html",
+      "lines": 34,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "classification_evaluation_export",
+        "question_bank_classification"
+      ],
+      "inline_style_attributes": 5,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "csrf_token",
+        "labels_file"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/question_bank.py",
+          "function": "classification_evaluation_page",
+          "line": 496,
+          "template": "classification_evaluation.html",
+          "expression": "'classification_evaluation.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "classification_evaluation_page",
+          "rule": "/question-banks/<int:bank_id>/classification/evaluation",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "components/bank_overview.html",
+      "lines": 35,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "import_questions_page",
+        "question_bank_detail"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "bank-results"
+      ],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "question_bank_detail.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/bank_pagination.html",
+      "lines": 28,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "question_bank_detail.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/diagnostic_report.html",
+      "lines": 201,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 61,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [],
+      "reachability": "no_runtime_reference_found"
+    },
+    {
+      "template": "components/flash_messages.html",
+      "lines": 14,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 1,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-init": 1
+      },
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "base.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/footer.html",
+      "lines": 20,
+      "references": [],
+      "direct_static_assets": [
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "MathJax-script"
+      ],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [
+        "base.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/header.html",
+      "lines": 15,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "logout",
+        "profile"
+      ],
+      "inline_style_attributes": 2,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "base.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/id6_picker.html",
+      "lines": 37,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "curriculum_node_id",
+        "difficulty_level",
+        "question_category",
+        "question_type"
+      ],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-text": 3,
+        "x-show": 5,
+        "x-model": 4,
+        "x-effect": 1,
+        "x-for": 1
+      },
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_import.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/import_duplicates.html",
+      "lines": 108,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 19,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-latex-answer"
+      ],
+      "form_names": [],
+      "alpine_directives": {
+        "x-text": 24,
+        "x-model": 1,
+        "x-show": 16,
+        "x-if": 7,
+        "x-init": 1,
+        "x-effect": 11,
+        "x-for": 3
+      },
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "question_bank_import.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/import_scope.html",
+      "lines": 40,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "scope-heading"
+      ],
+      "data_attribute_names": [
+        "data-label"
+      ],
+      "form_names": [],
+      "alpine_directives": {
+        "x-show": 5,
+        "x-text": 8,
+        "x-model": 4,
+        "x-for": 4
+      },
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [],
+      "reachability": "no_runtime_reference_found"
+    },
+    {
+      "template": "components/navigation.html",
+      "lines": 114,
+      "references": [],
+      "direct_static_assets": [
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg"
+      ],
+      "endpoint_references": [
+        "ai_reports",
+        "assessment_list",
+        "courses",
+        "curriculum_catalog",
+        "diagnostic_list",
+        "index",
+        "manage_users",
+        "my_students",
+        "practice_home",
+        "question_bank_list",
+        "serve_avatar",
+        "teacher_ai_settings",
+        "teacher_practice_list"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "primary-navigation"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg"
+      ],
+      "referenced_by_templates": [
+        "base.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/practice_skill_matrix.html",
+      "lines": 49,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 10,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "practice_home.html",
+        "practice_progress.html",
+        "teacher_practice_detail.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "components/selection_audit.html",
+      "lines": 46,
+      "references": [],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [],
+      "referenced_by_templates": [
+        "exam_result.html",
+        "exam_take.html",
+        "practice_draft.html"
+      ],
+      "reachability": "template_dependency"
+    },
+    {
+      "template": "course_detail.html",
+      "lines": 179,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "add_enrollment",
+        "ai_reports_class",
+        "courses",
+        "edit_course",
+        "serve_avatar",
+        "teacher_ai_settings",
+        "teacher_practice_list"
+      ],
+      "inline_style_attributes": 42,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "lesson4-ai-report"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "course_id",
+        "csrf_token",
+        "student_id"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "course_detail",
+          "line": 237,
+          "template": "course_detail.html",
+          "expression": "'course_detail.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "course_detail",
+          "rule": "/courses/<int:course_id>",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "course_form.html",
+      "lines": 152,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "courses",
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 14,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "classroom",
+        "course_name",
+        "description",
+        "end_date",
+        "start_date",
+        "subject",
+        "t-avatar",
+        "t-code",
+        "t-name",
+        "t-phone",
+        "t-position",
+        "teacher-preview",
+        "teacher_id"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "classroom",
+        "course_name",
+        "csrf_token",
+        "description",
+        "end_date",
+        "is_active",
+        "start_date",
+        "subject",
+        "teacher_id"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "add_course",
+          "line": 166,
+          "template": "course_form.html",
+          "expression": "'course_form.html'"
+        },
+        {
+          "file": "routes/academic.py",
+          "function": "edit_course",
+          "line": 195,
+          "template": "course_form.html",
+          "expression": "'course_form.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "edit_course",
+          "rule": "/courses/<int:course_id>/edit",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        },
+        {
+          "endpoint": "add_course",
+          "rule": "/courses/new",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "courses.html",
+      "lines": 94,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "add_course",
+        "course_detail",
+        "delete_course",
+        "edit_course",
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 10,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "courses",
+          "line": 138,
+          "template": "courses.html",
+          "expression": "'courses.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "courses",
+          "rule": "/courses",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "curriculum_catalog.html",
+      "lines": 136,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "curriculum_catalog",
+        "toggle_curriculum_node"
+      ],
+      "inline_style_attributes": 21,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "action",
+        "catalog_rows",
+        "category_code",
+        "category_name",
+        "chapter",
+        "chapter_code",
+        "chapter_name",
+        "csrf_token",
+        "grade",
+        "inactive",
+        "is_advanced",
+        "lesson_code",
+        "lesson_name",
+        "q"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/curriculum.py",
+          "function": "curriculum_catalog",
+          "line": 120,
+          "template": "curriculum_catalog.html",
+          "expression": "'curriculum_catalog.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "curriculum_catalog",
+          "rule": "/curriculum",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "diagnostic_form.html",
+      "lines": 68,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/diagnostic-wizard.css",
+        "js/bank_formula_scheduler.js",
+        "js/modules/diagnostic_wizard.js"
+      ],
+      "endpoint_references": [
+        "create_diagnostic",
+        "diagnostic_list",
+        "diagnostic_question_choices",
+        "review_diagnostic"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "diagnostic-wizard",
+        "dw-back-bank",
+        "dw-back-questions",
+        "dw-bank",
+        "dw-bank-change-note",
+        "dw-bank-name",
+        "dw-candidates",
+        "dw-chosen-heading",
+        "dw-config",
+        "dw-confirm",
+        "dw-course",
+        "dw-coverage",
+        "dw-feedback",
+        "dw-heading-1",
+        "dw-heading-2",
+        "dw-heading-3",
+        "dw-kind",
+        "dw-level",
+        "dw-next-page",
+        "dw-page-label",
+        "dw-page-status",
+        "dw-prev-page",
+        "dw-publish",
+        "dw-publish-bank",
+        "dw-publish-form",
+        "dw-publish-ids",
+        "dw-review",
+        "dw-review-cards",
+        "dw-review-digest",
+        "dw-review-summary",
+        "dw-search",
+        "dw-selected",
+        "dw-selection-status",
+        "dw-skill",
+        "dw-start",
+        "dw-title"
+      ],
+      "data_attribute_names": [
+        "data-bank-lazy-formulas",
+        "data-progress-step",
+        "data-quota",
+        "data-step"
+      ],
+      "form_names": [
+        "confirmed",
+        "course_id",
+        "csrf_token",
+        "question_bank_id",
+        "review_digest",
+        "title"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/diagnostics.py",
+          "function": "create_diagnostic",
+          "line": 288,
+          "template": "diagnostic_form.html",
+          "expression": "'diagnostic_form.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "create_diagnostic",
+          "rule": "/diagnostics/new",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/diagnostic-wizard.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/bank_formula_scheduler.js",
+        "js/formula_renderer.js",
+        "js/modules/diagnostic_wizard.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "diagnostic_list.html",
+      "lines": 78,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "create_diagnostic",
+        "delete_diagnostic",
+        "practice_result"
+      ],
+      "inline_style_attributes": 8,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/diagnostics.py",
+          "function": "diagnostic_list",
+          "line": 140,
+          "template": "diagnostic_list.html",
+          "expression": "'diagnostic_list.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "diagnostic_list",
+          "rule": "/diagnostics",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "edit_user.html",
+      "lines": 96,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "manage_users",
+        "reset_password"
+      ],
+      "inline_style_attributes": 6,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "fullname",
+        "phone",
+        "position",
+        "role",
+        "user_code",
+        "username"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token",
+        "fullname",
+        "is_active",
+        "phone",
+        "position",
+        "role",
+        "user_code",
+        "username"
+      ],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-model": 1,
+        "x-show": 1
+      },
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "edit_user",
+          "line": 449,
+          "template": "edit_user.html",
+          "expression": "'edit_user.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "edit_user",
+          "rule": "/users/<int:user_id>/edit",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "errors/400.html",
+      "lines": 6,
+      "references": [
+        {
+          "kind": "include",
+          "template": "errors/error.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "dynamic_error_render"
+    },
+    {
+      "template": "errors/403.html",
+      "lines": 6,
+      "references": [
+        {
+          "kind": "include",
+          "template": "errors/error.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "dynamic_error_render"
+    },
+    {
+      "template": "errors/404.html",
+      "lines": 6,
+      "references": [
+        {
+          "kind": "include",
+          "template": "errors/error.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "dynamic_error_render"
+    },
+    {
+      "template": "errors/405.html",
+      "lines": 6,
+      "references": [
+        {
+          "kind": "include",
+          "template": "errors/error.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "dynamic_error_render"
+    },
+    {
+      "template": "errors/500.html",
+      "lines": 6,
+      "references": [
+        {
+          "kind": "include",
+          "template": "errors/error.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "dynamic_error_render"
+    },
+    {
+      "template": "errors/error.html",
+      "lines": 772,
+      "references": [],
+      "direct_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "endpoint_references": [
+        "courses",
+        "diagnostic_list",
+        "index",
+        "login",
+        "profile",
+        "question_bank_list"
+      ],
+      "inline_style_attributes": 5,
+      "style_blocks": 1,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "copy-toast",
+        "diag-body",
+        "diag-chevron",
+        "glow404",
+        "grad403",
+        "grad404",
+        "grad405",
+        "grad500",
+        "gradDef",
+        "ref-id"
+      ],
+      "data_attribute_names": [],
+      "form_names": [
+        "viewport"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/errors.py",
+          "function": "_make_error_response",
+          "line": 75,
+          "template": "errors/error.html",
+          "expression": "'errors/error.html'"
+        }
+      ],
+      "routes": [],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png"
+      ],
+      "referenced_by_templates": [
+        "errors/400.html",
+        "errors/403.html",
+        "errors/404.html",
+        "errors/405.html",
+        "errors/500.html"
+      ],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "exam_result.html",
+      "lines": 353,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/selection_audit.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "assessment_list",
+        "practice_continue",
+        "practice_end",
+        "practice_home",
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 53,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice_runtime.py",
+          "function": "practice_result",
+          "line": 429,
+          "template": "exam_result.html",
+          "expression": "'exam_result.html'"
+        },
+        {
+          "file": "routes/practice_runtime.py",
+          "function": "practice_result",
+          "line": 472,
+          "template": "exam_result.html",
+          "expression": "'exam_result.html'"
+        },
+        {
+          "file": "routes/practice_runtime.py",
+          "function": "practice_result",
+          "line": 450,
+          "template": "exam_result.html",
+          "expression": "'exam_result.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_result",
+          "rule": "/assessments/<int:exam_id>/result",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {
+            "standalone": true
+          }
+        },
+        {
+          "endpoint": "practice_result",
+          "rule": "/practice/<int:exam_id>/result",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "exam_take.html",
+      "lines": 167,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/selection_audit.html"
+        }
+      ],
+      "direct_static_assets": [
+        "js/modules/exam_take.js"
+      ],
+      "endpoint_references": [],
+      "inline_style_attributes": 16,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "exam-form",
+        "time-spent-seconds"
+      ],
+      "data_attribute_names": [
+        "data-lucide",
+        "data-question-id"
+      ],
+      "form_names": [
+        "csrf_token",
+        "q_{{ q.id }}",
+        "q_{{ q.id }}_ans_{{ answer.id }}",
+        "q_{{ q.id }}_text",
+        "time_q_{{ q.id }}",
+        "time_spent_seconds"
+      ],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-init": 1,
+        "x-text": 2
+      },
+      "renders": [
+        {
+          "file": "routes/practice_runtime.py",
+          "function": "practice_take",
+          "line": 392,
+          "template": "exam_take.html",
+          "expression": "'exam_take.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "assessment_take",
+          "rule": "/assessments/<int:exam_id>/take",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {
+            "standalone": true
+          }
+        },
+        {
+          "endpoint": "practice_take",
+          "rule": "/practice/<int:exam_id>/take",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/modules/exam_take.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "index.html",
+      "lines": 144,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [
+        "images/logo-transparent.png"
+      ],
+      "endpoint_references": [
+        "add_course",
+        "courses",
+        "practice_home",
+        "practice_progress",
+        "profile",
+        "question_bank_list",
+        "teacher_practice_list"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "activity-title",
+        "shortcut-title",
+        "welcome-title"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "index",
+          "line": 61,
+          "template": "index.html",
+          "expression": "'index.html'"
+        },
+        {
+          "file": "routes/academic.py",
+          "function": "index",
+          "line": 97,
+          "template": "index.html",
+          "expression": "'index.html'"
+        },
+        {
+          "file": "routes/academic.py",
+          "function": "index",
+          "line": 120,
+          "template": "index.html",
+          "expression": "'index.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "index",
+          "rule": "/",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "login.html",
+      "lines": 89,
+      "references": [],
+      "direct_static_assets": [
+        "css/login.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png",
+        "js/login.js"
+      ],
+      "endpoint_references": [
+        "register"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "login-form",
+        "login-heading",
+        "login-story-title",
+        "password-errors",
+        "username-errors"
+      ],
+      "data_attribute_names": [
+        "data-password-toggle"
+      ],
+      "form_names": [
+        "theme-color",
+        "viewport"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/auth.py",
+          "function": "login",
+          "line": 56,
+          "template": "login.html",
+          "expression": "'login.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "login",
+          "rule": "/login",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/login.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png",
+        "js/login.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "manage_users.html",
+      "lines": 191,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "add_user",
+        "delete_user",
+        "edit_user",
+        "manage_users",
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 16,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "add_fullname",
+        "add_password",
+        "add_phone",
+        "add_position",
+        "add_role",
+        "add_user_code",
+        "add_username"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token",
+        "fullname",
+        "password",
+        "phone",
+        "position",
+        "role",
+        "user_code",
+        "username"
+      ],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-show": 3,
+        "x-model": 1
+      },
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "manage_users",
+          "line": 403,
+          "template": "manage_users.html",
+          "expression": "'manage_users.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "manage_users",
+          "rule": "/users/<role_name>",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "my_students.html",
+      "lines": 53,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 7,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/academic.py",
+          "function": "my_students",
+          "line": 392,
+          "template": "my_students.html",
+          "expression": "'my_students.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "my_students",
+          "rule": "/my-students",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "practice_draft.html",
+      "lines": 20,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/selection_audit.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "csrf_token",
+        "duration_minutes",
+        "is_active",
+        "title"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice.py",
+          "function": "teacher_practice_draft",
+          "line": 1013,
+          "template": "practice_draft.html",
+          "expression": "'practice_draft.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "teacher_practice_draft",
+          "rule": "/teacher/practice/drafts/<int:exam_id>",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "practice_home.html",
+      "lines": 77,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/practice_skill_matrix.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "practice_generate",
+        "practice_home",
+        "practice_progress",
+        "practice_result",
+        "practice_take"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "course_id",
+        "practice-start-title",
+        "practice-unavailable"
+      ],
+      "data_attribute_names": [],
+      "form_names": [
+        "course_id",
+        "csrf_token"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice.py",
+          "function": "practice_home",
+          "line": 358,
+          "template": "practice_home.html",
+          "expression": "'practice_home.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "practice_home",
+          "rule": "/practice",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "practice_progress.html",
+      "lines": 174,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/practice_skill_matrix.html"
+        }
+      ],
+      "direct_static_assets": [
+        "js/modules/practice_progress.js"
+      ],
+      "endpoint_references": [
+        "practice_home"
+      ],
+      "inline_style_attributes": 42,
+      "style_blocks": 0,
+      "inline_script_blocks": 2,
+      "static_ids": [
+        "accuracyChart",
+        "scoreChart"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "subject"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice.py",
+          "function": "practice_progress",
+          "line": 503,
+          "template": "practice_progress.html",
+          "expression": "'practice_progress.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "practice_progress",
+          "rule": "/practice/progress",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/modules/practice_progress.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "profile.html",
+      "lines": 163,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [],
+      "inline_style_attributes": 17,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "avatar-preview"
+      ],
+      "data_attribute_names": [],
+      "form_names": [],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/auth.py",
+          "function": "profile",
+          "line": 99,
+          "template": "profile.html",
+          "expression": "'profile.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "profile",
+          "rule": "/profile",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "question_bank_classification.html",
+      "lines": 128,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "from",
+          "template": "components/id6_picker.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/id6.css",
+        "js/id6_picker.js"
+      ],
+      "endpoint_references": [
+        "accept_classification_suggestions",
+        "bulk_classify_questions",
+        "classification_evaluation_page",
+        "curriculum_catalog",
+        "question_bank_classification",
+        "question_bank_detail"
+      ],
+      "inline_style_attributes": 37,
+      "style_blocks": 0,
+      "inline_script_blocks": 2,
+      "static_ids": [
+        "classification-form",
+        "select-all"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token",
+        "node_id",
+        "q",
+        "question_ids",
+        "status"
+      ],
+      "alpine_directives": {
+        "x-data": 1
+      },
+      "renders": [
+        {
+          "file": "routes/question_bank.py",
+          "function": "question_bank_classification",
+          "line": 412,
+          "template": "question_bank_classification.html",
+          "expression": "'question_bank_classification.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "question_bank_classification",
+          "rule": "/question-banks/<int:bank_id>/classification",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/id6.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/id6_picker.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "question_bank_detail.html",
+      "lines": 634,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "from",
+          "template": "components/id6_picker.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/bank_overview.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/bank_pagination.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/bank_pagination.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/id6.css",
+        "css/question-bank.css",
+        "js/bank_formula_scheduler.js",
+        "js/id6_picker.js",
+        "js/manual_question.js",
+        "js/modules/question_bank_detail.js"
+      ],
+      "endpoint_references": [
+        "add_bank_question",
+        "delete_question_bank",
+        "edit_question_bank",
+        "import_questions_page",
+        "question_bank_classification",
+        "question_bank_detail"
+      ],
+      "inline_style_attributes": 137,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "add-question-modal",
+        "manual-question-image"
+      ],
+      "data_attribute_names": [
+        "data-bank-lazy-formulas",
+        "data-latex-answer",
+        "data-lucide",
+        "data-manual-preview"
+      ],
+      "form_names": [
+        "adaptive_excluded",
+        "adaptive_priority",
+        "context",
+        "correct_option",
+        "csrf_token",
+        "difficulty",
+        "difficulty_band",
+        "explanation",
+        "grade",
+        "node_id",
+        "option_text",
+        "page",
+        "per_page",
+        "q",
+        "question_image",
+        "question_text",
+        "reviewed",
+        "scope",
+        "short_answer_mode",
+        "short_answer_tolerance",
+        "short_answers",
+        "statement_level",
+        "statement_node",
+        "type",
+        "{{ filter_key }}"
+      ],
+      "alpine_directives": {
+        "x-data": 2,
+        "x-if": 19,
+        "x-for": 7,
+        "x-show": 27,
+        "x-text": 28,
+        "x-effect": 13,
+        "x-cloak": 1,
+        "x-model": 10
+      },
+      "renders": [
+        {
+          "file": "routes/question_bank.py",
+          "function": "question_bank_detail",
+          "line": 311,
+          "template": "question_bank_detail.html",
+          "expression": "'question_bank_detail.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "question_bank_detail",
+          "rule": "/question-banks/<int:bank_id>",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/id6.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-bank.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/bank_formula_scheduler.js",
+        "js/formula_renderer.js",
+        "js/id6_picker.js",
+        "js/manual_question.js",
+        "js/modules/question_bank_detail.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "question_bank_form.html",
+      "lines": 62,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "question_bank_list"
+      ],
+      "inline_style_attributes": 3,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "description",
+        "grade",
+        "name",
+        "subject",
+        "topic"
+      ],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token",
+        "description",
+        "grade",
+        "name",
+        "subject",
+        "topic"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/question_bank.py",
+          "function": "create_question_bank",
+          "line": 192,
+          "template": "question_bank_form.html",
+          "expression": "'question_bank_form.html'"
+        },
+        {
+          "file": "routes/question_bank.py",
+          "function": "edit_question_bank",
+          "line": 589,
+          "template": "question_bank_form.html",
+          "expression": "'question_bank_form.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "edit_question_bank",
+          "rule": "/question-banks/<int:bank_id>/edit",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        },
+        {
+          "endpoint": "create_question_bank",
+          "rule": "/question-banks/new",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "question_bank_import.html",
+      "lines": 585,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "from",
+          "template": "components/id6_picker.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/import_duplicates.html"
+        }
+      ],
+      "direct_static_assets": [
+        "css/id6.css",
+        "css/import_duplicates.css",
+        "css/import_scope.css",
+        "js/id6_picker.js",
+        "js/import_duplicates.js",
+        "js/import_scope.js",
+        "js/modules/import_wizard.js"
+      ],
+      "endpoint_references": [
+        "download_latex_template",
+        "import_questions_page",
+        "import_upload",
+        "question_bank_list"
+      ],
+      "inline_style_attributes": 138,
+      "style_blocks": 1,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "document-purpose",
+        "import-result-heading"
+      ],
+      "data_attribute_names": [
+        "data-latex-answer",
+        "data-lucide"
+      ],
+      "form_names": [
+        "bank_target"
+      ],
+      "alpine_directives": {
+        "x-data": 1,
+        "x-init": 1,
+        "x-for": 11,
+        "x-text": 48,
+        "x-show": 30,
+        "x-ref": 1,
+        "x-model": 19,
+        "x-if": 19,
+        "x-effect": 11
+      },
+      "renders": [
+        {
+          "file": "routes/imports.py",
+          "function": "import_questions_page",
+          "line": 102,
+          "template": "question_bank_import.html",
+          "expression": "'question_bank_import.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "import_questions_page",
+          "rule": "/question-banks/import",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/id6.css",
+        "css/import_duplicates.css",
+        "css/import_scope.css",
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/id6_picker.js",
+        "js/import_duplicates.js",
+        "js/import_scope.js",
+        "js/modules/import_wizard.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "question_banks.html",
+      "lines": 83,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "create_question_bank",
+        "delete_question_bank",
+        "download_latex_template",
+        "edit_question_bank",
+        "import_questions_page",
+        "question_bank_detail"
+      ],
+      "inline_style_attributes": 20,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "csrf_token"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/question_bank.py",
+          "function": "question_bank_list",
+          "line": 158,
+          "template": "question_banks.html",
+          "expression": "'question_banks.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "question_bank_list",
+          "rule": "/question-banks",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "register.html",
+      "lines": 167,
+      "references": [],
+      "direct_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png",
+        "images/pop-study.svg"
+      ],
+      "endpoint_references": [
+        "login"
+      ],
+      "inline_style_attributes": 21,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [],
+      "form_names": [
+        "viewport"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/auth.py",
+          "function": "register",
+          "line": 43,
+          "template": "register.html",
+          "expression": "'register.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "register",
+          "rule": "/register",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/main.css",
+        "css/neo-pop.css",
+        "images/logo-transparent.png",
+        "images/pop-study.svg"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "teacher_ai_settings.html",
+      "lines": 113,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "teacher_ai_delete_default_key",
+        "teacher_ai_retry_key",
+        "teacher_ai_save_keys"
+      ],
+      "inline_style_attributes": 15,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "teacher-ai-key-table",
+        "teacher-ai-keys"
+      ],
+      "data_attribute_names": [
+        "data-key-id"
+      ],
+      "form_names": [
+        "csrf_token",
+        "keys"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/ai_settings.py",
+          "function": "teacher_ai_settings",
+          "line": 142,
+          "template": "teacher_ai_settings.html",
+          "expression": "'teacher_ai_settings.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "teacher_ai_settings",
+          "rule": "/teacher/ai-settings",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "teacher_analytics.html",
+      "lines": 98,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "serve_avatar"
+      ],
+      "inline_style_attributes": 26,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [],
+      "data_attribute_names": [
+        "data-lucide"
+      ],
+      "form_names": [
+        "student_id"
+      ],
+      "alpine_directives": {},
+      "renders": [],
+      "routes": [],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "no_runtime_reference_found"
+    },
+    {
+      "template": "teacher_practice_detail.html",
+      "lines": 175,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        },
+        {
+          "kind": "include",
+          "template": "components/practice_skill_matrix.html"
+        }
+      ],
+      "direct_static_assets": [
+        "js/modules/teacher_practice_detail.js"
+      ],
+      "endpoint_references": [
+        "ai_reports_individual",
+        "assessment_result",
+        "teacher_generate_adaptive_practice",
+        "teacher_practice_list"
+      ],
+      "inline_style_attributes": 33,
+      "style_blocks": 0,
+      "inline_script_blocks": 1,
+      "static_ids": [
+        "adaptive-course",
+        "learning-course",
+        "learning-history",
+        "learning-results",
+        "learning-support"
+      ],
+      "data_attribute_names": [
+        "data-course-counts",
+        "data-course-ids",
+        "data-lucide",
+        "data-subject"
+      ],
+      "form_names": [
+        "bank_ids",
+        "chapters",
+        "cognitive_levels",
+        "course_id",
+        "csrf_token",
+        "mix_middle",
+        "mix_strong",
+        "mix_weak",
+        "sections",
+        "topics",
+        "total_questions"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice.py",
+          "function": "teacher_practice_detail",
+          "line": 808,
+          "template": "teacher_practice_detail.html",
+          "expression": "'teacher_practice_detail.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "teacher_practice_detail",
+          "rule": "/teacher/practice/<int:student_id>",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/modules/teacher_practice_detail.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    },
+    {
+      "template": "teacher_practice_list.html",
+      "lines": 7,
+      "references": [
+        {
+          "kind": "extends",
+          "template": "base.html"
+        }
+      ],
+      "direct_static_assets": [],
+      "endpoint_references": [
+        "course_detail",
+        "teacher_practice_detail"
+      ],
+      "inline_style_attributes": 0,
+      "style_blocks": 0,
+      "inline_script_blocks": 0,
+      "static_ids": [
+        "course-select"
+      ],
+      "data_attribute_names": [],
+      "form_names": [
+        "course_id"
+      ],
+      "alpine_directives": {},
+      "renders": [
+        {
+          "file": "routes/practice.py",
+          "function": "teacher_practice_list",
+          "line": 711,
+          "template": "teacher_practice_list.html",
+          "expression": "'teacher_practice_list.html'"
+        }
+      ],
+      "routes": [
+        {
+          "endpoint": "teacher_practice_list",
+          "rule": "/teacher/practice",
+          "methods": [
+            "GET"
+          ],
+          "defaults": {}
+        }
+      ],
+      "effective_static_assets": [
+        "css/learning.css",
+        "css/main.css",
+        "css/neo-pop.css",
+        "css/question-document.css",
+        "images/logo-transparent.png",
+        "images/pop-avatar.svg",
+        "js/formula_renderer.js",
+        "js/ui-shell.js",
+        "vendor/alpine/alpine.min.js",
+        "vendor/mathjax/tex-mml-chtml.js"
+      ],
+      "referenced_by_templates": [],
+      "reachability": "literal_render"
+    }
+  ],
+  "assets": [
+    {
+      "file": "static/css/ai-reports.css",
+      "bytes": 8322,
+      "sha256": "475b980071371d2232309b7871ee5de513dd0d65c41ffb602ec2573d6c76a78e",
+      "lines": 96,
+      "direct_template_consumers": [
+        "ai_reports.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html"
+      ],
+      "literal_mentions": [
+        "templates/ai_reports.html",
+        "routes/ai_reports.py"
+      ],
+      "important_count": 1,
+      "media_queries": [
+        "(max-width: 1100px) ",
+        "(max-width: 540px) ",
+        "print "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/assessments.css",
+      "bytes": 3750,
+      "sha256": "2cd0e66d8f1f942d1d30a4844649957288b356503b612c7e663bafc478590210",
+      "lines": 193,
+      "direct_template_consumers": [
+        "assessment_import.html",
+        "assessment_matrix.html"
+      ],
+      "effective_template_consumers": [
+        "assessment_import.html",
+        "assessment_matrix.html"
+      ],
+      "literal_mentions": [
+        "templates/assessment_matrix.html",
+        "templates/assessment_import.html"
+      ],
+      "important_count": 0,
+      "media_queries": [
+        "(max-width:700px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/diagnostic-wizard.css",
+      "bytes": 7630,
+      "sha256": "9a36ea5146bce5bde1aef8409345b1511a9bb99ab14517ffd6aeeafedd261c08",
+      "lines": 57,
+      "direct_template_consumers": [
+        "diagnostic_form.html"
+      ],
+      "effective_template_consumers": [
+        "diagnostic_form.html"
+      ],
+      "literal_mentions": [
+        "templates/diagnostic_form.html"
+      ],
+      "important_count": 1,
+      "media_queries": [
+        "(max-width: 1100px) ",
+        "(max-width: 680px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/id6.css",
+      "bytes": 1208,
+      "sha256": "47234730f01ffa417848b65967bd2a5487a6157e19c2be3b27d16ce535cf4801",
+      "lines": 13,
+      "direct_template_consumers": [
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_classification.html",
+        "templates/question_bank_import.html",
+        "templates/question_bank_detail.html"
+      ],
+      "important_count": 0,
+      "media_queries": [
+        "(max-width: 900px) ",
+        "(max-width: 560px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/import_duplicates.css",
+      "bytes": 926,
+      "sha256": "ea1b24c2dbdda04aec7c163d8abcbf28e171059a9328f1929312eaad8cffaf6d",
+      "lines": 13,
+      "direct_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_import.html"
+      ],
+      "important_count": 0,
+      "media_queries": [
+        "(max-width:800px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/import_scope.css",
+      "bytes": 1874,
+      "sha256": "da0713452e24ff8b7acd8ab93fe82deaf492f5ad54ec7be31be032e3ffa95fe8",
+      "lines": 26,
+      "direct_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_import.html"
+      ],
+      "important_count": 0,
+      "media_queries": [
+        "(max-width: 850px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/learning.css",
+      "bytes": 3988,
+      "sha256": "be97cc6c46cb05a67cdf8bd231a6a8e0d5f4a847d11042eec896600e19d78cb2",
+      "lines": 42,
+      "direct_template_consumers": [
+        "base.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html"
+      ],
+      "important_count": 8,
+      "media_queries": [
+        "(max-width:720px)",
+        "print",
+        "(max-width:800px)"
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/login.css",
+      "bytes": 7657,
+      "sha256": "5422299a1349ad35a96ab3198684e00a9e5c5317faa29bc899d93d5f2de8e585",
+      "lines": 214,
+      "direct_template_consumers": [
+        "login.html"
+      ],
+      "effective_template_consumers": [
+        "login.html"
+      ],
+      "literal_mentions": [
+        "templates/login.html"
+      ],
+      "important_count": 7,
+      "media_queries": [
+        "(max-width: 900px) ",
+        "(max-width: 480px) ",
+        "(prefers-reduced-motion: reduce), print "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/main.css",
+      "bytes": 21399,
+      "sha256": "216bac628a2ae8a879f934fd0d2f182237f4c2f99fff70dd3ba1e878005ce22d",
+      "lines": 1041,
+      "direct_template_consumers": [
+        "base.html",
+        "errors/error.html",
+        "login.html",
+        "register.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "errors/400.html",
+        "errors/403.html",
+        "errors/404.html",
+        "errors/405.html",
+        "errors/500.html",
+        "errors/error.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "login.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "register.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html",
+        "templates/register.html",
+        "templates/login.html",
+        "templates/errors/error.html"
+      ],
+      "important_count": 7,
+      "media_queries": [
+        "(max-width: 1200px) ",
+        "(max-width: 992px) ",
+        "(max-width: 768px) ",
+        "(max-width: 768px) ",
+        "(max-width: 1024px) ",
+        "(max-width: 768px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/neo-pop.css",
+      "bytes": 44834,
+      "sha256": "90a358441d7fbaf7e25defdbdb6b7bc7d9f2f7922f55f2225197c3d1a9c3a765",
+      "lines": 867,
+      "direct_template_consumers": [
+        "base.html",
+        "errors/error.html",
+        "login.html",
+        "register.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "errors/400.html",
+        "errors/403.html",
+        "errors/404.html",
+        "errors/405.html",
+        "errors/500.html",
+        "errors/error.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "login.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "register.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html",
+        "templates/register.html",
+        "templates/login.html",
+        "templates/errors/error.html"
+      ],
+      "important_count": 45,
+      "media_queries": [
+        "(max-width: 540px) ",
+        "(max-width: 800px) ",
+        "(max-width: 1180px) ",
+        "(max-width: 800px) ",
+        "(max-width: 540px) ",
+        "(max-width: 1180px) ",
+        "(max-width: 800px) ",
+        "(max-width: 680px) ",
+        "(max-width: 540px) ",
+        "(prefers-reduced-motion: reduce) ",
+        "print ",
+        "(max-width: 600px) ",
+        "(max-width: 800px) ",
+        "(max-width: 600px) ",
+        "(prefers-reduced-motion: reduce), print "
+      ],
+      "keyframes": [
+        "linhedu-logo-float"
+      ]
+    },
+    {
+      "file": "static/css/question-bank.css",
+      "bytes": 4007,
+      "sha256": "094fcbfaa52d9be19d9ada8c9d44e97074173dd5bd84a5fbc0ff4e12eaf5612a",
+      "lines": 41,
+      "direct_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_detail.html"
+      ],
+      "important_count": 5,
+      "media_queries": [
+        "(max-width:700px)",
+        "(max-width: 600px) "
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/css/question-document.css",
+      "bytes": 17037,
+      "sha256": "c162318a2a27669a5cf935182c1e34ec2c13c1f0d790ffbf42dbd02ee135ffd2",
+      "lines": 702,
+      "direct_template_consumers": [
+        "base.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html"
+      ],
+      "important_count": 99,
+      "media_queries": [
+        "(max-width:700px) ",
+        "(max-width:700px) ",
+        "(max-width:800px) ",
+        "(max-width: 760px) ",
+        "(max-width:700px)"
+      ],
+      "keyframes": []
+    },
+    {
+      "file": "static/favicon.ico",
+      "bytes": 99004,
+      "sha256": "7b856f56758d138eaf66bd6db96f0e81063afb50fc2d1d0aaf858ff4f8776206",
+      "lines": null,
+      "direct_template_consumers": [],
+      "effective_template_consumers": [],
+      "literal_mentions": [
+        "app.py"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/images/favicon.ico",
+      "bytes": 99004,
+      "sha256": "7b856f56758d138eaf66bd6db96f0e81063afb50fc2d1d0aaf858ff4f8776206",
+      "lines": null,
+      "direct_template_consumers": [],
+      "effective_template_consumers": [],
+      "literal_mentions": [
+        "app.py"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/images/logo-transparent.png",
+      "bytes": 877769,
+      "sha256": "4d07ed32c0d20835436fb14e13aa273e44392f7ed5f525377e6c37efa8d71803",
+      "lines": null,
+      "direct_template_consumers": [
+        "base.html",
+        "components/navigation.html",
+        "errors/error.html",
+        "index.html",
+        "login.html",
+        "register.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "components/navigation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "errors/400.html",
+        "errors/403.html",
+        "errors/404.html",
+        "errors/405.html",
+        "errors/500.html",
+        "errors/error.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "login.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "register.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/index.html",
+        "templates/base.html",
+        "templates/register.html",
+        "templates/login.html",
+        "templates/components/navigation.html",
+        "templates/errors/error.html",
+        "app.py"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/images/logo.png",
+      "bytes": 796034,
+      "sha256": "000c401a89f4de8967521eda1ca5aa9d7c46ee2042c43462e09b375e5b495994",
+      "lines": null,
+      "direct_template_consumers": [],
+      "effective_template_consumers": [],
+      "literal_mentions": [],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/images/pop-avatar.svg",
+      "bytes": 521,
+      "sha256": "0dbd5e810d7ea007321edab4a6b028a25b3781dfa4cace52b560947c29e0806e",
+      "lines": null,
+      "direct_template_consumers": [
+        "base.html",
+        "components/navigation.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "components/navigation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html",
+        "templates/components/navigation.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/images/pop-study.svg",
+      "bytes": 1575,
+      "sha256": "b5579c4ea961fb96711862b1bd439dc4394bd2bf1a2b6bd50e81101690977f1e",
+      "lines": null,
+      "direct_template_consumers": [
+        "register.html"
+      ],
+      "effective_template_consumers": [
+        "register.html"
+      ],
+      "literal_mentions": [
+        "templates/register.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/bank_formula_scheduler.js",
+      "bytes": 7101,
+      "sha256": "861c08b3734e6c318d2174ff7aef61e7b9c9f78eed37120095ab402fe69a82d9",
+      "lines": 185,
+      "direct_template_consumers": [
+        "diagnostic_form.html",
+        "question_bank_detail.html"
+      ],
+      "effective_template_consumers": [
+        "diagnostic_form.html",
+        "question_bank_detail.html"
+      ],
+      "literal_mentions": [
+        "templates/diagnostic_form.html",
+        "templates/question_bank_detail.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/formula_renderer.js",
+      "bytes": 31272,
+      "sha256": "a6fa0aa4708b59fa77fafd1c72b006568a20dd3c18c5b6da3417491576daae6b",
+      "lines": 681,
+      "direct_template_consumers": [
+        "base.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html",
+        "static/js/formula_renderer.js"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/id6_picker.js",
+      "bytes": 3835,
+      "sha256": "1dc42b38ef99f7b4cd80b2316e18ab85c2c504645637e7fd21514d5ea22080c7",
+      "lines": 64,
+      "direct_template_consumers": [
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_classification.html",
+        "templates/question_bank_import.html",
+        "templates/question_bank_detail.html",
+        "tests/test_id6_picker.js"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/import_duplicates.js",
+      "bytes": 5091,
+      "sha256": "157212f5e6e66044d980c379ef6db78961bdb7d0a774b4d23fc0300da2570073",
+      "lines": 96,
+      "direct_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_import.html",
+        "tests/test_import_scope.js"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/import_scope.js",
+      "bytes": 3935,
+      "sha256": "56f4d96497125b4ed99b2d371e69a813f5412b48e8a561a7b1f88caf36115bb2",
+      "lines": 72,
+      "direct_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_import.html",
+        "tests/test_import_scope.js"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/login.js",
+      "bytes": 804,
+      "sha256": "36c7d34abe244d78cd33204893db903ec3fc16d0dd395c929a10a492c884d579",
+      "lines": 20,
+      "direct_template_consumers": [
+        "login.html"
+      ],
+      "effective_template_consumers": [
+        "login.html"
+      ],
+      "literal_mentions": [
+        "templates/login.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/manual_question.js",
+      "bytes": 1504,
+      "sha256": "3304e14992fd44b08024a108d2cafc616322c090683977c517ed0264ce129020",
+      "lines": 34,
+      "direct_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_detail.html",
+        "tests/test_local_tex_bank.py"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/ai_reports.js",
+      "bytes": 25558,
+      "sha256": "48fbf8f26f6f98c922575f457f70320f500b1812b86cd7495e87ec3046b789e6",
+      "lines": 265,
+      "direct_template_consumers": [
+        "ai_reports.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html"
+      ],
+      "literal_mentions": [
+        "templates/ai_reports.html",
+        "routes/ai_reports.py"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/assessment_editor.js",
+      "bytes": 4245,
+      "sha256": "e6314e75615cb7e843ddf8d9c3d2bb02728743ddebe3371f02578ad3b68e9413",
+      "lines": 70,
+      "direct_template_consumers": [
+        "assessment_import.html"
+      ],
+      "effective_template_consumers": [
+        "assessment_import.html"
+      ],
+      "literal_mentions": [
+        "templates/assessment_import.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/class_learning_report.js",
+      "bytes": 10823,
+      "sha256": "a33642747df183ca9bc7f73f2e2872ee0d1d14d03630159a2119e0e9fe6dad51",
+      "lines": 101,
+      "direct_template_consumers": [],
+      "effective_template_consumers": [],
+      "literal_mentions": [],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/diagnostic_wizard.js",
+      "bytes": 23525,
+      "sha256": "7517785f8458e300a401c1f09ebe2245b2aa24c2b3e47dbccd7a2df9e5955ff8",
+      "lines": 473,
+      "direct_template_consumers": [
+        "diagnostic_form.html"
+      ],
+      "effective_template_consumers": [
+        "diagnostic_form.html"
+      ],
+      "literal_mentions": [
+        "templates/diagnostic_form.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/exam_take.js",
+      "bytes": 1858,
+      "sha256": "878a954470ec952707ed6527be26e66f5e642c2adc540dadbf3d13328216a424",
+      "lines": 48,
+      "direct_template_consumers": [
+        "exam_take.html"
+      ],
+      "effective_template_consumers": [
+        "exam_take.html"
+      ],
+      "literal_mentions": [
+        "templates/exam_take.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/import_wizard.js",
+      "bytes": 15365,
+      "sha256": "d058b51e6844916b87ffd79175f31607b3bed0f331bb71ba72e624f21129afe0",
+      "lines": 406,
+      "direct_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_import.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_import.html",
+        "tests/test_import_scope.js"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/practice_progress.js",
+      "bytes": 2158,
+      "sha256": "df5359b83c3cb6b490238cbe97fc4ba85d88aed6ef1e803c223115f991bad73c",
+      "lines": 73,
+      "direct_template_consumers": [
+        "practice_progress.html"
+      ],
+      "effective_template_consumers": [
+        "practice_progress.html"
+      ],
+      "literal_mentions": [
+        "templates/practice_progress.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/question_bank_detail.js",
+      "bytes": 14022,
+      "sha256": "8d6c141de5f521e956cc001db9826033d4a5ea0e27fdec46d4ef7a2875fbd5b0",
+      "lines": 358,
+      "direct_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "effective_template_consumers": [
+        "question_bank_detail.html"
+      ],
+      "literal_mentions": [
+        "templates/question_bank_detail.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/modules/teacher_practice_detail.js",
+      "bytes": 1112,
+      "sha256": "b0b5bc34f2a48a5dd2b3ececeb0c016e0aadaa550c4ec190886077780a270fd4",
+      "lines": 25,
+      "direct_template_consumers": [
+        "teacher_practice_detail.html"
+      ],
+      "effective_template_consumers": [
+        "teacher_practice_detail.html"
+      ],
+      "literal_mentions": [
+        "templates/teacher_practice_detail.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    },
+    {
+      "file": "static/js/ui-shell.js",
+      "bytes": 1433,
+      "sha256": "52feeab61fb8d68007675e04fe6cd7286ff29f9e6e4a6d6f30947e115dfe72b7",
+      "lines": 27,
+      "direct_template_consumers": [
+        "base.html"
+      ],
+      "effective_template_consumers": [
+        "ai_reports.html",
+        "assessment_from_bank.html",
+        "assessment_import.html",
+        "assessment_list.html",
+        "assessment_matrix.html",
+        "base.html",
+        "classification_evaluation.html",
+        "course_detail.html",
+        "course_form.html",
+        "courses.html",
+        "curriculum_catalog.html",
+        "diagnostic_form.html",
+        "diagnostic_list.html",
+        "edit_user.html",
+        "exam_result.html",
+        "exam_take.html",
+        "index.html",
+        "manage_users.html",
+        "my_students.html",
+        "practice_draft.html",
+        "practice_home.html",
+        "practice_progress.html",
+        "profile.html",
+        "question_bank_classification.html",
+        "question_bank_detail.html",
+        "question_bank_form.html",
+        "question_bank_import.html",
+        "question_banks.html",
+        "teacher_ai_settings.html",
+        "teacher_analytics.html",
+        "teacher_practice_detail.html",
+        "teacher_practice_list.html"
+      ],
+      "literal_mentions": [
+        "templates/base.html"
+      ],
+      "important_count": null,
+      "media_queries": [],
+      "keyframes": []
+    }
+  ],
+  "routes": [
+    {
+      "file": "routes/academic.py",
+      "line": 514,
+      "rule": "/",
+      "endpoint": "index",
+      "view_function": "index",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "index.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 379,
+      "rule": "/admin/ai-groups/<int:group_id>/disable",
+      "endpoint": "admin_disable_teacher_ai_group",
+      "view_function": "admin_disable_teacher_ai_group",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_reports.py",
+      "line": 126,
+      "rule": "/ai-reports",
+      "endpoint": "ai_reports",
+      "view_function": "ai_reports",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_reports.py",
+      "templates": [
+        "ai_reports.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_reports.py",
+      "line": 127,
+      "rule": "/ai-reports/class",
+      "endpoint": "ai_reports_class",
+      "view_function": "ai_reports",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_reports.py",
+      "templates": [
+        "ai_reports.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_reports.py",
+      "line": 128,
+      "rule": "/ai-reports/individual",
+      "endpoint": "ai_reports_individual",
+      "view_function": "ai_reports",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_reports.py",
+      "templates": [
+        "ai_reports.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1134,
+      "rule": "/analytics/teacher",
+      "endpoint": "teacher_analytics",
+      "view_function": "teacher_analytics",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/ai_reports.py",
+      "line": 129,
+      "rule": "/api/ai-reports/<int:course_id>",
+      "endpoint": "ai_report_data",
+      "view_function": "ai_report_data",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_reports.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "line": 380,
+      "rule": "/api/diagnostics/question-choices",
+      "endpoint": "diagnostic_question_choices",
+      "view_function": "diagnostic_question_choices",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/diagnostics.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "line": 381,
+      "rule": "/api/diagnostics/review",
+      "endpoint": "review_diagnostic",
+      "view_function": "review_diagnostic",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/diagnostics.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1115,
+      "rule": "/api/formulas/<formula_id>/render.svg",
+      "endpoint": "render_formula_svg",
+      "view_function": "render_formula_svg",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1116,
+      "rule": "/api/formulas/<formula_id>/retry",
+      "endpoint": "retry_formula_conversion",
+      "view_function": "retry_formula_conversion",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1114,
+      "rule": "/api/formulas/batch",
+      "endpoint": "batch_get_formulas",
+      "view_function": "batch_get_formulas",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1101,
+      "rule": "/api/question-banks/<int:bank_id>/questions/<int:question_id>",
+      "endpoint": "question_bank_question_detail_json",
+      "view_function": "question_bank_question_detail_json",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 154,
+      "rule": "/assessments",
+      "endpoint": "assessment_list",
+      "view_function": "assessment_list",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/assessments.py",
+      "templates": [
+        "assessment_list.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 155,
+      "rule": "/assessments/<int:exam_id>/matrix",
+      "endpoint": "assessment_matrix",
+      "view_function": "assessment_matrix",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/assessments.py",
+      "templates": [
+        "assessment_matrix.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 161,
+      "rule": "/assessments/<int:exam_id>/result",
+      "endpoint": "assessment_result",
+      "view_function": "practice_result",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {
+        "standalone": true
+      },
+      "kind": "add_url_rule",
+      "view_file": "routes/practice_runtime.py",
+      "templates": [
+        "exam_result.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 159,
+      "rule": "/assessments/<int:exam_id>/take",
+      "endpoint": "assessment_take",
+      "view_function": "practice_take",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {
+        "standalone": true
+      },
+      "kind": "add_url_rule",
+      "view_file": "routes/practice_runtime.py",
+      "templates": [
+        "exam_take.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 156,
+      "rule": "/assessments/from-bank",
+      "endpoint": "assessment_from_bank",
+      "view_function": "assessment_from_bank",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/assessments.py",
+      "templates": [
+        "assessment_from_bank.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/assessments.py",
+      "line": 157,
+      "rule": "/assessments/import/<session_id>",
+      "endpoint": "assessment_import",
+      "view_function": "assessment_import",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/assessments.py",
+      "templates": [
+        "assessment_import.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 515,
+      "rule": "/courses",
+      "endpoint": "courses",
+      "view_function": "courses",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "courses.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 519,
+      "rule": "/courses/<int:course_id>",
+      "endpoint": "course_detail",
+      "view_function": "course_detail",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "course_detail.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 518,
+      "rule": "/courses/<int:course_id>/delete",
+      "endpoint": "delete_course",
+      "view_function": "delete_course",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 517,
+      "rule": "/courses/<int:course_id>/edit",
+      "endpoint": "edit_course",
+      "view_function": "edit_course",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "course_form.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 520,
+      "rule": "/courses/<int:course_id>/lesson4-report",
+      "endpoint": "course_lesson4_report",
+      "view_function": "course_lesson4_report",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 522,
+      "rule": "/courses/<int:course_id>/lesson4-report/<int:report_id>/review",
+      "endpoint": "review_course_lesson4_report",
+      "view_function": "review_course_lesson4_report",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 521,
+      "rule": "/courses/<int:course_id>/lesson4-report/generate",
+      "endpoint": "generate_course_lesson4_report",
+      "view_function": "generate_course_lesson4_report",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 516,
+      "rule": "/courses/new",
+      "endpoint": "add_course",
+      "view_function": "add_course",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "course_form.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/curriculum.py",
+      "line": 182,
+      "rule": "/curriculum",
+      "endpoint": "curriculum_catalog",
+      "view_function": "curriculum_catalog",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/curriculum.py",
+      "templates": [
+        "curriculum_catalog.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/curriculum.py",
+      "line": 183,
+      "rule": "/curriculum/<int:node_id>/toggle",
+      "endpoint": "toggle_curriculum_node",
+      "view_function": "toggle_curriculum_node",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/curriculum.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/curriculum.py",
+      "line": 184,
+      "rule": "/curriculum/id6-preview",
+      "endpoint": "id6_preview_api",
+      "view_function": "id6_preview_api",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/curriculum.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "line": 382,
+      "rule": "/diagnostics",
+      "endpoint": "diagnostic_list",
+      "view_function": "diagnostic_list",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/diagnostics.py",
+      "templates": [
+        "diagnostic_list.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "line": 387,
+      "rule": "/diagnostics/<int:exam_id>/delete",
+      "endpoint": "delete_diagnostic",
+      "view_function": "delete_diagnostic",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/diagnostics.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "line": 383,
+      "rule": "/diagnostics/new",
+      "endpoint": "create_diagnostic",
+      "view_function": "create_diagnostic",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/diagnostics.py",
+      "templates": [
+        "diagnostic_form.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 529,
+      "rule": "/enrollments",
+      "endpoint": "add_enrollment",
+      "view_function": "add_enrollment",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "app.py",
+      "line": 31,
+      "rule": "/favicon.ico",
+      "endpoint": "favicon",
+      "view_function": "favicon",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "app.py",
+      "templates": [],
+      "decorators": [
+        "app.route('/favicon.ico')"
+      ]
+    },
+    {
+      "file": "routes/auth.py",
+      "line": 45,
+      "rule": "/login",
+      "endpoint": "login",
+      "view_function": "login",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/auth.py",
+      "templates": [
+        "login.html"
+      ],
+      "decorators": [
+        "app.route('/login', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "file": "routes/auth.py",
+      "line": 58,
+      "rule": "/logout",
+      "endpoint": "logout",
+      "view_function": "logout",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/auth.py",
+      "templates": [],
+      "decorators": [
+        "app.route('/logout')",
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 523,
+      "rule": "/my-students",
+      "endpoint": "my_students",
+      "view_function": "my_students",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "my_students.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1122,
+      "rule": "/practice",
+      "endpoint": "practice_home",
+      "view_function": "practice_home",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [
+        "practice_home.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice_runtime.py",
+      "line": 487,
+      "rule": "/practice/<int:exam_id>/result",
+      "endpoint": "practice_result",
+      "view_function": "practice_result",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice_runtime.py",
+      "templates": [
+        "exam_result.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice_runtime.py",
+      "line": 481,
+      "rule": "/practice/<int:exam_id>/take",
+      "endpoint": "practice_take",
+      "view_function": "practice_take",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice_runtime.py",
+      "templates": [
+        "exam_take.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1123,
+      "rule": "/practice/generate",
+      "endpoint": "practice_generate",
+      "view_function": "practice_generate",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1124,
+      "rule": "/practice/progress",
+      "endpoint": "practice_progress",
+      "view_function": "practice_progress",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [
+        "practice_progress.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1125,
+      "rule": "/practice/submissions/<int:submission_id>/continue",
+      "endpoint": "practice_continue",
+      "view_function": "practice_continue",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1126,
+      "rule": "/practice/submissions/<int:submission_id>/end",
+      "endpoint": "practice_end",
+      "view_function": "practice_end",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/auth.py",
+      "line": 64,
+      "rule": "/profile",
+      "endpoint": "profile",
+      "view_function": "profile",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/auth.py",
+      "templates": [
+        "profile.html"
+      ],
+      "decorators": [
+        "app.route('/profile', methods=['GET', 'POST'])",
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1098,
+      "rule": "/question-banks",
+      "endpoint": "question_bank_list",
+      "view_function": "question_bank_list",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "question_banks.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1100,
+      "rule": "/question-banks/<int:bank_id>",
+      "endpoint": "question_bank_detail",
+      "view_function": "question_bank_detail",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "question_bank_detail.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1103,
+      "rule": "/question-banks/<int:bank_id>/classification",
+      "endpoint": "question_bank_classification",
+      "view_function": "question_bank_classification",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "question_bank_classification.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1104,
+      "rule": "/question-banks/<int:bank_id>/classification/accept-suggestions",
+      "endpoint": "accept_classification_suggestions",
+      "view_function": "accept_classification_suggestions",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1107,
+      "rule": "/question-banks/<int:bank_id>/classification/bulk",
+      "endpoint": "bulk_classify_questions",
+      "view_function": "bulk_classify_questions",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1105,
+      "rule": "/question-banks/<int:bank_id>/classification/evaluation",
+      "endpoint": "classification_evaluation_page",
+      "view_function": "classification_evaluation_page",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "classification_evaluation.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1106,
+      "rule": "/question-banks/<int:bank_id>/classification/evaluation/export",
+      "endpoint": "classification_evaluation_export",
+      "view_function": "classification_evaluation_export",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1109,
+      "rule": "/question-banks/<int:bank_id>/delete",
+      "endpoint": "delete_question_bank",
+      "view_function": "delete_question_bank",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1108,
+      "rule": "/question-banks/<int:bank_id>/edit",
+      "endpoint": "edit_question_bank",
+      "view_function": "edit_question_bank",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "question_bank_form.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1102,
+      "rule": "/question-banks/<int:bank_id>/questions/<int:question_id>/adaptive",
+      "endpoint": "update_question_adaptive_control",
+      "view_function": "update_question_adaptive_control",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1110,
+      "rule": "/question-banks/<int:bank_id>/questions/add",
+      "endpoint": "add_bank_question",
+      "view_function": "add_bank_question",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 458,
+      "rule": "/question-banks/import",
+      "endpoint": "import_questions_page",
+      "view_function": "import_questions_page",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [
+        "question_bank_import.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 469,
+      "rule": "/question-banks/import/<session_id>/cancel",
+      "endpoint": "import_cancel_api",
+      "view_function": "import_cancel_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 468,
+      "rule": "/question-banks/import/<session_id>/confirm",
+      "endpoint": "import_confirm_api",
+      "view_function": "import_confirm_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 466,
+      "rule": "/question-banks/import/<session_id>/destination",
+      "endpoint": "import_destination_api",
+      "view_function": "import_destination_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 467,
+      "rule": "/question-banks/import/<session_id>/duplicate-decision",
+      "endpoint": "import_duplicate_decision_api",
+      "view_function": "import_duplicate_decision_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 461,
+      "rule": "/question-banks/import/<session_id>/formulas/<formula_id>/retry",
+      "endpoint": "retry_preview_formula_api",
+      "view_function": "retry_preview_formula_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 460,
+      "rule": "/question-banks/import/<session_id>/preview",
+      "endpoint": "import_preview_api",
+      "view_function": "import_preview_api",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 465,
+      "rule": "/question-banks/import/<session_id>/remove",
+      "endpoint": "import_remove_api",
+      "view_function": "import_remove_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 464,
+      "rule": "/question-banks/import/<session_id>/scope",
+      "endpoint": "import_scope_api",
+      "view_function": "import_scope_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 462,
+      "rule": "/question-banks/import/<session_id>/source",
+      "endpoint": "import_source_file",
+      "view_function": "import_source_file",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 463,
+      "rule": "/question-banks/import/<session_id>/update",
+      "endpoint": "import_update_api",
+      "view_function": "import_update_api",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 470,
+      "rule": "/question-banks/import/template/latex",
+      "endpoint": "download_latex_template",
+      "view_function": "download_latex_template",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/imports.py",
+      "line": 459,
+      "rule": "/question-banks/import/upload",
+      "endpoint": "import_upload",
+      "view_function": "import_upload",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/imports.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1099,
+      "rule": "/question-banks/new",
+      "endpoint": "create_question_bank",
+      "view_function": "create_question_bank",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [
+        "question_bank_form.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1111,
+      "rule": "/questions/<int:question_id>/delete",
+      "endpoint": "delete_bank_question",
+      "view_function": "delete_bank_question",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1113,
+      "rule": "/questions/<int:question_id>/toggle-answer",
+      "endpoint": "toggle_bank_question_answer_json",
+      "view_function": "toggle_bank_question_answer_json",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/question_bank.py",
+      "line": 1112,
+      "rule": "/questions/<int:question_id>/update",
+      "endpoint": "update_bank_question_json",
+      "view_function": "update_bank_question_json",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/question_bank.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/auth.py",
+      "line": 20,
+      "rule": "/register",
+      "endpoint": "register",
+      "view_function": "register",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/auth.py",
+      "templates": [
+        "register.html"
+      ],
+      "decorators": [
+        "app.route('/register', methods=['GET', 'POST'])"
+      ]
+    },
+    {
+      "file": "routes/main.py",
+      "line": 24,
+      "rule": "/static/avatars/<path:filename>",
+      "endpoint": "serve_avatar",
+      "view_function": "serve_avatar",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/main.py",
+      "templates": [],
+      "decorators": [
+        "app.route('/static/avatars/<path:filename>')"
+      ]
+    },
+    {
+      "file": "routes/main.py",
+      "line": 28,
+      "rule": "/static/course_images/<path:filename>",
+      "endpoint": "serve_course_image",
+      "view_function": "serve_course_image",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "decorator",
+      "view_file": "routes/main.py",
+      "templates": [],
+      "decorators": [
+        "app.route('/static/course_images/<path:filename>')"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 374,
+      "rule": "/teacher/ai-settings",
+      "endpoint": "teacher_ai_settings",
+      "view_function": "teacher_ai_settings",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [
+        "teacher_ai_settings.html"
+      ],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 375,
+      "rule": "/teacher/ai-settings/keys",
+      "endpoint": "teacher_ai_save_keys",
+      "view_function": "teacher_ai_save_keys",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 378,
+      "rule": "/teacher/ai-settings/keys/<int:key_id>/delete",
+      "endpoint": "teacher_ai_delete_default_key",
+      "view_function": "teacher_ai_delete_default_key",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 377,
+      "rule": "/teacher/ai-settings/keys/<int:key_id>/retry",
+      "endpoint": "teacher_ai_retry_key",
+      "view_function": "teacher_ai_retry_key",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "line": 376,
+      "rule": "/teacher/ai-settings/keys/<int:key_id>/test",
+      "endpoint": "teacher_ai_test_key",
+      "view_function": "teacher_ai_test_key",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/ai_settings.py",
+      "templates": [],
+      "decorators": [
+        "login_required"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1127,
+      "rule": "/teacher/practice",
+      "endpoint": "teacher_practice_list",
+      "view_function": "teacher_practice_list",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [
+        "teacher_practice_list.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1128,
+      "rule": "/teacher/practice/<int:student_id>",
+      "endpoint": "teacher_practice_detail",
+      "view_function": "teacher_practice_detail",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [
+        "teacher_practice_detail.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1129,
+      "rule": "/teacher/practice/<int:student_id>/ai-analysis",
+      "endpoint": "teacher_run_ai_analysis",
+      "view_function": "teacher_run_ai_analysis",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1130,
+      "rule": "/teacher/practice/<int:student_id>/errors/<int:observation_id>/review",
+      "endpoint": "teacher_review_error",
+      "view_function": "teacher_review_error",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1132,
+      "rule": "/teacher/practice/<int:student_id>/generate",
+      "endpoint": "teacher_generate_adaptive_practice",
+      "view_function": "teacher_generate_adaptive_practice",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1131,
+      "rule": "/teacher/practice/<int:student_id>/reports/<int:report_id>/review",
+      "endpoint": "teacher_review_report",
+      "view_function": "teacher_review_report",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/practice.py",
+      "line": 1133,
+      "rule": "/teacher/practice/drafts/<int:exam_id>",
+      "endpoint": "teacher_practice_draft",
+      "view_function": "teacher_practice_draft",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/practice.py",
+      "templates": [
+        "practice_draft.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('teacher')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 525,
+      "rule": "/users",
+      "endpoint": "add_user",
+      "view_function": "add_user",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 527,
+      "rule": "/users/<int:user_id>/delete",
+      "endpoint": "delete_user",
+      "view_function": "delete_user",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 526,
+      "rule": "/users/<int:user_id>/edit",
+      "endpoint": "edit_user",
+      "view_function": "edit_user",
+      "methods": [
+        "GET",
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "edit_user.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 528,
+      "rule": "/users/<int:user_id>/reset-password",
+      "endpoint": "reset_password",
+      "view_function": "reset_password",
+      "methods": [
+        "POST"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    },
+    {
+      "file": "routes/academic.py",
+      "line": 524,
+      "rule": "/users/<role_name>",
+      "endpoint": "manage_users",
+      "view_function": "manage_users",
+      "methods": [
+        "GET"
+      ],
+      "defaults": {},
+      "kind": "add_url_rule",
+      "view_file": "routes/academic.py",
+      "templates": [
+        "manage_users.html"
+      ],
+      "decorators": [
+        "login_required",
+        "role_required('admin')"
+      ]
+    }
+  ],
+  "dynamic_render_sites": [
+    {
+      "file": "routes/errors.py",
+      "function": "_make_error_response",
+      "line": 59,
+      "template": null,
+      "expression": "template_file"
+    }
+  ],
+  "external_assets": [
+    {
+      "url": "https://cdn.jsdelivr.net/npm/chart.js",
+      "references": [
+        {
+          "template": "practice_progress.html",
+          "line": 157
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.googleapis.com",
+      "references": [
+        {
+          "template": "base.html",
+          "line": 8
+        },
+        {
+          "template": "errors/error.html",
+          "line": 8
+        },
+        {
+          "template": "login.html",
+          "line": 8
+        },
+        {
+          "template": "register.html",
+          "line": 7
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap",
+      "references": [
+        {
+          "template": "base.html",
+          "line": 10
+        },
+        {
+          "template": "errors/error.html",
+          "line": 10
+        },
+        {
+          "template": "login.html",
+          "line": 10
+        },
+        {
+          "template": "register.html",
+          "line": 9
+        }
+      ]
+    },
+    {
+      "url": "https://fonts.gstatic.com",
+      "references": [
+        {
+          "template": "base.html",
+          "line": 9
+        },
+        {
+          "template": "errors/error.html",
+          "line": 9
+        },
+        {
+          "template": "login.html",
+          "line": 9
+        },
+        {
+          "template": "register.html",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "url": "https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js",
+      "references": [
+        {
+          "template": "components/footer.html",
+          "line": 2
+        }
+      ]
+    },
+    {
+      "url": "https://unpkg.com/lucide@latest/dist/umd/lucide.min.js",
+      "references": [
+        {
+          "template": "components/footer.html",
+          "line": 3
+        }
+      ]
+    }
+  ],
+  "vendor_files": [
+    "static/vendor/alpine/alpine.min.js",
+    "static/vendor/mathjax/output/chtml/fonts/tex.js",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff",
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Zero.woff",
+    "static/vendor/mathjax/tex-mml-chtml.js"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "title": "Nghiệm thu Phase 7 · Đầu vào",
+  "base": "http://127.0.0.1:8769",
+  "checks": [
+    "Explicit rich synthetic fixture",
+    "Real97-choice4-page selection exact22",
+    "Real coverage8 complete",
+    "Serverreview22 and frozen digest",
+    "Confirmation initially blocked",
+    "All22 reviewed before confirmation",
+    "Namedclassandtitle receipt enables publish",
+    "Published paper appears by exact ownID",
+    "Creation success receipt",
+    "New diagnostic result GET allowed",
+    "New diagnostic has an explicit empty result",
+    "Native deletion names only this new paper",
+    "Existing CSRF delete handler redirected",
+    "Only created paper removed from register",
+    "Deletion success receipt",
+    "One actual publication and one actual deletion",
+    "No existing fixture deleted",
+    "No JS exceptions"
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "path": "/login",
+      "method": "POST"
+    },
+    {
+      "path": "/api/diagnostics/review",
+      "method": "POST"
+    },
+    {
+      "path": "/diagnostics/new",
+      "method": "POST"
+    },
+    {
+      "path": "/diagnostics/26/delete",
+      "method": "POST"
+    }
+  ],
+  "screenshots": [
+    "screenshots/diagnostics-publish-receipt-1440.png",
+    "screenshots/diagnostics-publish-empty-results-1440.png",
+    "screenshots/diagnostics-publish-delete-dialog-1440.png"
+  ],
+  "createdExamId": 26,
+  "deleted": true,
+  "cleanupFallback": false,
+  "error": null,
+  "onlyCreatedPaperMayBeDeleted": true,
+  "actualPublishResponseReadBeforeNavigation": true
+}

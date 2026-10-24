@@ -1,0 +1,8 @@
+{
+  "status": "incomplete",
+  "completedChecksBeforeAssertion": 290,
+  "failure": "Immediate focus assertion after resizing desktop to mobile did not pass. Needs a browser rerun after waiting for matchMedia change.",
+  "rerun": "not executed: automatic review timeout, then selected approval model at capacity",
+  "errors": [],
+  "assets": []
+}

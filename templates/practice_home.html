@@ -1,112 +1,31 @@
-{% extends "base.html" %}
-
-{% block title %}Tự Luyện Thích Ứng - EduCenter{% endblock %}
-{% block page_title %}Tự luyện thích ứng năng lực{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Tự luyện kiến thức · LMath{% endblock %}
+{% block page_title %}Tự luyện kiến thức{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/practice-student.css', v='20261015-phase7') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Hệ thống tự luyện cá nhân hóa theo năng lực học sinh</p>
-    <h1>Tự luyện học tập</h1>
-  </div>
-  <div>
-    <a href="{{ url_for('practice_progress') }}" class="btn btn-secondary">
-      <i data-lucide="line-chart" style="width:14px;height:14px"></i>
-      Xem biểu đồ tiến bộ
-    </a>
-  </div>
-</div>
-
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-6)">
-  {% for sub in subjects %}
-    {% set prof = profiles.get(sub, {}) %}
-    {% set banks = banks_by_subject.get(sub, []) %}
-    
-    <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; margin-bottom:0">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-3)">
-          <span class="badge badge-open" style="font-size:var(--text-sm); padding:4px 10px">{{ sub }}</span>
-          
-          <span class="badge" :class="{'badge-present': '{{ prof.adaptive_difficulty }}' === 'challenge', 'badge-upcoming': '{{ prof.adaptive_difficulty }}' === 'standard', 'badge-absent': '{{ prof.adaptive_difficulty }}' === 'reinforce'}">
-            {% if prof.adaptive_difficulty == 'reinforce' %}
-              🛡 Củng cố kiến thức
-            {% elif prof.adaptive_difficulty == 'challenge' %}
-              ⚡ Thách thức nâng cao
-            {% else %}
-              🎯 Cấp độ chuẩn
-            {% endif %}
-          </span>
-        </div>
-
-        <!-- Performance Stats Overview -->
-        <div style="background:var(--surface-2); padding:var(--space-4); border-radius:var(--radius-md); margin-bottom:var(--space-4)">
-          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-2)">
-            <span style="font-size:var(--text-xs); color:var(--text-2)">ĐIỂM TRUNG BÌNH</span>
-            <span style="font-size:var(--text-xl); font-weight:700; color:var(--accent)">{{ prof.avg_score }}/10</span>
-          </div>
-          <div style="display:flex; justify-content:space-between; font-size:var(--text-xs); color:var(--text-2)">
-            <span>Số bài đã luyện: <strong>{{ prof.total_attempts }}</strong></span>
-            <span>Xu hướng: 
-              <strong>
-                {% if prof.score_trend == 'improving' %}📈 Đang tăng{% elif prof.score_trend == 'declining' %}📉 Đang giảm{% else %}➡️ Ổn định{% endif %}
-              </strong>
-            </span>
-          </div>
-        </div>
-
-        <!-- Accuracy breakdown -->
-        <div style="font-size:var(--text-xs); color:var(--text-2); display:flex; flex-direction:column; gap:6px; margin-bottom:var(--space-4)">
-          <div style="display:flex; justify-content:space-between">
-            <span>Tỷ lệ đúng Nhận biết:</span>
-            <strong>{{ prof.nhan_biet_accuracy }}%</strong>
-          </div>
-          <div style="display:flex; justify-content:space-between">
-            <span>Tỷ lệ đúng Vận dụng:</span>
-            <strong>{{ prof.van_dung_accuracy }}%</strong>
-          </div>
-          <div style="display:flex; justify-content:space-between">
-            <span>Tỷ lệ đúng Vận dụng cao:</span>
-            <strong>{{ prof.van_dung_cao_accuracy }}%</strong>
-          </div>
-        </div>
-      </div>
-
-      <!-- Practice Form -->
-      <form action="{{ url_for('practice_generate') }}" method="POST" style="border-top:1px solid var(--border); padding-top:var(--space-4)">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="subject" value="{{ sub }}">
-
-        <div class="form-group" style="margin-bottom:var(--space-3)">
-          <label class="form-label" style="font-size:var(--text-xs)">Chọn Ngân hàng câu hỏi (Có thể chọn nhiều)</label>
-          <div style="max-height: 150px; overflow-y: auto; border: 1px solid var(--border); padding: 8px; border-radius: var(--radius-sm)">
-            {% if banks %}
-              {% for b in banks %}
-                <label style="display: block; font-size: var(--text-sm); margin-bottom: 4px; cursor: pointer;">
-                  <input type="checkbox" name="bank_ids" value="{{ b.id }}"> {{ b.name }} ({{ b.question_count }} câu)
-                </label>
-              {% endfor %}
-            {% else %}
-              <span style="font-size: var(--text-sm); color: var(--text-2);">Chưa có ngân hàng câu hỏi</span>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-bottom:var(--space-4)">
-          <label class="form-label" style="font-size:var(--text-xs)">Số câu hỏi mong muốn</label>
-          <select name="total_questions" style="font-size:var(--text-xs); padding:4px 8px">
-            <option value="5">5 câu (Nhanh - 8 phút)</option>
-            <option value="10" selected>10 câu (Chuẩn - 15 phút)</option>
-            <option value="15">15 câu (Chuyên sâu - 22 phút)</option>
-            <option value="20">20 câu (Thử thách - 30 phút)</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center" {% if not banks %}disabled{% endif %}>
-          <i data-lucide="play" style="width:14px;height:14px"></i>
-          Bắt đầu bài tự luyện
-        </button>
-      </form>
+<div class="student-practice student-practice-home">
+  <header class="page-header student-practice-header"><div class="page-title-area"><h1>Tự luyện kiến thức</h1></div><a href="{{ url_for('practice_progress', subject=selected_course.subject) if selected_course else url_for('practice_progress') }}" class="btn btn-secondary"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>Kết quả và tiến bộ</a></header>
+  {% if not courses %}
+  <section class="panel student-empty" aria-labelledby="practice-empty-title"><i data-lucide="book-open" aria-hidden="true"></i><h2 id="practice-empty-title">Chưa có lớp học</h2><p>Giáo viên cần ghi danh bạn vào một lớp đang hoạt động để giao bài đầu vào và mở tự luyện.</p></section>
+  {% else %}
+  <section class="panel student-context" aria-labelledby="practice-context-title"><div><h2 id="practice-context-title">Lớp học của bạn</h2><p>Bài đầu vào và nguồn luyện tập được xác định theo lớp.</p></div><form method="GET" action="{{ url_for('practice_home') }}" class="student-context-form"><div class="student-select-field"><label for="practice-course">Chọn lớp học</label><select id="practice-course" name="course_id">{% for course in courses %}<option value="{{ course.id }}"{% if selected_course and selected_course.id == course.id %} selected{% endif %}>{{ course.course_name }} · {{ course.subject }}</option>{% endfor %}</select></div><button class="btn btn-secondary" type="submit">Xem lớp</button></form></section>
+  {% set initialized = (profile_state or {}).get('initialized') %}
+  {% set source_ready = (source_state or {}).get('status') == 'ready' %}
+  {% set next_state = 'diagnostic' if not initialized else 'source-unavailable' if not source_ready else 'decision' if pending_decision_exam else 'resume' if resume_exam else 'generate' %}
+  <section class="panel student-next" aria-labelledby="practice-next-title" data-practice-next="{{ next_state }}">
+    <div class="student-next-heading"><span class="badge badge-info">{{ selected_course.subject }}</span></div>
+    <div class="student-next-content"><div class="student-next-copy"><h2 id="practice-next-title">{% if next_state == 'diagnostic' %}Bắt đầu từ bài đánh giá đầu vào{% elif next_state == 'source-unavailable' %}Đang chờ nguồn luyện tập{% elif next_state == 'decision' %}Xem lại bài vừa hoàn thành{% elif next_state == 'resume' %}Bạn còn một bài chưa nộp{% else %}Sẵn sàng cho một bài luyện mới{% endif %}</h2><p>{% if next_state == 'diagnostic' %}Bài đầu vào giúp ghi nhận kiến thức đã có trước khi chọn nội dung luyện tập.{% elif next_state == 'source-unavailable' %}Lớp chưa có nguồn hợp lệ để tạo bài luyện. Hãy nhờ giáo viên kiểm tra bài đầu vào và ngân hàng của lớp.{% elif next_state == 'decision' %}Đối chiếu đáp án và lời giải, rồi chọn tiếp tục hoặc kết thúc lượt luyện trên trang kết quả.{% elif next_state == 'resume' %}Mở lại đề đang có để làm và nộp bài. Đáp án chưa nộp không được lưu khi tải lại hoặc rời trang.{% else %}Nội dung kết hợp phần cần củng cố, ôn tập và thử sức, dựa trên bằng chứng học tập hiện có.{% endif %}</p></div><dl class="student-paper-format"><div><dt>Số câu</dt><dd>{{ blueprint.TOTAL }}</dd></div><div><dt>Thời gian</dt><dd>{{ blueprint.DURATION_MINUTES }} <span>phút</span></dd></div></dl></div>
+    <p class="student-format-note">12 câu trắc nghiệm · 4 câu Đúng/Sai · 6 câu trả lời ngắn</p>
+    <div class="student-next-actions">
+      {% if next_state == 'diagnostic' %}{% if (profile_state or {}).get('exam') %}<a class="btn btn-primary" href="{{ url_for('practice_take', exam_id=profile_state.get('exam')) }}">Làm bài đầu vào<i data-lucide="arrow-right" aria-hidden="true"></i></a>{% else %}<button class="btn btn-primary" disabled aria-describedby="practice-unavailable">Làm bài đầu vào</button><p id="practice-unavailable">Giáo viên chưa giao bài đầu vào hợp lệ cho lớp của bạn.</p>{% endif %}
+      {% elif next_state == 'source-unavailable' %}<button class="btn btn-primary" disabled aria-describedby="practice-source-reason">Bắt đầu bài luyện</button><details class="student-source-reason"><summary id="practice-source-reason">Vì sao chưa thể luyện tập?</summary><p>{{ (source_state or {}).get('message') or 'Chưa có nguồn câu hỏi hợp lệ cho lớp đã chọn.' }}</p></details>
+      {% elif next_state == 'decision' %}<a class="btn btn-primary" href="{{ url_for('practice_result', exam_id=pending_decision_exam.id) }}">Xem kết quả để chọn bước tiếp theo<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      {% elif next_state == 'resume' %}<a class="btn btn-primary" href="{{ url_for('practice_take', exam_id=resume_exam.id) }}">Tiếp tục bài đang có<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+      {% else %}<form action="{{ url_for('practice_generate') }}" method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input type="hidden" name="course_id" value="{{ selected_course.id }}"><button type="submit" class="btn btn-primary">Bắt đầu bài luyện<i data-lucide="arrow-right" aria-hidden="true"></i></button></form><p>Một số câu đã gặp có thể được dùng lại để ôn tập.</p>{% endif %}
     </div>
-  {% endfor %}
+  </section>
+  {% if teacher_papers %}<section class="panel student-assigned" aria-labelledby="practice-assigned-title"><div class="student-section-heading"><div><h2 id="practice-assigned-title">Bài giáo viên giao</h2></div><span class="badge badge-neutral">{{ teacher_papers|length }} bài</span></div><ul class="student-assigned-list">{% for item in teacher_papers %}{% set submitted = item.submission and item.submission.submitted_at %}<li><div><h3>{{ item.exam.title }}</h3><p>{{ item.exam.question_count }} câu · {{ item.exam.duration_minutes }} phút <span class="student-list-status">{{ 'Đã nộp' if submitted else 'Chưa nộp' }}</span></p></div><a class="btn btn-secondary" href="{{ url_for('practice_result' if submitted else 'practice_take', exam_id=item.exam.id) }}" aria-label="{{ 'Xem kết quả' if submitted else 'Làm bài' }}: {{ item.exam.title }}">{{ 'Xem kết quả' if submitted else 'Làm bài' }}<i data-lucide="arrow-right" aria-hidden="true"></i></a></li>{% endfor %}</ul></section>{% endif %}
+  {% if profile %}<details class="panel student-evidence"><summary><span>Kiến thức đã ghi nhận</span><span class="student-evidence-meta">{{ profile.answer_count }} câu trả lời có dữ liệu</span></summary><div class="student-evidence-body"><p>Bản đồ phản ánh bằng chứng hiện có. Dạng chưa đủ dữ liệu được giữ là “Chưa biết”.</p>{% include 'components/practice_skill_matrix.html' %}</div></details>{% endif %}
+  {% endif %}
 </div>
 {% endblock %}

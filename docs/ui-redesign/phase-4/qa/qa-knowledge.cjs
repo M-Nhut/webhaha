@@ -1,0 +1,102 @@
+const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const fs = require('fs');
+(async () => {
+  const browser = await chromium.launch({channel:'chrome', headless:true});
+  const checks = [], errors = [];
+  const check = (name, value) => { checks.push({name, pass: Boolean(value)}); if (!value) throw new Error(name); };
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  page.on('pageerror', e => errors.push(e.message));
+  const base = 'http://127.0.0.1:8766';
+  await page.goto(base+'/login');
+  await page.locator('[name="username"]').fill('qa_teacher');
+  await page.locator('[name="password"]').fill('Academy123!');
+  await Promise.all([page.waitForURL(url => !url.pathname.includes('/login')),page.locator('[type="submit"]').click()]);
+  await page.goto(base+'/question-banks/3/classification?status=all');
+  await page.locator('.question-checkbox').first().waitFor();
+  await page.locator('.question-checkbox').first().check();
+  check('Single selection count', (await page.locator('#selection-count').innerText()).includes('Đã chọn 1'));
+  check('Partial selection is mixed', await page.locator('#select-all').evaluate(e => e.indeterminate));
+  const suggested = page.locator('.question-checkbox[data-suggestion-current="true"]');
+  await page.locator('.question-checkbox').evaluateAll(boxes=>boxes.forEach(e=>{e.checked=false;e.dispatchEvent(new Event('change',{bubbles:true}));}));
+  await suggested.first().check();
+  check('Only current suggestion enables accept', await page.locator('[data-suggestion-submit]').isEnabled());
+  check('Accept suggestion carries selected id', await page.locator('#suggestion-form [name="question_ids"]').count()===1);
+  const stale = page.locator('.classification-question').filter({hasText:'Gợi ý cũ'}).locator('.question-checkbox');
+  await stale.first().check();
+  check('Stale blocks accept suggestions', await page.locator('[data-suggestion-submit]').isDisabled());
+  await page.locator('#select-all').check();
+  check('Select-all current scope', await page.locator('.question-checkbox:checked').count()===await page.locator('.question-checkbox').count());
+  check('Mixed answer types block bulk', await page.locator('[data-manual-submit]').isDisabled());
+  check('Native forms are separate', await page.locator('#classification-form #suggestion-form').count()===0);
+  await page.locator('#select-all').uncheck();
+  check('Clear selection disables both actions', await page.locator('[data-manual-submit]').isDisabled() && await page.locator('[data-suggestion-submit]').isDisabled());
+  for(const width of [375,768,1440]){
+    await page.setViewportSize({width,height:960});
+    await page.goto(base+'/question-banks/3/classification?status=all');
+    await page.evaluate(()=>document.fonts.ready);
+    check('Classification viewport '+width, await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  await page.goto(base+'/curriculum?grade=9&chapter=8');
+  check('Teacher catalog read-only', await page.locator('[data-catalog-editor]').count()===0 && await page.locator('[data-catalog-edit]').count()===0);
+  for(const width of [375,768,1440]){
+    await page.setViewportSize({width,height:960});
+    await page.goto(base+'/curriculum?grade=9&chapter=8');
+    await page.evaluate(()=>document.fonts.ready);
+    check('Catalog viewport '+width, await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    if(width===375)check('Catalog mobile card display', await page.locator('.knowledge-catalog-table tr').last().evaluate(e=>getComputedStyle(e).display==='block'));
+  }
+  await page.goto(base+'/curriculum?grade=10&chapter=4');
+  check('Catalog context is real query', (await page.locator('.knowledge-context').innerText()).includes('Lớp 10 · Chương 4'));
+  await page.goto(base+'/question-banks/3/classification/evaluation');
+  check('Evaluation three sections', await page.locator('.knowledge-evaluation-step').count()===3);
+  await page.locator('#labels-file').setInputFiles({name:'oversize.json',mimeType:'application/json',buffer:Buffer.alloc(5*1024*1024+1,' ')});
+  check('Oversize file inline feedback', (await page.locator('#labels-file-feedback').innerText()).includes('vượt quá 5 MB'));
+  check('Oversize upload native invalid', !(await page.locator('#labels-file').evaluate(e=>e.checkValidity())));
+  await page.locator('#labels-file').setInputFiles({name:'labels.txt',mimeType:'text/plain',buffer:Buffer.from('[]')});
+  check('Wrong extension client validation', !(await page.locator('#labels-file').evaluate(e=>e.checkValidity())));
+  await page.locator('#labels-file').setInputFiles({name:'labels.json',mimeType:'application/json',buffer:Buffer.from('[]')});
+  check('File correction clears error', await page.locator('#labels-file').evaluate(e=>e.checkValidity()));
+  for(const width of [375,768,1440]){
+    await page.setViewportSize({width,height:960});
+    await page.goto(base+'/question-banks/3/classification/evaluation');
+    await page.evaluate(()=>document.fonts.ready);
+    check('Evaluation viewport '+width, await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  await context.close();
+  const adminContext = await browser.newContext();
+  const admin = await adminContext.newPage();
+  admin.on('pageerror', e=>errors.push(e.message));
+  await admin.goto(base+'/login');
+  await admin.locator('[name="username"]').fill('qa_admin');
+  await admin.locator('[name="password"]').fill('Academy123!');
+  await Promise.all([admin.waitForURL(url=>!url.pathname.includes('/login')),admin.locator('[type="submit"]').click()]);
+  await admin.route('**/curriculum', route=>route.request().method()==='POST'?route.abort():route.continue());
+  await admin.goto(base+'/curriculum?inactive=1');
+  const edit = admin.locator('[data-catalog-edit]').first();
+  const canonical = await edit.getAttribute('data-canonical');
+  const name = await edit.getAttribute('data-category-name');
+  await edit.click();
+  check('Admin editor opens', await admin.locator('#catalog-management').evaluate(e=>e.open));
+  check('Admin edit prefill', await admin.locator('[name="category_name"]').inputValue()===name);
+  check('Admin edit identifies canonical', (await admin.locator('[data-catalog-editor-title]').innerText()).includes(canonical));
+  check('Legacy lesson prefill normalizes readonly name', await admin.locator('[name="lesson_name"]').evaluate(e=>e.value===e.defaultValue));
+  check('Editor scope remains canonical', (await admin.locator('#catalog-editor [name="grade"]').inputValue())==='9' && (await admin.locator('[name="chapter_code"]').inputValue())==='8' && (await admin.locator('[name="lesson_code"]').inputValue())==='i');
+  const historicalName = await edit.getAttribute('data-lesson-name');
+  const currentName = await admin.locator('[name="lesson_name"]').inputValue();
+  if(historicalName!==currentName)check('Legacy name normalization has explanation', (await admin.locator('[data-catalog-edit-feedback]').innerText()).includes('Tên bài cũ được chuẩn hóa'));
+  const outsideRows=admin.locator('.knowledge-catalog-table tr').filter({hasText:'Ngoài phạm vi biên tập'});
+  check('Out-of-scope catalog rows shown readonly', await outsideRows.count()>0 && await outsideRows.locator('[data-catalog-edit]').count()===0);
+  check('Out-of-scope toggle remains available', await outsideRows.locator('form').count()===await outsideRows.count());
+  await admin.locator('[data-catalog-reset]').click();
+  check('Admin reset blanks code', await admin.locator('[name="category_code"]').inputValue()==='');
+  for(const width of [375,768,1440]){
+    await admin.setViewportSize({width,height:960});
+    await admin.locator('#catalog-management').evaluate(e=>e.open=true);
+    check('Admin open editor viewport '+width, await admin.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  check('No browser JS errors',errors.length===0);
+  fs.writeFileSync('/tmp/linhedu-knowledge-qa.json',JSON.stringify({checks,errors},null,2));
+  console.log(JSON.stringify({passed:checks.length,errors}));
+  await browser.close();
+})().catch(e=>{console.error(e);process.exit(1);});

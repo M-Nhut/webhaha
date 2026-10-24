@@ -1,0 +1,7 @@
+{
+  "snapshotTeacherCreationStatus": 403,
+  "diagnosticAuthoringSourceUnchanged": true,
+  "oldAuthoringTestsFailed": 6,
+  "oldAuthoringTestsPassed": 4,
+  "reason": "Existing teacher fixtures call admin-only /diagnostics/new; Phase 7 authoring scope. No permission widening."
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "foreground": "color-text",
+    "background": "color-surface",
+    "ratio": 17.85,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-text-secondary",
+    "background": "color-surface",
+    "ratio": 7.58,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-text-muted",
+    "background": "color-surface",
+    "ratio": 5.9,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-text-muted",
+    "background": "color-canvas",
+    "ratio": 5.5,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-on-primary",
+    "background": "color-primary",
+    "ratio": 6.7,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-primary",
+    "background": "color-primary-subtle",
+    "ratio": 6.16,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-success",
+    "background": "color-success-subtle",
+    "ratio": 6.81,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-warning",
+    "background": "color-warning-subtle",
+    "ratio": 6.84,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-danger",
+    "background": "color-danger-subtle",
+    "ratio": 5.91,
+    "minimum": 4.5,
+    "pass": true
+  },
+  {
+    "foreground": "color-input-border",
+    "background": "color-surface",
+    "ratio": 3.04,
+    "minimum": 3,
+    "pass": true
+  }
+]

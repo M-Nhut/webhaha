@@ -1,0 +1,48 @@
+{% set selection_meta = exam.get_adaptive_metadata() %}
+{% set selection_audit = selection_meta.get('aptga', {}) %}
+{% if selection_audit.get('algorithm_version') %}
+<section class="learning-audit" aria-label="Giải thích bài luyện cá nhân hóa">
+  <h3>Vì sao bạn nhận bài luyện này?</h3>
+  <p>Bài luyện kết hợp tìm hiểu phần chưa đủ dữ liệu, củng cố điểm yếu và duy trì kiến thức đã đạt. Phân bố dựa trên câu trả lời đã chấm của bạn.</p>
+  <div class="learning-metrics">
+    <div><strong>{{ selection_audit.get('fresh_count', '—') }}</strong><span>Câu chưa từng gặp trong lịch sử ghi nhận</span></div>
+    <div><strong>{{ selection_audit.get('repeated_count', '—') }}</strong><span>Câu ôn lại</span></div>
+    <div><strong>{{ selection_audit.get('quota_changes', '—') }}</strong><span>Vị trí điều chỉnh so với mục tiêu</span></div>
+  </div>
+  {% if selection_audit.get('immediate_repeat_count', 0) %}<p><strong>Nguồn câu hỏi còn hạn chế:</strong> {{ selection_audit.immediate_repeat_count }} câu đã có ở lượt gần nhất. Hãy tự giải lại trước khi xem đáp án; kết quả làm lại có trọng số thấp hơn khi cập nhật hồ sơ.</p>{% endif %}
+  <details><summary>Xem căn cứ lựa chọn và phân bố thực tế</summary>
+    <p>{{ selection_meta.get('explanation', '') }}</p>
+    <div class="learning-table-scroll" role="region" aria-label="Phân bố mức nhận thức, cuộn ngang" tabindex="0"><table>
+      <caption class="sr-only">Phân bố mức nhận thức; dấu gạch biểu thị dữ liệu chưa được ghi nhận.</caption>
+      <thead><tr><th scope="col">Mức nhận thức</th><th scope="col">Mục tiêu</th><th scope="col">Thực tế</th></tr></thead>
+      <tbody>{% for key, label in [('nhan_biet','Nhận biết'),('thong_hieu','Thông hiểu'),('van_dung','Vận dụng'),('van_dung_cao','Vận dụng cao')] %}
+      <tr><th scope="row">{{ label }}</th><td>{{ selection_audit.get('desired_quotas', {}).get(key, '—') }}</td><td>{{ selection_audit.get('actual_quotas', {}).get(key, '—') }}</td></tr>
+      {% endfor %}</tbody>
+    </table></div>
+    <div class="learning-table-scroll" role="region" aria-label="Phân bố dạng kiến thức, cuộn ngang" tabindex="0"><table>
+      <caption class="sr-only">Phân bố tám dạng kiến thức; dấu gạch biểu thị dữ liệu chưa được ghi nhận.</caption>
+      <thead><tr><th scope="col">Dạng kiến thức</th><th scope="col">Mục tiêu</th><th scope="col">Thực tế</th></tr></thead>
+      <tbody>{% for label in ['Viết không gian mẫu','Đếm không gian mẫu','Tung đồng xu','Gieo xúc xắc','Vòng quay số','Rút thẻ','Viết số tự nhiên','Chọn đối tượng'] %}
+      {% set code = '9C8-i-' ~ loop.index %}
+      <tr><th scope="row">{{ label }}</th><td>{{ selection_audit.get('skill_targets', {}).get(code, '—') }}</td><td>{{ selection_audit.get('actual_skills', {}).get(code, '—') }}</td></tr>
+      {% endfor %}</tbody>
+    </table></div>
+    {% if selection_audit.get('skill_transfers') %}
+    <h4>Chuyển dạng và giữ mức nhận thức</h4>
+    <ul>{% for change in selection_audit.get('skill_transfers', []) %}
+      <li>Chuyển {{ change.get('count', 1) }} vị trí từ dạng {{ change.source_skill.rsplit('-', 1)[-1] }} sang dạng {{ change.target_skill.rsplit('-', 1)[-1] }};
+        {{ {'nhan_biet': 'Nhận biết', 'thong_hieu': 'Thông hiểu', 'van_dung': 'Vận dụng', 'van_dung_cao': 'Vận dụng cao'}.get(change.level, change.level) }},
+        {{ {'single': 'Chọn đáp án', 'true_false': 'Đúng/Sai', 'short_answer': 'Trả lời ngắn'}.get(change.question_type, change.question_type) }}.
+        {% if change.reason == 'source_cell_empty' %}Dạng nguồn không có câu hợp lệ ở mức và hình thức này.
+        {% else %}Phân bổ dạng ban đầu chưa ghép được trong lượt tìm kiếm theo mức và hình thức yêu cầu.{% endif %}
+      </li>
+    {% endfor %}</ul>
+    {% endif %}
+    {% if selection_audit.get('unavailable_skills') %}
+    <p><strong>Độ phủ kiến thức:</strong> {{ selection_audit.get('covered_skill_count', 0) }}/8 dạng.
+      Nguồn hợp lệ hoàn toàn thiếu dạng {% for code in selection_audit.unavailable_skills %}{{ code.rsplit('-', 1)[-1] }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+    {% endif %}
+    <p>Các mức trên là nhãn nhận thức do giáo viên xác nhận, chưa phải độ khó thống kê đã được hiệu chuẩn.</p>
+  </details>
+</section>
+{% endif %}

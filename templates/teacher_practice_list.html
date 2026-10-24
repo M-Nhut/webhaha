@@ -1,64 +1,32 @@
-{% extends "base.html" %}
-
-{% block title %}Chấm Bài Tự Luyện - EduCenter{% endblock %}
-{% block page_title %}Danh sách học sinh có bài tự luyện{% endblock %}
-
+{% extends 'base.html' %}
+{% set workspace_title = 'Học sinh của tôi' if current_user.role == 'teacher' else 'Theo dõi học tập' %}
+{% block title %}{{ workspace_title }}{% endblock %}
+{% block page_title %}{{ workspace_title }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/practice-teacher.css', v='20261021-profile-cleanup') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Quản lý và chấm điểm các bài tự luyện của học sinh</p>
-    <h1>Chấm bài tự luyện</h1>
-  </div>
-</div>
-
-<div class="card" style="margin-top: var(--space-4)">
-  <div style="overflow-x: auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Học sinh</th>
-          <th>Tổng số bài tự luyện</th>
-          <th>Chưa chấm</th>
-          <th>Hoạt động gần nhất</th>
-          <th class="text-right">Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for info in students %}
-        <tr>
-          <td>
-            <div style="display: flex; align-items: center; gap: var(--space-3)">
-              <img src="{{ url_for('serve_avatar', filename=info.student.avatar or 'default.jpg') }}" alt="" class="avatar-sm">
-              <div>
-                <div style="font-weight: 600">{{ info.student.fullname }}</div>
-                <div style="font-size: var(--text-xs); color: var(--text-2)">{{ info.student.username }}</div>
-              </div>
-            </div>
-          </td>
-          <td>{{ info.total_practice }}</td>
-          <td>
-            {% if info.ungraded_count > 0 %}
-              <span class="badge badge-partial">{{ info.ungraded_count }} bài</span>
-            {% else %}
-              <span style="color: var(--text-2)">Không có</span>
-            {% endif %}
-          </td>
-          <td>{{ info.latest_activity.strftime('%d/%m/%Y %H:%M') }}</td>
-          <td class="text-right">
-            <a href="{{ url_for('teacher_practice_detail', student_id=info.student.id) }}" class="btn btn-outline btn-sm">
-              Xem chi tiết
-            </a>
-          </td>
-        </tr>
-        {% else %}
-        <tr>
-          <td colspan="5" class="text-center" style="padding: var(--space-6) 0; color: var(--text-2)">
-            Chưa có học sinh nào nộp bài tự luyện.
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<div class="teacher-workspace">
+  <header class="page-header teacher-page-header"><div class="page-title-area"><h1>{{ workspace_title }}</h1></div></header>
+  {% if courses %}
+  <form class="panel teacher-scope" method="get"><div class="field"><label for="course-select">Lớp học đang xem</label><select id="course-select" name="course_id">{% if current_user.role == 'teacher' %}<option value=""{% if not selected_course %} selected{% endif %}>Tất cả lớp học</option>{% endif %}{% for course in courses %}<option value="{{ course.id }}" {% if selected_course and course.id == selected_course.id %}selected{% endif %}>{{ course.course_name }} · {{ course.subject }}</option>{% endfor %}</select></div><button class="btn btn-primary" type="submit">Áp dụng</button>{% if selected_course %}<a class="btn btn-secondary" href="{{ url_for('course_detail', course_id=selected_course.id) }}#lesson4-ai-report"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>Kết quả và phân tích lớp</a>{% endif %}</form>
+  <section class="panel teacher-roster" aria-labelledby="teacher-roster-title">
+    <div class="teacher-section-heading"><div><h2 id="teacher-roster-title">Danh sách học sinh <span class="badge badge-neutral">{{ students|length }}</span></h2></div></div>
+    {% if students %}<div class="teacher-table-wrap"><table class="teacher-table teacher-roster-table"><caption class="sr-only">Thông tin học sinh và kết quả học tập{% if selected_course %} của {{ selected_course.course_name }}{% endif %}</caption><thead><tr><th scope="col">Học sinh</th><th scope="col">Bài tự luyện</th><th scope="col">Bài kiểm tra</th><th scope="col">Trung bình / 10</th><th scope="col">Hoạt động gần nhất</th><th scope="col"><span class="sr-only">Mở quá trình học</span></th></tr></thead><tbody>{% for info in students %}
+      <tr>
+        <th scope="row">
+          <div class="teacher-student"><span class="teacher-student-initial" aria-hidden="true">{{ info.student.fullname[:1] }}</span><div><strong>{{ info.student.fullname }}</strong><span>{{ info.student.username }}</span></div></div>
+          {% if current_user.role == 'teacher' %}<details class="teacher-student-info"><summary aria-label="Thông tin học sinh {{ info.student.fullname }}">Thông tin</summary><dl>
+            <div><dt>Mã học sinh</dt><dd>{{ info.student.user_code or 'Chưa cập nhật' }}</dd></div>
+            <div><dt>Lớp học</dt><dd>{{ info.courses|map(attribute='course_name')|join(' · ') }}</dd></div>
+            <div><dt>Lớp / Vị trí</dt><dd>{{ info.student.position or 'Chưa cập nhật' }}</dd></div>
+            <div><dt>Số điện thoại</dt><dd>{{ info.student.phone or 'Chưa cập nhật' }}</dd></div>
+          </dl></details>{% endif %}
+        </th>
+        <td data-label="Bài tự luyện">{{ info.total_practice }}</td><td data-label="Bài kiểm tra">{{ info.total_assessments }}</td><td data-label="Trung bình / 10" class="teacher-score">{% if info.average is not none %}{{ info.average }}{% else %}<span class="teacher-no-data">Chưa có dữ liệu</span>{% endif %}</td><td data-label="Hoạt động gần nhất">{{ info.latest_activity.strftime('%d/%m/%Y · %H:%M') if info.latest_activity else 'Chưa làm bài' }}</td><td class="teacher-table-action"><a class="btn btn-secondary btn-sm" href="{{ url_for('teacher_practice_detail', student_id=info.student.id, course_id=selected_course.id if selected_course else none) }}" aria-label="Xem quá trình học của {{ info.student.fullname }}">Xem quá trình<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></td>
+      </tr>
+    {% endfor %}</tbody></table></div>
+    {% else %}<div class="teacher-empty"><i data-lucide="users" aria-hidden="true"></i><h3>Chưa có học sinh đang tham gia</h3><p>Danh sách sẽ xuất hiện khi học sinh được thêm vào lớp và có trạng thái đang tham gia.</p>{% if selected_course %}<a class="btn btn-secondary" href="{{ url_for('course_detail', course_id=selected_course.id) }}">Mở lớp học</a>{% endif %}</div>{% endif %}
+    {% if students %}<details class="content-help"><summary>Cách tính điểm trung bình</summary><p>Điểm trung bình / 10 được tính từ các bài đầu vào và tự luyện đã chấm. Kết quả kiểm tra được theo dõi riêng.</p></details>{% endif %}
+  </section>
+  {% else %}<section class="panel teacher-empty"><i data-lucide="school" aria-hidden="true"></i><h2>Chưa có lớp để theo dõi</h2><p>Các lớp bạn phụ trách sẽ xuất hiện tại đây. Mở danh sách lớp để xem thông tin hiện có.</p><a class="btn btn-primary" href="{{ url_for('courses') }}">Xem lớp học</a></section>{% endif %}
 </div>
 {% endblock %}

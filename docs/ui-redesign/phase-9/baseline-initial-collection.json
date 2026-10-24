@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-19",
+  "baseline": "/tmp/linhedu-phase9-source-before",
+  "moduleCount": 59,
+  "sourceCopiedFromBaseline": true,
+  "publicAssetsCopiedWithoutCredentials": true,
+  "exitCode": 2,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "collectionErrors": [
+    {
+      "node": "test_lesson4_cleanup.py",
+      "message": "ImportError while importing test module '/private/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase9-baseline-run-ktkwbytd/source/tests/test_lesson4_cleanup.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_lesson4_cleanup.py:32: in <module>\n    from scripts.cleanup_math9_chapter6_lesson4 import _backup_sqlite\nE   ModuleNotFoundError: No module named 'scripts.cleanup_math9_chapter6_lesson4'"
+    }
+  ],
+  "failedCases": [],
+  "skippedCases": [],
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storageTemporary": true,
+  "blockedRequests": [],
+  "blockedSockets": [],
+  "durationSeconds": 7.55
+}

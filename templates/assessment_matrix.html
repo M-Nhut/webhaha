@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% set session_id = exam.get_adaptive_metadata().get('import_session_id') %}
+{% set can_edit_draft = not exam.is_active and not exam.submissions and session_id and exam.created_by == current_user.id %}
+{% block title %}Ma trận đề kiểm tra · LMath{% endblock %}
+{% block page_title %}Ma trận đề kiểm tra{% endblock %}
+{% block body_class %}assessment-matrix-page{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/assessments.css', v='20261019-phase9') }}">{% endblock %}
+{% block content %}
+<div class="assessment-matrix-workspace">
+  <header class="page-header assessment-management-header matrix-page-header">
+    <div class="page-title-area"><p>KIỂM TRA VÀ ĐÁNH GIÁ</p><h1>Ma trận đề kiểm tra</h1><p>Đối chiếu cấu trúc và nhãn của đề đã lưu.</p></div>
+    <div class="assessment-management-actions"><a class="btn btn-ghost" href="{{ url_for('assessment_list') }}"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách đề</a><button type="button" class="btn btn-secondary" data-matrix-print hidden><i data-lucide="printer" aria-hidden="true"></i>In ma trận</button><a class="btn btn-primary" href="{{ url_for('assessment_matrix', exam_id=exam.id, download='xlsx') }}"><i data-lucide="download" aria-hidden="true"></i>Tải Excel (.xlsx)</a></div>
+  </header>
+  <section class="panel matrix-exam-context" aria-labelledby="matrix-exam-title">
+    <div class="matrix-exam-heading"><h2 id="matrix-exam-title">{{ exam.title }}</h2><span class="badge {{ 'badge-success' if exam.is_active else 'badge-neutral' }}">{{ 'Đã giao' if exam.is_active else 'Bản nháp' }}</span></div>
+    <dl class="matrix-exam-facts"><div><dt>Lớp học</dt><dd>{{ matrix.course }}</dd></div><div><dt>Thời gian</dt><dd>{{ matrix.duration }} phút</dd></div><div><dt>Số câu</dt><dd>{{ matrix.count }} câu</dd></div><div><dt>Thang điểm</dt><dd>10 điểm</dd></div></dl>
+    {% if can_edit_draft %}<div class="matrix-edit-context"><p>Bản nháp chưa có bài nộp. Có thể bổ sung nhãn và sửa đề trong phiên biên soạn.</p><a href="{{ url_for('assessment_import', session_id=session_id) }}" class="btn btn-secondary"><i data-lucide="pencil" aria-hidden="true"></i>Bổ sung nhãn / sửa đề</a></div>
+    {% else %}<p class="matrix-readonly-note"><i data-lucide="lock-keyhole" aria-hidden="true"></i><span>{{ 'Đề đã giao hoặc đã có bài nộp. Ma trận chỉ đọc và dùng dữ liệu đã lưu.' if exam.is_active or exam.submissions else ('Phiên biên soạn do người tạo đề quản lý. Ma trận ở chế độ chỉ đọc.' if exam.created_by != current_user.id else 'Không có phiên biên soạn để mở lại. Ma trận dùng dữ liệu đã lưu.') }}</span></p>{% endif %}
+  </section>
+  {% if matrix.missing or matrix.unknown_count %}<aside class="matrix-label-warning" role="status" aria-labelledby="matrix-warning-title"><i data-lucide="triangle-alert" aria-hidden="true"></i><div><h2 id="matrix-warning-title">{{ matrix.missing }} câu cần bổ sung nhãn</h2><p>Cần xác nhận chủ đề/chương, nội dung kiến thức hoặc mức đánh giá trong bảng đối chiếu bên dưới.</p>{% if matrix.unknown_count %}<p><strong>{{ matrix.unknown_count }} câu · {{ matrix.unknown_points|round(4) }} điểm</strong> chưa được cộng vào các cột Biết, Hiểu, Vận dụng. Điểm theo hình thức vẫn giữ đủ 10.</p>{% endif %}</div></aside>{% endif %}
+  <section class="panel matrix-data-section" aria-labelledby="matrix-standard-title">
+    <div class="matrix-section-heading"><div><p class="matrix-section-index">01 / CẤU TRÚC ĐỀ</p><h2 id="matrix-standard-title">Ma trận đề kiểm tra định kì</h2><p>Bố cục theo Phụ lục Công văn 7991/BGDĐT-GDTrH ngày 17/12/2024. Điểm và tỷ lệ lấy từ đề đã lưu.</p></div><span class="badge badge-neutral">Chỉ đọc</span></div>
+    <p class="matrix-scroll-hint" id="matrix-scroll-hint"><i data-lucide="move-horizontal" aria-hidden="true"></i>Cuộn ngang trong bảng để xem đủ các hình thức và mức đánh giá.</p>
+    <div class="matrix-scroll" role="region" tabindex="0" aria-label="Ma trận cấu trúc đề, cuộn ngang" aria-describedby="matrix-scroll-hint">
+      <table class="matrix-7991" aria-labelledby="matrix-standard-title"><caption class="sr-only">Số câu, điểm và tỷ lệ theo chủ đề, hình thức và mức đánh giá</caption>
+        <colgroup><col class="matrix-col-index"><col class="matrix-col-context"><col class="matrix-col-context"></colgroup><colgroup span="12"></colgroup><colgroup span="3"></colgroup><colgroup><col></colgroup>
+        <thead>
+          <tr><th rowspan="4" scope="col">TT</th><th rowspan="4" scope="col">Chủ đề/Chương</th><th rowspan="4" scope="col">Nội dung/đơn vị kiến thức</th><th colspan="12" scope="colgroup">Mức độ đánh giá</th><th colspan="3" rowspan="3" scope="colgroup" class="matrix-group-total">Tổng</th><th rowspan="4" scope="col">Tỉ lệ % điểm</th></tr>
+          <tr><th colspan="9" scope="colgroup">TNKQ</th><th colspan="3" rowspan="2" scope="colgroup" class="matrix-group-start">Tự luận</th></tr>
+          <tr><th colspan="3" scope="colgroup">Nhiều lựa chọn</th><th colspan="3" scope="colgroup" class="matrix-group-start">Đúng – Sai</th><th colspan="3" scope="colgroup" class="matrix-group-start">Trả lời ngắn</th></tr>
+          <tr>{% for group in range(5) %}{% for level in matrix.levels.values() %}<th scope="col"{% if loop.first %} class="matrix-group-start"{% endif %}>{{ level }}</th>{% endfor %}{% endfor %}</tr>
+        </thead>
+        <tbody>{% for row in matrix.rows %}<tr><td>{{ loop.index }}</td><td>{{ row.chapter }}</td><td>{{ row.category }}</td>{% for count in row.counts + row.totals %}<td{% if loop.index0 % 3 == 0 %} class="matrix-group-start"{% endif %}>{{ count if count else '—' }}</td>{% endfor %}<td>{{ (row.points*10)|round(2) }}</td></tr>{% endfor %}</tbody>
+        <tfoot>
+          <tr><th colspan="3" scope="row">Tổng số câu</th>{% for count in matrix.column_totals + matrix.level_totals %}<td{% if loop.index0 % 3 == 0 %} class="matrix-group-start"{% endif %}>{{ count }}</td>{% endfor %}<td></td></tr>
+          <tr><th colspan="3" scope="row">Tổng số điểm</th>{% for point in matrix.section_points %}<td colspan="3" class="matrix-group-start">{{ point|round(4) }}</td>{% endfor %}{% for point in matrix.level_points %}<td{% if loop.first %} class="matrix-group-start"{% endif %}>{{ point|round(4) }}</td>{% endfor %}<td></td></tr>
+          <tr><th colspan="3" scope="row">Tỉ lệ %</th>{% for point in matrix.section_points %}<td colspan="3" class="matrix-group-start">{{ (point*10)|round(2) }}</td>{% endfor %}{% for point in matrix.level_points %}<td{% if loop.first %} class="matrix-group-start"{% endif %}>{{ (point*10)|round(2) }}</td>{% endfor %}<td></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="matrix-reading-notes"><p><strong>Cách đọc:</strong> Nhận biết → Biết; Thông hiểu → Hiểu; Vận dụng cao gộp vào Vận dụng khi xuất. Nhãn gốc giữ trong bảng đối chiếu.</p><p>Đúng–Sai đếm theo câu; số ý ghi riêng. Cột Tự luận được giữ đúng bố cục mẫu. Dấu “—” trong nội dung bảng tương ứng 0 câu.</p></div>
+  </section>
+  <section class="panel matrix-data-section" aria-labelledby="matrix-details-title">
+    <div class="matrix-section-heading"><div><p class="matrix-section-index">02 / ĐỐI CHIẾU NỘI DUNG</p><h2 id="matrix-details-title">Đối chiếu từng câu</h2><p>Nhãn gốc, mức xuất và điểm của {{ matrix.count }} câu trong đề.</p></div></div>
+    <p class="matrix-scroll-hint" id="matrix-details-hint"><i data-lucide="move-horizontal" aria-hidden="true"></i>Cuộn ngang để xem mức gốc, mức xuất và tình trạng nhãn.</p>
+    <div class="matrix-scroll matrix-details-scroll" role="region" tabindex="0" aria-label="Đối chiếu từng câu, cuộn ngang" aria-describedby="matrix-details-hint">
+      <table class="matrix-details-table" aria-labelledby="matrix-details-title"><caption class="sr-only">Đối chiếu nhãn và điểm từng câu, giữ nguyên mức đánh giá gốc</caption><thead><tr><th scope="col">Câu</th><th scope="col">Chủ đề/Chương</th><th scope="col">Nội dung kiến thức</th><th scope="col">Hình thức</th><th scope="col">Mức gốc</th><th scope="col">Mức xuất</th><th scope="col">Điểm / 10</th><th scope="col">Số ý Đ/S</th><th scope="col">Tình trạng</th></tr></thead><tbody>
+        {% for row in matrix.details %}<tr><th scope="row">{{ row.number }}</th><td>{{ row.chapter }}</td><td>{{ row.category }}</td><td>{{ row.kind }}</td><td>{{ row.level }}</td><td>{{ row.export_level }}{% if row.note %}<small class="matrix-level-note">{{ row.note }}</small>{% endif %}</td><td class="matrix-numeric">{{ row.points }}</td><td class="matrix-numeric">{{ row.statements if row.statements else '—' }}</td><td><span class="badge {{ 'badge-success' if row.status == 'Đã xác nhận' else 'badge-warning' }}">{{ row.status }}</span></td></tr>{% endfor %}
+      </tbody></table>
+    </div>
+    <p class="matrix-reading-notes">Ma trận mô tả đề đã lưu, chưa thay thế bản đặc tả yêu cầu cần đạt. Câu Đúng–Sai hiện dùng mức đã xác nhận của cả câu.</p>
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/assessment-matrix.js', v='20261015-phase6') }}" defer></script>{% endblock %}

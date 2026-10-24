@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>LinhEdu · Bản mẫu Modern White Academy</title>
+  <link rel="icon" href="../../../../static/images/logo-transparent.png">
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="prototype.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      startup: { typeset: false, ready() {
+        MathJax.startup.defaultReady();
+        MathJax.startup.promise.then(() => window.dispatchEvent(new Event('math-ready')));
+      } }
+    };
+  </script>
+  <script defer src="../../../../static/vendor/mathjax/tex-mml-chtml.js"></script>
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#view">Đến nội dung chính</a>
+  <div id="app"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript>Bản mẫu tương tác cần JavaScript. Đặc tả thiết kế nằm trong thư mục docs/ui-redesign.</noscript>
+</body>
+</html>

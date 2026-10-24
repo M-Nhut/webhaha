@@ -1,169 +1,29 @@
-{% extends "base.html" %}
-
-{% block title %}{{ 'Cập nhật' if course else 'Tạo' }} Khóa học - EduCenter{% endblock %}
-{% block page_title %}{{ 'Sửa khóa học' if course else 'Tạo khóa học mới' }}{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}{{ 'Sửa' if course else 'Tạo' }} lớp học · LMath{% endblock %}
+{% block page_title %}{{ 'Sửa lớp học' if course else 'Tạo lớp học' }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/courses.css', v='20261019-readable-shell') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Thông tin chương trình học</p>
-    <h1>{{ 'Chỉnh sửa khóa học' if course else 'Thêm khóa học mới' }}</h1>
-  </div>
-  <div>
-    <a href="{{ url_for('courses') }}" class="btn btn-secondary">Quay lại</a>
-  </div>
+<div class="courses-workspace courses-form-workspace">
+  <a class="courses-back" href="{{ url_for('course_detail', course_id=course.id) if course else url_for('courses') }}"><i data-lucide="arrow-left" aria-hidden="true"></i>{{ 'Thông tin lớp học' if course else 'Danh sách lớp học' }}</a>
+  <header class="page-header courses-page-header"><div class="page-title-area"><h1>{{ 'Chỉnh sửa lớp học' if course else 'Tạo lớp học' }}</h1>{% if course %}<p class="courses-description">{{ course.course_name }}</p>{% endif %}</div></header>
+  <form method="post" class="courses-form" data-course-form>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="validation-summary" id="course-form-errors" tabindex="-1" aria-labelledby="course-form-error-title" hidden><h2 id="course-form-error-title">Kiểm tra thông tin lớp học</h2><ul data-course-form-errors></ul></div>
+    <section class="panel" aria-labelledby="course-basic-title">
+      <div class="courses-section-heading"><div><h2 id="course-basic-title">Thông tin lớp học</h2><p>Các trường có dấu * là bắt buộc.</p></div></div>
+      <div class="field"><label for="course_name">Tên lớp học *</label><input type="text" id="course_name" name="course_name" value="{{ course.course_name if course else '' }}" required placeholder="Ví dụ: Toán nâng cao lớp 10" autocomplete="off"></div>
+      <div class="courses-form-grid"><div class="field"><label for="subject">Môn học *</label><input type="text" id="subject" name="subject" value="{{ course.subject if course else '' }}" required placeholder="Ví dụ: Toán" autocomplete="off"></div><div class="field"><label for="classroom">Phòng học</label><input type="text" id="classroom" name="classroom" value="{{ course.classroom or '' if course else '' }}" placeholder="Ví dụ: Phòng A1" autocomplete="off"></div></div>
+      <div class="courses-form-grid"><div class="field"><label for="start_date">Ngày khai giảng</label><input type="date" id="start_date" name="start_date" value="{{ course.start_date.isoformat() if course and course.start_date else '' }}"></div><div class="field"><label for="end_date">Ngày bế giảng</label><input type="date" id="end_date" name="end_date" value="{{ course.end_date.isoformat() if course and course.end_date else '' }}"></div></div>
+      <div class="field"><label for="description">Mô tả chương trình</label><textarea id="description" name="description" rows="4" placeholder="Mục tiêu học tập, nội dung và lưu ý của lớp…">{{ course.description or '' if course else '' }}</textarea></div>
+      <label class="courses-active"><input type="checkbox" id="is_active" name="is_active" value="1" {% if not course or course.is_active %}checked{% endif %}><span><strong>Lớp học hoạt động</strong><small>Bỏ chọn để chuyển trạng thái lớp sang tạm ngưng.</small></span></label>
+    </section>
+    <section class="panel" aria-labelledby="course-teacher-title"><div class="courses-section-heading"><div><h2 id="course-teacher-title">Giáo viên phụ trách</h2><p>Phân công giáo viên giảng dạy và theo dõi học sinh trong lớp.</p></div></div>
+      <div class="field"><label for="teacher_id">Chọn giáo viên</label><select id="teacher_id" name="teacher_id" data-course-teacher><option value="">Chưa phân công</option>{% for teacher in teachers %}<option value="{{ teacher.id }}" {% if course and course.teacher_id == teacher.id %}selected{% endif %} data-fullname="{{ teacher.fullname }}" data-phone="{{ teacher.phone or 'Chưa cập nhật' }}" data-position="{{ teacher.position or 'Chưa cập nhật' }}" data-avatar="{{ url_for('serve_avatar', filename=teacher.avatar) if teacher.avatar and teacher.avatar != 'default.jpg' else url_for('static', filename='images/avatar-default.svg') }}" data-code="{{ teacher.user_code }}">{{ teacher.fullname }} ({{ teacher.user_code }})</option>{% endfor %}</select></div>
+      <div class="courses-teacher-preview" data-course-teacher-preview hidden><img class="courses-preview-avatar" data-teacher-avatar data-avatar-fallback alt="" src="{{ url_for('static', filename='images/avatar-default.svg') }}"><div><strong data-teacher-fullname></strong><span data-teacher-code></span><dl><div><dt>Vị trí</dt><dd data-teacher-position></dd></div><div><dt>Liên hệ</dt><dd data-teacher-phone></dd></div></dl></div></div>
+      <p class="courses-note"><i data-lucide="info" aria-hidden="true"></i><span>Khóa AI do giáo viên phụ trách quản lý riêng. Thông tin lớp không thay thế cấu hình AI của giáo viên.</span></p>
+    </section>
+    <div class="courses-form-actions"><button type="submit" class="btn btn-primary"><i data-lucide="check" aria-hidden="true"></i>{{ 'Lưu thay đổi' if course else 'Tạo lớp học' }}</button><a href="{{ url_for('course_detail', course_id=course.id) if course else url_for('courses') }}" class="btn btn-secondary">Hủy</a></div>
+  </form>
 </div>
-
-<form method="POST">
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-  <div class="form-grid-2">
-    <!-- Cột trái: Form thông tin -->
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Thông tin cơ bản</h3>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="course_name">Tên khóa học *</label>
-        <input type="text" id="course_name" name="course_name" value="{{ course.course_name if course else '' }}" required placeholder="Ví dụ: Toán nâng cao lớp 10">
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label class="form-label" for="subject">Môn học *</label>
-          <input type="text" id="subject" name="subject" value="{{ course.subject if course else '' }}" required placeholder="Ví dụ: Toán">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="classroom">Phòng học</label>
-          <input type="text" id="classroom" name="classroom" value="{{ course.classroom if course else '' }}" placeholder="Ví dụ: Phòng A1">
-        </div>
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label class="form-label" for="tuition_amount">Mức học phí *</label>
-          <input type="number" id="tuition_amount" name="tuition_amount" value="{{ course.tuition_amount if course else '' }}" required placeholder="Ví dụ: 1500000">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="tuition_type">Hình thức thu học phí</label>
-          <select id="tuition_type" name="tuition_type">
-            <option value="monthly" {% if course and course.tuition_type == 'monthly' %}selected{% endif %}>Theo tháng</option>
-            <option value="full_course" {% if course and course.tuition_type == 'full_course' %}selected{% endif %}>Trọn khóa</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label class="form-label" for="start_date">Ngày khai giảng</label>
-          <input type="date" id="start_date" name="start_date" value="{{ course.start_date.isoformat() if course and course.start_date else '' }}">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="end_date">Ngày bế giảng</label>
-          <input type="date" id="end_date" name="end_date" value="{{ course.end_date.isoformat() if course and course.end_date else '' }}">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="description">Mô tả khóa học</label>
-        <textarea id="description" name="description" rows="4" placeholder="Nhập mục tiêu khóa học, đề cương sơ lược...">{{ course.description if course else '' }}</textarea>
-      </div>
-
-      <div class="form-group" style="margin-top: var(--space-4)">
-        <label class="checkbox-label">
-          <input type="checkbox" name="is_active" value="1" {% if not course or course.is_active %}checked{% endif %}>
-          <span>Kích hoạt khóa học (cho phép hiển thị và điểm danh)</span>
-        </label>
-      </div>
-
-      <div style="margin-top: var(--space-6); display:flex; gap: var(--space-3)">
-        <button type="submit" class="btn btn-primary">
-          <i data-lucide="save" style="width:14px;height:14px"></i>
-          {{ 'Lưu thay đổi' if course else 'Tạo khóa học' }}
-        </button>
-        <a href="{{ url_for('courses') }}" class="btn btn-secondary">Hủy</a>
-      </div>
-    </div>
-
-    <!-- Cột phải: Giáo viên và Preview -->
-    <div class="card" style="display:flex; flex-direction:column; gap: var(--space-5)">
-      <div class="card-header">
-        <h3 class="card-title">Phân công Giáo viên</h3>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label" for="teacher_id">Chọn giáo viên giảng dạy</label>
-        <select id="teacher_id" name="teacher_id" onchange="updateTeacherPreview(this)">
-          <option value="">-- Chưa phân công --</option>
-          {% for teacher in teachers %}
-            <option value="{{ teacher.id }}" {% if course and course.teacher_id == teacher.id %}selected{% endif %}>
-              {{ teacher.fullname }} ({{ teacher.user_code }})
-            </option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <!-- Preview Panel -->
-      <div id="teacher-preview" class="card" style="display:none; flex-direction:row; gap:var(--space-4); background:var(--surface-2); border-color:var(--border-strong); margin-bottom:0; align-items:center">
-        <img id="t-avatar" src="" style="width:64px; height:64px; border-radius:50%; object-fit:cover; border:2px solid var(--surface)">
-        <div style="flex:1">
-          <div style="display:flex; align-items:center; gap:var(--space-2)">
-            <h4 id="t-name" style="font-weight:600; margin:0"></h4>
-            <span id="t-code" class="badge badge-upcoming"></span>
-          </div>
-          <div style="font-size: var(--text-sm); color: var(--text-2); margin-top:2px">
-            <span style="font-weight:500">Chức vụ:</span> <span id="t-position"></span>
-          </div>
-          <div style="font-size: var(--text-xs); color: var(--text-2)">
-            <span style="font-weight:500">SĐT:</span> <span id="t-phone"></span>
-          </div>
-          <div style="font-size: var(--text-xs); color: var(--text-2); margin-top:2px">
-            <span style="font-weight:500">Lương cơ bản:</span> <span id="t-salary" style="font-weight: 600; color:var(--accent)"></span>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</form>
 {% endblock %}
-
-{% block scripts %}
-<script>
-  const teachersData = {
-    {% for teacher in teachers %}
-      "{{ teacher.id }}": {
-        fullname: "{{ teacher.fullname }}",
-        phone: "{{ teacher.phone or 'Chưa cập nhật SĐT' }}",
-        position: "{{ teacher.position or 'Giáo viên tự do' }}",
-        avatar: "{{ url_for('serve_avatar', filename=teacher.avatar or 'default.jpg') }}",
-        user_code: "{{ teacher.user_code }}",
-        salary: "{{ money(teacher.salary_rate_per_hour) }}đ/h"
-      }{% if not loop.last %},{% endif %}
-    {% endfor %}
-  };
-
-  function updateTeacherPreview(selectElement) {
-    const id = selectElement.value;
-    const previewContainer = document.getElementById('teacher-preview');
-    if (!id || !teachersData[id]) {
-      previewContainer.style.display = 'none';
-      return;
-    }
-    const data = teachersData[id];
-    document.getElementById('t-avatar').src = data.avatar;
-    document.getElementById('t-name').textContent = data.fullname;
-    document.getElementById('t-code').textContent = data.user_code;
-    document.getElementById('t-position').textContent = data.position;
-    document.getElementById('t-phone').textContent = data.phone;
-    document.getElementById('t-salary').textContent = data.salary;
-    previewContainer.style.display = 'flex';
-  }
-
-  // Run on page load if a teacher is already selected
-  document.addEventListener('DOMContentLoaded', () => {
-    updateTeacherPreview(document.getElementById('teacher_id'));
-  });
-</script>
-{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/courses.js', v='20261017-phase8') }}" defer></script>{% endblock %}

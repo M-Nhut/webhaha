@@ -1,0 +1,30 @@
+<details class="bank-coverage" open>
+  <summary><span><strong>Độ phủ kiến thức</strong><span class="bank-coverage-count">{{ question_count }} câu trong phạm vi này</span></span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+  <div class="bank-coverage-body">
+    <p class="bank-coverage-help">Chọn ô để lọc câu hỏi. “Sẵn sàng” là câu đã duyệt, đủ đáp án và đang được dùng trong luyện tập.</p>
+    <dl class="bank-level-totals">
+      <div><dt>Nhận biết</dt><dd>{{ diff_stats.nhan_biet }}</dd></div><div><dt>Thông hiểu</dt><dd>{{ diff_stats.thong_hieu }}</dd></div>
+      <div><dt>Vận dụng</dt><dd>{{ diff_stats.van_dung }}</dd></div><div><dt>Vận dụng cao</dt><dd>{{ diff_stats.van_dung_cao }}</dd></div>
+    </dl>
+    {% if not knowledge_sections %}<p class="bank-coverage-help">Chưa có dạng kiến thức. Thêm hoặc nhập câu hỏi để bắt đầu.</p>{% endif %}
+    {% for section in knowledge_sections %}
+    <details class="knowledge-group" {% if selected_node == section.id|string %}open{% endif %}>
+      <summary><span class="knowledge-title">{% if section.category %}D{{ section.category }} · {% endif %}{{ section.category_name }}</span><span class="knowledge-total">{{ section.count }}</span></summary>
+      <div class="knowledge-matrix-wrap" tabindex="0" aria-label="Ma trận {{ section.category_name }}">
+        <div class="knowledge-matrix">
+          <div class="matrix-head">Mức độ</div><div class="matrix-head">Trắc nghiệm</div><div class="matrix-head">Đúng / Sai</div><div class="matrix-head">Ngắn</div>
+          {% for level in section.levels %}
+          <div class="matrix-level">{{ level.label }}</div>
+          {% for cell in level.cells %}
+          <a class="matrix-cell {% if not cell.count %}is-empty{% endif %} {% if selected_node == section.id|string and request.args.get('difficulty') == level.key and request.args.get('type') == cell.kind %}is-selected{% endif %}"
+             href="{{ url_for('question_bank_detail', bank_id=bank.id, scope=scope_filter, node_id=section.id, difficulty=level.key, type=cell.kind, per_page=pagination.per_page|default(25), q=request.args.get('q', ''), grade=request.args.get('grade', '')) }}#bank-results"
+             aria-label="{{ section.category_name }}, {{ level.label }}, {{ cell.label }}: {{ cell.count }} câu, {{ cell.ready }} sẵn sàng">
+            <strong>{{ cell.count }}</strong><span>{% if cell.count %}{{ cell.ready }} sẵn sàng{% else %}Cần bổ sung{% endif %}</span>
+          </a>
+          {% endfor %}{% endfor %}
+        </div>
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</details>

@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-17",
+  "phase": 8,
+  "status": "complete",
+  "screens": "S21–S29 (9 templates; reports have4modes)",
+  "python": {
+    "passed": 95,
+    "subtestsPassed": 9,
+    "failed": 0,
+    "command": "python3 -m pytest tests/test_ui_redesign_phase8.py tests/test_ui_phase8_user_validation.py tests/test_diagnostic_report_contract.py tests/test_teacher_ai_simplified.py tests/test_teacher_keys_phase5.py tests/test_ui_redesign_phase7.py tests/test_ui_redesign_phase6.py --disable-warnings --tb=short -q",
+    "output": "python-regression.txt"
+  },
+  "browser": {
+    "passedChecks": 779,
+    "checksByReport": {
+      "courses-qa.json": 135,
+      "courses-states-qa.json": 36,
+      "courses-final-qa.json": 35,
+      "people-dashboard-qa.json": 281,
+      "ai-browser-qa.json": 183,
+      "ai-visual-qa.json": 38,
+      "shared-browser-qa.json": 71
+    },
+    "screenshots": 51,
+    "jsErrors": 0,
+    "missingStaticAssets": 0,
+    "externalScriptStyleFontRequests": 0,
+    "widths": [
+      375,
+      768,
+      1024,
+      1440
+    ]
+  },
+  "static": {
+    "templatesParsed": 50,
+    "phase8TemplatesWithoutInlineStylesOrHandlers": 9,
+    "undefinedCssTokens": 0,
+    "cssSharedOldClassNamesRemoved": 44,
+    "oldUiFilesDeleted": 4
+  },
+  "baselineLegacyTests": {
+    "failedBeforePhase8": 24,
+    "sameFailuresReproducedBeforePhase8": true,
+    "baselinePassed": 13,
+    "report": "baseline-ai-report-route-audit.json",
+    "notCountedAsPassing": true
+  },
+  "safety": {
+    "database": "SQLite memory",
+    "uploads": "temporary directory",
+    "realDatabaseMetadataUnchanged": true,
+    "realProviderCalls": 0,
+    "dotenvLoaded": false,
+    "previewSyntheticOnly": true
+  },
+  "nextPhase": 9,
+  "phase9Started": false
+}

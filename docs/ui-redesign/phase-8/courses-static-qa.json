@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-17",
+  "templates": {
+    "courses.html": {
+      "inlineStylesBefore": 10,
+      "inlineStylesAfter": 0,
+      "inlineHandlersBefore": 1,
+      "inlineHandlersAfter": 0,
+      "parsed": true
+    },
+    "course_form.html": {
+      "inlineStylesBefore": 14,
+      "inlineStylesAfter": 0,
+      "inlineHandlersBefore": 1,
+      "inlineHandlersAfter": 0,
+      "parsed": true
+    },
+    "course_detail.html": {
+      "inlineStylesBefore": 42,
+      "inlineStylesAfter": 0,
+      "inlineHandlersBefore": 0,
+      "inlineHandlersAfter": 0,
+      "parsed": true
+    }
+  },
+  "cssErrors": [],
+  "javascript": "node --check static/js/courses.js passed",
+  "backendChangedByCourseWork": false,
+  "removedExecutableInlineScripts": 1
+}

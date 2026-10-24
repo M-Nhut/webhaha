@@ -1,115 +1,31 @@
-{% extends "base.html" %}
-
-{% block title %}Danh sách Khóa học - EduCenter{% endblock %}
-{% block page_title %}Quản lý Khóa học{% endblock %}
-
+{% extends 'base.html' %}
+{% set is_admin = current_user.role == 'admin' %}
+{% block title %}Lớp học · LMath{% endblock %}
+{% block page_title %}Lớp học{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/courses.css', v='20261019-readable-shell') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Tổng quan các chương trình giảng dạy</p>
-    <h1>Khóa học</h1>
-  </div>
-  
-  {% if current_user.role in ('admin', 'manager') %}
-  <div>
-    <a href="{{ url_for('add_course') }}" class="btn btn-primary">
-      <i data-lucide="plus" style="width:14px;height:14px"></i>
-      Tạo khóa học mới
-    </a>
-  </div>
-  {% endif %}
+<div class="courses-workspace">
+  <header class="page-header courses-page-header">
+    <div class="page-title-area"><h1>Lớp học</h1></div>
+    {% if is_admin %}<a href="{{ url_for('add_course') }}" class="btn btn-primary"><i data-lucide="plus" aria-hidden="true"></i>Tạo lớp học</a>{% endif %}
+  </header>
+  <section class="panel courses-register" aria-labelledby="courses-register-title">
+    <div class="courses-section-heading"><div><h2 id="courses-register-title">{{ 'Tất cả lớp học' if is_admin else 'Lớp học của bạn' }} <span class="badge badge-neutral">{{ courses|length }}</span></h2></div></div>
+    {% if courses %}
+    <table class="courses-table" aria-labelledby="courses-register-title">
+      <thead><tr><th scope="col">Tên lớp học</th><th scope="col">Môn học</th><th scope="col">Giáo viên</th><th scope="col">Phòng học</th><th scope="col">Trạng thái</th><th scope="col"><span class="sr-only">Thao tác</span></th></tr></thead>
+      <tbody>{% for course in courses %}<tr>
+        <th scope="row" class="courses-name"><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.course_name }}</a></th>
+        <td data-label="Môn học">{{ course.subject }}</td>
+        <td data-label="Giáo viên">{{ course.teacher.fullname if course.teacher else 'Chưa phân công' }}</td>
+        <td data-label="Phòng học">{{ course.classroom or 'Chưa xếp phòng' }}</td>
+        <td data-label="Trạng thái"><span class="badge {{ 'badge-success' if course.is_active else 'badge-neutral' }}">{{ 'Hoạt động' if course.is_active else 'Tạm ngưng' }}</span></td>
+        <td class="courses-action-cell"><div class="courses-row-actions"><a href="{{ url_for('course_detail', course_id=course.id) }}" class="btn btn-secondary btn-sm" aria-label="Mở lớp {{ course.course_name }}">Mở lớp<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>{% if is_admin %}<a href="{{ url_for('edit_course', course_id=course.id) }}" class="btn btn-ghost btn-sm" aria-label="Sửa lớp {{ course.course_name }}">Sửa</a><form action="{{ url_for('delete_course', course_id=course.id) }}" method="post" data-course-delete data-course-name="{{ course.course_name }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-ghost btn-sm courses-delete" aria-label="Xóa lớp {{ course.course_name }}">Xóa</button></form>{% endif %}</div></td>
+      </tr>{% endfor %}</tbody>
+    </table>
+    {% else %}<div class="courses-empty"><i data-lucide="school" aria-hidden="true"></i><h3>{{ 'Chưa có lớp học' if is_admin else 'Bạn chưa có lớp học nào' }}</h3><p>{{ 'Tạo lớp đầu tiên để phân công giáo viên và bắt đầu ghi danh.' if is_admin else ('Các lớp được phân công cho bạn sẽ xuất hiện tại đây.' if current_user.role == 'teacher' else 'Lớp học sẽ xuất hiện khi bạn được ghi danh vào chương trình học.') }}</p>{% if is_admin %}<a href="{{ url_for('add_course') }}" class="btn btn-primary">Tạo lớp học</a>{% endif %}</div>{% endif %}
+  </section>
 </div>
-
-<div class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>Tên khóa học</th>
-        <th>Môn học</th>
-        <th>Giáo viên</th>
-        <th>Phòng học</th>
-        <th class="text-right">Học phí</th>
-        <th>Lịch học</th>
-        <th>Trạng thái</th>
-        <th class="text-right">Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if courses %}
-        {% for course in courses %}
-        <tr>
-          <td>
-            <a href="{{ url_for('course_detail', course_id=course.id) }}" style="font-weight: 600">
-              {{ course.course_name }}
-            </a>
-          </td>
-          <td>{{ course.subject }}</td>
-          <td>
-            {% if course.teacher %}
-              <div style="display:flex;align-items:center;gap:var(--space-2)">
-                <img src="{{ url_for('serve_avatar', filename=course.teacher.avatar or 'default.jpg') }}" 
-                     style="width:24px;height:24px;border-radius:50%;object-fit:cover">
-                <span>{{ course.teacher.fullname }}</span>
-              </div>
-            {% else %}
-              <span style="color: var(--text-3); font-style: italic">Chưa phân công</span>
-            {% endif %}
-          </td>
-          <td>{{ course.classroom or 'Chưa xếp phòng' }}</td>
-          <td class="money text-right">
-            {{ money(course.tuition_amount) }}đ
-            <span style="font-size: var(--text-xs); color: var(--text-3); display: block">
-              {{ TUITION_LABELS[course.tuition_type] }}
-            </span>
-          </td>
-          <td>
-            {% if course.schedules %}
-              <div style="display:flex;flex-direction:column;gap:2px">
-                {% for sched in course.schedules %}
-                  <span style="font-size: var(--text-xs)">
-                    {{ WEEKDAYS[sched.weekday] }}: {{ sched.start_time.strftime('%H:%M') }} - {{ sched.end_time.strftime('%H:%M') }}
-                  </span>
-                {% endfor %}
-              </div>
-            {% else %}
-              <span style="color: var(--text-3); font-style: italic; font-size: var(--text-xs)">Chưa xếp lịch</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if course.is_active %}
-              <span class="badge badge-active">Hoạt động</span>
-            {% else %}
-              <span class="badge badge-inactive">Tạm ngưng</span>
-            {% endif %}
-          </td>
-          <td class="text-right">
-            <div style="display:inline-flex;gap:var(--space-1)">
-              <a href="{{ url_for('course_detail', course_id=course.id) }}" class="btn btn-ghost btn-sm">
-                Chi tiết
-              </a>
-              {% if current_user.role in ('admin', 'manager') %}
-                <a href="{{ url_for('edit_course', course_id=course.id) }}" class="btn btn-ghost btn-sm" style="color:var(--accent)">
-                  Sửa
-                </a>
-                <form action="{{ url_for('delete_course', course_id=course.id) }}" method="POST" style="display:inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa khóa học này?')">
-                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                  <button type="submit" class="btn btn-ghost btn-sm" style="color:var(--danger)">
-                    Xóa
-                  </button>
-                </form>
-              {% endif %}
-            </div>
-          </td>
-        </tr>
-        {% endfor %}
-      {% else %}
-        <tr>
-          <td colspan="8" style="text-align: center; color: var(--text-3); padding: var(--space-8)">
-            Không tìm thấy khóa học nào.
-          </td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
-</div>
+{% if is_admin %}<dialog class="academy-dialog" id="course-delete-dialog" data-native-dialog aria-labelledby="course-delete-title" aria-describedby="course-delete-description"><div class="dialog-heading"><h2 id="course-delete-title">Xóa lớp học?</h2><button class="btn-icon" type="button" data-dialog-close aria-label="Đóng xác nhận xóa"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><p id="course-delete-description">Bạn đang xóa lớp <strong data-course-delete-name></strong>. Thao tác này không thể hoàn tác.</p><p>Kiểm tra đúng tên lớp trước khi xác nhận.</p></div><div class="dialog-actions"><button type="button" class="btn btn-secondary" data-dialog-close autofocus>Giữ lại lớp</button><button type="button" class="btn btn-danger" data-course-delete-confirm>Xóa lớp học</button></div></dialog>{% endif %}
 {% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/courses.js', v='20261017-phase8') }}" defer></script>{% endblock %}

@@ -1,0 +1,282 @@
+{
+  "checks": [
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "legacy 375 focused shell",
+      "passed": true
+    },
+    {
+      "name": "legacy 375 question count",
+      "passed": true
+    },
+    {
+      "name": "legacy 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "legacy 375 native form contract",
+      "passed": true
+    },
+    {
+      "name": "legacy 375 navigation default",
+      "passed": true
+    },
+    {
+      "name": "legacy 375 single timer",
+      "passed": true
+    },
+    {
+      "name": "legacy 375 truthful no autosave",
+      "passed": true
+    },
+    {
+      "name": "legacy controls mobile44",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "legacy 768 focused shell",
+      "passed": true
+    },
+    {
+      "name": "legacy 768 question count",
+      "passed": true
+    },
+    {
+      "name": "legacy 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "legacy 768 native form contract",
+      "passed": true
+    },
+    {
+      "name": "legacy 768 navigation default",
+      "passed": true
+    },
+    {
+      "name": "legacy 768 single timer",
+      "passed": true
+    },
+    {
+      "name": "legacy 768 truthful no autosave",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "legacy 1024 focused shell",
+      "passed": true
+    },
+    {
+      "name": "legacy 1024 question count",
+      "passed": true
+    },
+    {
+      "name": "legacy 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "legacy 1024 native form contract",
+      "passed": true
+    },
+    {
+      "name": "legacy 1024 navigation default",
+      "passed": true
+    },
+    {
+      "name": "legacy 1024 single timer",
+      "passed": true
+    },
+    {
+      "name": "legacy 1024 truthful no autosave",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "legacy 1440 focused shell",
+      "passed": true
+    },
+    {
+      "name": "legacy 1440 question count",
+      "passed": true
+    },
+    {
+      "name": "legacy 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "legacy 1440 native form contract",
+      "passed": true
+    },
+    {
+      "name": "legacy 1440 navigation default",
+      "passed": true
+    },
+    {
+      "name": "legacy 1440 single timer",
+      "passed": true
+    },
+    {
+      "name": "legacy 1440 truthful no autosave",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "blank confirmation",
+      "passed": true
+    },
+    {
+      "name": "blank totals",
+      "passed": true
+    },
+    {
+      "name": "Escape closes native modal",
+      "passed": true
+    },
+    {
+      "name": "focus restored",
+      "passed": true
+    },
+    {
+      "name": "short answer counted",
+      "passed": true
+    },
+    {
+      "name": "short clearing subtracts",
+      "passed": true
+    },
+    {
+      "name": "TF partial not complete",
+      "passed": true
+    },
+    {
+      "name": "partial dialog honest",
+      "passed": true
+    },
+    {
+      "name": "all complete actual form",
+      "passed": true
+    },
+    {
+      "name": "complete confirmation",
+      "passed": true
+    },
+    {
+      "name": "double submit one POST",
+      "passed": true
+    },
+    {
+      "name": "failure retains all answers",
+      "passed": true
+    },
+    {
+      "name": "failure unlocks form",
+      "passed": true
+    },
+    {
+      "name": "POST original CSRF/time/answer names",
+      "passed": true
+    },
+    {
+      "name": "anchor focuses question",
+      "passed": true
+    },
+    {
+      "name": "mobile nav collapses after anchor",
+      "passed": true
+    },
+    {
+      "name": "reduced motion supported",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "5min warning with text",
+      "passed": true
+    },
+    {
+      "name": "expiry uses same POST guard",
+      "passed": true
+    },
+    {
+      "name": "expiry no repeated POSTs",
+      "passed": true
+    },
+    {
+      "name": "legacy GET allowed",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "failed image exposes retry",
+      "passed": true
+    },
+    {
+      "name": "failed image hides empty zoom button",
+      "passed": true
+    },
+    {
+      "name": "hidden lazy retry loads eagerly",
+      "passed": true
+    },
+    {
+      "name": "native image zoom dialog",
+      "passed": true
+    },
+    {
+      "name": "image modal restores focus",
+      "passed": true
+    },
+    {
+      "name": "no JS exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "interceptedAnswerPosts": 2,
+  "readonly": true,
+  "layoutContexts": [
+    "legacy"
+  ]
+}

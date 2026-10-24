@@ -1,0 +1,888 @@
+{
+  "checks": [
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "teacher list 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "teacher list 375 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "teacher mobile links >=44px",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Nhập đề từ LaTeX",
+          "height": 44
+        },
+        {
+          "text": "Tạo đề từ ngân hàng",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Kiểm tra và giao đề",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "teacher list 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "teacher list 768 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "teacher list 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "teacher list 1024 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "teacher list 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "teacher list 1440 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "teacher draft has editor",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "admin list 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "admin list 375 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "admin mobile links >=44px",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Nhập đề từ LaTeX",
+          "height": 44
+        },
+        {
+          "text": "Tạo đề từ ngân hàng",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        },
+        {
+          "text": "Xem bài làm",
+          "height": 44
+        },
+        {
+          "text": "Ma trận / Excel",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "admin list 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "admin list 768 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "admin list 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "admin list 1024 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "admin list 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "admin list 1440 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "admin list no inaccessible teacher editor",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "student list 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "student list 375 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "student mobile links >=44px",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Làm bài / xem kết quả",
+          "height": 44
+        },
+        {
+          "text": "Làm bài / xem kết quả",
+          "height": 44
+        },
+        {
+          "text": "Làm bài / xem kết quả",
+          "height": 44
+        },
+        {
+          "text": "Làm bài / xem kết quả",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "name": "student 375 only assigned take route",
+      "passed": true,
+      "detail": [
+        "/assessments/5/take",
+        "/assessments/4/take",
+        "/assessments/3/take",
+        "/assessments/1/take"
+      ]
+    },
+    {
+      "name": "student 375 no invented completion state",
+      "passed": true
+    },
+    {
+      "name": "student 375 no draft status",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "student list 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "student list 768 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "student 768 only assigned take route",
+      "passed": true,
+      "detail": [
+        "/assessments/5/take",
+        "/assessments/4/take",
+        "/assessments/3/take",
+        "/assessments/1/take"
+      ]
+    },
+    {
+      "name": "student 768 no invented completion state",
+      "passed": true
+    },
+    {
+      "name": "student 768 no draft status",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "student list 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "student list 1024 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "student 1024 only assigned take route",
+      "passed": true,
+      "detail": [
+        "/assessments/5/take",
+        "/assessments/4/take",
+        "/assessments/3/take",
+        "/assessments/1/take"
+      ]
+    },
+    {
+      "name": "student 1024 no invented completion state",
+      "passed": true
+    },
+    {
+      "name": "student 1024 no draft status",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "student list 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "student list 1440 nonempty rows",
+      "passed": true
+    },
+    {
+      "name": "student 1440 only assigned take route",
+      "passed": true,
+      "detail": [
+        "/assessments/5/take",
+        "/assessments/4/take",
+        "/assessments/3/take",
+        "/assessments/1/take"
+      ]
+    },
+    {
+      "name": "student 1440 no invented completion state",
+      "passed": true
+    },
+    {
+      "name": "student 1440 no draft status",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "empty_teacher list 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "empty teacher 375 specific empty state",
+      "passed": true
+    },
+    {
+      "name": "empty_teacher mobile links >=44px",
+      "passed": true,
+      "detail": [
+        {
+          "text": "Nhập đề từ LaTeX",
+          "height": 44
+        },
+        {
+          "text": "Tạo đề từ ngân hàng",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "empty_teacher list 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "empty teacher 768 specific empty state",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "empty_teacher list 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "empty teacher 1024 specific empty state",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "empty_teacher list 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "empty teacher 1440 specific empty state",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/2/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "draft matrix 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "draft matrix 375 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 375 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/2/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "draft matrix 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "draft matrix 768 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 768 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/2/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "draft matrix 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "draft matrix 1024 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1024 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/2/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "draft matrix 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "draft matrix 1440 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "draft matrix 1440 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "draft download MIME",
+      "passed": true
+    },
+    {
+      "name": "draft XLSX ZIP signature",
+      "passed": true
+    },
+    {
+      "name": "draft native print action",
+      "passed": true
+    },
+    {
+      "name": "draft print hides management",
+      "passed": true
+    },
+    {
+      "name": "draft print exposes whole table",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/1/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "published matrix 375 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 375,
+        "viewport": 375
+      }
+    },
+    {
+      "name": "published matrix 375 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "published matrix 375 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/1/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "published matrix 768 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 768,
+        "viewport": 768
+      }
+    },
+    {
+      "name": "published matrix 768 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "published matrix 768 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/1/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "published matrix 1024 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1024,
+        "viewport": 1024
+      }
+    },
+    {
+      "name": "published matrix 1024 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1024 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "GET /assessments/1/matrix returns 200",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "published matrix 1440 no page overflow",
+      "passed": true,
+      "detail": {
+        "page": 1440,
+        "viewport": 1440
+      }
+    },
+    {
+      "name": "published matrix 1440 two keyboard regions",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 preserves question count",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 editor follows lock",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 warning follows actual labels",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 19 columns retained",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 export stays XLSX",
+      "passed": true
+    },
+    {
+      "name": "published matrix 1440 keyboard scrolls only region",
+      "passed": true
+    },
+    {
+      "name": "published download MIME",
+      "passed": true
+    },
+    {
+      "name": "published XLSX ZIP signature",
+      "passed": true
+    },
+    {
+      "name": "published native print action",
+      "passed": true
+    },
+    {
+      "name": "published print hides management",
+      "passed": true
+    },
+    {
+      "name": "published print exposes whole table",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript errors or data POSTs",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "readonly": true,
+  "templateChecks": 54
+}

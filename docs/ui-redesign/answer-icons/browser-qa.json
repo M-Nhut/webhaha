@@ -1,0 +1,1880 @@
+{
+  "status": "passed",
+  "checks": 142,
+  "passed": [
+    "graded student HTTP 200",
+    "graded@375 expected one mark or none",
+    "graded@375 expected correctness state",
+    "graded@375 accessible marks",
+    "graded@375 no visible answer badges",
+    "graded@375 answer font retained",
+    "graded@375 marks stay at right",
+    "graded@375 no page overflow",
+    "graded@375 selected correct single check",
+    "graded@375 unselected key check",
+    "graded@375 selected wrong red X",
+    "graded@375 correct and wrong distinct colors",
+    "graded@375 MathJax retained",
+    "correct-375 capture fits viewport",
+    "incorrect-375 capture fits viewport",
+    "history student HTTP 200",
+    "history@375 expected one mark or none",
+    "history@375 expected correctness state",
+    "history@375 accessible marks",
+    "history@375 no visible answer badges",
+    "history@375 answer font retained",
+    "history@375 marks stay at right",
+    "history@375 no page overflow",
+    "history@375 history no wrong mark",
+    "history@375 historical selected key is qualified",
+    "multi_history student HTTP 200",
+    "multi_history@375 expected one mark or none",
+    "multi_history@375 expected correctness state",
+    "multi_history@375 accessible marks",
+    "multi_history@375 no visible answer badges",
+    "multi_history@375 answer font retained",
+    "multi_history@375 marks stay at right",
+    "multi_history@375 no page overflow",
+    "multi_history@375 multiple keys each have a check",
+    "graded student HTTP 200",
+    "graded@768 expected one mark or none",
+    "graded@768 expected correctness state",
+    "graded@768 accessible marks",
+    "graded@768 no visible answer badges",
+    "graded@768 answer font retained",
+    "graded@768 marks stay at right",
+    "graded@768 no page overflow",
+    "graded@768 selected correct single check",
+    "graded@768 unselected key check",
+    "graded@768 selected wrong red X",
+    "graded@768 correct and wrong distinct colors",
+    "graded@768 MathJax retained",
+    "history student HTTP 200",
+    "history@768 expected one mark or none",
+    "history@768 expected correctness state",
+    "history@768 accessible marks",
+    "history@768 no visible answer badges",
+    "history@768 answer font retained",
+    "history@768 marks stay at right",
+    "history@768 no page overflow",
+    "history@768 history no wrong mark",
+    "history@768 historical selected key is qualified",
+    "multi_history student HTTP 200",
+    "multi_history@768 expected one mark or none",
+    "multi_history@768 expected correctness state",
+    "multi_history@768 accessible marks",
+    "multi_history@768 no visible answer badges",
+    "multi_history@768 answer font retained",
+    "multi_history@768 marks stay at right",
+    "multi_history@768 no page overflow",
+    "multi_history@768 multiple keys each have a check",
+    "graded student HTTP 200",
+    "graded@1024 expected one mark or none",
+    "graded@1024 expected correctness state",
+    "graded@1024 accessible marks",
+    "graded@1024 no visible answer badges",
+    "graded@1024 answer font retained",
+    "graded@1024 marks stay at right",
+    "graded@1024 no page overflow",
+    "graded@1024 selected correct single check",
+    "graded@1024 unselected key check",
+    "graded@1024 selected wrong red X",
+    "graded@1024 correct and wrong distinct colors",
+    "graded@1024 MathJax retained",
+    "history student HTTP 200",
+    "history@1024 expected one mark or none",
+    "history@1024 expected correctness state",
+    "history@1024 accessible marks",
+    "history@1024 no visible answer badges",
+    "history@1024 answer font retained",
+    "history@1024 marks stay at right",
+    "history@1024 no page overflow",
+    "history@1024 history no wrong mark",
+    "history@1024 historical selected key is qualified",
+    "multi_history student HTTP 200",
+    "multi_history@1024 expected one mark or none",
+    "multi_history@1024 expected correctness state",
+    "multi_history@1024 accessible marks",
+    "multi_history@1024 no visible answer badges",
+    "multi_history@1024 answer font retained",
+    "multi_history@1024 marks stay at right",
+    "multi_history@1024 no page overflow",
+    "multi_history@1024 multiple keys each have a check",
+    "graded student HTTP 200",
+    "graded@1440 expected one mark or none",
+    "graded@1440 expected correctness state",
+    "graded@1440 accessible marks",
+    "graded@1440 no visible answer badges",
+    "graded@1440 answer font retained",
+    "graded@1440 marks stay at right",
+    "graded@1440 no page overflow",
+    "graded@1440 selected correct single check",
+    "graded@1440 unselected key check",
+    "graded@1440 selected wrong red X",
+    "graded@1440 correct and wrong distinct colors",
+    "graded@1440 MathJax retained",
+    "correct-1440 capture fits viewport",
+    "incorrect-1440 capture fits viewport",
+    "history student HTTP 200",
+    "history@1440 expected one mark or none",
+    "history@1440 expected correctness state",
+    "history@1440 accessible marks",
+    "history@1440 no visible answer badges",
+    "history@1440 answer font retained",
+    "history@1440 marks stay at right",
+    "history@1440 no page overflow",
+    "history@1440 history no wrong mark",
+    "history@1440 historical selected key is qualified",
+    "multi_history student HTTP 200",
+    "multi_history@1440 expected one mark or none",
+    "multi_history@1440 expected correctness state",
+    "multi_history@1440 accessible marks",
+    "multi_history@1440 no visible answer badges",
+    "multi_history@1440 answer font retained",
+    "multi_history@1440 marks stay at right",
+    "multi_history@1440 no page overflow",
+    "multi_history@1440 multiple keys each have a check",
+    "graded student HTTP 200",
+    "Print correctness marks remain visible",
+    "No JS inline marks remain visible and accessible",
+    "No JS has no badge labels",
+    "graded teacher HTTP 200",
+    "Teacher selected answers have student accessible labels",
+    "Teacher no visible selection badges",
+    "No browser errors",
+    "No missing static assets",
+    "No external scripts fonts styles"
+  ],
+  "metrics": [
+    {
+      "name": "graded@375",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1647.3125,
+            "bottom": 1723.3125
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 1669.3125,
+            "bottom": 1701.3125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1739.3125,
+            "bottom": 1815.3125
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1831.3125,
+            "bottom": 1907.3125
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1923.3125,
+            "bottom": 1999.3125
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 4018.15625,
+            "bottom": 4094.15625
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 4040.15625,
+            "bottom": 4072.15625
+          }
+        },
+        {
+          "selected": true,
+          "key": false,
+          "expected": "is-incorrect",
+          "count": 1,
+          "markClass": "result-answer-mark is-incorrect",
+          "name": "Bạn đã chọn đáp án sai",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(185, 28, 28)",
+          "visibleText": "B\n3",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 4110.15625,
+            "bottom": 4186.15625
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 4132.15625,
+            "bottom": 4164.15625
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 4202.15625,
+            "bottom": 4278.15625
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 4294.15625,
+            "bottom": 4370.15625
+          },
+          "textRight": 328,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "history@375",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn. Bài chưa chấm",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1805.671875,
+            "bottom": 1881.671875
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 1827.671875,
+            "bottom": 1859.671875
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1897.671875,
+            "bottom": 1973.671875
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1989.671875,
+            "bottom": 2065.671875
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 2081.671875,
+            "bottom": 2157.671875
+          },
+          "textRight": 328,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "multi_history@375",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1585.125,
+            "bottom": 1661.125
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 1607.125,
+            "bottom": 1639.125
+          }
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "B\n3",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1677.125,
+            "bottom": 1753.125
+          },
+          "textRight": 284,
+          "markRect": {
+            "left": 296,
+            "right": 328,
+            "top": 1699.125,
+            "bottom": 1731.125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1769.125,
+            "bottom": 1845.125
+          },
+          "textRight": 328,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "38px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 33,
+            "right": 342,
+            "top": 1861.125,
+            "bottom": 1937.125
+          },
+          "textRight": 328,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "graded@768",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1415.984375,
+            "bottom": 1495.984375
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 1439.984375,
+            "bottom": 1471.984375
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1511.984375,
+            "bottom": 1591.984375
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1607.984375,
+            "bottom": 1687.984375
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1703.984375,
+            "bottom": 1783.984375
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 3490.640625,
+            "bottom": 3570.640625
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 3514.640625,
+            "bottom": 3546.640625
+          }
+        },
+        {
+          "selected": true,
+          "key": false,
+          "expected": "is-incorrect",
+          "count": 1,
+          "markClass": "result-answer-mark is-incorrect",
+          "name": "Bạn đã chọn đáp án sai",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(185, 28, 28)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 3586.640625,
+            "bottom": 3666.640625
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 3610.640625,
+            "bottom": 3642.640625
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 3682.640625,
+            "bottom": 3762.640625
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 3778.640625,
+            "bottom": 3858.640625
+          },
+          "textRight": 681,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "history@768",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn. Bài chưa chấm",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1458.765625,
+            "bottom": 1538.765625
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 1482.765625,
+            "bottom": 1514.765625
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1554.765625,
+            "bottom": 1634.765625
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1650.765625,
+            "bottom": 1730.765625
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1746.765625,
+            "bottom": 1826.765625
+          },
+          "textRight": 681,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "multi_history@768",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1306.828125,
+            "bottom": 1386.828125
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 1330.828125,
+            "bottom": 1362.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1402.828125,
+            "bottom": 1482.828125
+          },
+          "textRight": 633,
+          "markRect": {
+            "left": 649,
+            "right": 681,
+            "top": 1426.828125,
+            "bottom": 1458.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1498.828125,
+            "bottom": 1578.828125
+          },
+          "textRight": 681,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 65,
+            "right": 703,
+            "top": 1594.828125,
+            "bottom": 1674.828125
+          },
+          "textRight": 681,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "graded@1024",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1326.890625,
+            "bottom": 1406.890625
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 1350.890625,
+            "bottom": 1382.890625
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1422.890625,
+            "bottom": 1502.890625
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1518.890625,
+            "bottom": 1598.890625
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1614.890625,
+            "bottom": 1694.890625
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 3341.546875,
+            "bottom": 3421.546875
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 3365.546875,
+            "bottom": 3397.546875
+          }
+        },
+        {
+          "selected": true,
+          "key": false,
+          "expected": "is-incorrect",
+          "count": 1,
+          "markClass": "result-answer-mark is-incorrect",
+          "name": "Bạn đã chọn đáp án sai",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(185, 28, 28)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 3437.546875,
+            "bottom": 3517.546875
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 3461.546875,
+            "bottom": 3493.546875
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 3533.546875,
+            "bottom": 3613.546875
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 3629.546875,
+            "bottom": 3709.546875
+          },
+          "textRight": 917,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "history@1024",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn. Bài chưa chấm",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1435.671875,
+            "bottom": 1515.671875
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 1459.671875,
+            "bottom": 1491.671875
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1531.671875,
+            "bottom": 1611.671875
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1627.671875,
+            "bottom": 1707.671875
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1723.671875,
+            "bottom": 1803.671875
+          },
+          "textRight": 917,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "multi_history@1024",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1306.828125,
+            "bottom": 1386.828125
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 1330.828125,
+            "bottom": 1362.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1402.828125,
+            "bottom": 1482.828125
+          },
+          "textRight": 869,
+          "markRect": {
+            "left": 885,
+            "right": 917,
+            "top": 1426.828125,
+            "bottom": 1458.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1498.828125,
+            "bottom": 1578.828125
+          },
+          "textRight": 917,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 85,
+            "right": 939,
+            "top": 1594.828125,
+            "bottom": 1674.828125
+          },
+          "textRight": 917,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "graded@1440",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1330.890625,
+            "bottom": 1410.890625
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 1354.890625,
+            "bottom": 1386.890625
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1426.890625,
+            "bottom": 1506.890625
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1522.890625,
+            "bottom": 1602.890625
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1618.890625,
+            "bottom": 1698.890625
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 3345.546875,
+            "bottom": 3425.546875
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 3369.546875,
+            "bottom": 3401.546875
+          }
+        },
+        {
+          "selected": true,
+          "key": false,
+          "expected": "is-incorrect",
+          "count": 1,
+          "markClass": "result-answer-mark is-incorrect",
+          "name": "Bạn đã chọn đáp án sai",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(185, 28, 28)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 3441.546875,
+            "bottom": 3521.546875
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 3465.546875,
+            "bottom": 3497.546875
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 3537.546875,
+            "bottom": 3617.546875
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 3633.546875,
+            "bottom": 3713.546875
+          },
+          "textRight": 1171,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "history@1440",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn. Bài chưa chấm",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1413.28125,
+            "bottom": 1493.28125
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 1437.28125,
+            "bottom": 1469.28125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1509.28125,
+            "bottom": 1589.28125
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1605.28125,
+            "bottom": 1685.28125
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1701.28125,
+            "bottom": 1781.28125
+          },
+          "textRight": 1171,
+          "markRect": null
+        }
+      ]
+    },
+    {
+      "name": "multi_history@1440",
+      "rows": [
+        {
+          "selected": true,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng. Bạn đã chọn",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "A\n2",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1310.828125,
+            "bottom": 1390.828125
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 1334.828125,
+            "bottom": 1366.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": true,
+          "expected": "is-correct",
+          "count": 1,
+          "markClass": "result-answer-mark is-correct",
+          "name": "Đáp án đúng",
+          "role": "img",
+          "svg": 1,
+          "decorative": "true",
+          "color": "rgb(22, 101, 52)",
+          "visibleText": "B\n3",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1406.828125,
+            "bottom": 1486.828125
+          },
+          "textRight": 1123,
+          "markRect": {
+            "left": 1139,
+            "right": 1171,
+            "top": 1430.828125,
+            "bottom": 1462.828125
+          }
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "C\n4",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1502.828125,
+            "bottom": 1582.828125
+          },
+          "textRight": 1171,
+          "markRect": null
+        },
+        {
+          "selected": false,
+          "key": false,
+          "expected": null,
+          "count": 0,
+          "markClass": "",
+          "name": "",
+          "role": "",
+          "svg": 0,
+          "color": null,
+          "visibleText": "D\n5",
+          "letterSize": "44px",
+          "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+          "fontSize": "20px",
+          "rowRect": {
+            "left": 339,
+            "right": 1193,
+            "top": 1598.828125,
+            "bottom": 1678.828125
+          },
+          "textRight": 1171,
+          "markRect": null
+        }
+      ]
+    }
+  ],
+  "printMarks": [
+    {
+      "display": "grid",
+      "svg": true,
+      "width": "28px",
+      "stroke": "rgb(22, 101, 52)"
+    },
+    {
+      "display": "grid",
+      "svg": true,
+      "width": "28px",
+      "stroke": "rgb(22, 101, 52)"
+    },
+    {
+      "display": "grid",
+      "svg": true,
+      "width": "28px",
+      "stroke": "rgb(185, 28, 28)"
+    }
+  ],
+  "nativeMarks": [
+    {
+      "role": "img",
+      "name": "Đáp án đúng. Bạn đã chọn",
+      "svg": 1,
+      "display": "grid",
+      "stroke": "rgb(22, 101, 52)"
+    },
+    {
+      "role": "img",
+      "name": "Đáp án đúng",
+      "svg": 1,
+      "display": "grid",
+      "stroke": "rgb(22, 101, 52)"
+    },
+    {
+      "role": "img",
+      "name": "Bạn đã chọn đáp án sai",
+      "svg": 1,
+      "display": "grid",
+      "stroke": "rgb(185, 28, 28)"
+    }
+  ],
+  "errors": [],
+  "assets": [],
+  "external": [],
+  "shots": [
+    "screenshots/correct-375.png",
+    "screenshots/incorrect-375.png",
+    "screenshots/correct-1440.png",
+    "screenshots/incorrect-1440.png"
+  ],
+  "scope": "Read-only synthetic memory-DB result review. No answers or submissions changed.",
+  "separateCoverage": "The isolated history fixture contains no selected non-key MCQ; root runs that server-rendered branch in a separate memory Flask process."
+}

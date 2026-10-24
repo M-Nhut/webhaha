@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "realDatabaseMetadataUnchanged": true,
+  "baselineChangedFiles": [
+    "templates/assessment_from_bank.html",
+    "templates/base.html",
+    "templates/assessment_matrix.html",
+    "templates/question_bank_import.html",
+    "templates/assessment_import.html",
+    "templates/question_bank_detail.html",
+    "templates/components/import_duplicates.html",
+    "static/css/assessments.css",
+    "static/css/main.css",
+    "static/css/question-document.css",
+    "static/css/import_duplicates.css",
+    "static/js/import_duplicates.js",
+    "static/js/import_scope.js",
+    "static/js/modules/question_bank_detail.js",
+    "static/js/modules/assessment_editor.js",
+    "static/js/modules/import_wizard.js",
+    "routes/imports.py",
+    "routes/question_bank.py",
+    "routes/assessments.py",
+    "services/bank_detail_page.py",
+    "services/import_service.py",
+    "tests/test_import_scope.js",
+    "tests/test_question_overlay_phase2.py",
+    "tests/test_ui_redesign_phase4.py"
+  ],
+  "deletedFiles": [
+    "templates/components/import_scope.html",
+    "static/css/import_scope.css"
+  ],
+  "templatesParsed": 51,
+  "parseErrors": [],
+  "sourceInlineStyles": {
+    "templates/question_bank_import.html": 0,
+    "templates/assessment_from_bank.html": 0,
+    "templates/assessment_import.html": 0,
+    "templates/components/import_duplicates.html": 0
+  },
+  "removedLegacyCssSelectors": 67,
+  "formulaRendererUnchanged": true,
+  "id6PickerUnchanged": true,
+  "brokenReportLinks": [],
+  "pythonRegressionPassed": 111,
+  "fullBrowserChecksPassed": 138
+}

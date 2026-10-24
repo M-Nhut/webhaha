@@ -1,0 +1,34 @@
+{
+  "checks": [
+    "Rich safe wizard fixture",
+    "Real97 choices paginated4 pages",
+    "Exact22 selected through real API",
+    "Blocked item visible",
+    "Server8 coverage and quota gate",
+    "Real review22 complete",
+    "Real digest32plus",
+    "Real compatible classes present",
+    "Real numeric answer content",
+    "Media context retained",
+    "Real review no overflow 375",
+    "Real review no overflow 768",
+    "Real review no overflow 1024",
+    "Real review no overflow 1440",
+    "No diagnostic mutation requests",
+    "No JS exceptions"
+  ],
+  "errors": [],
+  "requests": [
+    "/login",
+    "/api/diagnostics/review"
+  ],
+  "shots": [
+    "screenshots/diagnostics-real-selection-375.png",
+    "screenshots/diagnostics-real-selection-1440.png",
+    "screenshots/diagnostics-real-review-375.png",
+    "screenshots/diagnostics-real-review-1440.png"
+  ],
+  "previewOnly": true,
+  "publicationPosts": 0,
+  "deletionPosts": 0
+}

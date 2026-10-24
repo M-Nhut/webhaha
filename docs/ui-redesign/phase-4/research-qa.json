@@ -1,0 +1,25 @@
+{
+  "checks": [
+    "research eight named coverage groups",
+    "research4levels x3types",
+    "matrix keeps scope/pagination/anchor",
+    "research picker shows eight active categories",
+    "research4TFnode fields",
+    "researchTFnode has8activechoices",
+    "inactive single fieldset excluded",
+    "active TF fieldset enabled",
+    "research learning short inactive",
+    "TF firstkey true",
+    "TF failure preserves key",
+    "TF failure announces row",
+    "TFeditor four saved statements",
+    "TF canonical metadata choices",
+    "TFsavedtag preserved",
+    "short answer preserves typing pipe",
+    "answer drafts preserved across type switch",
+    "teachercommonnoedit",
+    "common answers readonly",
+    "no runtime errors"
+  ],
+  "errors": []
+}

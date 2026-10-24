@@ -1,0 +1,45 @@
+{% set endpoint = request.endpoint or '' %}
+{% set bank_active = 'question_bank' in endpoint or endpoint == 'classification_evaluation_page' or ('import' in endpoint and not endpoint.startswith('assessment_')) %}
+{% set learning_active = 'teacher_practice' in endpoint or endpoint == 'my_students' %}
+{% set users_role = request.view_args.get('role_name') if endpoint == 'manage_users' else (user.role ~ 's' if endpoint == 'edit_user' and user is defined and user.role in ('student', 'teacher') else '') %}
+<aside class="sidebar" id="primary-navigation" aria-label="Điều hướng chính">
+  <button type="button" class="btn btn-icon sidebar-close" data-sidebar-close aria-label="Đóng điều hướng"><i data-lucide="x" aria-hidden="true"></i></button>
+  <a href="{{ url_for('index') }}" class="sidebar-brand-link" aria-label="LMath, trang tổng quan">
+    <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="" class="sidebar-logo-img" width="40" height="44">
+    <span class="sidebar-brand-copy"><span class="sidebar-brand-title">LMath</span><span class="sidebar-brand-subtitle">HỌC THEO NĂNG LỰC</span></span>
+  </a>
+  <nav class="nav-section" aria-label="Chức năng">
+    {% macro nav_link(url, icon, label, active) -%}
+    <a href="{{ url }}" class="nav-item{{ ' active' if active else '' }}" aria-label="{{ label }}"{% if active %} aria-current="page"{% endif %}><i data-lucide="{{ icon }}" aria-hidden="true"></i><span class="nav-item-label">{{ label }}</span></a>
+    {%- endmacro %}
+    {{ nav_link(url_for('index'), 'layout-dashboard', 'Tổng quan', endpoint == 'index') }}
+    {{ nav_link(url_for('courses'), 'book-open', 'Lớp học', 'course' in endpoint) }}
+    {% if current_user.role in ('teacher', 'admin') %}
+      <div class="nav-label">Giảng dạy</div>
+      {% if current_user.role == 'teacher' %}{{ nav_link(url_for('teacher_practice_list'), 'users', 'Học sinh của tôi', learning_active) }}{% endif %}
+      {{ nav_link(url_for('question_bank_list'), 'database', 'Ngân hàng câu hỏi', bank_active) }}
+      {{ nav_link(url_for('curriculum_catalog'), 'network', 'Danh mục kiến thức', 'curriculum' in endpoint) }}
+      {% if current_user.role == 'admin' %}{{ nav_link(url_for('teacher_practice_list'), 'list-checks', 'Theo dõi học tập', learning_active) }}{% endif %}
+      {{ nav_link(url_for('ai_reports'), 'chart-no-axes-combined', 'Báo cáo AI', endpoint in ('ai_reports', 'ai_reports_class', 'ai_reports_individual')) }}
+    {% endif %}
+    <div class="nav-label">Học tập</div>
+    {{ nav_link(url_for('assessment_list'), 'clipboard-list', 'Đề kiểm tra', endpoint.startswith('assessment_')) }}
+    {% if current_user.role in ('teacher', 'admin') %}
+      {{ nav_link(url_for('diagnostic_list'), 'file-text', 'Đánh giá đầu vào', 'diagnostic' in endpoint) }}
+    {% elif current_user.role == 'student' %}
+      {{ nav_link(url_for('practice_home'), 'brain', 'Tự luyện kiến thức', 'practice' in endpoint or 'diagnostic' in endpoint) }}
+    {% endif %}
+    {% if current_user.role == 'admin' %}
+      <div class="nav-label">Quản trị</div>
+      {{ nav_link(url_for('manage_users', role_name='students'), 'graduation-cap', 'Học sinh', users_role == 'students') }}
+      {{ nav_link(url_for('manage_users', role_name='teachers'), 'users', 'Giáo viên', users_role == 'teachers') }}
+    {% elif current_user.role == 'teacher' %}
+      <div class="nav-label">Cài đặt</div>
+      {{ nav_link(url_for('teacher_ai_settings'), 'settings', 'Cài đặt AI', endpoint.startswith('teacher_ai_')) }}
+    {% endif %}
+  </nav>
+  <a class="sidebar-footer{{ ' active' if endpoint == 'profile' else '' }}" href="{{ url_for('profile') }}" aria-label="Hồ sơ của {{ current_user.fullname }}" title="{{ current_user.fullname }} · {{ ROLE_LABELS.get(current_user.role, current_user.role) }}"{% if endpoint == 'profile' %} aria-current="page"{% endif %}>
+    <img class="avatar-sm" src="{{ url_for('serve_avatar', filename=current_user.avatar) if current_user.avatar and current_user.avatar != 'default.jpg' else url_for('static', filename='images/avatar-default.svg') }}" alt="" width="36" height="36" data-avatar-fallback="{{ url_for('static', filename='images/avatar-default.svg') }}">
+    <div><div class="user-name" title="{{ current_user.fullname }}">{{ current_user.fullname }}</div><div class="user-role">{{ ROLE_LABELS.get(current_user.role, current_user.role) }}</div></div>
+  </a>
+</aside>

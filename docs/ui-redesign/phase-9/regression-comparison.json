@@ -1,0 +1,390 @@
+{
+  "date": "2026-10-19",
+  "scope": "Read-only comparison of full pre-Phase9 and current isolated pytest reports. No application, business-rule or test rewrite performed by this audit.",
+  "baseline": {
+    "inputModules": 59,
+    "sourceSnapshot": "/tmp/linhedu-phase9-source-before",
+    "passedPrimary": 419,
+    "passedSubtests": 30,
+    "rawPassEvents": 449,
+    "failed": 99,
+    "collectionErrors": 1,
+    "terminalDurationSeconds": 236.68,
+    "log": "baseline-full-tests.log",
+    "json": "baseline-full-tests.json"
+  },
+  "current": {
+    "inputModules": 59,
+    "passedPrimary": 445,
+    "passedSubtests": 33,
+    "rawPassEvents": 478,
+    "failed": 75,
+    "collectionErrors": 1,
+    "terminalDurationSeconds": 237.94,
+    "json": "python-regression.json"
+  },
+  "comparison": {
+    "newFailureNodes": [],
+    "persistingFailureNodes": [
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_blank_finalized_diagnostic_initializes_unknown_profile_once",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_chapter6_profile_groups_recent_results_by_lesson_type_and_cognition",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_cooldown_uses_recent_exposures_from_the_selected_subject",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_invalid_ai_result_uses_safe_fallback_and_teacher_route_renders_it",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_selector_honors_teacher_exclusion_priority_and_constraints",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_student_generation_refuses_short_paper",
+      "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_student_profile_and_exam_pages_render_explanations",
+      "tests/test_bank_import_phase2_visibility.py::BankImportPhase2VisibilityTests::test_confirm_replay_cannot_change_or_disclose_revoked_target",
+      "tests/test_bank_import_phase2_visibility.py::BankImportPhase2VisibilityTests::test_new_bank_scope_is_server_stamped_and_cross_bank_rows_stay_distinct",
+      "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_diagnostic_post_rechecks_shared_bank_with_current_teacher_actor",
+      "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_diagnostic_request_cannot_forge_former_private_bank",
+      "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_teacher_diagnostic_candidates_include_shared_but_not_foreign_private",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_active_import_blocks_but_expired_session_does_not",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_apply_failure_rolls_back_catalog_and_schema_changes",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_custom_catalog_is_not_overwritten",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_dry_run_is_read_only_and_apply_is_idempotent",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_fresh_seed_and_catalog_options_preserve_later_edits",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_legacy_mapping_is_detected",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_merge_v3_topics_preserves_prior_receipt_and_category_identity",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_old_source_id_without_fk_is_detected",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_other_chapters_questions_and_high_water_marks_are_untouched",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_pre_topic_schema_migrates_and_restores_without_touching_other_tables",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_referenced_node_blocks_without_changing_question_meaning",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_release_has_exact_codes_topics_and_rubric_without_default_level",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_restore_does_not_overwrite_edits_or_new_references",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_restore_is_exact_and_repeatable",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_seed_does_not_bind_old_tags_when_catalog_is_missing",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_stale_dry_run_is_rejected",
+      "tests/test_chapter6_migration.py::TestChapter6Migration::test_startup_seed_does_not_reinterpret_partial_legacy_chapter",
+      "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_catalog_and_payload_are_chapter6_only",
+      "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_non_lesson4_cleanup_deletes_outside_rows_and_keeps_retained_rows",
+      "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_parser_reads_only_chapter6",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_bulk_assignment_replaces_source_id_and_preserves_content_and_original",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_canonical_code_separates_skill_from_difficulty",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_catalog_seed_matches_user_data_and_is_idempotent",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_concurrent_writers_cannot_allocate_the_same_sequence",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_evaluation_page_exports_blinded_packet_and_scores_uploaded_labels",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_imported_duplicate_tags_get_distinct_sequence_across_banks",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_legacy_mapping_does_not_block_question_deletion",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_manual_true_false_saves_false_and_four_answers",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_migration_retains_legacy_source_and_is_idempotent",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_preview_does_not_reserve_numbers",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_sequences_shared_across_types_and_levels_and_stable_on_edit",
+      "tests/test_curriculum_classification.py::TestCurriculumClassification::test_teacher_can_accept_unchanged_suggestion_but_not_a_stale_one",
+      "tests/test_id6_import.py::TestID6Import::test_duplicate_import_tags_warn_and_save_unique_ids",
+      "tests/test_id6_import.py::TestID6Import::test_legacy_tag_is_upgraded_by_adapter",
+      "tests/test_id6_import.py::TestID6Import::test_partially_tagged_tex_does_not_shift_ids",
+      "tests/test_id6_import.py::TestID6Import::test_preview_cannot_be_read_or_edited_by_another_teacher",
+      "tests/test_id6_import.py::TestID6Import::test_tex_four_types_preview_resume_edit_and_confirm",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_bank_change_rescans_and_unauthorized_target_fails",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_math_data_and_position_dependent_choices_never_auto_collapse",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_near_decision_bound_to_contents_and_partial_save_replay",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_receipt_survives_post_commit_cleanup_error_and_retry",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_repeat_file_reports_zero_and_never_reserves_another_id",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_source_download_is_limited_to_the_active_owner_session",
+      "tests/test_import_duplicates.py::TestImportDuplicates::test_two_concurrent_imports_into_one_bank_add_only_one_question",
+      "tests/test_phase1_import_review.py::TestPhase1ImportReview::test_confirm_assigns_atomic_suffixes_and_reviewed_readiness",
+      "tests/test_phase1_import_review.py::TestPhase1ImportReview::test_unready_rows_are_skipped_without_approving_old_or_invalid_data",
+      "tests/test_phase2_import.py::TestPhase2::test_api_disallows_legacy_new_questions_without_curriculum",
+      "tests/test_phase2_import.py::TestPhase2::test_change_scope_removes_old_defaults_and_rejects_cross_hierarchy",
+      "tests/test_phase2_import.py::TestPhase2::test_changed_catalog_preview_can_reopen_scope_and_destination_is_locked",
+      "tests/test_phase2_import.py::TestPhase2::test_explicit_out_of_scope_tag_is_not_overwritten_or_saved",
+      "tests/test_phase2_import.py::TestPhase2::test_legacy_codes_remain_readable_but_cannot_be_generated",
+      "tests/test_phase2_import.py::TestPhase2::test_only_tex_upload_is_supported",
+      "tests/test_phase2_import.py::TestPhase2::test_scope_and_session_permissions_expiry_and_catalog_change",
+      "tests/test_phase2_import.py::TestPhase2::test_scope_required_persists_multi_lesson_and_topic_without_guessing_category",
+      "tests/test_phase2_import.py::TestPhase2::test_unsupported_and_incomplete_types_cannot_enter_new_practice_papers",
+      "tests/test_question_classification.py::TestChapter6Classification::test_fingerprint_changes_with_content_and_missing_image_requires_review",
+      "tests/test_question_classification.py::TestChapter6Classification::test_probability_categories_distinguish_space_and_games",
+      "tests/test_question_classification.py::TestChapter6Classification::test_probability_uses_required_intent_and_multistep_difficulty",
+      "tests/test_question_classification.py::TestChapter6Classification::test_true_false_never_invents_statement_levels",
+      "tests/test_teacher_keys_phase3.py::TeacherKeysPhase3Tests::test_new_course_and_retired_assignment_route_cannot_set_legacy_override"
+    ],
+    "baselineFailureNodesNoLongerFailing": [
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bad_request_is_not_rotated_and_provider_body_not_exposed",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bad_request_is_not_rotated_and_provider_body_not_exposed",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bulk_add_renders_only_mask_and_never_raw_key",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bulk_add_renders_only_mask_and_never_raw_key",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_class_fallback_expires_and_configuration_changes_invalidate_cache",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_failed_class_requests_retry_and_configuration_revision_changes_identity",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_cooled_projects_do_not_consume_actual_call_budget",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_cooled_projects_do_not_consume_actual_call_budget",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_course_assignment_rejects_foreign_group_and_foreign_teacher",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_owner_cannot_operate_keys_outside_current_default_group",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_credential_write_requires_csrf",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_credential_write_requires_csrf",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_individual_report_sends_only_selected_course_evidence",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_individual_report_sends_only_selected_course_evidence",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_malformed_json_is_not_retried_with_another_key",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_malformed_json_is_not_retried_with_another_key",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_quota_skips_same_project_and_persists_across_gateway_instances",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_quota_skips_same_project_and_persists_across_gateway_instances",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_revoked_key_can_use_second_key_in_same_project",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_revoked_key_can_use_second_key_in_same_project",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_teacher_can_assign_own_group_and_restore_default_from_course_page",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_current_default_overrides_historical_course_group_without_assignment_route",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_transfer_during_retry_wait_prevents_second_outbound_call",
+        "currentNode": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_transfer_during_retry_wait_prevents_second_outbound_call",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_api_rejects_evidence_from_other_student",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_api_filters_foreign_student_risk_without_persisting_its_refs",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_cache_invalidation_includes_correct_attempt_and_roster",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_cache_invalidation_includes_correct_attempt_and_roster",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_fallback_has_observed_error_and_per_student_no_data_detail",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_unconfigured_generation_fails_but_observed_facts_remain_available",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_invalid_api_reference_is_rejected_and_falls_back",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_invalid_api_reference_is_rejected_without_persisting_claims",
+        "renamed": true
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_large_packet_is_batched_and_reports_omitted_ai_events",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_large_packet_is_batched_and_reports_omitted_ai_events",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_packet_is_strictly_in_class_and_keeps_no_data_roster",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_packet_is_strictly_in_class_and_keeps_no_data_roster",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_processing_row_coalesces_duplicate_generation",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_processing_row_coalesces_duplicate_generation",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_regrade_revision_and_outcome_invalidate_snapshot",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_regrade_revision_and_outcome_invalidate_snapshot",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_routes_enforce_owner_and_return_report",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_routes_enforce_owner_and_return_report",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_valid_api_response_is_persisted_and_token_mapped_for_teacher",
+        "currentNode": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_valid_api_response_is_persisted_and_token_mapped_for_teacher",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_phase5_reports.py::Phase5ReportTests::test_class_risk_requires_matching_evidence_and_validation_fields",
+        "currentNode": "tests/test_phase5_reports.py::Phase5ReportTests::test_class_risk_requires_matching_evidence_and_validation_fields",
+        "renamed": false
+      },
+      {
+        "baselineNode": "tests/test_route_contract.py::RouteContractTests::test_public_routes_match_the_supported_contract",
+        "currentNode": "tests/test_route_contract.py::RouteContractTests::test_public_routes_match_the_supported_contract",
+        "renamed": false
+      }
+    ],
+    "sameNormalizedFirstErrorLine": 75,
+    "differentNormalizedFirstErrorLine": [],
+    "newCollectionErrorNodes": [],
+    "sameCollectionErrorNodes": [
+      "tests/test_lesson4_cleanup.py"
+    ],
+    "failedDedicatedUIPhaseTests": [],
+    "renamedContractReplacementCount": 6,
+    "sameNameContractUpdateCount": 18
+  },
+  "remainingFailureModules": [
+    {
+      "module": "tests/test_adaptive_personalization.py",
+      "failed": 7,
+      "scope": "Historical adaptive/initial diagnostic fixtures and copy assertions",
+      "evidence": "Two POSTs return 403 rather than old 302/200; Chapter6 fixture answer_count=0; selector [] vs expected question; failed vs fallback AI state; two literal explanation/page-copy assertions. Fixture helper creates Chapter6/lesson4 data. These are observed differences; no single root cause is assumed for all seven.",
+      "sources": [
+        "tests/test_adaptive_personalization.py:100",
+        "tests/test_adaptive_personalization.py:174",
+        "tests/test_adaptive_personalization.py:250",
+        "tests/test_adaptive_personalization.py:325",
+        "tests/test_adaptive_personalization.py:415",
+        "tests/test_adaptive_personalization.py:460",
+        "tests/test_adaptive_personalization.py:514",
+        "tests/test_adaptive_personalization.py:575"
+      ]
+    },
+    {
+      "module": "tests/test_bank_import_phase2_visibility.py",
+      "failed": 2,
+      "scope": "Import row readiness before confirmation/replay authorization assertions",
+      "evidence": "Both failures stop at initial confirm with 400 and message Không có câu hợp lệ để lưu; therefore later replay/cross-bank assertions are not reached. Fixture manually seeds parsed rows and scope; no UI failure is inferred.",
+      "sources": [
+        "tests/test_bank_import_phase2_visibility.py:179",
+        "tests/test_bank_import_phase2_visibility.py:218"
+      ]
+    },
+    {
+      "module": "tests/test_bank_selection_phase4.py",
+      "failed": 3,
+      "scope": "Retired teacher diagnostic authoring contract",
+      "evidence": "Two teacher diagnostic-authoring requests receive 403; one mock targets missing routes.diagnostics.common_diagnostic_selection. Baseline authoring routes require admin and use manual question review.",
+      "sources": [
+        "tests/test_bank_selection_phase4.py",
+        "routes/diagnostics.py:208",
+        "routes/diagnostics.py:255",
+        "routes/diagnostics.py:285"
+      ]
+    },
+    {
+      "module": "tests/test_chapter6_migration.py",
+      "failed": 17,
+      "scope": "Retired Chapter6 release and migration fixture",
+      "evidence": "13 cases raise KeyError legacy because load_chapter6_bundle aliases load_chapter8_bundle, whose returned bundle has rows/rules only. Remaining four assert old Chapter6 nodes, categories/topics or auto-bound tags; current supported scope is Chapter8 combined lesson i.",
+      "sources": [
+        "services/curriculum_data.py:1",
+        "services/curriculum_data.py:121",
+        "services/curriculum_data.py:125",
+        "tests/test_chapter6_migration.py"
+      ]
+    },
+    {
+      "module": "tests/test_chapter6_only_catalog.py",
+      "failed": 3,
+      "scope": "Retired Chapter6-only catalog/parser/cleanup assertions",
+      "evidence": "Catalog returns (9,8), while test expects (9,6); old parser tag returns None; old cleanup row count 2 vs expected1. Source catalog explicitly bounds active IDs to 9C8-i.",
+      "sources": [
+        "services/curriculum_data.py:1",
+        "tests/test_chapter6_only_catalog.py"
+      ]
+    },
+    {
+      "module": "tests/test_curriculum_classification.py",
+      "failed": 12,
+      "scope": "Historical Chapter6 ID allocation/classification/catalog fixture",
+      "evidence": "Fixture and expected IDs use 9C6-4-*; current ID validator explicitly rejects outside Chapter8 lesson i. Failures include rejected/unchanged source IDs, no old catalog node, empty classification results and missing preview source_id.",
+      "sources": [
+        "tests/test_curriculum_classification.py:45",
+        "services/curriculum_data.py:1",
+        "services/id6_service.py"
+      ]
+    },
+    {
+      "module": "tests/test_id6_import.py",
+      "failed": 5,
+      "scope": "Historical tagged Chapter6 input/import response shape",
+      "evidence": "TeX fixtures contain 9C6N4/H4/V4 tags and confirm sends chapters[6]/lessons[6:4]; requests do not expose old questions/session fields and tests raise KeyError.",
+      "sources": [
+        "tests/test_id6_import.py:51",
+        "tests/test_id6_import.py:61",
+        "services/curriculum_data.py:1"
+      ]
+    },
+    {
+      "module": "tests/test_import_duplicates.py",
+      "failed": 10,
+      "scope": "Historical Chapter6 import-scope helper and duplicate preview/confirm expectations",
+      "evidence": "Module reuses TestPhase2 setUp/scope where SCOPE=6:4. Seven confirms fail400 asking for reviewed preview; concurrent test explicitly rejects out-of-scope chapter; one old duplicate report lacks skipped_labels; source-download test gets200 where expecting404. Last two are reported as observed contract differences, not assigned to scope without further tracing.",
+      "sources": [
+        "tests/test_import_duplicates.py:13",
+        "tests/test_phase2_import.py:11",
+        "tests/test_import_duplicates.py:172"
+      ]
+    },
+    {
+      "module": "tests/test_phase1_import_review.py",
+      "failed": 2,
+      "scope": "Import short-answer mode and readiness contract",
+      "evidence": "One parsed answer mode is numeric while test expects text. One confirm receives400 because no valid row is eligible to save. These two are pre-existing observations; no application correction is claimed.",
+      "sources": [
+        "tests/test_phase1_import_review.py:108",
+        "tests/test_phase1_import_review.py:140"
+      ]
+    },
+    {
+      "module": "tests/test_phase2_import.py",
+      "failed": 9,
+      "scope": "Historical Chapter6 persisted document scope and old response assumptions",
+      "evidence": "SCOPE sets chapters6, lessons6:4; current supported scope is8:i. Failure reports explicitly reject chapter/catalog, find no old node or miss questions response; old readiness-count assertion differs.",
+      "sources": [
+        "tests/test_phase2_import.py:11",
+        "tests/test_phase2_import.py:57",
+        "services/curriculum_data.py:1"
+      ]
+    },
+    {
+      "module": "tests/test_question_classification.py",
+      "failed": 4,
+      "scope": "Historical Chapter6 classifier fixture",
+      "evidence": "Expected 9C6-4-* classifications conflict with active9C8-i boundary; baseline reports ngoài phạm vi Toán9 Chương8 bài kết hợp i and returns None/needs_review rather than old suggestion.",
+      "sources": [
+        "tests/test_question_classification.py",
+        "services/curriculum_data.py:1"
+      ]
+    },
+    {
+      "module": "tests/test_teacher_keys_phase3.py",
+      "failed": 1,
+      "scope": "Retired course-specific group assignment URL",
+      "evidence": "POST to retired assignment URL returns404 while old assertion expects302. Current teacher default pool is selected by owner rather than per-course UI selector.",
+      "sources": [
+        "tests/test_teacher_keys_phase3.py",
+        "services/ai_gateway.py:291"
+      ]
+    }
+  ],
+  "collectionGap": {
+    "node": "tests/test_lesson4_cleanup.py",
+    "observed": "Imports scripts.cleanup_math9_chapter6_lesson4._backup_sqlite, absent before and after Phase9.",
+    "decision": "Preserve explicit failure; do not restore destructive cleanup CLI or skip the module for UI completion."
+  },
+  "limitations": [
+    "The full repository suite remains failing; this report does not claim all application tests pass.",
+    "75 normalized first-error signatures match baseline; this is a direct assertion-signature comparison, not a claim that every historical domain contract has been resolved.",
+    "Two baseline literal copy assertions live in test_adaptive_personalization; both remain identical pre-existing failures, while dedicated Phase3–8 UI contract tests have no failures.",
+    "Six baseline test names were replaced with current-contract names; paired mapping is explicit rather than claiming every removed name itself passed."
+  ],
+  "network": {
+    "baselineBlockedRequests": 0,
+    "baselineBlockedSockets": 0,
+    "currentBlockedRequests": 0,
+    "currentBlockedSockets": 0
+  }
+}

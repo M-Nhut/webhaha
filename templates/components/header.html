@@ -1,0 +1,10 @@
+<header class="topbar">
+  <div class="topbar-title">
+    <button type="button" class="btn btn-icon sidebar-toggle" data-sidebar-toggle aria-controls="primary-navigation" aria-expanded="false" aria-label="Mở điều hướng"><i data-lucide="menu" aria-hidden="true"></i></button>
+    <p class="topbar-page-title">{{ page_title_content|trim }}</p>
+  </div>
+  <div class="topbar-actions">
+    <a href="{{ url_for('profile') }}" class="btn btn-ghost profile-button" aria-label="Hồ sơ của {{ current_user.fullname }}"><i data-lucide="user-round" aria-hidden="true"></i><span>{{ current_user.fullname }}</span></a>
+    <a href="{{ url_for('logout') }}" class="btn btn-icon" title="Đăng xuất" aria-label="Đăng xuất"><i data-lucide="log-out" aria-hidden="true"></i></a>
+  </div>
+</header>

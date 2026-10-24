@@ -1,172 +1,103 @@
+{% macro auth_field(field, autocomplete='', hint='', password_toggle=false, autocapitalize='none') %}
+<div class="form-group auth-field-group">
+  <label class="auth-label" for="{{ field.id }}">{{ field.label.text }}{% if field.flags.required %}<span class="auth-required" aria-hidden="true"> *</span>{% else %}<span class="auth-optional">Không bắt buộc</span>{% endif %}</label>
+  {% set describedby = (field.id ~ '-hint ' if hint else '') ~ field.id ~ '-errors' %}
+  {% if password_toggle %}<div class="auth-password-field">{% endif %}
+  {% if autocomplete %}
+    {{ field(class="form-control", autocomplete=autocomplete, autocapitalize=autocapitalize, spellcheck="false" if autocapitalize == 'none' else "true", aria_invalid="true" if field.errors else "false", aria_describedby=describedby) }}
+  {% else %}
+    {{ field(class="form-control", aria_invalid="true" if field.errors else "false", aria_describedby=describedby) }}
+  {% endif %}
+  {% if password_toggle %}
+    <button type="button" class="auth-password-toggle" data-password-toggle data-password-label="{{ field.label.text|lower }}" aria-label="Hiện {{ field.label.text|lower }}" aria-controls="{{ field.id }}" aria-pressed="false" hidden>Hiện</button>
+  </div>{% endif %}
+  {% if hint %}<p class="auth-field-hint" id="{{ field.id }}-hint">{{ hint }}</p>{% endif %}
+  <div class="auth-field-errors" id="{{ field.id }}-errors">{% for error in field.errors %}<p>{{ error }}</p>{% endfor %}</div>
+</div>
+{% endmacro %}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng ký thành viên - EduCenter</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <meta name="theme-color" content="#F5F7FB">
+  <title>Đăng ký tài khoản - LMath</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-transparent.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo-transparent.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v='20261019-persistent-frame') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css', v='20261019-brand-large') }}">
 </head>
-<body style="background: var(--surface)">
-<div class="auth-layout">
-  
-  <!-- Left Panel: Decorative -->
-  <div class="auth-panel">
-    <div>
-      <span style="font-size: var(--text-sm); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3)">
-        EduCenter
-      </span>
-      <h1>Kiến tạo nền tảng tri thức vững chắc.</h1>
-      <p style="font-size: var(--text-md); font-weight: 400; line-height: 1.6; color: var(--text-2); max-width: 440px;">
-        Đăng ký một tài khoản mới để kết nối với lớp học của chúng tôi. Chúng tôi cung cấp các chương trình giảng dạy tối ưu, thời khóa biểu tiện lợi cùng đội ngũ giáo viên chất lượng.
-      </p>
-    </div>
-  </div>
-
-  <!-- Right Panel: Registration Form -->
-  <div class="auth-form-area" style="padding: var(--space-8) var(--space-12); overflow-y: auto;">
-    <div class="auth-form" style="max-width: 440px;">
-      <div style="margin-bottom: var(--space-6)">
-        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-4)">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="width:48px; height:48px; border-radius:50%; object-fit:cover; flex-shrink:0; border: 1px solid var(--border)">
-          <div>
-            <h1 style="font-size:18px; font-weight:800; color:var(--accent); line-height:1.2; margin:0">EduCenter</h1>
-            <span style="font-size:11px; color:var(--text-3); font-weight:500; margin-top:0">Trung tâm Dạy kèm Chất lượng</span>
-          </div>
-        </div>
-        <h2 style="font-family: 'Inter', sans-serif; font-size: var(--text-2xl); font-weight: 700; color: var(--text-1)">
-          Đăng ký tài khoản
-        </h2>
-        <p style="font-size: var(--text-sm); color: var(--text-2); margin-top: var(--space-1)">
-          Điền các thông tin sau để bắt đầu
-        </p>
-      </div>
-
-      <!-- Flash messages inside auth layout -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div style="margin-bottom: var(--space-4); border-radius: var(--radius-sm); overflow: hidden">
-            {% for category, message in messages %}
-              <div class="flash flash-{{ category }}" style="padding: var(--space-2) var(--space-4)">
-                <span style="font-size: var(--text-xs)">{{ message }}</span>
-              </div>
-            {% endfor %}
-          </div>
+<body class="auth-page auth-page-register">
+  <a class="skip-link" href="#register-form">Đến biểu mẫu đăng ký</a>
+  <main class="auth-shell auth-shell-register">
+    <a class="auth-brand" href="{{ url_for('login') }}" aria-label="LMath · Đăng nhập">
+      <img src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="" width="44" height="44">
+      <span>LMath<span class="auth-brand-caption">Không gian học tập và giảng dạy</span></span>
+    </a>
+    <div class="auth-layout">
+      <aside class="auth-context" aria-labelledby="auth-context-title">
+        <p class="auth-eyebrow">Tài khoản LMath</p>
+        <h2 id="auth-context-title">Bắt đầu với tài khoản<br>của riêng bạn.</h2>
+        <p class="auth-context-description">Chọn vai trò phù hợp để sử dụng các chức năng học tập và giảng dạy.</p>
+        <ul class="auth-context-list">
+          <li><strong>Học sinh</strong><span>Tham gia lớp học, làm bài và xem tiến độ của bạn.</span></li>
+          <li><strong>Giáo viên</strong><span>Quản lý câu hỏi, tạo đề và theo dõi việc học của lớp.</span></li>
+          <li><strong>Thông tin bổ sung</strong><span>Số điện thoại và lớp hoặc chức vụ có thể cập nhật sau.</span></li>
+        </ul>
+      </aside>
+      <section class="auth-panel" aria-labelledby="register-heading">
+        <header class="auth-heading">
+          <h1 id="register-heading">Đăng ký tài khoản</h1>
+          <p>Điền thông tin để tạo tài khoản LMath.</p>
+          <p class="auth-form-note">Trường có dấu <span aria-hidden="true">*</span><span class="sr-only">sao</span> là bắt buộc.</p>
+        </header>
+        {% if form.errors %}
+        <section class="auth-error-summary" tabindex="-1" data-auth-validation-summary aria-labelledby="register-errors-title">
+          <h2 id="register-errors-title">Kiểm tra lại thông tin</h2>
+          <ul>{% for field in form if field.errors %}{% for error in field.errors %}
+            <li>{% if field.type in ('HiddenField', 'CSRFTokenField') %}{{ error }}{% else %}<a href="#{{ field.id }}">{{ field.label.text }}: {{ error }}</a>{% endif %}</li>
+          {% endfor %}{% endfor %}</ul>
+        </section>
         {% endif %}
-      {% endwith %}
-
-      <form method="POST">
-        {{ form.hidden_tag() }}
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            {{ form.user_code.label(class="form-label") }}
-            {{ form.user_code(placeholder="Mã số của bạn (VD: HS102)") }}
-            {% if form.user_code.errors %}
-              {% for error in form.user_code.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.fullname.label(class="form-label") }}
-            {{ form.fullname(placeholder="Họ và tên") }}
-            {% if form.fullname.errors %}
-              {% for error in form.fullname.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}
+        <div class="auth-messages">
+          {% for category, message in messages %}
+          <div class="auth-notice auth-notice-{{ category }}" role="{% if category in ('danger', 'error') %}alert{% else %}status{% endif %}" {% if category in ('danger', 'error') %}tabindex="-1" data-auth-server-error{% endif %}>{{ message }}</div>
+          {% endfor %}
         </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            {{ form.username.label(class="form-label") }}
-            {{ form.username(placeholder="Tên đăng nhập") }}
-            {% if form.username.errors %}
-              {% for error in form.username.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.role.label(class="form-label") }}
-            {{ form.role() }}
-            {% if form.role.errors %}
-              {% for error in form.role.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            {{ form.phone.label(class="form-label") }}
-            {{ form.phone(placeholder="09xx xxx xxx") }}
-            {% if form.phone.errors %}
-              {% for error in form.phone.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.parent_phone.label(class="form-label") }}
-            {{ form.parent_phone(placeholder="09xx xxx xxx (nếu là HS)") }}
-            {% if form.parent_phone.errors %}
-              {% for error in form.parent_phone.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="form-group">
-          {{ form.position.label(class="form-label") }}
-          {{ form.position(placeholder="Lớp học / Chức vụ dạy") }}
-          {% if form.position.errors %}
-            {% for error in form.position.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-
-        <div class="form-grid-2">
-          <div class="form-group">
-            {{ form.password.label(class="form-label") }}
-            {{ form.password(placeholder="Tối thiểu 6 ký tự") }}
-            {% if form.password.errors %}
-              {% for error in form.password.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-          <div class="form-group">
-            {{ form.confirm_password.label(class="form-label") }}
-            {{ form.confirm_password(placeholder="Xác nhận mật khẩu") }}
-            {% if form.confirm_password.errors %}
-              {% for error in form.confirm_password.errors %}
-                <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-              {% endfor %}
-            {% endif %}
-          </div>
-        </div>
-
-        <div style="margin-top: var(--space-4); margin-bottom: var(--space-6)">
-          {{ form.submit(class="btn btn-primary", style="width: 100%; padding: 10px") }}
-        </div>
-      </form>
-
-      <div style="text-align: center; font-size: var(--text-sm)">
-        <span style="color: var(--text-2)">Đã có tài khoản?</span>
-        <a href="{{ url_for('login') }}" style="font-weight: 600">Đăng nhập</a>
-      </div>
+        {% endif %}{% endwith %}
+        <form method="POST" id="register-form" class="auth-form" tabindex="-1" aria-labelledby="register-heading" data-auth-form>
+          {{ form.hidden_tag() }}
+          <fieldset class="auth-form-section">
+            <legend>Thông tin tài khoản</legend>
+            <div class="auth-field-grid">
+              {{ auth_field(form.user_code, hint='Từ 3–20 ký tự, ví dụ HS102 hoặc GV003.') }}
+              {{ auth_field(form.fullname, autocomplete='name', autocapitalize='words') }}
+              {{ auth_field(form.username, autocomplete='username', hint='Tên dùng để đăng nhập, tối thiểu 4 ký tự.') }}
+              {{ auth_field(form.role) }}
+            </div>
+          </fieldset>
+          <fieldset class="auth-form-section">
+            <legend>Thông tin bổ sung</legend>
+            <div class="auth-field-grid">
+              {{ auth_field(form.phone, autocomplete='tel') }}
+              {{ auth_field(form.position) }}
+            </div>
+          </fieldset>
+          <fieldset class="auth-form-section">
+            <legend>Mật khẩu</legend>
+            <div class="auth-field-grid">
+              {{ auth_field(form.password, autocomplete='new-password', hint='Tối thiểu 6 ký tự.', password_toggle=true) }}
+              {{ auth_field(form.confirm_password, autocomplete='new-password', password_toggle=true) }}
+            </div>
+          </fieldset>
+          {{ form.submit(class="btn btn-primary auth-submit") }}
+          <p class="auth-submit-status" role="status" data-auth-submit-status hidden>Đang tạo tài khoản…</p>
+        </form>
+        <footer class="auth-switch"><span>Đã có tài khoản?</span> <a href="{{ url_for('login') }}">Đăng nhập</a></footer>
+      </section>
     </div>
-  </div>
-
-</div>
+  </main>
+  <script src="{{ url_for('static', filename='js/login.js', v='academy-phase3') }}" defer></script>
 </body>
 </html>

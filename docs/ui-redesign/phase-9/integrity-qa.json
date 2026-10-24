@@ -1,0 +1,240 @@
+{
+  "date": "2026-10-19",
+  "status": "passed",
+  "templates": 49,
+  "activePageTemplates": 32,
+  "allTemplatesReachable": true,
+  "templateRoots": [
+    "ai_reports.html",
+    "assessment_from_bank.html",
+    "assessment_import.html",
+    "assessment_list.html",
+    "assessment_matrix.html",
+    "classification_evaluation.html",
+    "course_detail.html",
+    "course_form.html",
+    "courses.html",
+    "curriculum_catalog.html",
+    "diagnostic_form.html",
+    "diagnostic_list.html",
+    "edit_user.html",
+    "errors/400.html",
+    "errors/403.html",
+    "errors/404.html",
+    "errors/405.html",
+    "errors/500.html",
+    "errors/error.html",
+    "exam_result.html",
+    "exam_take.html",
+    "index.html",
+    "login.html",
+    "manage_users.html",
+    "my_students.html",
+    "practice_draft.html",
+    "practice_home.html",
+    "practice_progress.html",
+    "profile.html",
+    "question_bank_classification.html",
+    "question_bank_detail.html",
+    "question_bank_form.html",
+    "question_bank_import.html",
+    "question_banks.html",
+    "register.html",
+    "teacher_ai_settings.html",
+    "teacher_practice_detail.html",
+    "teacher_practice_list.html"
+  ],
+  "templateEdges": {
+    "teacher_practice_detail.html": [
+      "components/practice_skill_matrix.html",
+      "base.html"
+    ],
+    "profile.html": [
+      "base.html"
+    ],
+    "question_bank_classification.html": [
+      "base.html",
+      "components/id6_picker.html"
+    ],
+    "assessment_list.html": [
+      "base.html"
+    ],
+    "question_banks.html": [
+      "base.html"
+    ],
+    "index.html": [
+      "base.html"
+    ],
+    "exam_take.html": [
+      "components/selection_audit.html",
+      "base.html"
+    ],
+    "assessment_from_bank.html": [
+      "base.html"
+    ],
+    "classification_evaluation.html": [
+      "base.html"
+    ],
+    "base.html": [
+      "components/navigation.html",
+      "components/header.html",
+      "components/flash_messages.html",
+      "components/footer.html"
+    ],
+    "register.html": [],
+    "edit_user.html": [
+      "base.html"
+    ],
+    "courses.html": [
+      "base.html"
+    ],
+    "assessment_matrix.html": [
+      "base.html"
+    ],
+    "login.html": [],
+    "my_students.html": [
+      "base.html"
+    ],
+    "practice_home.html": [
+      "components/practice_skill_matrix.html",
+      "base.html"
+    ],
+    "question_bank_import.html": [
+      "components/import_duplicates.html",
+      "base.html",
+      "components/id6_picker.html"
+    ],
+    "assessment_import.html": [
+      "base.html"
+    ],
+    "exam_result.html": [
+      "components/selection_audit.html",
+      "base.html"
+    ],
+    "manage_users.html": [
+      "base.html"
+    ],
+    "practice_draft.html": [
+      "components/selection_audit.html",
+      "base.html"
+    ],
+    "practice_progress.html": [
+      "components/practice_skill_matrix.html",
+      "base.html"
+    ],
+    "ai_reports.html": [
+      "base.html"
+    ],
+    "diagnostic_list.html": [
+      "base.html"
+    ],
+    "question_bank_form.html": [
+      "base.html"
+    ],
+    "teacher_practice_list.html": [
+      "base.html"
+    ],
+    "course_form.html": [
+      "base.html"
+    ],
+    "course_detail.html": [
+      "base.html"
+    ],
+    "teacher_ai_settings.html": [
+      "base.html"
+    ],
+    "diagnostic_form.html": [
+      "base.html"
+    ],
+    "curriculum_catalog.html": [
+      "base.html"
+    ],
+    "question_bank_detail.html": [
+      "components/bank_overview.html",
+      "components/bank_pagination.html",
+      "components/bank_pagination.html",
+      "base.html",
+      "components/id6_picker.html"
+    ],
+    "components/bank_overview.html": [],
+    "components/practice_skill_matrix.html": [],
+    "components/selection_audit.html": [],
+    "components/bank_pagination.html": [],
+    "components/id6_picker.html": [],
+    "components/footer.html": [],
+    "components/import_duplicates.html": [],
+    "components/header.html": [],
+    "components/flash_messages.html": [],
+    "components/navigation.html": [],
+    "errors/403.html": [
+      "errors/error.html"
+    ],
+    "errors/405.html": [
+      "errors/error.html"
+    ],
+    "errors/500.html": [
+      "errors/error.html"
+    ],
+    "errors/404.html": [
+      "errors/error.html"
+    ],
+    "errors/error.html": [],
+    "errors/400.html": [
+      "errors/error.html"
+    ]
+  },
+  "stylesheetsParsed": 31,
+  "javascriptSyntaxChecked": 32,
+  "undefinedCssTokens": {},
+  "literalStaticAssetsResolved": 64,
+  "baselineChangedFiles": [
+    "scripts/build_local_assets.cjs",
+    "static/css/assessments.css",
+    "static/css/base.css",
+    "static/css/components.css",
+    "static/css/main.css",
+    "static/css/pages/import-wizard.css",
+    "static/css/question-content.css",
+    "static/css/tokens.css",
+    "static/js/formula_renderer.js",
+    "templates/assessment_list.html",
+    "templates/assessment_matrix.html",
+    "templates/base.html",
+    "templates/errors/error.html",
+    "templates/login.html",
+    "templates/question_bank_import.html",
+    "templates/register.html",
+    "tests/fixtures/route_contract.json",
+    "tests/test_ai_gateway_review.py",
+    "tests/test_class_lesson4_report.py",
+    "tests/test_phase5_reports.py",
+    "tests/test_route_contract.py"
+  ],
+  "deletedBaselineFiles": [
+    "scripts/preview_assessment.py",
+    "scripts/preview_duplicate_review.py",
+    "scripts/preview_general_bank.py",
+    "scripts/preview_latex_v3.py",
+    "static/js/.DS_Store",
+    "templates/.DS_Store",
+    "templates/teacher_analytics.html"
+  ],
+  "newPhase9Files": [
+    "scripts/preview_ui_phase9.py",
+    "scripts/qa_ui_phase9.cjs",
+    "scripts/qa_ui_phase9_final.cjs",
+    "scripts/qa_ui_phase9_integrity.py",
+    "scripts/test_ui_redesign.py"
+  ],
+  "backendPythonFilesUnchanged": 84,
+  "realDatabaseMetadataUnchanged": true,
+  "brandFontVendorAssetsUnchanged": 52,
+  "removedFinderMetadata": [
+    "static/images/.DS_Store"
+  ],
+  "notes": [
+    "Application, dotenv and database contents are not imported/read.",
+    "MathJax dynamically loads its local fonts; runtime vendor/TeX libraries and uploaded media are explicitly retained.",
+    "Phase1–8 design/QA records remain historical evidence; obsolete active guides and ad hoc exporters were removed."
+  ]
+}

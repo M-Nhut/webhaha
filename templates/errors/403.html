@@ -1,0 +1,6 @@
+{% set status_code = status_code|default(403) %}
+{% set status_name = status_name|default("Forbidden") %}
+{% set badge_text = badge_text|default("TRUY CẬP BỊ TỪ CHỐI") %}
+{% set title = title|default("Khu vực bị hạn chế truy cập") %}
+{% set message = message|default("Bạn không có quyền xem hoặc thao tác trên tài nguyên này. Vui lòng kiểm tra tài khoản đang sử dụng hoặc liên hệ người phụ trách lớp học.") %}
+{% include 'errors/error.html' %}

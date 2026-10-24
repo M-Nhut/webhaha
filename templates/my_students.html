@@ -1,55 +1,9 @@
-{% extends "base.html" %}
-
-{% block title %}Học sinh của tôi - EduCenter{% endblock %}
-{% block page_title %}Danh sách Học sinh{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Học sinh của tôi · LMath{% endblock %}
+{% block page_title %}Học sinh của tôi{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/people.css', v='20261020-content-cleanup-v2') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Học viên tham gia các lớp học của bạn</p>
-    <h1>Học sinh của tôi</h1>
-  </div>
-</div>
-
-<div class="card" style="padding:0; overflow:hidden">
-  <table style="border: none">
-    <thead>
-      <tr>
-        <th>Học sinh</th>
-        <th>Mã học sinh</th>
-        <th>Lớp / Chức danh</th>
-        <th>Số điện thoại</th>
-        <th>SĐT Phụ huynh</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if students %}
-        {% for student in students %}
-        <tr>
-          <td>
-            <div style="display:flex; align-items:center; gap:var(--space-3)">
-              <img src="{{ url_for('serve_avatar', filename=student.avatar or 'default.jpg') }}"
-                   style="width:36px; height:36px; border-radius:50%; object-fit:cover; border:1px solid var(--border)">
-              <div>
-                <div style="font-weight: 600; font-size: var(--text-sm)">{{ student.fullname }}</div>
-                <div style="font-size: var(--text-xs); color: var(--text-3)">{{ student.username }}</div>
-              </div>
-            </div>
-          </td>
-          <td><span class="badge badge-upcoming">{{ student.user_code }}</span></td>
-          <td>{{ student.position or 'Chưa cập nhật' }}</td>
-          <td>{{ student.phone or 'Chưa cập nhật' }}</td>
-          <td>{{ student.parent_phone or 'Chưa cập nhật' }}</td>
-        </tr>
-        {% endfor %}
-      {% else %}
-        <tr>
-          <td colspan="5" style="text-align: center; color: var(--text-3); padding: var(--space-8)">
-            Bạn chưa phụ trách giảng dạy học sinh nào hoặc lớp học chưa có ghi danh.
-          </td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
+<div class="academy-people"><header class="page-header people-header"><div class="page-title-area"><h1>Học sinh của tôi</h1></div><a class="btn btn-secondary" href="{{ url_for('teacher_practice_list') }}"><i data-lucide="chart-line" aria-hidden="true"></i>Theo dõi học tập</a></header>
+  <section class="panel people-directory" aria-labelledby="people-directory-title"><div class="people-panel-heading"><h2 id="people-directory-title">Danh sách học sinh</h2><span class="badge badge-neutral">{{ students|length }} học sinh</span></div>{% if students %}<div class="people-table-wrap"><table class="people-table people-students-table" role="table"><caption class="sr-only">Thông tin liên hệ của học sinh do bạn phụ trách</caption><thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Học sinh</th><th scope="col" role="columnheader">Mã học sinh</th><th scope="col" role="columnheader">Lớp / Vị trí</th><th scope="col" role="columnheader">Số điện thoại</th></tr></thead><tbody role="rowgroup">{% for student in students %}<tr role="row"><td role="cell" class="people-identity-cell"><div class="people-identity"><img class="people-avatar" src="{{ url_for('serve_avatar', filename=student.avatar) if student.avatar and student.avatar != 'default.jpg' else url_for('static', filename='images/avatar-default.svg') }}" data-avatar-fallback alt="" width="36" height="36"><div><strong>{{ student.fullname }}</strong><span>{{ student.username }}</span></div></div></td><td role="cell"><span class="people-mobile-label" aria-hidden="true">Mã học sinh</span><span class="people-code">{{ student.user_code }}</span></td><td role="cell"><span class="people-mobile-label" aria-hidden="true">Lớp / Vị trí</span><span{% if not student.position %} class="people-muted"{% endif %}>{{ student.position or 'Chưa cập nhật' }}</span></td><td role="cell"><span class="people-mobile-label" aria-hidden="true">Số điện thoại</span><span{% if not student.phone %} class="people-muted"{% endif %}>{{ student.phone or 'Chưa cập nhật' }}</span></td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="people-empty"><i data-lucide="users" aria-hidden="true"></i><h3>Chưa có học sinh trong danh bạ</h3><p>Danh sách sẽ được cập nhật khi có học sinh được ghi danh vào lớp bạn phụ trách.</p><a class="btn btn-secondary" href="{{ url_for('courses') }}">Xem lớp học<i data-lucide="arrow-right" aria-hidden="true"></i></a></div>{% endif %}</section>
 </div>
 {% endblock %}

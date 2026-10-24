@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "cssFiles": 31,
+  "templatesParsed": 49,
+  "cssErrors": [],
+  "undefinedTokens": [],
+  "missingLiteralAssets": [],
+  "uiFont": "Be Vietnam Pro",
+  "sizes": {
+    "metadata": 14,
+    "body": 16,
+    "section": 18,
+    "reading": 20,
+    "heading": 30
+  },
+  "browserStatus": "incomplete: responsive focus assertion needs a rerun; subsequent automatic approval review timed out/was at capacity"
+}

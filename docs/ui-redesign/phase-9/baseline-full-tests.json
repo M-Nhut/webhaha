@@ -1,0 +1,538 @@
+{
+  "date": "2026-10-19",
+  "baseline": "/tmp/linhedu-phase9-source-before",
+  "moduleCount": 59,
+  "args": [
+    "tests",
+    "-q",
+    "--tb=short",
+    "--disable-warnings",
+    "--continue-on-collection-errors",
+    "--rootdir",
+    "/private/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase9-baseline-run-2ne4rsuq/source"
+  ],
+  "sourceCopiedFromBaseline": true,
+  "publicAssetsCopiedWithoutCredentials": true,
+  "exitCode": 1,
+  "passed": 449,
+  "failed": 99,
+  "skipped": 0,
+  "collectionErrors": [
+    {
+      "node": "tests/test_lesson4_cleanup.py",
+      "message": "ImportError while importing test module '/private/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase9-baseline-run-2ne4rsuq/source/tests/test_lesson4_cleanup.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests/test_lesson4_cleanup.py:32: in <module>\n    from scripts.cleanup_math9_chapter6_lesson4 import _backup_sqlite\nE   ModuleNotFoundError: No module named 'scripts.cleanup_math9_chapter6_lesson4'"
+    }
+  ],
+  "failedCases": [
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_blank_finalized_diagnostic_initializes_unknown_profile_once",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:174: in test_blank_finalized_diagnostic_initializes_unknown_profile_once\n    self.assertEqual(response.status_code, 302)\nE   AssertionError: 403 != 302"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_chapter6_profile_groups_recent_results_by_lesson_type_and_cognition",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:514: in test_chapter6_profile_groups_recent_results_by_lesson_type_and_cognition\n    self.assertEqual(profile[\"recent_window\"][\"answer_count\"], 4)\nE   AssertionError: 0 != 4"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_cooldown_uses_recent_exposures_from_the_selected_subject",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:325: in test_cooldown_uses_recent_exposures_from_the_selected_subject\n    self.assertEqual([question.id for question in result[\"questions\"]], [unseen.id])\nE   AssertionError: Lists differ: [] != [2]\nE   \nE   Second list contains 1 additional elements.\nE   First extra element 0:\nE   2\nE   \nE   - []\nE   + [2]\nE   ?  +"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_invalid_ai_result_uses_safe_fallback_and_teacher_route_renders_it",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:575: in test_invalid_ai_result_uses_safe_fallback_and_teacher_route_renders_it\n    self.assertEqual(run.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_selector_honors_teacher_exclusion_priority_and_constraints",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:250: in test_selector_honors_teacher_exclusion_priority_and_constraints\n    self.assertIn(\"dữ liệu đầu vào\", result[\"explanation\"])\nE   AssertionError: 'dữ liệu đầu vào' not found in 'Chọn 2/2 câu theo dạng kiến thức và mức nhận thức. Hồ sơ dựa trên câu trả lời đã chấm, có nhãn kiến thức; lịch sử các lượt đã nộp giúp ưu tiên câu ít gặp. Giới hạn giáo viên thay thế cấu trúc đủ bốn mức.'"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_student_generation_refuses_short_paper",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:415: in test_student_generation_refuses_short_paper\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 403 != 200"
+    },
+    {
+      "node": "tests/test_adaptive_personalization.py::TestAdaptivePersonalization::test_student_profile_and_exam_pages_render_explanations",
+      "when": "call",
+      "message": "tests/test_adaptive_personalization.py:460: in test_student_profile_and_exam_pages_render_explanations\n    self.assertIn(\"Thông hiểu\", practice.get_data(as_text=True))\nE   AssertionError: 'Thông hiểu' not found in '<!DOCTYPE html>\\n<html lang=\"vi\">\\n<head>\\n  <meta charset=\"UTF-8\">\\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n  <title>Tự luyện kiến thức · LinhEdu</title>\\n  <link rel=\"icon\" type=\"image/png\" href=\"/static/images/logo-transparent.png\">\\n  <link rel=\"apple-touch-icon\" href=\"/static/images/logo-transparent.png\">\\n  <meta name=\"csrf-token\" content=\"ImM5ZWRjNzNhMmM4NGIxMGQ2N2YzZmRhMjk0MmRhNjliYTlhOTNmZjUi.atVXAg.AZR9iVeNsX6fZTPMgREfhxjVN-Y\">\\n  <link rel=\"stylesheet\" href=\"/static/css/main.css?v=20261017-phase8\">\\n  <link rel=\"stylesheet\" href=\"/static/css/learning.css?v=20261017-phase8\">\\n  <link rel=\"stylesheet\" href=\"/static/css/question-document.css?v=20261017-phase8\">\\n  <script src=\"/static/js/math-config.js\"></script>\\n  <script src=\"/static/js/formula_renderer.js?v=20261008-phase2\" defer></script>\\n  <link rel=\"stylesheet\" href=\"/static/css/pages/practice-student.css?v=20261015-phase7\">\\n  <script src=\"/static/js/native-dialog.js?v=academy-phase4\" defer></script>\\n  <script src=\"/static/js/ui-shell.js?v=20261014-phase3\" defer></script>\\n</head>\\n<body class=\"academy-shell \" data-avatar-fallback=\"/static/images/avatar-default.svg\" data-can-retry-formulas=\"false\">\\n  <a class=\"skip-link\" href=\"#main-content\">Đến nội dung chính</a>\\n  <div class=\"app-shell\">\\n    \\n\\n\\n<aside class=\"sidebar\" id=\"primary-navigation\" aria-label=\"Điều hướng chính\">\\n  <button type=\"button\" class=\"btn btn-icon sidebar-close\" data-sidebar-close aria-label=\"Đóng điều hướng\"><i data-lucide=\"x\" aria-hidden=\"true\"></i></button>\\n  <a href=\"/\" class=\"sidebar-brand-link\" aria-label=\"LinhEdu, trang tổng quan\">\\n    <img src=\"/static/images/logo-transparent.png\" alt=\"\" class=\"sidebar-logo-img\" width=\"40\" height=\"44\">\\n    <span><span class=\"sidebar-brand-title\">LinhEdu</span><span class=\"sidebar-brand-subtitle\">HỌC THEO NĂNG LỰC</span></span>\\n  </a>\\n  <nav class=\"nav-section\">\\n    \\n    <a href=\"/\" class=\"nav-item\"><i data-lucide=\"layout-dashboard\" aria-hidden=\"true\"></i><span>Tổng quan</span></a>\\n    <a href=\"/courses\" class=\"nav-item\"><i data-lucide=\"book-open\" aria-hidden=\"true\"></i><span>Lớp học</span></a>\\n    \\n    <div class=\"nav-label\">Học tập</div>\\n    <a href=\"/assessments\" class=\"nav-item\"><i data-lucide=\"clipboard-list\" aria-hidden=\"true\"></i><span>Đề kiểm tra</span></a>\\n    \\n      <a href=\"/practice\" class=\"nav-item active\" aria-current=\"page\"><i data-lucide=\"brain\" aria-hidden=\"true\"></i><span>Tự luyện kiến thức</span></a>\\n    \\n    \\n  </nav>\\n  <a class=\"sidebar-footer\" href=\"/profile\" aria-label=\"Hồ sơ của Student\">\\n    <img class=\"avatar-sm\" src=\"/static/images/avatar-default.svg\" alt=\"\" width=\"36\" height=\"36\" data-avatar-fallback=\"/static/images/avatar-default.svg\">\\n    <div><div class=\"user-name\" title=\"Student\">Student</div><div class=\"user-role\">Học sinh</div></div>\\n  </a>\\n</aside>\\n    <button type=\"button\" class=\"sidebar-scrim\" data-sidebar-close aria-label=\"Đóng điều hướng\" hidden></button>\\n    <div class=\"main-area\">\\n      \\n      <header class=\"topbar\">\\n  <div class=\"topbar-title\">\\n    <button type=\"button\" class=\"btn btn-icon sidebar-toggle\" data-sidebar-toggle aria-controls=\"primary-navigation\" aria-expanded=\"false\" aria-label=\"Mở điều hướng\"><i data-lucide=\"menu\" aria-hidden=\"true\"></i></button>\\n    <p class=\"topbar-page-title\">Tự luyện kiến thức</p>\\n  </div>\\n  <div class=\"topbar-actions\">\\n    <a href=\"/profile\" class=\"btn btn-ghost profile-button\" aria-label=\"Hồ sơ của Student\"><i data-lucide=\"user-round\" aria-hidden=\"true\"></i><span>Student</span></a>\\n    <a href=\"/logout\" class=\"btn btn-icon\" title=\"Đăng xuất\" aria-label=\"Đăng xuất\"><i data-lucide=\"log-out\" aria-hidden=\"true\"></i></a>\\n  </div>\\n</header>\\n      \\n\\n\\n      <main class=\"page-content\" id=\"main-content\" tabindex=\"-1\">\\n        \\n<div class=\"student-practice student-practice-home\">\\n  <header class=\"page-header student-practice-header\"><div class=\"page-title-area\"><p>KHÔNG GIAN HỌC TẬP</p><h1>Tự luyện kiến thức</h1><p>Mỗi bài làm là một cơ hội để hiểu rõ hơn phần kiến thức của bạn.</p></div><a href=\"/practice/progress?subject=To%C3%A1n\" class=\"btn btn-secondary\"><i data-lucide=\"chart-no-axes-combined\" aria-hidden=\"true\"></i>Kết quả và tiến bộ</a></header>\\n  \\n  <section class=\"panel student-context\" aria-labelledby=\"practice-context-title\"><div><h2 id=\"practice-context-title\">Lớp học của bạn</h2><p>Bài đầu vào và nguồn luyện tập được xác định theo lớp.</p></div><form method=\"GET\" action=\"/practice\" class=\"student-context-form\"><div class=\"student-select-field\"><label for=\"practice-course\">Chọn lớp học</label><select id=\"practice-course\" name=\"course_id\"><option value=\"1\" selected>Toán 9 · Toán</option></select></div><button class=\"btn btn-secondary\" type=\"submit\">Xem lớp</button></form></section>\\n  \\n  \\n  \\n  <section class=\"panel student-next\" aria-labelledby=\"practice-next-title\" data-practice-next=\"diagnostic\">\\n    <div class=\"student-next-heading\"><span class=\"student-section-label\">BƯỚC TIẾP THEO</span><span class=\"badge badge-info\">Toán</span></div>\\n    <div class=\"student-next-content\"><div class=\"student-next-copy\"><h2 id=\"practice-next-title\">Bắt đầu từ bài đánh giá đầu vào</h2><p>Bài đầu vào giúp ghi nhận kiến thức đã có trước khi chọn nội dung luyện tập.</p></div><dl class=\"student-paper-format\"><div><dt>Số câu</dt><dd>22</dd></div><div><dt>Thời gian</dt><dd>40 <span>phút</span></dd></div></dl></div>\\n    <p class=\"student-format-note\">12 câu trắc nghiệm · 4 câu Đúng/Sai · 6 câu trả lời ngắn</p>\\n    <div class=\"student-next-actions\">\\n      <button class=\"btn btn-primary\" disabled aria-describedby=\"practice-unavailable\">Làm bài đầu vào</button><p id=\"practice-unavailable\">Giáo viên chưa giao bài đầu vào hợp lệ cho lớp của bạn.</p>\\n      \\n    </div>\\n  </section>\\n  \\n  \\n  <p class=\"student-footnote\"><i data-lucide=\"info\" aria-hidden=\"true\"></i><span>Sau khi nộp, bạn có thể xem đáp án và lời giải để chọn phần cần luyện thêm.</span></p>\\n  \\n</div>\\n\\n      </main>\\n    </div>\\n  </div>\\n  <script src=\"/static/vendor/alpine/alpine.min.js\" defer></script>\\n<script src=\"/static/vendor/lucide/lucide.min.js\" defer></script>\\n<script id=\"MathJax-script\" src=\"/static/vendor/mathjax/tex-mml-chtml.js\" defer></script>\\n  \\n</body>\\n</html>'"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bad_request_is_not_rotated_and_provider_body_not_exposed",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:155: in test_bad_request_is_not_rotated_and_provider_body_not_exposed\n    self.complete(client)\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bulk_add_renders_only_mask_and_never_raw_key",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:230: in test_bulk_add_renders_only_mask_and_never_raw_key\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 404 != 200"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_class_fallback_expires_and_configuration_changes_invalidate_cache",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:289: in test_class_fallback_expires_and_configuration_changes_invalidate_cache\n    self.assertEqual(first.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_cooled_projects_do_not_consume_actual_call_budget",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:140: in test_cooled_projects_do_not_consume_actual_call_budget\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_course_assignment_rejects_foreign_group_and_foreign_teacher",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:277: in test_course_assignment_rejects_foreign_group_and_foreign_teacher\n    self.assertEqual(response.status_code, 400)\nE   AssertionError: 404 != 400"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_credential_write_requires_csrf",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:242: in test_credential_write_requires_csrf\n    self.assertEqual(response.status_code, 400)\nE   AssertionError: 404 != 400"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_individual_report_sends_only_selected_course_evidence",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:344: in test_individual_report_sends_only_selected_course_evidence\n    self.assertEqual(run.status, \"completed\")\nE   AssertionError: 'failed' != 'completed'\nE   - failed\nE   + completed"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_malformed_json_is_not_retried_with_another_key",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:188: in test_malformed_json_is_not_retried_with_another_key\n    self.complete(client)\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_quota_skips_same_project_and_persists_across_gateway_instances",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:126: in test_quota_skips_same_project_and_persists_across_gateway_instances\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_revoked_key_can_use_second_key_in_same_project",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:117: in test_revoked_key_can_use_second_key_in_same_project\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_teacher_can_assign_own_group_and_restore_default_from_course_page",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:262: in test_teacher_can_assign_own_group_and_restore_default_from_course_page\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 404 != 200"
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_transfer_during_retry_wait_prevents_second_outbound_call",
+      "when": "call",
+      "message": "tests/test_ai_gateway_review.py:202: in test_transfer_during_retry_wait_prevents_second_outbound_call\n    self.assertEqual(len(client.calls), 1)\nE   AssertionError: 0 != 1"
+    },
+    {
+      "node": "tests/test_bank_import_phase2_visibility.py::BankImportPhase2VisibilityTests::test_confirm_replay_cannot_change_or_disclose_revoked_target",
+      "when": "call",
+      "message": "tests/test_bank_import_phase2_visibility.py:179: in test_confirm_replay_cannot_change_or_disclose_revoked_target\n    self.assertEqual(confirmed.status_code, 200, confirmed.json)\nE   AssertionError: 400 != 200 : {'message': 'Không có câu hợp lệ để lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_bank_import_phase2_visibility.py::BankImportPhase2VisibilityTests::test_new_bank_scope_is_server_stamped_and_cross_bank_rows_stay_distinct",
+      "when": "call",
+      "message": "tests/test_bank_import_phase2_visibility.py:218: in test_new_bank_scope_is_server_stamped_and_cross_bank_rows_stay_distinct\n    self.assertEqual(teacher_result.status_code, 200, teacher_result.json)\nE   AssertionError: 400 != 200 : {'message': 'Không có câu hợp lệ để lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_diagnostic_post_rechecks_shared_bank_with_current_teacher_actor",
+      "when": "call",
+      "message": "tests/test_bank_selection_phase4.py:164: in test_diagnostic_post_rechecks_shared_bank_with_current_teacher_actor\n    with patch(\"routes.diagnostics.common_diagnostic_selection\", return_value=empty_selection) as selector:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1503: in __enter__\n    original, local = self.get_original()\n                      ^^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py:1473: in get_original\n    raise AttributeError(\nE   AttributeError: <module 'routes.diagnostics' from '/private/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase9-baseline-run-2ne4rsuq/source/routes/diagnostics.py'> does not have the attribute 'common_diagnostic_selection'"
+    },
+    {
+      "node": "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_diagnostic_request_cannot_forge_former_private_bank",
+      "when": "call",
+      "message": "tests/test_bank_selection_phase4.py:155: in test_diagnostic_request_cannot_forge_former_private_bank\n    self.assertEqual(response.status_code, 302)\nE   AssertionError: 403 != 302"
+    },
+    {
+      "node": "tests/test_bank_selection_phase4.py::BankSelectionPhase4Tests::test_teacher_diagnostic_candidates_include_shared_but_not_foreign_private",
+      "when": "call",
+      "message": "tests/test_bank_selection_phase4.py:144: in test_teacher_diagnostic_candidates_include_shared_but_not_foreign_private\n    self.assertIn(self.shared.name, body)\nE   AssertionError: 'Bank dùng chung' not found in '\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n<!DOCTYPE html>\\n<html lang=\"vi\">\\n<head>\\n  <meta charset=\"UTF-8\">\\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n  <title>Khu vực bị hạn chế truy cập — HTTP 403 | LinhEdu</title>\\n  <link rel=\"icon\" type=\"image/png\" href=\"/static/images/logo-transparent.png\">\\n  <link rel=\"stylesheet\" href=\"/static/css/main.css?v=academy-phase3\">\\n  <link rel=\"stylesheet\" href=\"/static/css/errors.css?v=academy-phase3\">\\n  <script src=\"/static/vendor/lucide/lucide.min.js\" defer></script>\\n  <script src=\"/static/js/error-page.js?v=academy-phase3\" defer></script>\\n</head>\\n<body class=\"error-page\">\\n  <a class=\"skip-link\" href=\"#error-content\">Bỏ qua điều hướng</a>\\n  <header class=\"error-header\">\\n    <div class=\"error-header-inner\">\\n      <a class=\"error-brand\" href=\"/\" aria-label=\"LinhEdu — Trang chủ\">\\n        <img src=\"/static/images/logo-transparent.png\" width=\"34\" height=\"40\" alt=\"\">\\n        <span class=\"error-brand-copy\"><strong>LinhEdu</strong><span>Học tập và phát triển</span></span>\\n      </a>\\n      <nav class=\"error-header-navigation\" aria-label=\"Điều hướng tài khoản\">\\n        \\n        <a href=\"/profile\">Tài khoản của tôi</a>\\n        \\n      </nav>\\n    </div>\\n  </header>\\n\\n  <main class=\"error-main\" id=\"error-content\" tabindex=\"-1\">\\n    <article class=\"error-card\" aria-labelledby=\"error-title\">\\n      <div class=\"error-status\">\\n        <span class=\"error-status-code\">HTTP 403</span>\\n        <span class=\"error-status-label\">TRUY CẬP BỊ TỪ CHỐI</span>\\n      </div>\\n      <h1 id=\"error-title\">Khu vực bị hạn chế truy cập</h1>\\n      <p class=\"error-message\">Bạn không có quyền truy cập vào nội dung này. Quay lại trang trước hoặc chọn chức năng phù hợp với tài khoản.</p>\\n\\n      <div class=\"error-actions\">\\n        <a class=\"btn btn-primary\" href=\"/\"><i data-lucide=\"house\" aria-hidden=\"true\"></i><span>Về trang chủ</span></a>\\n        <button class=\"btn btn-secondary\" type=\"button\" data-error-back data-fallback-url=\"/\"><i data-lucide=\"arrow-left\" aria-hidden=\"true\"></i><span>Quay lại trang trước</span></button>\\n      </div>\\n      <p class=\"error-support\">Nếu cần hỗ trợ, bạn có thể cung cấp mã tham chiếu bên dưới.</p>\\n\\n      <details class=\"error-technical\">\\n        <summary>Thông tin kỹ thuật <span class=\"error-summary-note\">Mã tham chiếu</span></summary>\\n        <div class=\"error-technical-body\">\\n          <dl class=\"error-facts\">\\n            <dt>Mã trạng thái</dt><dd>403 · Forbidden</dd>\\n            <dt>Đường dẫn</dt><dd><code>/diagnostics/new</code></dd>\\n            <dt>Phương thức</dt><dd>GET</dd>\\n            <dt>Thời gian</dt><dd>19/10/2026 06:32:24</dd>\\n            <dt>Mã tham chiếu</dt><dd><code class=\"error-reference\" id=\"error-reference\" tabindex=\"0\">ERR-403-EF1899</code></dd>\\n            \\n          </dl>\\n          <div class=\"error-copy-row\">\\n            <button type=\"button\" class=\"btn btn-secondary\" data-copy-request-id><i data-lucide=\"copy\" aria-hidden=\"true\"></i><span>Sao chép mã tham chiếu</span></button>\\n            <p class=\"error-copy-feedback\" id=\"error-copy-feedback\" role=\"status\" aria-live=\"polite\"></p>\\n          </div>\\n        </div>\\n      </details>\\n    </article>\\n  </main>\\n  <footer class=\"error-footer\">LinhEdu · Hệ thống học tập</footer>\\n</body>\\n</html>'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_active_import_blocks_but_expired_session_does_not",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:213: in test_active_import_blocks_but_expired_session_does_not\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_apply_failure_rolls_back_catalog_and_schema_changes",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:256: in test_apply_failure_rolls_back_catalog_and_schema_changes\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_custom_catalog_is_not_overwritten",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:207: in test_custom_catalog_is_not_overwritten\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_dry_run_is_read_only_and_apply_is_idempotent",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:118: in test_dry_run_is_read_only_and_apply_is_idempotent\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_fresh_seed_and_catalog_options_preserve_later_edits",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:98: in test_fresh_seed_and_catalog_options_preserve_later_edits\n    node = db.session.get(CurriculumNode, self.node_id())\n                                          ^^^^^^^^^^^^^^\ntests/test_chapter6_migration.py:56: in node_id\n    return connection.execute(select(CurriculumNode.id).where(CurriculumNode.canonical_code == code)).scalar_one()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:1469: in scalar_one\n    return self._only_one_row(\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:760: in _only_one_row\n    raise exc.NoResultFound(\nE   sqlalchemy.exc.NoResultFound: No row was found when one was required"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_legacy_mapping_is_detected",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:199: in test_legacy_mapping_is_detected\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_merge_v3_topics_preserves_prior_receipt_and_category_identity",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:157: in test_merge_v3_topics_preserves_prior_receipt_and_category_identity\n    self.assertEqual({n[\"topic_code\"] for n in after}, {\"thong_ke_xac_suat\"})\nE   AssertionError: Items in the first set but not the second:\nE   'thong_ke'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_old_source_id_without_fk_is_detected",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:194: in test_old_source_id_without_fk_is_detected\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_other_chapters_questions_and_high_water_marks_are_untouched",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:167: in test_other_chapters_questions_and_high_water_marks_are_untouched\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_pre_topic_schema_migrates_and_restores_without_touching_other_tables",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:269: in test_pre_topic_schema_migrates_and_restores_without_touching_other_tables\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_referenced_node_blocks_without_changing_question_meaning",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:188: in test_referenced_node_blocks_without_changing_question_meaning\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_release_has_exact_codes_topics_and_rubric_without_default_level",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:81: in test_release_has_exact_codes_topics_and_rubric_without_default_level\n    self.assertEqual({r[\"category_code\"] for r in subset}, {str(n) for n in range(1, size + 1)})\nE   AssertionError: Items in the second set but not the first:\nE   '2'\nE   '6'\nE   '4'\nE   '3'\nE   '1'\nE   '5'\nE   '8'\nE   '7'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_restore_does_not_overwrite_edits_or_new_references",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:243: in test_restore_does_not_overwrite_edits_or_new_references\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_restore_is_exact_and_repeatable",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:233: in test_restore_is_exact_and_repeatable\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_seed_does_not_bind_old_tags_when_catalog_is_missing",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:139: in test_seed_does_not_bind_old_tags_when_catalog_is_missing\n    self.assertEqual(len([n for n in self.nodes() if n[\"chapter_code\"] == \"6\"]), 8)\nE   AssertionError: 0 != 8"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_stale_dry_run_is_rejected",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:224: in test_stale_dry_run_is_rejected\n    self.seed_legacy()\ntests/test_chapter6_migration.py:50: in seed_legacy\n    for row in self.bundle[\"legacy\"]:\n               ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_migration.py::TestChapter6Migration::test_startup_seed_does_not_reinterpret_partial_legacy_chapter",
+      "when": "call",
+      "message": "tests/test_chapter6_migration.py:109: in test_startup_seed_does_not_reinterpret_partial_legacy_chapter\n    row = self.bundle[\"legacy\"][5]\n          ^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'legacy'"
+    },
+    {
+      "node": "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_catalog_and_payload_are_chapter6_only",
+      "when": "call",
+      "message": "tests/test_chapter6_only_catalog.py:17: in test_catalog_and_payload_are_chapter6_only\n    self.assertEqual({(row[\"grade\"], row[\"chapter_code\"]) for row in rows}, {(\"9\", \"6\")})\nE   AssertionError: Items in the first set but not the second:\nE   ('9', '8')\nE   Items in the second set but not the first:\nE   ('9', '6')"
+    },
+    {
+      "node": "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_non_lesson4_cleanup_deletes_outside_rows_and_keeps_retained_rows",
+      "when": "call",
+      "message": "tests/test_chapter6_only_catalog.py:72: in test_non_lesson4_cleanup_deletes_outside_rows_and_keeps_retained_rows\n    self.assertEqual(preview[\"counts\"][\"nodes_removed\"], 1)\nE   AssertionError: 2 != 1"
+    },
+    {
+      "node": "tests/test_chapter6_only_catalog.py::TestChapter6OnlyCatalog::test_parser_reads_only_chapter6",
+      "when": "call",
+      "message": "tests/test_chapter6_only_catalog.py:83: in test_parser_reads_only_chapter6\n    self.assertIsNotNone(parse_id6(\"9C6N4-1D.1\"))\nE   AssertionError: unexpectedly None"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_api_rejects_evidence_from_other_student",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:260: in test_api_rejects_evidence_from_other_student\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: ValueError not raised"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_cache_invalidation_includes_correct_attempt_and_roster",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:225: in test_cache_invalidation_includes_correct_attempt_and_roster\n    self.assertTrue(cached)\nE   AssertionError: False is not true"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_fallback_has_observed_error_and_per_student_no_data_detail",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:161: in test_fallback_has_observed_error_and_per_student_no_data_detail\n    self.assertEqual(run.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_invalid_api_reference_is_rejected_and_falls_back",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:181: in test_invalid_api_reference_is_rejected_and_falls_back\n    self.assertEqual(run.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_large_packet_is_batched_and_reports_omitted_ai_events",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:303: in test_large_packet_is_batched_and_reports_omitted_ai_events\n    self.assertIn(\"expected_answer_text\", serialized)\nE   AssertionError: 'expected_answer_text' not found in '[{\"schema_version\": \"class-lesson4-input-v1\", \"scope\": {\"grade\": \"9\", \"chapter_code\": \"8\", \"lesson_code\": \"i\", \"lesson_name\": \"Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố\", \"scope_code\": \"9C8-i\", \"subject\": \"Toán\", \"course_ref\": \"course:1\"}, \"roster\": [{\"student_ref\": \"dc4fba9d8df5aeeb\"}], \"students\": [{\"student_ref\": \"dc4fba9d8df5aeeb\", \"events\": []}], \"coverage\": {\"policy\": \"strict_in_class_course_only\", \"history_scope\": \"finalized_answer_facts_only\", \"roster_count\": 2, \"students_with_data\": 0, \"students_without_data\": 2, \"event_count\": 0, \"finalized_submission_count\": 0, \"finalized_snapshot_limit_per_student\": 24, \"source_cutoff\": \"2026-10-18T23:32:31.461427\", \"batch_index\": 1, \"batch_count\": 2, \"students_in_batch\": 1, \"events_included\": 0, \"events_omitted_for_ai_batch\": 0, \"events_total_course\": 0, \"external_payload\": \"error_profile_copy_with_observed_counts\"}, \"observed_statistics\": {\"unit\": \"lượt trả lời câu hỏi\", \"class_totals\": {\"correct\": 0, \"wrong\": 0, \"partial\": 0}, \"students\": [{\"student_ref\": \"dc4fba9d8df5aeeb\", \"correct\": 0, \"wrong\": 0, \"partial\": 0}]}}, {\"schema_version\": \"class-lesson4-input-v1\", \"scope\": {\"grade\": \"9\", \"chapter_code\": \"8\", \"lesson_code\": \"i\", \"lesson_name\": \"Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố\", \"scope_code\": \"9C8-i\", \"subject\": \"Toán\", \"course_ref\": \"course:1\"}, \"roster\": [{\"student_ref\": \"8aca568dadc28d31\"}], \"students\": [{\"student_ref\": \"8aca568dadc28d31\", \"events\": []}], \"coverage\": {\"policy\": \"strict_in_class_course_only\", \"history_scope\": \"finalized_answer_facts_only\", \"roster_count\": 2, \"students_with_data\": 0, \"students_without_data\": 2, \"event_count\": 0, \"finalized_submission_count\": 0, \"finalized_snapshot_limit_per_student\": 24, \"source_cutoff\": \"2026-10-18T23:32:31.461427\", \"batch_index\": 2, \"batch_count\": 2, \"students_in_batch\": 1, \"events_included\": 0, \"events_omitted_for_ai_batch\": 0, \"events_total_course\": 0, \"external_payload\": \"error_profile_copy_with_observed_counts\"}, \"observed_statistics\": {\"unit\": \"lượt trả lời câu hỏi\", \"class_totals\": {\"correct\": 0, \"wrong\": 0, \"partial\": 0}, \"students\": [{\"student_ref\": \"8aca568dadc28d31\", \"correct\": 0, \"wrong\": 0, \"partial\": 0}]}}]'"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_packet_is_strictly_in_class_and_keeps_no_data_roster",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:152: in test_packet_is_strictly_in_class_and_keeps_no_data_roster\n    self.assertEqual(packet[\"coverage\"][\"students_with_data\"], 1)\nE   AssertionError: 0 != 1"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_processing_row_coalesces_duplicate_generation",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:286: in test_processing_row_coalesces_duplicate_generation\n    self.assertTrue(cached)\nE   AssertionError: False is not true"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_regrade_revision_and_outcome_invalidate_snapshot",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:254: in test_regrade_revision_and_outcome_invalidate_snapshot\n    self.assertNotEqual(first.input_hash, second.input_hash)\nE   AssertionError: '25966e28db58be00be39d91b594cf8bab749dbb265348088948ab98aacf4e63c' == '25966e28db58be00be39d91b594cf8bab749dbb265348088948ab98aacf4e63c'"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_routes_enforce_owner_and_return_report",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:359: in test_routes_enforce_owner_and_return_report\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 400 != 200"
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_valid_api_response_is_persisted_and_token_mapped_for_teacher",
+      "when": "call",
+      "message": "tests/test_class_lesson4_report.py:190: in test_valid_api_response_is_persisted_and_token_mapped_for_teacher\n    ref = packet[\"students\"][0][\"events\"][0][\"event_ref\"]\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   IndexError: list index out of range"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_bulk_assignment_replaces_source_id_and_preserves_content_and_original",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:102: in test_bulk_assignment_replaces_source_id_and_preserves_content_and_original\n    self.assertEqual(saved.curriculum_node_id, self.node.id)\nE   AssertionError: None != 1"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_canonical_code_separates_skill_from_difficulty",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:72: in test_canonical_code_separates_skill_from_difficulty\n    self.assertEqual(make_id6('9', '6', '4', '6', 'thong_hieu', 'single', 1), '9C6H4-6D.1')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/id6_service.py:142: in make_id6\n    prefix = make_id6_prefix(grade, chapter, section, category, difficulty, question_type)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/id6_service.py:124: in make_id6_prefix\n    raise ValueError(\"Thông tin ID câu hỏi không hợp lệ: chỉ hỗ trợ Chương 8, bài kết hợp i.\")\nE   ValueError: Thông tin ID câu hỏi không hợp lệ: chỉ hỗ trợ Chương 8, bài kết hợp i."
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_catalog_seed_matches_user_data_and_is_idempotent",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:270: in test_catalog_seed_matches_user_data_and_is_idempotent\n    node = CurriculumNode.query.filter_by(canonical_code='9C6-4-2').one()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/orm/query.py:2808: in one\n    return self._iter().one()  # type: ignore\n           ^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:1815: in one\n    return self._only_one_row(\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:760: in _only_one_row\n    raise exc.NoResultFound(\nE   sqlalchemy.exc.NoResultFound: No row was found when one was required"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_concurrent_writers_cannot_allocate_the_same_sequence",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:331: in test_concurrent_writers_cannot_allocate_the_same_sequence\n    self.assertEqual(set(ids), {'9C6N4-1S.1','9C6N4-1S.2','9C6N4-1S.3','9C6N4-1S.4'})\nE   AssertionError: Items in the second set but not the first:\nE   '9C6N4-1S.4'\nE   '9C6N4-1S.2'\nE   '9C6N4-1S.3'"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_evaluation_page_exports_blinded_packet_and_scores_uploaded_labels",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:149: in test_evaluation_page_exports_blinded_packet_and_scores_uploaded_labels\n    self.assertEqual(packet[0]['source']['bank_question_id'],self.question.id)\n                     ^^^^^^^^^\nE   IndexError: list index out of range"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_imported_duplicate_tags_get_distinct_sequence_across_banks",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:229: in test_imported_duplicate_tags_get_distinct_sequence_across_banks\n    self.assertEqual([q.source_id for q in questions], ['9C6H4-6S.7', '9C6H4-6S.8'])\nE   AssertionError: Lists differ: ['9C6H4-6S.7', '9C6H4-6S.7'] != ['9C6H4-6S.7', '9C6H4-6S.8']\nE   \nE   First differing element 1:\nE   '9C6H4-6S.7'\nE   '9C6H4-6S.8'\nE   \nE   - ['9C6H4-6S.7', '9C6H4-6S.7']\nE   ?                          ^\nE   \nE   + ['9C6H4-6S.7', '9C6H4-6S.8']\nE   ?                          ^"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_legacy_mapping_does_not_block_question_deletion",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:296: in test_legacy_mapping_does_not_block_question_deletion\n    self.assertEqual(self.question.source_id, '9C6H4-6D.1')\nE   AssertionError: 'SOURCE-UNCHANGED' != '9C6H4-6D.1'\nE   - SOURCE-UNCHANGED\nE   + 9C6H4-6D.1"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_manual_true_false_saves_false_and_four_answers",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:249: in test_manual_true_false_saves_false_and_four_answers\n    self.assertEqual(saved.source_id, '9C6N4-6T.1')\nE   AssertionError: 'SOURCE-UNCHANGED' != '9C6N4-6T.1'\nE   - SOURCE-UNCHANGED\nE   + 9C6N4-6T.1"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_migration_retains_legacy_source_and_is_idempotent",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:284: in test_migration_retains_legacy_source_and_is_idempotent\n    self.assertEqual(saved.source_id, '9C6H4-6D.1')\nE   AssertionError: '9C6H4-6' != '9C6H4-6D.1'\nE   - 9C6H4-6\nE   + 9C6H4-6D.1\nE   ?        +++"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_preview_does_not_reserve_numbers",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:236: in test_preview_does_not_reserve_numbers\n    self.assertEqual(self.client.get(url).json['source_id'], '9C6N4-6S.1')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'source_id'"
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_sequences_shared_across_types_and_levels_and_stable_on_edit",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:203: in test_sequences_shared_across_types_and_levels_and_stable_on_edit\n    select_curriculum(q, self.node.id)\nservices/id6_service.py:158: in select_curriculum\n    raise ValueError(\"Hãy chọn một dạng đang sử dụng trong Chương 8, bài kết hợp i.\")\nE   ValueError: Hãy chọn một dạng đang sử dụng trong Chương 8, bài kết hợp i."
+    },
+    {
+      "node": "tests/test_curriculum_classification.py::TestCurriculumClassification::test_teacher_can_accept_unchanged_suggestion_but_not_a_stale_one",
+      "when": "call",
+      "message": "tests/test_curriculum_classification.py:126: in test_teacher_can_accept_unchanged_suggestion_but_not_a_stale_one\n    self.assertEqual(saved.classification_status,'teacher_confirmed')\nE   AssertionError: 'suggested' != 'teacher_confirmed'\nE   - suggested\nE   + teacher_confirmed"
+    },
+    {
+      "node": "tests/test_id6_import.py::TestID6Import::test_duplicate_import_tags_warn_and_save_unique_ids",
+      "when": "call",
+      "message": "tests/test_id6_import.py:126: in test_duplicate_import_tags_warn_and_save_unique_ids\n    self.assertTrue(any('Số thứ tự ID6' in warning for warning in result['questions'][1]['warnings']))\n                                                                  ^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_id6_import.py::TestID6Import::test_legacy_tag_is_upgraded_by_adapter",
+      "when": "call",
+      "message": "tests/test_id6_import.py:132: in test_legacy_tag_is_upgraded_by_adapter\n    self.assertEqual(result['questions'][0]['source_id'], '9C6N4-1D.1')\n                     ^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_id6_import.py::TestID6Import::test_partially_tagged_tex_does_not_shift_ids",
+      "when": "call",
+      "message": "tests/test_id6_import.py:106: in test_partially_tagged_tex_does_not_shift_ids\n    self.assertFalse(result['questions'][0]['source_id'])\n                     ^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_id6_import.py::TestID6Import::test_preview_cannot_be_read_or_edited_by_another_teacher",
+      "when": "call",
+      "message": "tests/test_id6_import.py:118: in test_preview_cannot_be_read_or_edited_by_another_teacher\n    sid=result['session_id']\n        ^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'session_id'"
+    },
+    {
+      "node": "tests/test_id6_import.py::TestID6Import::test_tex_four_types_preview_resume_edit_and_confirm",
+      "when": "call",
+      "message": "tests/test_id6_import.py:76: in test_tex_four_types_preview_resume_edit_and_confirm\n    self.assertEqual([q['question_type'] for q in result['questions']], ['single','true_false','short_answer','short_answer'])\n                                                  ^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_bank_change_rescans_and_unauthorized_target_fails",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:136: in test_bank_change_rescans_and_unauthorized_target_fails\n    self.store()\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:48: in test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels\n    self.assertEqual(report['skipped_labels'],['Phần I — Câu 7'])\n                     ^^^^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'skipped_labels'"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:85: in test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review\n    self.store(q)\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_math_data_and_position_dependent_choices_never_auto_collapse",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:75: in test_math_data_and_position_dependent_choices_never_auto_collapse\n    self.store(base)\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_near_decision_bound_to_contents_and_partial_save_replay",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:113: in test_near_decision_bound_to_contents_and_partial_save_replay\n    original=phase2.question();self.store(original)\n                               ^^^^^^^^^^^^^^^^^^^^\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_receipt_survives_post_commit_cleanup_error_and_retry",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:165: in test_receipt_survives_post_commit_cleanup_error_and_retry\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:54: in test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank\n    q=phase2.question(); original=self.store(q)\n                                  ^^^^^^^^^^^^^\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_repeat_file_reports_zero_and_never_reserves_another_id",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:30: in test_repeat_file_reports_zero_and_never_reserves_another_id\n    original=self.store(q)\n             ^^^^^^^^^^^^^\ntests/test_import_duplicates.py:24: in store\n    self.assertEqual(result.status_code,200,result.json)\nE   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_source_download_is_limited_to_the_active_owner_session",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:180: in test_source_download_is_limited_to_the_active_owner_session\n    self.assertEqual(self.client.get(f'/question-banks/import/{row.id}/source').status_code,404)\nE   AssertionError: 200 != 404"
+    },
+    {
+      "node": "tests/test_import_duplicates.py::TestImportDuplicates::test_two_concurrent_imports_into_one_bank_add_only_one_question",
+      "when": "call",
+      "message": "tests/test_import_duplicates.py:201: in test_two_concurrent_imports_into_one_bank_add_only_one_question\n    row.set_parsed_questions([q]);db.session.add(row);db.session.commit();save_scope(row,phase2.SCOPE);ids.append(row.id)\n                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/import_scope.py:194: in save_scope\n    scope, nodes = normalize_scope(payload)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\nservices/import_scope.py:40: in normalize_scope\n    raise ValueError(\"Chương không thuộc lớp đã chọn hoặc danh mục đã ngừng sử dụng.\")\nE   ValueError: Chương không thuộc lớp đã chọn hoặc danh mục đã ngừng sử dụng."
+    },
+    {
+      "node": "tests/test_phase1_import_review.py::TestPhase1ImportReview::test_confirm_assigns_atomic_suffixes_and_reviewed_readiness",
+      "when": "call",
+      "message": "tests/test_phase1_import_review.py:108: in test_confirm_assigns_atomic_suffixes_and_reviewed_readiness\n    self.assertEqual(preview[\"questions\"][0][\"learning_metadata\"][\"short_answer\"][\"mode\"], \"text\")\nE   AssertionError: 'numeric' != 'text'\nE   - numeric\nE   + text"
+    },
+    {
+      "node": "tests/test_phase1_import_review.py::TestPhase1ImportReview::test_unready_rows_are_skipped_without_approving_old_or_invalid_data",
+      "when": "call",
+      "message": "tests/test_phase1_import_review.py:140: in test_unready_rows_are_skipped_without_approving_old_or_invalid_data\n    self.assertEqual(result.status_code, 200, result.json)\nE   AssertionError: 400 != 200 : {'message': 'Không có câu hợp lệ để lưu.', 'success': False}"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_api_disallows_legacy_new_questions_without_curriculum",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:126: in test_api_disallows_legacy_new_questions_without_curriculum\n    saved=BankQuestion.query.one()\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/orm/query.py:2808: in one\n    return self._iter().one()  # type: ignore\n           ^^^^^^^^^^^^^^^^^^\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:1815: in one\n    return self._only_one_row(\n/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/sqlalchemy/engine/result.py:760: in _only_one_row\n    raise exc.NoResultFound(\nE   sqlalchemy.exc.NoResultFound: No row was found when one was required"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_change_scope_removes_old_defaults_and_rejects_cross_hierarchy",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:72: in test_change_scope_removes_old_defaults_and_rejects_cross_hierarchy\n    self.assertEqual(self.scope(row,initial).json['questions'][0]['section'],'4')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_changed_catalog_preview_can_reopen_scope_and_destination_is_locked",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:171: in test_changed_catalog_preview_can_reopen_scope_and_destination_is_locked\n    node.category_name+=' new';self.db.session.commit()\n    ^^^^^^^^^^^^^^^^^^\nE   AttributeError: 'NoneType' object has no attribute 'category_name'"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_explicit_out_of_scope_tag_is_not_overwritten_or_saved",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:80: in test_explicit_out_of_scope_tag_is_not_overwritten_or_saved\n    self.assertEqual(result.json['questions'][0]['chapter'],'1')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_legacy_codes_remain_readable_but_cannot_be_generated",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:133: in test_legacy_codes_remain_readable_but_cannot_be_generated\n    self.assertEqual(parse_id6('9C6H4-1TL.7')['question_type'],'essay')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   TypeError: 'NoneType' object is not subscriptable"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_only_tex_upload_is_supported",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:149: in test_only_tex_upload_is_supported\n    self.assertEqual(response.json['questions'][0]['question_type'],'single')\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   KeyError: 'questions'"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_scope_and_session_permissions_expiry_and_catalog_change",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:110: in test_scope_and_session_permissions_expiry_and_catalog_change\n    node.category_name+=' updated'; self.db.session.commit()\n    ^^^^^^^^^^^^^^^^^^\nE   AttributeError: 'NoneType' object has no attribute 'category_name'"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_scope_required_persists_multi_lesson_and_topic_without_guessing_category",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:57: in test_scope_required_persists_multi_lesson_and_topic_without_guessing_category\n    result=self.scope(row); self.assertEqual(result.status_code,200,result.json)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: 400 != 200 : {'message': 'Chương không thuộc lớp đã chọn hoặc danh mục đã ngừng sử dụng.', 'success': False}"
+    },
+    {
+      "node": "tests/test_phase2_import.py::TestPhase2::test_unsupported_and_incomplete_types_cannot_enter_new_practice_papers",
+      "when": "call",
+      "message": "tests/test_phase2_import.py:100: in test_unsupported_and_incomplete_types_cannot_enter_new_practice_papers\n    self.assertEqual(row.error_count,1)\nE   AssertionError: 0 != 1"
+    },
+    {
+      "node": "tests/test_phase5_reports.py::Phase5ReportTests::test_class_risk_requires_matching_evidence_and_validation_fields",
+      "when": "call",
+      "message": "tests/test_phase5_reports.py:88: in test_class_risk_requires_matching_evidence_and_validation_fields\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: ValueError not raised"
+    },
+    {
+      "node": "tests/test_question_classification.py::TestChapter6Classification::test_fingerprint_changes_with_content_and_missing_image_requires_review",
+      "when": "call",
+      "message": "tests/test_question_classification.py:41: in test_fingerprint_changes_with_content_and_missing_image_requires_review\n    self.assertIn('Thiếu hình', result['rationale'][0])\nE   AssertionError: 'Thiếu hình' not found in 'Ngoài phạm vi Toán 9 Chương 8 bài kết hợp i; không tự phân loại.'"
+    },
+    {
+      "node": "tests/test_question_classification.py::TestChapter6Classification::test_probability_categories_distinguish_space_and_games",
+      "when": "call",
+      "message": "tests/test_question_classification.py:24: in test_probability_categories_distinguish_space_and_games\n    self.assertEqual((relative['primary_code'], relative['difficulty_level']), ('9C6-4-1','nhan_biet'))\nE   AssertionError: Tuples differ: (None, None) != ('9C6-4-1', 'nhan_biet')\nE   \nE   First differing element 0:\nE   None\nE   '9C6-4-1'\nE   \nE   - (None, None)\nE   + ('9C6-4-1', 'nhan_biet')"
+    },
+    {
+      "node": "tests/test_question_classification.py::TestChapter6Classification::test_probability_uses_required_intent_and_multistep_difficulty",
+      "when": "call",
+      "message": "tests/test_question_classification.py:15: in test_probability_uses_required_intent_and_multistep_difficulty\n    self.assertEqual(result['primary_code'], '9C6-4-3')\nE   AssertionError: None != '9C6-4-3'"
+    },
+    {
+      "node": "tests/test_question_classification.py::TestChapter6Classification::test_true_false_never_invents_statement_levels",
+      "when": "call",
+      "message": "tests/test_question_classification.py:47: in test_true_false_never_invents_statement_levels\n    self.assertEqual(result['status'], 'suggested')\nE   AssertionError: 'needs_review' != 'suggested'\nE   - needs_review\nE   + suggested"
+    },
+    {
+      "node": "tests/test_route_contract.py::RouteContractTests::test_public_routes_match_the_supported_contract",
+      "when": "call",
+      "message": "tests/test_route_contract.py:39: in test_public_routes_match_the_supported_contract\n    self.assertEqual(current_route_contract(), expected)\nE   AssertionError: Lists differ: [{'en[181 chars]t': 'ai_reports', 'methods': ['GET'], 'rule': [9367 chars]e>'}] != [{'en[181 chars]t': 'teacher_analytics', 'methods': ['GET'], '[7907 chars]e>'}]\nE   \nE   First differing element 2:\nE   {'endpoint': 'ai_reports', 'methods': ['GET'], 'rule': '/ai-reports'}\nE   {'endpoint': 'teacher_analytics', 'methods': ['GET'], '[23 chars]her'}\nE   \nE   First list contains 15 additional elements.\nE   First extra element 79:\nE   {'endpoint': 'teacher_ai_delete_default_key', 'methods': ['POST'], 'rule': '/teacher/ai-settings/keys/<int:key_id>/delete'}\nE   \nE   Diff is 10610 characters long. Set self.maxDiff to None to see it."
+    },
+    {
+      "node": "tests/test_teacher_keys_phase3.py::TeacherKeysPhase3Tests::test_new_course_and_retired_assignment_route_cannot_set_legacy_override",
+      "when": "call",
+      "message": "tests/test_teacher_keys_phase3.py:143: in test_new_course_and_retired_assignment_route_cannot_set_legacy_override\n    self.assertEqual(response.status_code, 302)\nE   AssertionError: 404 != 302"
+    }
+  ],
+  "skippedCases": [],
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storageTemporary": true,
+  "blockedRequests": [],
+  "blockedSockets": [],
+  "durationSeconds": 241.94,
+  "passedReports": 449,
+  "pytestSummary": {
+    "passed": 419,
+    "failed": 99,
+    "collectionErrors": 1,
+    "passedSubtests": 30,
+    "durationSeconds": 236.68
+  }
+}

@@ -12,11 +12,10 @@ class RegistrationForm(FlaskForm):
     fullname = StringField("Họ và tên", validators=[DataRequired(), Length(min=2, max=100)])
     username = StringField("Tên đăng nhập", validators=[DataRequired(), Length(min=4, max=80)])
     phone = TelField("Số điện thoại", validators=[Optional()])
-    parent_phone = TelField("SĐT phụ huynh", validators=[Optional()])
     position = StringField("Lớp / Chức vụ", validators=[Optional(), Length(max=100)])
     role = SelectField(
         "Vai trò",
-        choices=[("student", "Học sinh"), ("teacher", "Giáo viên"), ("parent", "Phụ huynh")],
+        choices=[("student", "Học sinh"), ("teacher", "Giáo viên")],
         validators=[DataRequired()],
     )
     password = PasswordField("Mật khẩu", validators=[DataRequired(), Length(min=6)])
@@ -32,8 +31,8 @@ class RegistrationForm(FlaskForm):
             raise ValidationError("Mã người dùng đã tồn tại.")
 
     def validate_role(self, role):
-        if role.data in ("admin", "manager"):
-            raise ValidationError("Không thể đăng ký vai trò này.")
+        if role.data not in {"student", "teacher"}:
+            raise ValidationError("Vai trò đăng ký không hợp lệ.")
 
 
 class LoginForm(FlaskForm):
@@ -46,7 +45,6 @@ class UpdateProfileForm(FlaskForm):
     fullname = StringField("Họ và tên", validators=[DataRequired(), Length(min=2)])
     username = StringField("Tên đăng nhập", validators=[DataRequired(), Length(min=4)])
     phone = TelField("Số điện thoại", validators=[Optional()])
-    parent_phone = TelField("SĐT phụ huynh", validators=[Optional()])
     position = StringField("Lớp / Chức vụ", validators=[Optional(), Length(max=100)])
     birth_date = DateField("Ngày sinh", validators=[Optional()])
     avatar = FileField("Avatar", validators=[FileAllowed(["jpg", "png", "jpeg"], "Chỉ nhận file ảnh!")])

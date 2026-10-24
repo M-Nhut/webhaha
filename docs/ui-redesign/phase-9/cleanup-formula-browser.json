@@ -1,0 +1,435 @@
+{
+  "date": "2026-10-19",
+  "base": "http://127.0.0.1:8771",
+  "checks": [
+    {
+      "name": "375 actual-bank-image-opens-native-dialog",
+      "passed": true
+    },
+    {
+      "name": "375 dialog-accessible-label",
+      "passed": true
+    },
+    {
+      "name": "375 image-loaded",
+      "passed": true
+    },
+    {
+      "name": "375 close-receives-focus",
+      "passed": true
+    },
+    {
+      "name": "375 tab-contained",
+      "passed": true
+    },
+    {
+      "name": "375 reverse-tab-contained",
+      "passed": true
+    },
+    {
+      "name": "375 lightbox-fits-viewport",
+      "passed": true
+    },
+    {
+      "name": "375 escape-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "375 close-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "375 backdrop-closes-and-returns-focus",
+      "passed": true
+    },
+    {
+      "name": "375 error-uses-danger-token",
+      "passed": true
+    },
+    {
+      "name": "375 review-uses-warning-token",
+      "passed": true
+    },
+    {
+      "name": "375 inline-and-block-review-retained",
+      "passed": true
+    },
+    {
+      "name": "375 mathjax-render-retained",
+      "passed": true
+    },
+    {
+      "name": "375 structured-table-align-retained",
+      "passed": true
+    },
+    {
+      "name": "375 retry-control-size",
+      "passed": true
+    },
+    {
+      "name": "375 retry-replaces-error-with-rendered-image",
+      "passed": true
+    },
+    {
+      "name": "375 retry-failure-remains-recoverable",
+      "passed": true
+    },
+    {
+      "name": "375 temporary-import-retry-preserved",
+      "passed": true
+    },
+    {
+      "name": "375 student-view-cannot-retry",
+      "passed": true
+    },
+    {
+      "name": "375 page-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "768 actual-bank-image-opens-native-dialog",
+      "passed": true
+    },
+    {
+      "name": "768 dialog-accessible-label",
+      "passed": true
+    },
+    {
+      "name": "768 image-loaded",
+      "passed": true
+    },
+    {
+      "name": "768 close-receives-focus",
+      "passed": true
+    },
+    {
+      "name": "768 tab-contained",
+      "passed": true
+    },
+    {
+      "name": "768 reverse-tab-contained",
+      "passed": true
+    },
+    {
+      "name": "768 lightbox-fits-viewport",
+      "passed": true
+    },
+    {
+      "name": "768 escape-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "768 close-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "768 backdrop-closes-and-returns-focus",
+      "passed": true
+    },
+    {
+      "name": "768 error-uses-danger-token",
+      "passed": true
+    },
+    {
+      "name": "768 review-uses-warning-token",
+      "passed": true
+    },
+    {
+      "name": "768 inline-and-block-review-retained",
+      "passed": true
+    },
+    {
+      "name": "768 mathjax-render-retained",
+      "passed": true
+    },
+    {
+      "name": "768 structured-table-align-retained",
+      "passed": true
+    },
+    {
+      "name": "768 retry-control-size",
+      "passed": true
+    },
+    {
+      "name": "768 retry-replaces-error-with-rendered-image",
+      "passed": true
+    },
+    {
+      "name": "768 retry-failure-remains-recoverable",
+      "passed": true
+    },
+    {
+      "name": "768 temporary-import-retry-preserved",
+      "passed": true
+    },
+    {
+      "name": "768 student-view-cannot-retry",
+      "passed": true
+    },
+    {
+      "name": "768 page-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "1024 actual-bank-image-opens-native-dialog",
+      "passed": true
+    },
+    {
+      "name": "1024 dialog-accessible-label",
+      "passed": true
+    },
+    {
+      "name": "1024 image-loaded",
+      "passed": true
+    },
+    {
+      "name": "1024 close-receives-focus",
+      "passed": true
+    },
+    {
+      "name": "1024 tab-contained",
+      "passed": true
+    },
+    {
+      "name": "1024 reverse-tab-contained",
+      "passed": true
+    },
+    {
+      "name": "1024 lightbox-fits-viewport",
+      "passed": true
+    },
+    {
+      "name": "1024 escape-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "1024 close-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "1024 backdrop-closes-and-returns-focus",
+      "passed": true
+    },
+    {
+      "name": "1024 error-uses-danger-token",
+      "passed": true
+    },
+    {
+      "name": "1024 review-uses-warning-token",
+      "passed": true
+    },
+    {
+      "name": "1024 inline-and-block-review-retained",
+      "passed": true
+    },
+    {
+      "name": "1024 mathjax-render-retained",
+      "passed": true
+    },
+    {
+      "name": "1024 structured-table-align-retained",
+      "passed": true
+    },
+    {
+      "name": "1024 retry-control-size",
+      "passed": true
+    },
+    {
+      "name": "1024 retry-replaces-error-with-rendered-image",
+      "passed": true
+    },
+    {
+      "name": "1024 retry-failure-remains-recoverable",
+      "passed": true
+    },
+    {
+      "name": "1024 temporary-import-retry-preserved",
+      "passed": true
+    },
+    {
+      "name": "1024 student-view-cannot-retry",
+      "passed": true
+    },
+    {
+      "name": "1024 page-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "1440 actual-bank-image-opens-native-dialog",
+      "passed": true
+    },
+    {
+      "name": "1440 dialog-accessible-label",
+      "passed": true
+    },
+    {
+      "name": "1440 image-loaded",
+      "passed": true
+    },
+    {
+      "name": "1440 close-receives-focus",
+      "passed": true
+    },
+    {
+      "name": "1440 tab-contained",
+      "passed": true
+    },
+    {
+      "name": "1440 reverse-tab-contained",
+      "passed": true
+    },
+    {
+      "name": "1440 lightbox-fits-viewport",
+      "passed": true
+    },
+    {
+      "name": "1440 escape-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "1440 close-returns-opener-focus",
+      "passed": true
+    },
+    {
+      "name": "1440 backdrop-closes-and-returns-focus",
+      "passed": true
+    },
+    {
+      "name": "1440 error-uses-danger-token",
+      "passed": true
+    },
+    {
+      "name": "1440 review-uses-warning-token",
+      "passed": true
+    },
+    {
+      "name": "1440 inline-and-block-review-retained",
+      "passed": true
+    },
+    {
+      "name": "1440 mathjax-render-retained",
+      "passed": true
+    },
+    {
+      "name": "1440 structured-table-align-retained",
+      "passed": true
+    },
+    {
+      "name": "1440 retry-control-size",
+      "passed": true
+    },
+    {
+      "name": "1440 retry-replaces-error-with-rendered-image",
+      "passed": true
+    },
+    {
+      "name": "1440 retry-failure-remains-recoverable",
+      "passed": true
+    },
+    {
+      "name": "1440 temporary-import-retry-preserved",
+      "passed": true
+    },
+    {
+      "name": "1440 student-view-cannot-retry",
+      "passed": true
+    },
+    {
+      "name": "1440 page-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "all-retry-requests-keep-post-and-csrf",
+      "passed": true
+    },
+    {
+      "name": "no-page-errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "intercepted_mutations": [
+    {
+      "path": "/api/formulas/qa-error/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 375
+    },
+    {
+      "path": "/api/formulas/qa-retry-failed/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 375
+    },
+    {
+      "path": "/question-banks/import/qa-session/formulas/qa-temp/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 375
+    },
+    {
+      "path": "/api/formulas/qa-error/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 768
+    },
+    {
+      "path": "/api/formulas/qa-retry-failed/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 768
+    },
+    {
+      "path": "/question-banks/import/qa-session/formulas/qa-temp/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 768
+    },
+    {
+      "path": "/api/formulas/qa-error/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1024
+    },
+    {
+      "path": "/api/formulas/qa-retry-failed/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1024
+    },
+    {
+      "path": "/question-banks/import/qa-session/formulas/qa-temp/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1024
+    },
+    {
+      "path": "/api/formulas/qa-error/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1440
+    },
+    {
+      "path": "/api/formulas/qa-retry-failed/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1440
+    },
+    {
+      "path": "/question-banks/import/qa-session/formulas/qa-temp/retry",
+      "method": "POST",
+      "csrf": true,
+      "width": 1440
+    }
+  ],
+  "screenshots": [
+    "screenshots/cleanup-formula-zoom-375.png",
+    "screenshots/cleanup-formula-zoom-768.png",
+    "screenshots/cleanup-formula-zoom-1024.png",
+    "screenshots/cleanup-formula-zoom-1440.png"
+  ],
+  "fixture_note": "All formula status data inserted only into browser DOM; retry POSTs intercepted and fulfilled synthetically. Image zoom uses actual seeded question image and actual bank click handler. No backend mutation or provider call.",
+  "passed": true,
+  "count": 86
+}

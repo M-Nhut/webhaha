@@ -1,0 +1,10 @@
+/* Shared knowledge fields; one semantic palette for bank and import forms. */
+.id6-picker { padding: 16px; margin-bottom: 20px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface-subtle); }
+.id6-context { margin: 0 0 12px; color: var(--color-text-muted); font-size: var(--size-xs); line-height: 1.6; }
+.id6-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.id6-fields label { display: flex; flex-direction: column; gap: 8px; color: var(--color-text); font-size: var(--size-sm); font-weight: 500; min-width: 0; }
+.id6-fields select, .id6-fields input { width: 100%; min-width: 0; }
+.id6-empty { margin: 12px 0 0; font-size: var(--size-xs); line-height: 1.7; color: var(--color-text-muted); }
+.id6-path { margin: 12px 0 0; font-size: var(--size-xs); line-height: 1.7; color: var(--color-text-secondary); overflow-wrap: anywhere; }
+@media (max-width: 1199px) { .id6-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .id6-fields { grid-template-columns: minmax(0, 1fr); } }

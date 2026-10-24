@@ -1,0 +1,6 @@
+{
+  "templates": 49,
+  "shellCSS": "valid",
+  "schedulerJS": "node --check passed",
+  "errors": []
+}

@@ -1,0 +1,3733 @@
+{
+  "kind": "real_class_sources_neutral_profile_and_simulated_stress",
+  "production_database_unchanged": true,
+  "snapshot_seeded_or_migrated": false,
+  "learner_profiles_used": false,
+  "ai_called": false,
+  "classes": [
+    {
+      "class_reference": "class-01",
+      "authorized_bank_count": 1,
+      "scoped_question_count": 129,
+      "approved_count": 129,
+      "rejection_counts": {},
+      "inventory": {
+        "version": "practice-source-inventory-v1",
+        "mode": "observe_only",
+        "candidate_rows": 129,
+        "ignored_rows": 0,
+        "unique_content": {
+          "fresh": 129,
+          "spaced_review": 129,
+          "recent_review": 129,
+          "immediate_review": 129
+        },
+        "duplicate_rows": 0,
+        "cells": [
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 7,
+              "spaced_review": 7,
+              "recent_review": 7,
+              "immediate_review": 7
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 4,
+              "spaced_review": 4,
+              "recent_review": 4,
+              "immediate_review": 4
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 8,
+              "spaced_review": 8,
+              "recent_review": 8,
+              "immediate_review": 8
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 3,
+              "spaced_review": 3,
+              "recent_review": 3,
+              "immediate_review": 3
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 14,
+              "spaced_review": 14,
+              "recent_review": 14,
+              "immediate_review": 14
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 5,
+              "spaced_review": 5,
+              "recent_review": 5,
+              "immediate_review": 5
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 3,
+              "spaced_review": 3,
+              "recent_review": 3,
+              "immediate_review": 3
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 4,
+              "spaced_review": 4,
+              "recent_review": 4,
+              "immediate_review": 4
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 6,
+              "spaced_review": 6,
+              "recent_review": 6,
+              "immediate_review": 6
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 7,
+              "spaced_review": 7,
+              "recent_review": 7,
+              "immediate_review": 7
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 5,
+              "spaced_review": 5,
+              "recent_review": 5,
+              "immediate_review": 5
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 4,
+              "spaced_review": 4,
+              "recent_review": 4,
+              "immediate_review": 4
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 7,
+              "spaced_review": 7,
+              "recent_review": 7,
+              "immediate_review": 7
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 7,
+              "spaced_review": 7,
+              "recent_review": 7,
+              "immediate_review": 7
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 3,
+              "spaced_review": 3,
+              "recent_review": 3,
+              "immediate_review": 3
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 1,
+              "spaced_review": 1,
+              "recent_review": 1,
+              "immediate_review": 1
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 2,
+              "spaced_review": 2,
+              "recent_review": 2,
+              "immediate_review": 2
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          }
+        ],
+        "empty_cells": [
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          }
+        ],
+        "review_only_cells": [],
+        "marginal_shortages": [],
+        "cell_targets_assigned": false,
+        "counts_are_additive": false,
+        "scope": "approved_ranked_pool",
+        "full_paper_feasibility_checked": false
+      },
+      "outcomes": [
+        {
+          "case": "actual_source_neutral_profile",
+          "candidate_count": 129,
+          "status": "ready",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 22,
+          "actual_levels": {
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3,
+            "nhan_biet": 7
+          },
+          "actual_types": {
+            "single": 12,
+            "true_false": 4,
+            "short_answer": 6
+          },
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 3,
+          "covered_skills": 7,
+          "unavailable_skills": [
+            "9C8-i-6"
+          ],
+          "skill_transfers": [
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-2",
+              "level": "thong_hieu",
+              "question_type": "single",
+              "question_id": 12,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-2",
+              "level": "thong_hieu",
+              "question_type": "short_answer",
+              "question_id": 26,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-1",
+              "level": "nhan_biet",
+              "question_type": "short_answer",
+              "question_id": 48,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            }
+          ],
+          "exposure_stage": "fresh",
+          "shortages": []
+        },
+        {
+          "case": "simulated_missing_first_skill",
+          "candidate_count": 115,
+          "status": "ready",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 22,
+          "actual_levels": {
+            "nhan_biet": 7,
+            "van_dung_cao": 3,
+            "thong_hieu": 7,
+            "van_dung": 5
+          },
+          "actual_types": {
+            "single": 12,
+            "true_false": 4,
+            "short_answer": 6
+          },
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 6,
+          "covered_skills": 6,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-6"
+          ],
+          "skill_transfers": [
+            {
+              "source_skill": "9C8-i-1",
+              "target_skill": "9C8-i-2",
+              "level": "nhan_biet",
+              "question_type": "single",
+              "question_id": 1,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-1",
+              "target_skill": "9C8-i-2",
+              "level": "nhan_biet",
+              "question_type": "single",
+              "question_id": 2,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-1",
+              "target_skill": "9C8-i-3",
+              "level": "nhan_biet",
+              "question_type": "short_answer",
+              "question_id": 55,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-3",
+              "level": "nhan_biet",
+              "question_type": "short_answer",
+              "question_id": 56,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-4",
+              "level": "thong_hieu",
+              "question_type": "single",
+              "question_id": 71,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            },
+            {
+              "source_skill": "9C8-i-6",
+              "target_skill": "9C8-i-4",
+              "level": "thong_hieu",
+              "question_type": "true_false",
+              "question_id": 78,
+              "count": 1,
+              "source_available": 0,
+              "reason": "source_cell_empty"
+            }
+          ],
+          "exposure_stage": "fresh",
+          "shortages": []
+        },
+        {
+          "case": "simulated_missing_vdc",
+          "candidate_count": 119,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-6"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            }
+          ]
+        },
+        {
+          "case": "simulated_missing_true_false",
+          "candidate_count": 110,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-6"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            }
+          ]
+        },
+        {
+          "case": "simulated_duplicate_content",
+          "candidate_count": 129,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-6"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 1,
+              "missing": 21
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 1,
+              "missing": 11
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 1,
+              "missing": 3
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 1,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 1,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 1,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 1,
+              "missing": 4
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 1,
+              "missing": 2
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 7,
+              "missing": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class_reference": "class-02",
+      "authorized_bank_count": 0,
+      "scoped_question_count": 0,
+      "approved_count": 0,
+      "rejection_counts": {},
+      "inventory": {
+        "version": "practice-source-inventory-v1",
+        "mode": "observe_only",
+        "candidate_rows": 0,
+        "ignored_rows": 0,
+        "unique_content": {
+          "fresh": 0,
+          "spaced_review": 0,
+          "recent_review": 0,
+          "immediate_review": 0
+        },
+        "duplicate_rows": 0,
+        "cells": [
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "single",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "true_false",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "short_answer",
+            "available": {
+              "fresh": 0,
+              "spaced_review": 0,
+              "recent_review": 0,
+              "immediate_review": 0
+            }
+          }
+        ],
+        "empty_cells": [
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-1",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-2",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-3",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-4",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-5",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-6",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-7",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "nhan_biet",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "thong_hieu",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung",
+            "question_type": "short_answer"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "single"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "true_false"
+          },
+          {
+            "skill": "9C8-i-8",
+            "level": "van_dung_cao",
+            "question_type": "short_answer"
+          }
+        ],
+        "review_only_cells": [],
+        "marginal_shortages": [
+          {
+            "dimension": "question_type",
+            "key": "single",
+            "required": 12,
+            "available": 0,
+            "missing": 12
+          },
+          {
+            "dimension": "question_type",
+            "key": "true_false",
+            "required": 4,
+            "available": 0,
+            "missing": 4
+          },
+          {
+            "dimension": "question_type",
+            "key": "short_answer",
+            "required": 6,
+            "available": 0,
+            "missing": 6
+          }
+        ],
+        "cell_targets_assigned": false,
+        "counts_are_additive": false,
+        "scope": "approved_ranked_pool",
+        "full_paper_feasibility_checked": false
+      },
+      "outcomes": [
+        {
+          "case": "actual_source_neutral_profile",
+          "candidate_count": 0,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-2",
+            "9C8-i-3",
+            "9C8-i-4",
+            "9C8-i-5",
+            "9C8-i-6",
+            "9C8-i-7",
+            "9C8-i-8"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 0,
+              "missing": 12
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 0,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 0,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            }
+          ]
+        },
+        {
+          "case": "simulated_missing_first_skill",
+          "candidate_count": 0,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-2",
+            "9C8-i-3",
+            "9C8-i-4",
+            "9C8-i-5",
+            "9C8-i-6",
+            "9C8-i-7",
+            "9C8-i-8"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 0,
+              "missing": 12
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 0,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 0,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            }
+          ]
+        },
+        {
+          "case": "simulated_missing_vdc",
+          "candidate_count": 0,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-2",
+            "9C8-i-3",
+            "9C8-i-4",
+            "9C8-i-5",
+            "9C8-i-6",
+            "9C8-i-7",
+            "9C8-i-8"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 0,
+              "missing": 12
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 0,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 0,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            }
+          ]
+        },
+        {
+          "case": "simulated_missing_true_false",
+          "candidate_count": 0,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-2",
+            "9C8-i-3",
+            "9C8-i-4",
+            "9C8-i-5",
+            "9C8-i-6",
+            "9C8-i-7",
+            "9C8-i-8"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 0,
+              "missing": 12
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 0,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 0,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            }
+          ]
+        },
+        {
+          "case": "simulated_duplicate_content",
+          "candidate_count": 0,
+          "status": "insufficient_candidates",
+          "strict_status": "insufficient_candidates",
+          "strict_count": 0,
+          "selected_count": 0,
+          "actual_levels": {},
+          "actual_types": {},
+          "effective_levels": {
+            "nhan_biet": 7,
+            "thong_hieu": 7,
+            "van_dung": 5,
+            "van_dung_cao": 3
+          },
+          "level_targets_preserved": true,
+          "quota_changes": 0,
+          "covered_skills": 0,
+          "unavailable_skills": [
+            "9C8-i-1",
+            "9C8-i-2",
+            "9C8-i-3",
+            "9C8-i-4",
+            "9C8-i-5",
+            "9C8-i-6",
+            "9C8-i-7",
+            "9C8-i-8"
+          ],
+          "skill_transfers": [],
+          "exposure_stage": null,
+          "shortages": [
+            {
+              "dimension": "nội dung khác nhau",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "single",
+              "required": 12,
+              "available": 0,
+              "missing": 12
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "true_false",
+              "required": 4,
+              "available": 0,
+              "missing": 4
+            },
+            {
+              "dimension": "dạng câu",
+              "key": "short_answer",
+              "required": 6,
+              "available": 0,
+              "missing": 6
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "nhan_biet",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "thong_hieu",
+              "required": 7,
+              "available": 0,
+              "missing": 7
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung",
+              "required": 5,
+              "available": 0,
+              "missing": 5
+            },
+            {
+              "dimension": "mức nhận thức",
+              "key": "van_dung_cao",
+              "required": 3,
+              "available": 0,
+              "missing": 3
+            },
+            {
+              "dimension": "giới hạn số câu theo dạng",
+              "key": "total",
+              "required": 22,
+              "available": 0,
+              "missing": 22
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

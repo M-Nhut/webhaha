@@ -1,0 +1,10 @@
+{
+  "templates": 49,
+  "cssFiles": 31,
+  "errors": [],
+  "undefinedTokens": [],
+  "removedEndLinks": true,
+  "bottomSubmitRetained": true,
+  "removedLegacyLayoutTokens": true,
+  "takingNativeControlAttributesUnchanged": true
+}

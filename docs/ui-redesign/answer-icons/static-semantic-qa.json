@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "historySelectedNonKey": "neutral icon; no incorrect verdict",
+  "nativeControls": "unchanged",
+  "jinja": "passed",
+  "css": "passed",
+  "oldLabelSelectors": "removed",
+  "icons": "inline SVG; no JavaScript dependency",
+  "database": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storage": "temporary"
+}

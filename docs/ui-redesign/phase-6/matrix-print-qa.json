@@ -1,0 +1,16 @@
+[
+  {
+    "file": "matrix-draft-landscape.pdf",
+    "pages": 2,
+    "landscape": true,
+    "section02StartsPage2": true,
+    "allTextWithinRightMargin": true
+  },
+  {
+    "file": "matrix-published-landscape.pdf",
+    "pages": 2,
+    "landscape": true,
+    "section02StartsPage2": true,
+    "allTextWithinRightMargin": true
+  }
+]

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="14" skipped="0" tests="97" time="31.729" timestamp="2026-09-29T23:19:03.713518+07:00" hostname="LAPTOP-L7LKH3L3"><testcase classname="tests.test_assessment_matrix" name="test_matrix_missing_labels_and_legacy_scale_do_not_mutate" time="0.487" /><testcase classname="tests.test_assessment_matrix" name="test_xlsx_data_formulas_styles_and_permissions" time="0.457" /><testcase classname="tests.test_assessment_scoring" name="test_any_length_totals_ten_and_repeated_save_is_stable[1]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_any_length_totals_ten_and_repeated_save_is_stable[3]" time="0.004" /><testcase classname="tests.test_assessment_scoring" name="test_any_length_totals_ten_and_repeated_save_is_stable[11]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_any_length_totals_ten_and_repeated_save_is_stable[22]" time="0.003" /><testcase classname="tests.test_assessment_scoring" name="test_any_length_totals_ten_and_repeated_save_is_stable[100]" time="0.005" /><testcase classname="tests.test_assessment_scoring" name="test_section_budgets_and_relative_weights" time="0.003" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets0]" time="0.002" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets1]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets2]" time="0.002" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets3]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets4]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_invalid_budgets_are_rejected[budgets5]" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_legacy_result_converts_without_mutating_evidence" time="0.001" /><testcase classname="tests.test_assessment_scoring" name="test_editor_section_defaults_have_exact_cent_budgets" time="0.001" /><testcase classname="tests.test_standalone_assessment" name="test_unclassified_routes_to_paper_and_classified_stays_bank" time="0.481" /><testcase classname="tests.test_standalone_assessment" name="test_paper_draft_publish_submit_isolated_from_mastery" time="0.646" /><testcase classname="tests.test_standalone_assessment" name="test_incomplete_key_blocked_foreign_class_blocked_and_bank_confirm_blocked" time="0.290" /><testcase classname="tests.test_standalone_assessment" name="test_template_comments_and_section_levels" time="0.033" /><testcase classname="tests.test_standalone_assessment" name="test_edit_json_persists_all_fields_and_validation_keeps_draft" time="0.373" /><testcase classname="tests.test_standalone_assessment" name="test_bank_selection_permissions_shortage_and_frozen_draft" time="0.693" /><testcase classname="tests.test_standalone_assessment" name="test_typed_bank_selection_and_ten_point_save" time="0.771" /><testcase classname="tests.test_standalone_assessment" name="test_exam_evidence_in_report_but_no_adaptive_change" time="0.897" /><testcase classname="tests.test_standalone_assessment" name="test_explicit_assessment_accepts_classified_file" time="0.273" /><testcase classname="tests.test_personalization_v2" name="test_no_id_required_and_deterministic_full_paper" time="0.417" /><testcase classname="tests.test_personalization_v2" name="test_exhausted_recent_bank_recovers_without_duplicate_content" time="0.403" /><testcase classname="tests.test_personalization_v2" name="test_unreviewed_and_invalid_answers_never_recovered" time="0.439" /><testcase classname="tests.test_personalization_v2" name="test_teacher_can_reclassify_legacy_id_without_rewriting_source" time="0.275" /><testcase classname="tests.test_personalization_v2" name="test_import_confirmation_without_id_has_reviewed_metadata" time="0.214" /><testcase classname="tests.test_personalization_v2" name="test_import_saves_reviewed_question_without_source_code" time="0.668" /><testcase classname="tests.test_personalization_v2" name="test_bounded_repair_and_missing_type" time="0.520" /><testcase classname="tests.test_personalization_v2" name="test_duplicate_hashes_cannot_fill_22_slots" time="0.432" /><testcase classname="tests.test_personalization_v2" name="test_repeat_evidence_discount" time="0.004" /><testcase classname="tests.test_personalization_v2" name="test_frozen_paper_take_submit_result_and_audit" time="0.935" /><testcase classname="tests.test_general_bank" name="test_list_items_do_not_consume_formula_placeholders" time="0.002" /><testcase classname="tests.test_general_bank" name="test_math_wrapper_around_tikz_does_not_create_math_asset" time="0.004" /><testcase classname="tests.test_general_bank" name="test_grade10_import_save_and_reimport" time="0.438" /><testcase classname="tests.test_general_bank" name="test_grade9_other_topic_is_not_research" time="0.239" /><testcase classname="tests.test_general_bank" name="test_duplicate_solution_preference_and_pair_choices" time="0.480" /><testcase classname="tests.test_general_bank" name="test_bank_solution_replacement_preserves_question_id" time="0.436" /><testcase classname="tests.test_local_tex_bank" name="test_real_local_tikz_and_table" time="4.457"><failure message="ValueError: Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.">def test_real_local_tikz_and_table():
+        for source in [r'\begin{tikzpicture}\draw[-&gt;](0,0)--(2,0) node[right] {$x$};\end{tikzpicture}',
+                       r'\begin{tabular}{|c|c|}\hline A &amp; B \\\hline 1 &amp; 2 \\\hline\end{tabular}']:
+&gt;           svg = compile_svg(source)
+                  ^^^^^^^^^^^^^^^^^^^
+
+tests\test_local_tex_bank.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = '\\begin{tikzpicture}\\draw[-&gt;](0,0)--(2,0) node[right] {$x$};\\end{tikzpicture}'
+preamble = ''
+
+    def compile_svg(source, preamble=''):
+        source = expand_basic_geometry(source)
+        node = os.environ.get('LATEX_NODE_BINARY') or shutil.which('node')
+        saved_path = ROOT / '.latex-node-path'
+        if not node and saved_path.is_file():
+            candidate = saved_path.read_text(encoding='utf-8').strip()
+            if Path(candidate).is_file():
+                node = candidate
+        if not node or not (ROOT / 'node_modules/node-tikzjax').exists():
+            raise ValueError('Chưa cài bộ TeX tích hợp. Cài Node.js rồi chạy npm install và npm run build trong FNWEB2.')
+        result = subprocess.run(
+            [node, '--max-old-space-size=384', str(ROOT / 'scripts/render_tex.cjs')],
+            input=json.dumps({'source': encode_text_accents(source), 'preamble': encode_text_accents(fragment_preamble(source, preamble))}),
+            encoding='utf-8', errors='replace', stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            cwd=ROOT, timeout=40, check=False,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0),
+        )
+        try:
+            data = json.loads(result.stdout)
+        except ValueError:
+&gt;           raise ValueError('Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.') from None
+E           ValueError: Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.
+
+services\local_tex.py:146: ValueError</failure></testcase><testcase classname="tests.test_local_tex_bank" name="test_svg_disallows_active_content" time="0.001" /><testcase classname="tests.test_local_tex_bank" name="test_old_remote_url_does_not_send_files" time="0.396"><failure message="assert (False)">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001857C45F2F0&gt;
+tmp_path = WindowsPath('C:/Users/Linh/AppData/Local/Temp/pytest-of-Linh/pytest-35/test_old_remote_url_does_not_s0')
+
+    def test_old_remote_url_does_not_send_files(monkeypatch, tmp_path):
+        from services import latex_renderer
+        monkeypatch.setattr(latex_renderer, 'ASSET_DIR', tmp_path)
+        monkeypatch.setenv('LATEX_RENDERER_URL', 'https://old-renderer.invalid')
+        monkeypatch.delenv('LATEX_RENDER_MODE', raising=False)
+        monkeypatch.setenv('LATEX_RENDER_MODE', 'remote')
+        result = latex_renderer.render_latex_block_result(r'\begin{tikzpicture}\draw (0,0)--(1,1);\end{tikzpicture}')
+&gt;       assert result['verified'] and result['method'] == 'local_wasm_tex'
+E       assert (False)
+
+tests\test_local_tex_bank.py:51: AssertionError</failure></testcase><testcase classname="tests.test_local_tex_bank" name="test_bank_matrix_and_group_defaults" time="0.402" /><testcase classname="tests.test_local_tex_bank" name="test_manual_reviewed_and_duplicate_blocked" time="0.894" /><testcase classname="tests.test_local_tex_bank" name="test_manual_tf_labels_and_numeric_validation" time="0.561" /><testcase classname="tests.test_local_tex_bank" name="test_import_uses_group_but_preserves_question_type" time="0.452" /><testcase classname="tests.test_local_tex_bank" name="test_tex_file_to_bank_with_figures_and_repeat_dedup" time="1.476" /><testcase classname="tests.test_local_tex_bank" name="test_document_packages_do_not_break_independent_figure" time="0.002" /><testcase classname="tests.test_local_tex_bank" name="test_tkz_tab_is_bundled_and_different_sources_have_distinct_figures" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_vietnamese_table_spans_and_repeated_columns" time="0.003" /><testcase classname="tests.test_latex_display_v3" name="test_nested_math_rows_and_escaped_ampersands" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_unknown_or_malformed_tables_are_not_silently_rewritten[\\begin{tabular}{cc}A&amp;B&amp;C\\end{tabular}]" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_unknown_or_malformed_tables_are_not_silently_rewritten[\\begin{tabular}{c}\\multirow{2}{*}{A}\\end{tabular}]" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_unknown_or_malformed_tables_are_not_silently_rewritten[\\begin{tabular}{c}\\custommacro{A}\\end{tabular}]" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_old_failed_asset_is_recovered_without_mutation" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_layout_cleanup_keeps_explanation_order_and_table" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_inline_tikz_is_compiled_locally" time="0.002" /><testcase classname="tests.test_latex_display_v3" name="test_question_image_decodes_and_rejects_fake_image" time="0.281" /><testcase classname="tests.test_latex_display_v3" name="test_duplicate_math_layout_does_not_change_identity" time="0.001" /><testcase classname="tests.test_latex_display_v3" name="test_immini_optional_and_answers_keep_the_diagram" time="0.015" /><testcase classname="tests.test_latex_display_v3" name="test_old_failed_tikz_recovers_on_first_read" time="0.424"><failure message="AssertionError: assert 'failed' == 'fallback_svg'&#10;  &#10;  - fallback_svg&#10;  + failed">monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001857C0AB6B0&gt;
+tmp_path = WindowsPath('C:/Users/Linh/AppData/Local/Temp/pytest-of-Linh/pytest-35/test_old_failed_tikz_recovers_0')
+
+    def test_old_failed_tikz_recovers_on_first_read(monkeypatch, tmp_path):
+        from services import formula_display, latex_renderer
+        monkeypatch.setattr(latex_renderer,'ASSET_DIR',tmp_path)
+        formula_display._recover_legacy.cache_clear()
+        old = dict(source_format='LaTeXBlock',source_text=r'\begin{tikzpicture}\draw (0,0)--(1,0);\end{tikzpicture}',conversion_status='failed',render_method='remote_tex')
+        shown = formula_display.display_asset(old)
+&gt;       assert shown['conversion_status']=='fallback_svg'
+E       AssertionError: assert 'failed' == 'fallback_svg'
+E         
+E         - fallback_svg
+E         + failed
+
+tests\test_latex_display_v3.py:104: AssertionError</failure></testcase><testcase classname="tests.test_latex_display_v3" name="test_vietnamese_node_labels_keep_accents" time="0.364"><failure message="ValueError: Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.">def test_vietnamese_node_labels_keep_accents():
+        from services.local_tex import encode_text_accents, compile_svg
+        assert encode_text_accents('Tấm bìa') == r"T\ensuremath{\acute{\hat{\text{a}}}}m b\`{i}a"
+        assert r'\hbox{u' in encode_text_accents('ư')
+        assert encode_text_accents('ờ').startswith(r'\`{\hbox{o')
+&gt;       svg = compile_svg(r'\begin{tikzpicture}\node {Tấm bìa A, Đường};\end{tikzpicture}')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_latex_display_v3.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+source = '\\begin{tikzpicture}\\node {Tấm bìa A, Đường};\\end{tikzpicture}'
+preamble = ''
+
+    def compile_svg(source, preamble=''):
+        source = expand_basic_geometry(source)
+        node = os.environ.get('LATEX_NODE_BINARY') or shutil.which('node')
+        saved_path = ROOT / '.latex-node-path'
+        if not node and saved_path.is_file():
+            candidate = saved_path.read_text(encoding='utf-8').strip()
+            if Path(candidate).is_file():
+                node = candidate
+        if not node or not (ROOT / 'node_modules/node-tikzjax').exists():
+            raise ValueError('Chưa cài bộ TeX tích hợp. Cài Node.js rồi chạy npm install và npm run build trong FNWEB2.')
+        result = subprocess.run(
+            [node, '--max-old-space-size=384', str(ROOT / 'scripts/render_tex.cjs')],
+            input=json.dumps({'source': encode_text_accents(source), 'preamble': encode_text_accents(fragment_preamble(source, preamble))}),
+            encoding='utf-8', errors='replace', stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            cwd=ROOT, timeout=40, check=False,
+            creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0),
+        )
+        try:
+            data = json.loads(result.stdout)
+        except ValueError:
+&gt;           raise ValueError('Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.') from None
+E           ValueError: Bộ TeX không trả về kết quả; kiểm tra cài đặt Node.js.
+
+services\local_tex.py:146: ValueError</failure></testcase><testcase classname="tests.test_teacher_ai_simplified.TeacherAISimplifiedReview" name="test_existing_default_and_explicit_old_mapping_are_preserved" time="0.159" /><testcase classname="tests.test_teacher_ai_simplified.TeacherAISimplifiedReview" name="test_provider_categories_are_distinct_and_sanitized" time="0.068" /><testcase classname="tests.test_teacher_ai_simplified.TeacherAISimplifiedReview" name="test_simple_save_creates_fixed_internal_group_and_probes_without_raw_key" time="0.124" /><testcase classname="tests.test_teacher_ai_simplified.TeacherAISimplifiedReview" name="test_unverified_key_is_never_eligible_and_shared_env_is_not_fallback" time="0.096" /><testcase classname="tests.test_diagnostic_report_contract.DiagnosticReportContractTests" name="test_correct_blank_or_nonexistent_statement_cannot_be_an_error" time="0.002" /><testcase classname="tests.test_diagnostic_report_contract.DiagnosticReportContractTests" name="test_foreign_evidence_and_confirmed_predictions_rejected" time="0.003" /><testcase classname="tests.test_diagnostic_report_contract.DiagnosticReportContractTests" name="test_render_escapes_untrusted_model_text" time="0.047" /><testcase classname="tests.test_diagnostic_report_contract.DiagnosticReportContractTests" name="test_safe_fallback_and_prompt_do_not_force_hypotheses" time="0.001" /><testcase classname="tests.test_diagnostic_report_contract.DiagnosticReportContractTests" name="test_source_facts_override_model_echo_and_no_mastery_fields" time="0.001" /><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_bank_change_rescans_and_unauthorized_target_fails" time="0.133"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_bank_change_rescans_and_unauthorized_target_fails&gt;
+
+    def test_bank_change_rescans_and_unauthorized_target_fails(self):
+        from models import QuestionBank,User
+&gt;       self.store()
+
+tests\test_import_duplicates.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels" time="0.139"><failure message="KeyError: 'skipped_labels'">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels&gt;
+
+    def test_duplicate_inside_file_chooses_answered_copy_and_preserves_labels(self):
+        from models import BankQuestion
+        first=phase2.question(); first['options'][0]['is_correct']=False; first['source_label']='Phần I — Câu 7'
+        second=phase2.question();second['index']=8;second['source_label']='Phần II — Câu 3'
+        row=self.preview([first,second]);self.scope(row)
+        report=row.get_duplicate_report()
+&gt;       self.assertEqual(report['skipped_labels'],['Phần I — Câu 7'])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'skipped_labels'
+
+tests\test_import_duplicates.py:48: KeyError</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_equal_local_pixels_under_different_names_match" time="0.123" /><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review" time="0.114"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review&gt;
+
+    def test_formula_uuid_is_not_identity_and_unresolved_asset_requires_review(self):
+        from models import FormulaAsset
+        q=phase2.question();q['question_text']='Tính [[formula:first]]';q['formulas']={'first':{'latex':'x^2 + 1','source_format':'OMML'}}
+&gt;       self.store(q)
+
+tests\test_import_duplicates.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_math_data_and_position_dependent_choices_never_auto_collapse" time="0.159"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_math_data_and_position_dependent_choices_never_auto_collapse&gt;
+
+    def test_math_data_and_position_dependent_choices_never_auto_collapse(self):
+        normalizer=ContentNormalizer()
+        base=phase2.question();base['question_text']='Tính x khi x + 2 = 3, x &gt; 0 và y^2 = 4.'
+        key=normalizer.describe(base)['key']
+        for content in ['Tính x khi x - 2 = 3, x &gt; 0 và y^2 = 4.',
+                        'Tính x khi x + 2 = 3, x &lt; 0 và y^2 = 4.',
+                        'Tính x khi x + 2 = 3, x &gt; 0 và y^3 = 4.',
+                        'Tính x khi x + 2 = 5, x &gt; 0 và y^2 = 4.']:
+            other={**base,'question_text':content}
+            self.assertNotEqual(key,normalizer.describe(other)['key'])
+&gt;       self.store(base)
+
+tests\test_import_duplicates.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_near_decision_bound_to_contents_and_partial_save_replay" time="0.146"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_near_decision_bound_to_contents_and_partial_save_replay&gt;
+
+    def test_near_decision_bound_to_contents_and_partial_save_replay(self):
+        from models import BankQuestion
+&gt;       original=phase2.question();self.store(original)
+                                   ^^^^^^^^^^^^^^^^^^^^
+
+tests\test_import_duplicates.py:113: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_receipt_survives_post_commit_cleanup_error_and_retry" time="0.188"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_receipt_survives_post_commit_cleanup_error_and_retry&gt;
+
+    def test_receipt_survives_post_commit_cleanup_error_and_retry(self):
+        from models import BankQuestion
+        row=self.preview();self.scope(row)
+        with patch('services.import_service.ImportService.cleanup_temp_file',side_effect=OSError('cleanup')):
+            result=self.confirm(row)
+&gt;       self.assertEqual(result.status_code,200,result.json)
+E       AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}
+
+tests\test_import_duplicates.py:165: AssertionError</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank" time="0.153"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank&gt;
+
+    def test_reordered_options_duplicate_and_conflicting_answer_does_not_edit_bank(self):
+&gt;       q=phase2.question(); original=self.store(q)
+                                      ^^^^^^^^^^^^^
+
+tests\test_import_duplicates.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_repeat_file_reports_zero_and_never_reserves_another_id" time="0.125"><failure message="AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_repeat_file_reports_zero_and_never_reserves_another_id&gt;
+
+    def test_repeat_file_reports_zero_and_never_reserves_another_id(self):
+        from models import BankQuestion,ID6Counter
+        q=phase2.question(); q.update(source_id='9C6N4-1D.12',chapter='6',section='4',question_category='1',grade='Lớp 9')
+&gt;       original=self.store(q)
+                 ^^^^^^^^^^^^^
+
+tests\test_import_duplicates.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_import_duplicates.py:24: in store
+    self.assertEqual(result.status_code,200,result.json)
+E   AssertionError: 400 != 200 : {'message': 'Hãy tải bản xem trước và duyệt câu hỏi trước khi lưu.', 'success': False}</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_source_download_is_limited_to_the_active_owner_session" time="0.159"><failure message="AssertionError: 200 != 404">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_source_download_is_limited_to_the_active_owner_session&gt;
+
+    def test_source_download_is_limited_to_the_active_owner_session(self):
+        from services.import_service import UPLOAD_TEMP_DIR
+        row=self.preview()
+        source=Path(UPLOAD_TEMP_DIR)/f'{row.id}_source.tex'
+        source.parent.mkdir(parents=True,exist_ok=True);source.write_text('Câu 1',encoding='utf-8')
+        row.file_path=str(source);self.db.session.commit()
+        response=self.client.get(f'/question-banks/import/{row.id}/source')
+        self.assertEqual(response.status_code,200)
+        self.assertIn('attachment',response.headers['Content-Disposition'])
+        response.close()
+        self.scope(row);self.confirm(row)
+&gt;       self.assertEqual(self.client.get(f'/question-banks/import/{row.id}/source').status_code,404)
+E       AssertionError: 200 != 404
+
+tests\test_import_duplicates.py:180: AssertionError</failure></testcase><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_source_numbers_survive_tex_restarts_and_deletion" time="0.154" /><testcase classname="tests.test_import_duplicates.TestImportDuplicates" name="test_two_concurrent_imports_into_one_bank_add_only_one_question" time="0.718"><failure message="PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Linh\\AppData\\Local\\Temp\\tmpy51ex_5z\\race.db'">self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_two_concurrent_imports_into_one_bank_add_only_one_question&gt;
+
+    def test_two_concurrent_imports_into_one_bank_add_only_one_question(self):
+        from flask import Flask
+        from database import db
+        from models import User,QuestionBank,ImportSession,BankQuestion,ID6Counter
+        from services.curriculum_service import seed_math9_catalog
+        from services.import_scope import save_scope
+        from services.import_service import ImportService
+        with tempfile.TemporaryDirectory() as folder:
+            app=Flask('duplicate_concurrency');app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///'+folder+'/race.db'
+            db.init_app(app)
+            with app.app_context():
+                db.create_all();seed_math9_catalog()
+                user=User(username='race',user_code='RACE',fullname='Race',role='teacher');db.session.add(user);db.session.flush()
+                bank=QuestionBank(name='Race bank',subject='Toán',created_by=user.id);db.session.add(bank);db.session.commit()
+                uid,bid=user.id,bank.id;ids=[]
+                for index in range(2):
+                    row=ImportSession(user_id=uid,bank_id=bid,filename='race.tex',file_type='tex',status='preview')
+                    q=phase2.question();q.update(source_id='9C6N4-1D.1',grade='Lớp 9',chapter='6',section='4',question_category='1')
+&gt;                   row.set_parsed_questions([q]);db.session.add(row);db.session.commit();save_scope(row,phase2.SCOPE);ids.append(row.id)
+                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_import_duplicates.py:201: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\import_scope.py:194: in save_scope
+    scope, nodes = normalize_scope(payload)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+payload = {'grade': '9', 'chapters': ['6'], 'lessons': ['6:4'], 'topics': ['thong_ke_xac_suat']}
+
+    def normalize_scope(payload):
+        if not isinstance(payload, dict):
+            raise ValueError("Phạm vi file không hợp lệ.")
+        grade = str(payload.get("grade", ""))
+        chapters, lessons, topics = (_string_list(payload, key) for key in ("chapters", "lessons", "topics"))
+        nodes = [n for n in catalog_options() if n["grade"] == grade]
+        if not nodes or not set(chapters).issubset({n["chapter"] for n in nodes}):
+&gt;           raise ValueError("Chương không thuộc lớp đã chọn hoặc danh mục đã ngừng sử dụng.")
+E           ValueError: Chương không thuộc lớp đã chọn hoặc danh mục đã ngừng sử dụng.
+
+services\import_scope.py:40: ValueError
+
+During handling of the above exception, another exception occurred:
+
+path = 'C:\\Users\\Linh\\AppData\\Local\\Temp\\tmpy51ex_5z'
+onexc = &lt;function TemporaryDirectory._rmtree.&lt;locals&gt;.onexc at 0x000001857C680E00&gt;
+
+    def _rmtree_unsafe(path, onexc):
+        def onerror(err):
+            onexc(os.scandir, err.filename, err)
+        results = os.walk(path, topdown=False, onerror=onerror, followlinks=os._walk_symlinks_as_files)
+        for dirpath, dirnames, filenames in results:
+            for name in dirnames:
+                fullname = os.path.join(dirpath, name)
+                try:
+                    os.rmdir(fullname)
+                except OSError as err:
+                    onexc(os.rmdir, fullname, err)
+            for name in filenames:
+                fullname = os.path.join(dirpath, name)
+                try:
+&gt;                   os.unlink(fullname)
+E                   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Linh\\AppData\\Local\\Temp\\tmpy51ex_5z\\race.db'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py:633: PermissionError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;test_import_duplicates.TestImportDuplicates testMethod=test_two_concurrent_imports_into_one_bank_add_only_one_question&gt;
+
+    def test_two_concurrent_imports_into_one_bank_add_only_one_question(self):
+        from flask import Flask
+        from database import db
+        from models import User,QuestionBank,ImportSession,BankQuestion,ID6Counter
+        from services.curriculum_service import seed_math9_catalog
+        from services.import_scope import save_scope
+        from services.import_service import ImportService
+&gt;       with tempfile.TemporaryDirectory() as folder:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_import_duplicates.py:190: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py:950: in __exit__
+    self.cleanup()
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py:954: in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py:934: in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py:781: in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py:635: in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+func = &lt;built-in function unlink&gt;
+path = 'C:\\Users\\Linh\\AppData\\Local\\Temp\\tmpy51ex_5z\\race.db'
+exc = PermissionError(13, 'The process cannot access the file because it is being used by another process')
+
+    def onexc(func, path, exc):
+        if isinstance(exc, PermissionError):
+            if repeated and path == name:
+                if ignore_errors:
+                    return
+                raise
+    
+            try:
+                if path != name:
+                    _resetperms(_os.path.dirname(path))
+                _resetperms(path)
+    
+                try:
+&gt;                   _os.unlink(path)
+E                   PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Linh\\AppData\\Local\\Temp\\tmpy51ex_5z\\race.db'
+
+..\..\..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py:909: PermissionError</failure></testcase><testcase classname="tests.test_learning_workspace" name="test_empty_roster_member_and_legacy_link" time="0.262" /><testcase classname="tests.test_learning_workspace" name="test_observed_error_detail_is_readable_without_writing_profile" time="0.282" /><testcase classname="tests.test_learning_workspace" name="test_force_keeps_completed_snapshot_and_new_roster_changes_it" time="0.241" /></testsuite></testsuites>

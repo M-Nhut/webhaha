@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "cssErrors": [],
+  "templatesParsed": 2,
+  "registerOnlyCacheVersionChanged": true,
+  "loginFormHooksPreserved": true,
+  "originalLeftCopyRemoved": true,
+  "motion": "translateY ±10px, 5s ease-in-out",
+  "reducedMotionRule": true,
+  "logoAssetUnchanged": true
+}

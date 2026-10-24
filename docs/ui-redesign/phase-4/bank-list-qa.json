@@ -1,0 +1,128 @@
+{
+  "checks": [
+    {
+      "name": "bank list 375 no page overflow",
+      "passed": true
+    },
+    {
+      "name": "bank list 375 all four labels",
+      "passed": true,
+      "detail": [
+        "Nhận biết",
+        "Thông hiểu",
+        "Vận dụng",
+        "Vận dụng cao"
+      ]
+    },
+    {
+      "name": "mobile bank list 44px controls",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "bank list 768 no page overflow",
+      "passed": true
+    },
+    {
+      "name": "bank list 768 all four labels",
+      "passed": true,
+      "detail": [
+        "Nhận biết",
+        "Thông hiểu",
+        "Vận dụng",
+        "Vận dụng cao"
+      ]
+    },
+    {
+      "name": "bank list 1024 no page overflow",
+      "passed": true
+    },
+    {
+      "name": "bank list 1024 all four labels",
+      "passed": true,
+      "detail": [
+        "Nhận biết",
+        "Thông hiểu",
+        "Vận dụng",
+        "Vận dụng cao"
+      ]
+    },
+    {
+      "name": "bank list 1440 no page overflow",
+      "passed": true
+    },
+    {
+      "name": "bank list 1440 all four labels",
+      "passed": true,
+      "detail": [
+        "Nhận biết",
+        "Thông hiểu",
+        "Vận dụng",
+        "Vận dụng cao"
+      ]
+    },
+    {
+      "name": "teacher shared bank cannot edit/delete",
+      "passed": true
+    },
+    {
+      "name": "teacher shared bank exact import available",
+      "passed": true
+    },
+    {
+      "name": "dialog identifies bank by original name",
+      "passed": true
+    },
+    {
+      "name": "Escape returns focus",
+      "passed": true
+    },
+    {
+      "name": "bank name inserted as literal text",
+      "passed": true
+    },
+    {
+      "name": "bank name cannot inject tags",
+      "passed": true
+    },
+    {
+      "name": "empty bank name safely renders empty",
+      "passed": true
+    },
+    {
+      "name": "confirm posts to original bank",
+      "passed": true,
+      "detail": "http://127.0.0.1:8766/question-banks/6/delete"
+    },
+    {
+      "name": "confirm retains original CSRF",
+      "passed": true
+    },
+    {
+      "name": "native invalid form keeps page",
+      "passed": true
+    },
+    {
+      "name": "native invalid linked error summary",
+      "passed": true
+    },
+    {
+      "name": "native invalid focuses summary",
+      "passed": true
+    },
+    {
+      "name": "admin owner name matches User.fullname",
+      "passed": true
+    },
+    {
+      "name": "admin private form identifies teacher owner",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript runtime errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

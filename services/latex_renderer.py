@@ -1,103 +1,69 @@
 """Server-side renderer for LaTeX blocks that MathJax cannot render.
 
-Production should set LATEX_RENDERER_URL to a sandboxed renderer service. A
-local pdflatex fallback is provided for traditional servers, but is never
-required on the end user's device.
+The default uses the bundled Node/WebAssembly engine on this computer.
+All compilation stays on this computer; legacy service settings are ignored.
 """
-import base64
 import hashlib
 import os
-import shutil
 import subprocess
 import tempfile
 from pathlib import Path
 
 
 ASSET_DIR = Path(os.path.dirname(os.path.dirname(__file__))) / "static" / "uploads" / "questions"
+_BLOCKED_TEX_TOKENS = (
+    r"\input", r"\include", r"\openin", r"\openout", r"\read",
+    r"\write", r"\immediate", r"\write18", r"\directlua",
+    r"\documentclass", r"\begin{document}", r"\end{document}",
+)
 
 
-def render_latex_block(source):
-    """Return a web URL for a rendered SVG, or ``None`` when unavailable."""
+def _render_result(url=None, *, verified=False, method=None, error=None):
+    return {
+        "url": url,
+        "verified": bool(verified),
+        "method": method,
+        "error": error,
+    }
+
+
+def _asset_digest(source, preamble=""):
+    payload = f"{preamble}\n%__QUESTION_BLOCK__%\n{source}"
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def render_latex_block(source, preamble=""):
+    """Backward-compatible URL-only wrapper around the detailed renderer."""
+    return render_latex_block_result(source, preamble=preamble).get("url")
+
+
+def render_latex_block_result(source, preamble=""):
+    """Compile a bounded TeX block, cache the SVG atomically, retain errors."""
     if not source or len(source) > 200_000:
-        return None
-    digest = hashlib.sha256(source.encode("utf-8")).hexdigest()
+        return _render_result(error="Khối LaTeX trống hoặc vượt quá 200 KB")
+    if len(preamble.encode("utf-8")) > 50_000:
+        return _render_result(error="Preamble LaTeX vượt quá 50 KB")
+    lowered_source = (source + "\n" + preamble).lower()
+    if any(token.lower() in lowered_source for token in _BLOCKED_TEX_TOKENS):
+        return _render_result(error="Source chứa lệnh TeX I/O không được phép")
+    digest = _asset_digest(source, "local-wasm-v4-vietnamese-accents\n" + preamble)
     ASSET_DIR.mkdir(parents=True, exist_ok=True)
     output = ASSET_DIR / f"latex_{digest}.svg"
+    url = f"/static/uploads/questions/{output.name}"
     if output.exists():
-        return f"/static/uploads/questions/{output.name}"
-
-    remote = os.environ.get("LATEX_RENDERER_URL", "").rstrip("/")
-    if remote:
-        url = _render_remote(remote, source, digest)
-        if url:
-            return url
-
-    return _render_local(source, digest, output)
-
-
-def _render_remote(base_url, source, digest):
+        return _render_result(url, verified=True, method="cached_tex")
     try:
-        import requests
-        headers = {}
-        token = os.environ.get("LATEX_RENDERER_TOKEN", "")
-        if token:
-            headers["Authorization"] = f"Bearer {token}"
-        response = requests.post(
-            f"{base_url}/render",
-            json={"source": source, "format": "svg", "cache_key": digest},
-            headers=headers,
-            timeout=30,
-        )
-        if response.status_code != 200:
-            return None
-        data = response.json()
-        if data.get("svg_url"):
-            return data["svg_url"]
-        svg = data.get("svg")
-        if not svg or "<svg" not in svg:
-            return None
-        output = ASSET_DIR / f"latex_{digest}.svg"
-        output.write_text(svg, encoding="utf-8")
-        return f"/static/uploads/questions/{output.name}"
-    except Exception:
-        return None
+        from services.local_tex import compile_svg
+        svg = compile_svg(source, preamble)
+        # Atomic replace prevents another request seeing a partially written SVG.
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=ASSET_DIR,
+                                         suffix=".svg.tmp", delete=False) as handle:
+            handle.write(svg)
+            temporary = handle.name
+        os.replace(temporary, output)
+        return _render_result(url, verified=True, method="local_wasm_tex")
+    except subprocess.TimeoutExpired:
+        return _render_result(error="Hình vượt quá thời gian biên dịch 40 giây. Hãy kiểm tra vòng lặp và độ phức tạp của mã TeX.", method="local_wasm_tex")
+    except (ValueError, OSError, subprocess.SubprocessError) as exc:
+        return _render_result(error=str(exc)[:600], method="local_wasm_tex")
 
-
-def _render_local(source, digest, output):
-    pdflatex = shutil.which("pdflatex") or shutil.which("xelatex")
-    pdftocairo = shutil.which("pdftocairo")
-    if not pdflatex or not pdftocairo:
-        return None
-
-    workdir = Path(tempfile.mkdtemp(prefix="latex_render_"))
-    try:
-        tex = workdir / "fragment.tex"
-        tex.write_text(
-            "\\documentclass[preview,border=2pt]{standalone}\n"
-            "\\usepackage[utf8]{inputenc}\n"
-            "\\usepackage{amsmath,amssymb,graphicx,array,tikz}\n"
-            "\\begin{document}\n" + source + "\n\\end{document}\n",
-            encoding="utf-8",
-        )
-        result = subprocess.run(
-            [pdflatex, "-interaction=nonstopmode", "-halt-on-error", "-no-shell-escape", tex.name],
-            cwd=workdir, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            timeout=30, check=False,
-        )
-        if result.returncode != 0 or not (workdir / "fragment.pdf").exists():
-            return None
-        svg_base = workdir / "rendered"
-        result = subprocess.run(
-            [pdftocairo, "-singlefile", "-svg", "fragment.pdf", str(svg_base)],
-            cwd=workdir, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-            timeout=30, check=False,
-        )
-        rendered = workdir / "rendered.svg"
-        if result.returncode != 0 or not rendered.exists():
-            return None
-        shutil.copyfile(rendered, output)
-        return f"/static/uploads/questions/{output.name}"
-    except (OSError, subprocess.SubprocessError):
-        return None
-    finally:
-        shutil.rmtree(workdir, ignore_errors=True)

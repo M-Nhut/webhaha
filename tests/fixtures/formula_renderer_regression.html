@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiểm tra hồi quy hiển thị công thức</title>
+  <style>
+    body { margin: 24px auto; padding: 0 16px; max-width: 900px; font: 16px/1.6 system-ui; color: #172033; }
+    button { padding: 10px 16px; font: inherit; }
+    .sample { padding: 12px; border-bottom: 1px solid #dce3ef; }
+    .pass { color: #166534; } .fail { color: #b91c1c; }
+    [hidden] { display: none !important; }
+  </style>
+  <script>window.MathJax = {tex: {inlineMath: [['$', '$']]}, startup: {typeset: false}};</script>
+  <script src="/static/js/formula_renderer.js" defer></script>
+  <script src="/static/js/bank_formula_scheduler.js" defer></script>
+  <script src="/static/vendor/mathjax/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+  <h1>Kiểm tra hồi quy hiển thị công thức</h1>
+  <p>Dùng MathJax cục bộ và bộ hiển thị thực tế. Kiểm tra ký tự được vẽ, không chỉ sự có mặt của khung công thức.</p>
+  <button id="run" type="button">Chạy kiểm tra</button>
+  <p id="status" role="status">Chưa chạy</p>
+  <ol id="results"></ol>
+  <div id="samples"></div>
+  <div id="lazy" data-bank-lazy-formulas></div>
+  <script>
+    // Serve the repository root over HTTP, then open this fixture. No database,
+    // account, API request or additional JavaScript dependency is needed.
+    const samples = document.getElementById('samples');
+    const results = document.getElementById('results');
+    const status = document.getElementById('status');
+    const lazy = document.getElementById('lazy');
+    const rendered = [];
+
+    function check(condition, message) {
+      if (!condition) throw new Error(message);
+    }
+
+    function visibleGlyphs(root) {
+      const glyphs = Array.from(root.querySelectorAll('mjx-c'));
+      check(glyphs.length > 0, 'Không có ký tự MathJax');
+      const missing = glyphs.filter(glyph => ['none', 'normal', '""', "''"].includes(getComputedStyle(glyph, '::before').content));
+      check(missing.length === 0, 'Ký tự bị trống: ' + missing.map(glyph => glyph.className).join(', '));
+      check(root.querySelectorAll('[data-mjx-error], .formula-error').length === 0, 'Có lỗi chuyển đổi công thức');
+    }
+
+    function block(text, parent = samples) {
+      const root = document.createElement('div');
+      root.className = 'sample katex-render';
+      root.textContent = text;
+      parent.append(root);
+      return root;
+    }
+
+    function asset(latex, extra = {}) {
+      return {latex, source_format: 'LaTeX', conversion_status: 'converted', verification_status: 'verified', ...extra};
+    }
+
+    async function render(text, assets = {}, parent = samples) {
+      const root = block(text, parent);
+      await FormulaRenderer.renderFormulas(root, assets, {immediate: true});
+      visibleGlyphs(root);
+      rendered.push(root);
+      return root;
+    }
+
+    async function until(predicate) {
+      const deadline = performance.now() + 5000;
+      while (!predicate()) {
+        check(performance.now() < deadline, 'Hết thời gian chờ hiển thị');
+        await new Promise(resolve => requestAnimationFrame(resolve));
+      }
+    }
+
+    document.getElementById('run').addEventListener('click', async event => {
+      event.target.disabled = true;
+      status.textContent = 'Đang kiểm tra…';
+      await MathJax.startup.promise;
+      let passed = 0;
+      let failed = 0;
+      async function test(name, action) {
+        const result = document.createElement('li');
+        results.append(result);
+        try {
+          await action();
+          passed++;
+          result.className = 'pass';
+          result.textContent = 'Đạt: ' + name;
+        } catch (error) {
+          failed++;
+          result.className = 'fail';
+          result.textContent = 'Lỗi: ' + name + ' — ' + error.message;
+        }
+      }
+
+      let raw;
+      await test('Công thức TeX ban đầu', async () => {
+        raw = await render('$1+1=2$');
+      });
+      await test('Ký hiệu S, N xuất hiện sau công thức ban đầu', async () => {
+        await render('Kí hiệu [[formula:S]] là mặt sấp, [[formula:N]] là mặt ngửa.', {S: asset('S'), N: asset('N')}, lazy);
+      });
+      await test('Bốn đáp án không gian mẫu có đầy đủ ký tự', async () => {
+        for (const [index, value] of ['SS;SN;NS;NN', 'SS;SN;NN', 'SS;NN', 'SN;NS'].entries()) {
+          await render(String.fromCharCode(65 + index) + '. [[formula:answer]]', {answer: asset('\\Omega=\\{' + value + '\\}')}, lazy);
+        }
+      });
+      await test('Phân số và ký hiệu mới trong lời giải', async () => {
+        await render('[[formula:solution]]', {solution: asset('P(A)=\\frac{n(A)}{n(\\Omega)}=\\frac{3}{4}\\ne 0')}, lazy);
+      });
+      await test('MathML hiển thị sau các đợt TeX', async () => {
+        await render('[[formula:mathml]]', {mathml: asset(null, {mathml: '<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>ξ</mi><mo>≤</mo><mn>7</mn></math>'})}, lazy);
+      });
+      await test('Bảng tiếng Việt giữ công thức trong ô', async () => {
+        const root = await render('[[formula:table]]', {table: {table: {version: 1, columns: 2, rows: [[{text: 'Kết quả'}, {text: '$\\alpha=\\sqrt{5}$'}]]}}});
+        check(root.textContent.includes('Kết quả'), 'Mất chữ tiếng Việt trong bảng');
+      });
+      await test('Công thức TeX cũ vẫn được MathJax theo dõi', async () => {
+        check(MathJax.startup.document.getMathItemsWithin([raw]).length === 1, 'Công thức cũ bị xóa khỏi danh sách quản lý');
+        rendered.forEach(visibleGlyphs);
+      });
+      await test('Hiển thị lại không nhân đôi công thức', async () => {
+        const root = rendered[1];
+        const count = root.querySelectorAll('mjx-container').length;
+        await FormulaRenderer.renderFormulas(root, {}, {immediate: true});
+        check(root.querySelectorAll('mjx-container').length === count, 'Công thức bị lặp');
+        visibleGlyphs(root);
+      });
+      await test('Bộ tải theo vùng nhìn thấy cập nhật ký tự mới', async () => {
+        const root = block('[[formula:lazy]]', lazy);
+        root.scrollIntoView({block: 'center'});
+        await FormulaRenderer.renderFormulas(root, {lazy: asset('\\beta+\\gamma=\\infty')}, {source: root.textContent});
+        await until(() => !!root.querySelector('mjx-container'));
+        visibleGlyphs(root);
+        rendered.push(root);
+      });
+      await test('Đáp án ẩn được hiển thị đầy đủ khi mở', async () => {
+        const section = document.createElement('div');
+        section.hidden = true;
+        lazy.append(section);
+        const root = block('[[formula:hidden]]', section);
+        await FormulaRenderer.renderFormulas(root, {hidden: asset('\\delta\\in\\mathbb{R}')}, {source: root.textContent});
+        section.hidden = false;
+        root.scrollIntoView({block: 'center'});
+        await until(() => !!root.querySelector('mjx-container'));
+        visibleGlyphs(root);
+      });
+      await test('Công thức thiếu dữ liệu hiện thông báo rõ ràng', async () => {
+        const root = block('[[formula:missing]]');
+        await FormulaRenderer.renderFormulas(root, {missing: {}}, {immediate: true});
+        check(!!root.querySelector('.formula-error')?.textContent.trim(), 'Công thức thiếu dữ liệu bị để trống');
+      });
+      await document.fonts.ready;
+      status.textContent = passed + ' đạt · ' + failed + ' lỗi';
+      status.dataset.passed = String(passed);
+      status.dataset.failed = String(failed);
+      status.scrollIntoView({block: 'center'});
+    });
+  </script>
+</body>
+</html>

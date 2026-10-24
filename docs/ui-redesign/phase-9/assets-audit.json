@@ -1,0 +1,573 @@
+{
+  "date": "2026-10-19",
+  "scope": "Phase 9 static/preview/guidance audit. No app import, .env read, production DB read, real-provider call or Git change.",
+  "removed": [
+    {
+      "path": "scripts/preview_assessment.py",
+      "reason": "One-off standalone assessment preview imports test fixtures; superseded by unified current preview and existing Phase 5/6 fixtures. No runtime consumer."
+    },
+    {
+      "path": "scripts/preview_duplicate_review.py",
+      "reason": "One-off duplicate-import preview imports test fixtures; superseded by Phase 5 duplicate receipt/resume fixture and current preview. No runtime consumer."
+    },
+    {
+      "path": "scripts/preview_general_bank.py",
+      "reason": "Exports ephemeral HTML into tmp/general-preview and rewrites legacy report URL hooks; current preview renders live current templates and API. No runtime consumer."
+    },
+    {
+      "path": "scripts/preview_latex_v3.py",
+      "reason": "Exports ephemeral HTML from a teacher document outside the repository; injects obsolete QA_PREVIEW/acceptDuplicateData wizard hooks. Only active documentation reference was migrated to synthetic Phase 9 preview."
+    },
+    {
+      "path": "docs/neo-pop-design.md",
+      "reason": "Conflicting active guide for deleted neo-pop.css, old palette, old illustrations and remote Nunito fonts; replaced by approved Modern White Academy MASTER and current implementation reports."
+    },
+    {
+      "path": "docs/login-logo-edit.md",
+      "reason": "Historical image-edit prompts describe login-only styling and reference source logo; active brand asset/proportions retained and current source of design documented in MASTER."
+    }
+  ],
+  "kept": [
+    {
+      "path": "static/images/logo-transparent.png",
+      "reason": "Current brand rendered in shell/auth/errors/prototype; app.py /favicon.ico returns this PNG."
+    },
+    {
+      "path": "static/images/avatar-default.svg",
+      "reason": "Current fallback for default.jpg and dynamically stored user.avatar filenames."
+    },
+    {
+      "path": "static/images/logo.png",
+      "reason": "Original brand source and stable public asset, retained by explicit Phase 9 decision; not an old theme layer."
+    },
+    {
+      "path": "static/favicon.ico; static/images/favicon.ico",
+      "reason": "Stable public favicon asset URLs. /favicon.ico currently returns transparent brand PNG; direct static URLs intentionally remain compatible."
+    },
+    {
+      "path": "static/avatars/; static/course_images/; static/uploads/; uploads/",
+      "reason": "User/database-referenced media and source imports; never delete by literal-search absence."
+    },
+    {
+      "path": "static/vendor/; static/fonts/; vendor/tex/; node_modules/",
+      "reason": "Current local MathJax/Alpine/Lucide/Chart/font rendering and Node/WASM TeX pipeline, including dynamic font families and license files."
+    },
+    {
+      "path": "legacy/latex_renderer_service/",
+      "reason": "Archived backend compiler/service, explicitly not imported by current app; outside old UI cleanup scope and preserved from unrelated work."
+    },
+    {
+      "path": "outputs/matrix7991/",
+      "reason": "Earlier Excel and verification artifacts, not an alternate UI implementation."
+    },
+    {
+      "path": "docs/ui-redesign/phase-1*; phase-2/; phase-3/ through phase-8/; docs/reports/",
+      "reason": "Historical inventory, approved prototype/design, captures and test transcripts; README identifies these as dated evidence. Not runtime or active old-theme guidance."
+    }
+  ],
+  "retained_phase_previews": [
+    {
+      "path": "scripts/preview_ui_phase3.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "scripts/qa_ui_phase3.cjs",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "path": "scripts/preview_ui_phase4.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "scripts/qa_ui_phase4.cjs",
+          "line": 1
+        },
+        {
+          "path": "scripts/preview_ui_phase7.py",
+          "line": 20
+        },
+        {
+          "path": "scripts/preview_ui_phase5.py",
+          "line": 19
+        },
+        {
+          "path": "tests/test_ui_phase8_user_validation.py",
+          "line": 13
+        },
+        {
+          "path": "tests/test_ui_redesign_phase4.py",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "scripts/preview_ui_phase5.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "scripts/preview_ui_phase8.py",
+          "line": 23
+        },
+        {
+          "path": "scripts/preview_ui_phase9.py",
+          "line": 30
+        },
+        {
+          "path": "scripts/preview_ui_phase6.py",
+          "line": 18
+        },
+        {
+          "path": "scripts/preview_ui_phase7.py",
+          "line": 19
+        },
+        {
+          "path": "tests/test_ui_redesign_phase5.py",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "path": "scripts/preview_ui_phase6.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "tests/test_ui_redesign_phase6.py",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "path": "scripts/preview_ui_phase7.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "scripts/preview_ui_phase8.py",
+          "line": 22
+        },
+        {
+          "path": "tests/test_ui_redesign_phase7.py",
+          "line": 12
+        }
+      ]
+    },
+    {
+      "path": "scripts/preview_ui_phase8.py",
+      "decision": "keep",
+      "reason": "Synthetic fixtures/helpers for regression and historical QA; render current templates, not frozen old UI.",
+      "consumers": [
+        {
+          "path": "scripts/preview_ui_phase9.py",
+          "line": 18
+        },
+        {
+          "path": "scripts/qa_ui_phase8_integrity.py",
+          "line": 50
+        },
+        {
+          "path": "tests/test_ui_redesign_phase8.py",
+          "line": 10
+        }
+      ]
+    }
+  ],
+  "asset_baseline_comparison": [
+    {
+      "path": "static/fonts/be-vietnam-pro/OFL.txt",
+      "decision": "keep",
+      "baseline_sha256": "6b7f8f73609a25ea78c891e34cf37b06f8a676b7ea986e941e43b009110f2a85",
+      "current_sha256": "6b7f8f73609a25ea78c891e34cf37b06f8a676b7ea986e941e43b009110f2a85",
+      "unchanged": true
+    },
+    {
+      "path": "static/fonts/be-vietnam-pro/be-vietnam-pro-400.ttf",
+      "decision": "keep",
+      "baseline_sha256": "4ad53eac036092be79a34b5fa0aa32d0ebb3c7e5df4bc058764f5614fbf148a0",
+      "current_sha256": "4ad53eac036092be79a34b5fa0aa32d0ebb3c7e5df4bc058764f5614fbf148a0",
+      "unchanged": true
+    },
+    {
+      "path": "static/fonts/be-vietnam-pro/be-vietnam-pro-500.ttf",
+      "decision": "keep",
+      "baseline_sha256": "557a1c42a7f8eb83f84255d475017b1235c1101b899367f974a1cbfa19cd7c3d",
+      "current_sha256": "557a1c42a7f8eb83f84255d475017b1235c1101b899367f974a1cbfa19cd7c3d",
+      "unchanged": true
+    },
+    {
+      "path": "static/fonts/be-vietnam-pro/be-vietnam-pro-600.ttf",
+      "decision": "keep",
+      "baseline_sha256": "cbf437bf71c8536a7aaed632dce2583ea5ec97c07efffc625c31991d1027ba3b",
+      "current_sha256": "cbf437bf71c8536a7aaed632dce2583ea5ec97c07efffc625c31991d1027ba3b",
+      "unchanged": true
+    },
+    {
+      "path": "static/fonts/be-vietnam-pro/be-vietnam-pro-700.ttf",
+      "decision": "keep",
+      "baseline_sha256": "aef76cd15b8c9faa1ff21951bb71963a774aa381526c557e5a52f38d430c4650",
+      "current_sha256": "aef76cd15b8c9faa1ff21951bb71963a774aa381526c557e5a52f38d430c4650",
+      "unchanged": true
+    },
+    {
+      "path": "static/images/.DS_Store",
+      "decision": "remove_metadata",
+      "baseline_sha256": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3",
+      "current_sha256": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3",
+      "unchanged": true
+    },
+    {
+      "path": "static/images/avatar-default.svg",
+      "decision": "keep",
+      "baseline_sha256": "1a6aff93edb3d9b165888e0e6a9f2ef542e2ab6a33441163673ac5c0cfc8da06",
+      "current_sha256": "1a6aff93edb3d9b165888e0e6a9f2ef542e2ab6a33441163673ac5c0cfc8da06",
+      "unchanged": true
+    },
+    {
+      "path": "static/images/favicon.ico",
+      "decision": "keep",
+      "baseline_sha256": "7b856f56758d138eaf66bd6db96f0e81063afb50fc2d1d0aaf858ff4f8776206",
+      "current_sha256": "7b856f56758d138eaf66bd6db96f0e81063afb50fc2d1d0aaf858ff4f8776206",
+      "unchanged": true
+    },
+    {
+      "path": "static/images/logo-transparent.png",
+      "decision": "keep",
+      "baseline_sha256": "4d07ed32c0d20835436fb14e13aa273e44392f7ed5f525377e6c37efa8d71803",
+      "current_sha256": "4d07ed32c0d20835436fb14e13aa273e44392f7ed5f525377e6c37efa8d71803",
+      "unchanged": true
+    },
+    {
+      "path": "static/images/logo.png",
+      "decision": "keep",
+      "baseline_sha256": "000c401a89f4de8967521eda1ca5aa9d7c46ee2042c43462e09b375e5b495994",
+      "current_sha256": "000c401a89f4de8967521eda1ca5aa9d7c46ee2042c43462e09b375e5b495994",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/alpine/alpine.min.js",
+      "decision": "keep",
+      "baseline_sha256": "3d988c906334fada157d7a88ef1eedcd9bdfb478df83e9b705e6468f0d6c8dd2",
+      "current_sha256": "3d988c906334fada157d7a88ef1eedcd9bdfb478df83e9b705e6468f0d6c8dd2",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/chartjs/LICENSE.md",
+      "decision": "keep",
+      "baseline_sha256": "41a84aa2caba645f966a18d9c2056b73e6d3a81d80bc0046bc0011a2634d4cce",
+      "current_sha256": "41a84aa2caba645f966a18d9c2056b73e6d3a81d80bc0046bc0011a2634d4cce",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/chartjs/chart.umd.js",
+      "decision": "keep",
+      "baseline_sha256": "84d0e233daba702b8f77d669d8c137cad36d441a10f200b6f2d3ab553bdfcf6b",
+      "current_sha256": "84d0e233daba702b8f77d669d8c137cad36d441a10f200b6f2d3ab553bdfcf6b",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/lucide/LICENSE",
+      "decision": "keep",
+      "baseline_sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+      "current_sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/lucide/lucide.min.js",
+      "decision": "keep",
+      "baseline_sha256": "ab85225ecc1daa2033607856f03dd2dabcbc08e2d260a5b97e17c690aa929766",
+      "current_sha256": "ab85225ecc1daa2033607856f03dd2dabcbc08e2d260a5b97e17c690aa929766",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/tex.js",
+      "decision": "keep",
+      "baseline_sha256": "b525b71e41a7fdb124ef6a2b44d5250cb7fc2f56d7e73494ad03d090d0e4f28a",
+      "current_sha256": "b525b71e41a7fdb124ef6a2b44d5250cb7fc2f56d7e73494ad03d090d0e4f28a",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "3de784d07b9fa8f104c10928a878ee879cf3305cae5195cba663c9c2bb0195eb",
+      "current_sha256": "3de784d07b9fa8f104c10928a878ee879cf3305cae5195cba663c9c2bb0195eb",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff",
+      "decision": "keep",
+      "baseline_sha256": "af04542b29eaac04550a140c5f1760a649783989426f2540855bf4157819367d",
+      "current_sha256": "af04542b29eaac04550a140c5f1760a649783989426f2540855bf4157819367d",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "26683bf201fb258a2237d9754616de9d4ecf4cc1cd39dd1902476df7d75f1d16",
+      "current_sha256": "26683bf201fb258a2237d9754616de9d4ecf4cc1cd39dd1902476df7d75f1d16",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff",
+      "decision": "keep",
+      "baseline_sha256": "721921bab0d001ebff0206c24cb5de6ca136467bf1843a7aa32030ba061d1e92",
+      "current_sha256": "721921bab0d001ebff0206c24cb5de6ca136467bf1843a7aa32030ba061d1e92",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "870673df72e70f87c91a5a317d558c2c3b54392264ad79bbadc6d424ae8765fe",
+      "current_sha256": "870673df72e70f87c91a5a317d558c2c3b54392264ad79bbadc6d424ae8765fe",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff",
+      "decision": "keep",
+      "baseline_sha256": "88b98cad3688915e50da55553ff6ad185e0dce134b47f176e91b100f8a9b175c",
+      "current_sha256": "88b98cad3688915e50da55553ff6ad185e0dce134b47f176e91b100f8a9b175c",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff",
+      "decision": "keep",
+      "baseline_sha256": "355254db9ca10a09a3b5f0929d74eb4670f44fbe864c07526a06213e0a0caf6c",
+      "current_sha256": "355254db9ca10a09a3b5f0929d74eb4670f44fbe864c07526a06213e0a0caf6c",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "1cb1c39ea642f26a4dfed230b4aea1c3c218689421f6e9c0a7c1811693c4fa07",
+      "current_sha256": "1cb1c39ea642f26a4dfed230b4aea1c3c218689421f6e9c0a7c1811693c4fa07",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff",
+      "decision": "keep",
+      "baseline_sha256": "8ea8dbb1b02e6f730f55b4cb5d413b785b9f5c39807d0a0fa7da206a0824a457",
+      "current_sha256": "8ea8dbb1b02e6f730f55b4cb5d413b785b9f5c39807d0a0fa7da206a0824a457",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff",
+      "decision": "keep",
+      "baseline_sha256": "a009bea404f7a500ded48f8b9ad9cf16e12504b3195dd9e25975289b8256b0f0",
+      "current_sha256": "a009bea404f7a500ded48f8b9ad9cf16e12504b3195dd9e25975289b8256b0f0",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "c01d3321e89b403c4b811aa153c4e618eda3421f92d8a072a02c8d190782a191",
+      "current_sha256": "c01d3321e89b403c4b811aa153c4e618eda3421f92d8a072a02c8d190782a191",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff",
+      "decision": "keep",
+      "baseline_sha256": "32792104b5ef69eded905b6d1598ed05d8087684d38e7a94d52e3c38ba16f47e",
+      "current_sha256": "32792104b5ef69eded905b6d1598ed05d8087684d38e7a94d52e3c38ba16f47e",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff",
+      "decision": "keep",
+      "baseline_sha256": "fc6ddf5df402b263cfb158aed8e89972542c34b719cd87b1db30461985f7bd5b",
+      "current_sha256": "fc6ddf5df402b263cfb158aed8e89972542c34b719cd87b1db30461985f7bd5b",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "b418136e3b384baaadecb70bd3c48a8da9825210130b2897db808c44efc883cb",
+      "current_sha256": "b418136e3b384baaadecb70bd3c48a8da9825210130b2897db808c44efc883cb",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "af96f67d7accf5fd2a4a682d0b9f8b339f8ea6fe34c310c1694c8ba7f6ddc96f",
+      "current_sha256": "af96f67d7accf5fd2a4a682d0b9f8b339f8ea6fe34c310c1694c8ba7f6ddc96f",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "c49810b53ecc0d87d8028762c518924197dd9d3f905b08f99ea241301085b9cb",
+      "current_sha256": "c49810b53ecc0d87d8028762c518924197dd9d3f905b08f99ea241301085b9cb",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "30e889b58cbc51adfbb038ab1a96dc4025aa3542a3cff7712fc55ece510675e2",
+      "current_sha256": "30e889b58cbc51adfbb038ab1a96dc4025aa3542a3cff7712fc55ece510675e2",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "5cda41563a095bd70c78e2dda13d0f8cb922c71c90fffd0a0044c65173a66e83",
+      "current_sha256": "5cda41563a095bd70c78e2dda13d0f8cb922c71c90fffd0a0044c65173a66e83",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "3bc6ecaae7ecf6f8d7f8ea07bddbaca8601e2cb6e89d6aef58e78d9f6d8a398f",
+      "current_sha256": "3bc6ecaae7ecf6f8d7f8ea07bddbaca8601e2cb6e89d6aef58e78d9f6d8a398f",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "c56da8d69f1a0208b8e0703656c3264b6dd748bd452524c82b0385b60f6a68c1",
+      "current_sha256": "c56da8d69f1a0208b8e0703656c3264b6dd748bd452524c82b0385b60f6a68c1",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff",
+      "decision": "keep",
+      "baseline_sha256": "36e0d72d8a7afc696a3e7a5c7369807634640de9b02257bca447bdf126221a27",
+      "current_sha256": "36e0d72d8a7afc696a3e7a5c7369807634640de9b02257bca447bdf126221a27",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff",
+      "decision": "keep",
+      "baseline_sha256": "72bc573386dd1d48c5bbd286302ca9e3400c5eb0f298e7cfbf945b9d08fc688f",
+      "current_sha256": "72bc573386dd1d48c5bbd286302ca9e3400c5eb0f298e7cfbf945b9d08fc688f",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Zero.woff",
+      "decision": "keep",
+      "baseline_sha256": "481e39042508ae313a60618af1e37146ab93e9324c98e4c78b8f17fe55d41e0b",
+      "current_sha256": "481e39042508ae313a60618af1e37146ab93e9324c98e4c78b8f17fe55d41e0b",
+      "unchanged": true
+    },
+    {
+      "path": "static/vendor/mathjax/tex-mml-chtml.js",
+      "decision": "keep",
+      "baseline_sha256": "300480069078b5892d2363a2b65e2dfbbf30fe5c80f83edbfecf4610fd093862",
+      "current_sha256": "300480069078b5892d2363a2b65e2dfbbf30fe5c80f83edbfecf4610fd093862",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/README.md",
+      "decision": "keep",
+      "baseline_sha256": "355bba89878b67cadc82590abdd0381dd5996bcf6e0b204993dda485b67f94af",
+      "current_sha256": "355bba89878b67cadc82590abdd0381dd5996bcf6e0b204993dda485b67f94af",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/tkz-tab/README.md",
+      "decision": "keep",
+      "baseline_sha256": "4e1549261a24fb4c04f430ab9779cf9ec620aba7f197a6a607ea2a816b96a4f0",
+      "current_sha256": "4e1549261a24fb4c04f430ab9779cf9ec620aba7f197a6a607ea2a816b96a4f0",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/tkz-tab/tkz-tab.sty",
+      "decision": "keep",
+      "baseline_sha256": "7df03fc9251e2eec8406dade449ecd0550bf21ede682324078164ce8a0a776d9",
+      "current_sha256": "7df03fc9251e2eec8406dade449ecd0550bf21ede682324078164ce8a0a776d9",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/README.md",
+      "decision": "keep",
+      "baseline_sha256": "8b5220a4dc4b05a96204a62cb0fe62f2051956852c7a107c2ed17cda12c19727",
+      "current_sha256": "8b5220a4dc4b05a96204a62cb0fe62f2051956852c7a107c2ed17cda12c19727",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/keyval.tex",
+      "decision": "keep",
+      "baseline_sha256": "8e19ce03ea9b83fe1a69089f08e16835b1f2ed6baf19f635aaf7cc4d27155f5d",
+      "current_sha256": "8e19ce03ea9b83fe1a69089f08e16835b1f2ed6baf19f635aaf7cc4d27155f5d",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/pst-xkey.sty",
+      "decision": "keep",
+      "baseline_sha256": "dcab749fed6bfa705aedfc1e7c654aa7185ea9c497df690e36dc4da33b324d01",
+      "current_sha256": "dcab749fed6bfa705aedfc1e7c654aa7185ea9c497df690e36dc4da33b324d01",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/pst-xkey.tex",
+      "decision": "keep",
+      "baseline_sha256": "c19f15aed7831494c518f50f6113608c6b938eaf057411b7bca9af4fe0b75700",
+      "current_sha256": "c19f15aed7831494c518f50f6113608c6b938eaf057411b7bca9af4fe0b75700",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkeyval.sty",
+      "decision": "keep",
+      "baseline_sha256": "efd9fb88373975a6d1c669eb343c12abb5e51a0d2eb6ca18670b944a78635999",
+      "current_sha256": "efd9fb88373975a6d1c669eb343c12abb5e51a0d2eb6ca18670b944a78635999",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkeyval.tex",
+      "decision": "keep",
+      "baseline_sha256": "adec9c8e36d791b131d9eefd00726d58f531a5a4b8c0ef8f87ffa497d4b16cb8",
+      "current_sha256": "adec9c8e36d791b131d9eefd00726d58f531a5a4b8c0ef8f87ffa497d4b16cb8",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkvltxp.sty",
+      "decision": "keep",
+      "baseline_sha256": "96bbd5ddfc9f9d808b55a1b4c90a892882e298c2e0587178515ea78cc3272b82",
+      "current_sha256": "96bbd5ddfc9f9d808b55a1b4c90a892882e298c2e0587178515ea78cc3272b82",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkvtxhdr.tex",
+      "decision": "keep",
+      "baseline_sha256": "209aadb5e1ab10e1806f80bd68f16b70ebf1ac8cf7b2188c13b42155937ad6aa",
+      "current_sha256": "209aadb5e1ab10e1806f80bd68f16b70ebf1ac8cf7b2188c13b42155937ad6aa",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkvutils.tex",
+      "decision": "keep",
+      "baseline_sha256": "a49b792fa91181b8965091bca36e4e25d54f3e95d5ff7aac7c2f6a425ed7df0e",
+      "current_sha256": "a49b792fa91181b8965091bca36e4e25d54f3e95d5ff7aac7c2f6a425ed7df0e",
+      "unchanged": true
+    },
+    {
+      "path": "vendor/tex/xkeyval/xkvview.sty",
+      "decision": "keep",
+      "baseline_sha256": "275632d353ab740dd788a9afc1ffdffb7f949d483596c87338572e5a2a0966df",
+      "current_sha256": "275632d353ab740dd788a9afc1ffdffb7f949d483596c87338572e5a2a0966df",
+      "unchanged": true
+    }
+  ],
+  "build_check": {
+    "command": "node scripts/build_local_assets.cjs --check",
+    "exit_code": 0,
+    "stdout": "Local application assets verified (26 files, read only).",
+    "checked_file_hashes": 106,
+    "changed_files": []
+  },
+  "test_safety": {
+    "module_count_at_start": 59,
+    "inventory": "test-safety-inventory.json",
+    "must_bootstrap_before_app_import": true,
+    "rationale": [
+      "test_error_pages imports app directly; route_contract only uses setdefault DATABASE_URL.",
+      "Many modules import shared test_personalization_v2 which patches config.load_local_environment; collection order must not be the safety mechanism.",
+      "Migration subprocess tests pass explicit database paths within TemporaryDirectory.",
+      "Formula tests use local bounded Node/WASM compiler; keep libraries and redirect latex_renderer.ASSET_DIR/question_images/import temp before collection.",
+      "AI gateway tests inject fake HTTP sessions; global requests.Session.request deny guard blocks any accidental real provider call."
+    ]
+  },
+  "started_date": "2026-10-18"
+}

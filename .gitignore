@@ -6,6 +6,8 @@ venv/
 ENV/
 env/
 .env
+.env.local
+backups/
 .DS_Store
 .vercel/
 
@@ -13,3 +15,6 @@ tutoring_center.db
 static/uploads/
 uploads/
 
+node_modules/
+static/vendor/
+.latex-node-path

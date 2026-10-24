@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Khóa AI của tôi - LMath{% endblock %}
+{% block page_title %}Khóa AI của tôi{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/ai-settings.css', v='20261020-content-cleanup-v2') }}">{% endblock %}
+{% block content %}
+{% set runtime_cooldowns = runtime_cooldowns|default({}) %}
+{% set can_add = credential_security_ready and (not group or group.is_active) %}
+<div class="ai-settings">
+<header class="page-header"><div class="page-title-area"><h1>Khóa AI của tôi</h1></div><a class="btn btn-secondary" href="{{ url_for('ai_reports_class') }}"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i> Xem báo cáo AI</a></header>
+{% if not credential_security_ready %}
+<div class="ai-settings-notice is-warning" role="status"><i data-lucide="shield-alert" aria-hidden="true"></i><div><strong>Máy chủ chưa sẵn sàng lưu khóa an toàn</strong><p>Liên hệ quản trị để hoàn tất cấu hình bảo mật. Khóa chỉ được lưu và sử dụng khi hệ thống sẵn sàng.</p></div></div>
+{% endif %}
+{% if group and not group.is_active %}<div class="ai-settings-notice is-warning" role="status"><i data-lucide="pause-circle" aria-hidden="true"></i><div><strong>Cấu hình đang tạm dừng</strong><p>Chưa thể thêm hoặc kiểm tra khóa. Liên hệ quản trị nếu bạn cần sử dụng lại báo cáo AI.</p></div></div>{% endif %}
+
+<section class="card ai-settings-add" aria-labelledby="ai-add-title">
+  <div class="ai-settings-form-heading"><div><h2 id="ai-add-title">Thêm khóa Gemini</h2><p>Dán tối đa 20 khóa, mỗi khóa một dòng. Yêu cầu kiểm tra tối thiểu có thể sử dụng hạn mức của nhà cung cấp.</p></div></div>
+  <form method="POST" action="{{ url_for('teacher_ai_save_keys') }}" id="teacher-ai-add-form" data-ai-busy-form>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="form-group"><label class="form-label" for="teacher-ai-keys">Khóa Gemini <span class="ai-settings-required">*</span></label><textarea id="teacher-ai-keys" name="keys" rows="5" required autocomplete="off" spellcheck="false" autocapitalize="off" aria-describedby="ai-keys-hint ai-key-count ai-key-error" {% if not can_add %}disabled{% endif %} placeholder="Mỗi khóa trên một dòng"></textarea><p class="form-hint" id="ai-keys-hint">Khóa được mã hóa, chỉ hiển thị dạng che. Chỉ khóa đã xác minh mới được dùng cho báo cáo.</p><span id="ai-key-count" class="form-hint" aria-live="polite"></span><p id="ai-key-error" class="field-errors" role="alert" hidden></p></div>
+    <div class="ai-settings-form-actions"><button class="btn btn-primary" type="submit" {% if not can_add %}disabled{% endif %}>Kiểm tra và lưu</button></div>
+  </form>
+</section>
+<section class="card ai-settings-saved" aria-labelledby="ai-saved-title">
+  <header class="ai-settings-saved-heading"><div><h2 id="ai-saved-title">Khóa đã lưu</h2></div></header>
+{% if group and group.keys %}
+<div class="ai-settings-key-wrap"><table id="teacher-ai-key-table"><thead><tr><th scope="col">Khóa đã mã hóa</th><th scope="col">Trạng thái sử dụng</th><th scope="col">Kiểm tra gần nhất</th><th scope="col">Thao tác</th></tr></thead><tbody>
+{% for key in group.keys %}
+  {% set code = key.last_error_code or '' %}
+  <tr data-key-id="{{ key.id }}">
+    <td data-label="Khóa đã mã hóa"><code class="ai-masked-key">{{ key.masked_key }}</code></td>
+    <td data-label="Trạng thái sử dụng">
+      {% if key.is_paused %}<span class="badge badge-neutral">Khóa đang tạm dừng</span>{% endif %}
+      {% if key.last_test_status == 'ok' and key.is_paused %}<small>Đã xác minh, nhưng khóa đang tạm dừng sử dụng.</small>
+      {% elif key.last_test_status == 'ok' and key.id in runtime_cooldowns %}<span class="badge badge-warning">Đã xác minh · chờ hạn mức</span><small>Tự dùng lại khi hết thời gian chờ.</small>
+      {% elif key.last_test_status == 'ok' %}<span class="badge badge-success">Sẵn sàng</span>
+      {% elif code == 'verification_deferred' and key.id in runtime_cooldowns %}<span class="badge badge-warning">Chưa kiểm tra · chờ hạn mức</span><small>Thử lại sau khi hết thời gian chờ.</small>
+      {% elif code == 'invalid_or_revoked' %}<span class="badge badge-danger">Không hợp lệ / đã thu hồi</span><small>Kiểm tra khóa tại nhà cung cấp hoặc thêm khóa mới.</small>
+      {% elif code == 'permission_denied' %}<span class="badge badge-danger">Không có quyền</span><small>Kiểm tra quyền sử dụng mô hình tại nhà cung cấp.</small>
+      {% elif code == 'quota_rate_limited' %}<span class="badge badge-warning">Hạn mức / giới hạn tốc độ</span><small>Kiểm tra hạn mức hoặc thử lại sau.</small>
+      {% elif code == 'server_overloaded' %}<span class="badge badge-warning">Máy chủ AI quá tải</span><small>Thử lại sau vài phút.</small>
+      {% elif code == 'network_unavailable' %}<span class="badge badge-warning">Mạng không khả dụng</span><small>Kiểm tra kết nối máy chủ rồi thử lại.</small>
+      {% elif code == 'model_not_found' %}<span class="badge badge-warning">Mô hình không tồn tại</span><small>Liên hệ quản trị kiểm tra cấu hình mô hình.</small>
+      {% elif code == 'malformed_response' %}<span class="badge badge-warning">Phản hồi không hợp lệ</span><small>Chưa xác minh được khóa. Thử kiểm tra lại.</small>
+      {% elif code == 'configuration_unavailable' %}<span class="badge badge-warning">Chưa sẵn sàng bảo vệ khóa</span><small>Liên hệ quản trị kiểm tra cấu hình bảo mật máy chủ.</small>
+      {% elif code == 'provider_request_failed' %}<span class="badge badge-warning">Nhà cung cấp từ chối yêu cầu</span><small>Kiểm tra cấu hình tại nhà cung cấp rồi thử lại.</small>
+      {% elif code == 'verification_deferred' or key.last_test_status == 'deferred' %}<span class="badge badge-neutral">Chưa gửi kiểm tra</span><small>Thử lại để xác minh khóa.</small>
+      {% elif key.last_test_status == 'failed' %}<span class="badge badge-warning">Chưa sẵn sàng</span><small>Thử lại để kiểm tra trạng thái mới nhất.</small>
+      {% else %}<span class="badge badge-neutral">Chưa kiểm tra</span><small>Kiểm tra trước khi dùng cho báo cáo.</small>{% endif %}
+    </td>
+    <td data-label="Kiểm tra gần nhất">{% if key.last_tested_at %}<time datetime="{{ key.last_tested_at.isoformat() }}">{{ key.last_tested_at.strftime('%d/%m/%Y %H:%M') }}</time>{% else %}<span class="ai-settings-muted">Chưa kiểm tra</span>{% endif %}</td>
+    <td data-label="Thao tác"><div class="ai-key-actions">
+      <form method="POST" action="{{ url_for('teacher_ai_retry_key', key_id=key.id) }}" data-ai-busy-form><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-secondary btn-sm" type="submit" {% if not credential_security_ready or not group.is_active %}disabled{% endif %} aria-label="Thử kiểm tra lại khóa {{ key.masked_key }}">Thử lại</button></form>
+      <form method="POST" action="{{ url_for('teacher_ai_delete_default_key', key_id=key.id) }}" data-ai-delete data-masked-key="{{ key.masked_key }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-ghost btn-sm ai-key-delete" type="submit" {% if not credential_security_ready %}disabled{% endif %} aria-label="Xóa khóa {{ key.masked_key }}">Xóa</button></form>
+    </div></td>
+  </tr>
+{% endfor %}
+</tbody></table></div>
+{% else %}
+<div class="ai-settings-empty"><i data-lucide="key-round" aria-hidden="true"></i><h3>Chưa có khóa nào</h3><p>{{ 'Thêm khóa ở ô trên để bắt đầu kiểm tra.' if group else 'Lần lưu đầu tiên sẽ tạo vùng lưu riêng của bạn.' }}</p></div>
+{% endif %}
+</section>
+{% if other_groups_count %}<details class="content-help ai-settings-archive"><summary>Khóa lưu trữ cũ · {{ other_groups_count }} nhóm</summary><p>Các nhóm này chưa được gộp vào cấu hình mặc định và không được chọn trên trang này.</p></details>{% endif %}
+<dialog class="academy-dialog" id="ai-key-delete-dialog" aria-labelledby="ai-key-delete-title" aria-describedby="ai-key-delete-description"><div class="dialog-heading"><h2 id="ai-key-delete-title">Xóa khóa đã mã hóa?</h2><button class="btn-icon" type="button" data-close-delete aria-label="Đóng xác nhận xóa"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><p id="ai-key-delete-description">Khóa <strong id="ai-key-delete-mask"></strong> sẽ được xóa khỏi cấu hình của bạn. Báo cáo và lịch sử đã lưu vẫn được giữ.</p></div><div class="dialog-actions"><button class="btn btn-secondary" type="button" data-close-delete>Hủy</button><button class="btn btn-danger" type="button" id="ai-key-delete-confirm">Xóa khóa</button></div></dialog>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/ai-settings.js', v='20261020-content-cleanup-v2') }}" defer></script>{% endblock %}

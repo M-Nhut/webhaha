@@ -1,0 +1,6 @@
+{% set status_code = status_code|default(404) %}
+{% set status_name = status_name|default("Not Found") %}
+{% set badge_text = badge_text|default("KHÔNG TÌM THẤY TRANG") %}
+{% set title = title|default("Trang bạn tìm kiếm không tồn tại") %}
+{% set message = message|default("Đường dẫn này có thể đã bị thay đổi, bị xóa hoặc bạn đã nhập sai địa chỉ URL. Vui lòng kiểm tra lại đường dẫn hoặc quay về trang chủ.") %}
+{% include 'errors/error.html' %}

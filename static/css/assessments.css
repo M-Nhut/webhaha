@@ -1,0 +1,163 @@
+/* Phase 6 · Assessment register and read-only matrix. Composer has its own page CSS. */
+.assessment-management, .assessment-matrix-workspace { min-width: 0; }
+.assessment-management-header .page-title-area { flex: 1 1 340px; }
+.assessment-management-header h1 { margin-bottom: 8px; }
+.assessment-management-header .page-title-area > p:last-child { margin-bottom: 0; }
+.assessment-management-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.assessment-register { padding: 0; overflow: hidden; }
+.assessment-register-heading { padding: 24px; border-bottom: 1px solid var(--color-border); }
+.assessment-register-heading h2 { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: var(--size-md); }
+.assessment-register-heading p { margin: 0; color: var(--color-text-muted); font-size: var(--size-sm); }
+.assessment-register-table { table-layout: fixed; }
+.assessment-register-table th, .assessment-register-table td { padding: 16px 20px; }
+.assessment-register-table thead th:first-child { width: 30%; }
+.assessment-register-table thead th:nth-child(2) { width: 17%; }
+.assessment-register-table thead th:nth-child(3) { width: 11%; }
+.assessment-register-table thead th:nth-child(4) { width: 13%; }
+.assessment-register-table thead th:last-child { width: 29%; }
+.assessment-register-table td { vertical-align: top; overflow-wrap: anywhere; }
+.assessment-register-name strong { display: block; color: var(--color-text); font-size: var(--size-base); line-height: 1.65; }
+.assessment-register-name > span { display: block; margin-top: 5px; color: var(--color-text-muted); font-size: var(--size-xs); font-variant-numeric: tabular-nums; }
+.assessment-register-duration { font-variant-numeric: tabular-nums; }
+.assessment-register-row-actions { display: flex; align-items: flex-start; flex-direction: column; gap: 8px; }
+.assessment-register-row-actions .btn { text-align: left; }
+.assessment-matrix-link { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; font-size: var(--size-xs); }
+.assessment-matrix-link svg { width: 16px; height: 16px; }
+.assessment-register-action-note { margin: 6px 0 0; color: var(--color-text-muted); font-size: var(--size-xs); }
+.assessment-mobile-label { display: none; }
+.assessment-management-empty { display: flex; flex-direction: column; align-items: center; padding: 48px 24px; text-align: center; }
+.assessment-management-empty > svg { width: 28px; height: 28px; margin-bottom: 16px; color: var(--color-text-muted); }
+.assessment-management-empty h3 { margin-bottom: 8px; font-size: var(--size-md); }
+.assessment-management-empty p { max-width: 480px; color: var(--color-text-muted); font-size: var(--size-sm); }
+.assessment-register-footnote { display: flex; align-items: flex-start; gap: 8px; max-width: 900px; color: var(--color-text-muted); font-size: var(--size-xs); }
+.assessment-register-footnote > svg { width: 16px; height: 16px; margin-top: 2px; }
+
+.matrix-exam-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.matrix-exam-heading h2 { margin: 0; font-size: var(--size-lg); overflow-wrap: anywhere; }
+.matrix-exam-heading > .badge { flex-shrink: 0; }
+.matrix-exam-facts { display: grid; grid-template-columns: minmax(0,2fr) repeat(3,minmax(0,1fr)); gap: 20px; margin-bottom: 0; }
+.matrix-exam-facts dt { color: var(--color-text-muted); font-size: var(--size-xs); margin-bottom: 4px; }
+.matrix-exam-facts dd { margin: 0; color: var(--color-text); font-weight: 500; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.matrix-edit-context { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--color-border); padding-top: 16px; margin-top: 20px; }
+.matrix-edit-context p { flex: 1 1 300px; margin: 0; color: var(--color-text-muted); font-size: var(--size-xs); }
+.matrix-readonly-note { display: flex; gap: 8px; align-items: flex-start; padding-top: 16px; margin-top: 20px; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: var(--size-xs); }
+.matrix-readonly-note svg { width: 16px; height: 16px; margin-top: 2px; }
+.matrix-label-warning { display: flex; align-items: flex-start; gap: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid var(--color-warning); border-radius: var(--radius-sm); background: var(--color-warning-subtle); color: var(--color-warning); }
+.matrix-label-warning > svg { width: 20px; height: 20px; margin-top: 3px; }
+.matrix-label-warning h2 { margin-bottom: 4px; font-size: var(--size-base); }
+.matrix-label-warning p { font-size: var(--size-sm); margin-bottom: 8px; }
+.matrix-label-warning p:last-child { margin-bottom: 0; }
+.matrix-data-section { min-width: 0; }
+.matrix-section-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+.matrix-section-heading > div { min-width: 0; }
+.matrix-section-heading > .badge { flex-shrink: 0; }
+.matrix-section-heading h2 { margin-bottom: 6px; font-size: var(--size-md); }
+.matrix-section-heading p { margin-bottom: 0; color: var(--color-text-muted); font-size: var(--size-xs); }
+.matrix-section-heading .matrix-section-index { margin-bottom: 8px; color: var(--color-primary); font-size: var(--size-xs); font-weight: 500; letter-spacing: .03em; }
+.matrix-scroll-hint { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; color: var(--color-text-muted); font-size: var(--size-xs); }
+.matrix-scroll-hint svg { width: 16px; height: 16px; margin-top: 2px; }
+.matrix-scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; border: 1px solid var(--color-input-border); border-radius: var(--radius-sm); scrollbar-color: var(--color-input-border) var(--color-surface-subtle); }
+.matrix-scroll:focus-visible { outline-offset: 4px; }
+.matrix-7991 { width: 100%; min-width: 1440px; table-layout: fixed; border-collapse: separate; border-spacing: 0; font-size: var(--size-xs); font-variant-numeric: tabular-nums; }
+.matrix-col-index { width: 44px; }
+.matrix-col-context { width: 190px; }
+.matrix-7991 th, .matrix-7991 td { padding: 10px 6px; text-align: center; vertical-align: middle; border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); overflow-wrap: anywhere; }
+.matrix-7991 tr > :last-child { border-right: 0; }
+.matrix-7991 thead th { color: var(--color-text-secondary); background: var(--slate-100); font-size: var(--size-xs); font-weight: 500; white-space: normal; }
+.matrix-7991 thead tr:first-child th { color: var(--color-text); font-weight: 600; }
+.matrix-7991 tbody td:nth-child(2), .matrix-7991 tbody td:nth-child(3) { text-align: left; padding: 12px; }
+.matrix-7991 .matrix-group-start, .matrix-7991 .matrix-group-total { border-left: 1px solid var(--color-input-border); }
+.matrix-7991 tbody tr:last-child td { border-bottom: 1px solid var(--color-input-border); }
+.matrix-7991 tfoot th, .matrix-7991 tfoot td { background: var(--color-surface-subtle); font-weight: 500; }
+.matrix-7991 tfoot th { text-align: right; padding-right: 16px; color: var(--color-text-secondary); }
+.matrix-7991 tfoot tr:last-child > * { border-bottom: 0; }
+.matrix-reading-notes { margin: 16px 0 0; color: var(--color-text-muted); font-size: var(--size-xs); }
+.matrix-reading-notes p { margin-bottom: 8px; }
+.matrix-reading-notes p:last-child { margin-bottom: 0; }
+.matrix-details-scroll { border-color: var(--color-border); }
+.matrix-details-table { min-width: 1220px; table-layout: fixed; }
+.matrix-details-table th, .matrix-details-table td { padding: 14px 12px; vertical-align: top; overflow-wrap: anywhere; }
+.matrix-details-table thead th { font-size: var(--size-xs); }
+.matrix-details-table th:first-child { width: 48px; text-align: center; }
+.matrix-details-table th:nth-child(2), .matrix-details-table th:nth-child(3) { width: 180px; }
+.matrix-details-table th:nth-child(4) { width: 120px; }
+.matrix-details-table th:nth-child(5) { width: 110px; }
+.matrix-details-table th:nth-child(6) { width: 150px; }
+.matrix-details-table th:nth-child(7), .matrix-details-table th:nth-child(8) { width: 85px; text-align: right; }
+.matrix-details-table th:last-child { width: 150px; }
+.matrix-details-table tbody th { color: var(--color-text-secondary); background: transparent; font-size: var(--size-sm); font-weight: 500; }
+.matrix-details-table tbody tr:last-child th { border-bottom: 0; }
+.matrix-details-table .badge { white-space: normal; }
+.matrix-numeric { text-align: right; font-variant-numeric: tabular-nums; }
+.matrix-level-note { display: block; margin-top: 6px; color: var(--color-text-muted); font-size: var(--size-xs); line-height: 1.6; }
+
+@media (min-width:768px) and (max-width:1023px) {
+  .assessment-register-table th, .assessment-register-table td { padding: 14px 12px; }
+  .assessment-register-table thead th:first-child { width: 27%; }
+  .assessment-register-table thead th:nth-child(2) { width: 15%; }
+  .assessment-register-table thead th:nth-child(3) { width: 12%; }
+  .assessment-register-table thead th:nth-child(4) { width: 14%; }
+  .assessment-register-table thead th:last-child { width: 32%; }
+}
+@media (max-width:767px) {
+  .assessment-management-header .page-title-area { flex-basis: 100%; }
+  .assessment-management-actions { width: 100%; }
+  .assessment-management-actions > .btn { flex: 1 1 180px; }
+  .assessment-register-heading { padding: 20px 16px; }
+  .assessment-register-table, .assessment-register-table tbody { display: block; }
+  .assessment-register-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .assessment-register-table tr { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px 16px; padding: 20px 16px; border-bottom: 1px solid var(--color-border); }
+  .assessment-register-table tr:last-child { border-bottom: 0; }
+  .assessment-register-table td { padding: 0; border: 0; }
+  .assessment-register-name, .assessment-register-course, .assessment-register-action-cell { grid-column: 1 / -1; }
+  .assessment-mobile-label { display: block; margin-bottom: 4px; color: var(--color-text-muted); font-size: var(--size-xs); }
+  .assessment-register-row-actions { align-items: stretch; }
+  .assessment-register-row-actions .btn { justify-content: center; }
+  .assessment-matrix-link { min-height: 44px; }
+  .assessment-register-action-cell { margin-top: 4px; }
+  .assessment-management-empty { padding: 32px 16px; }
+  .matrix-exam-context, .matrix-data-section { padding: 20px 16px; }
+  .matrix-exam-heading { flex-wrap: wrap; gap: 12px; }
+  .matrix-exam-heading h2 { flex-basis: 100%; font-size: var(--size-md); }
+  .matrix-exam-facts { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .matrix-exam-facts > div:first-child { grid-column: 1 / -1; }
+  .matrix-edit-context .btn { width: 100%; }
+  .matrix-label-warning { padding: 16px; gap: 8px; }
+  .matrix-section-heading { gap: 8px; }
+}
+
+@page { size: A4 landscape; margin: 10mm; }
+@media print {
+  .assessment-matrix-page { font-size: 10px; background: var(--color-surface); }
+  .assessment-matrix-page .main-area, .assessment-matrix-page .page-content { width: 100%; max-width: none; margin: 0; padding: 0; }
+  .assessment-matrix-page .matrix-page-header { margin-bottom: 12px; }
+  .assessment-matrix-page .assessment-management-actions, .assessment-matrix-page .matrix-edit-context, .assessment-matrix-page .matrix-scroll-hint { display: none !important; }
+  .assessment-matrix-page .matrix-page-header .page-title-area { flex: 1; }
+  .assessment-matrix-page .matrix-page-header h1 { font-size: 20px; }
+  .assessment-matrix-page .matrix-exam-context, .assessment-matrix-page .matrix-data-section { padding: 12px; margin-bottom: 12px; border-radius: 0; break-inside: auto; }
+  .assessment-matrix-page .matrix-exam-heading { margin-bottom: 10px; }
+  .assessment-matrix-page .matrix-exam-heading h2 { font-size: 15px; }
+  .assessment-matrix-page .matrix-exam-facts { display: grid; grid-template-columns: minmax(0,2fr) repeat(3,minmax(0,1fr)); gap: 12px; }
+  .assessment-matrix-page .matrix-exam-facts > div:first-child { grid-column: auto; }
+  .assessment-matrix-page .matrix-readonly-note { margin-top: 10px; padding-top: 10px; }
+  .assessment-matrix-page .matrix-label-warning { margin-bottom: 8px; padding: 8px; break-inside: avoid; }
+  .assessment-matrix-page .matrix-label-warning h2 { font-size: 11px; }
+  .assessment-matrix-page .matrix-label-warning p { font-size: 10px; line-height: 1.5; margin-bottom: 4px; }
+  .assessment-matrix-page .matrix-section-heading { margin-bottom: 10px; break-inside: avoid; break-after: avoid; }
+  .assessment-matrix-page .matrix-data-section + .matrix-data-section { break-before: page; }
+  .assessment-matrix-page .matrix-section-heading h2 { font-size: 13px; }
+  .assessment-matrix-page .matrix-section-heading p, .assessment-matrix-page .matrix-reading-notes { font-size: 9px; }
+  .assessment-matrix-page .matrix-reading-notes { margin-top: 8px; break-inside: avoid; }
+  .assessment-matrix-page .matrix-scroll { width: 100%; max-width: none; overflow: visible; border-radius: 0; }
+  .assessment-matrix-page .matrix-7991, .assessment-matrix-page .matrix-details-table { min-width: 0; width: 100%; font-size: 8px; }
+  .assessment-matrix-page .matrix-7991 th, .assessment-matrix-page .matrix-7991 td { padding: 5px 3px; font-size: 8px; }
+  .assessment-matrix-page .matrix-col-index { width: 3%; }
+  .assessment-matrix-page .matrix-col-context { width: 14%; }
+  .assessment-matrix-page .matrix-7991 thead, .assessment-matrix-page .matrix-details-table thead { display: table-header-group; }
+  .assessment-matrix-page .matrix-7991 tfoot { display: table-row-group; }
+  .assessment-matrix-page tr { break-inside: avoid; }
+  .assessment-matrix-page .matrix-details-table th, .assessment-matrix-page .matrix-details-table td { width: auto; padding: 6px 4px; font-size: 8px; }
+  .assessment-matrix-page .matrix-details-table th:nth-child(2), .assessment-matrix-page .matrix-details-table th:nth-child(3) { width: 17%; }
+  .assessment-matrix-page .matrix-details-table th:first-child { width: 4%; }
+  .assessment-matrix-page .matrix-details-table .badge, .assessment-matrix-page .matrix-level-note { font-size: 8px; padding: 0; background: transparent; }
+}

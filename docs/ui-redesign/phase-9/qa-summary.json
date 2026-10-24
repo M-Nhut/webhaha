@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-19",
+  "phase": 9,
+  "status": "ui_complete_with_preexisting_domain_test_failures",
+  "activePageTemplates": 32,
+  "allReachableTemplates": 49,
+  "browserPassedChecks": 932,
+  "browserPageCases": 140,
+  "browserViewportWidths": [
+    375,
+    768,
+    1024,
+    1440
+  ],
+  "browserScreenshots": 72,
+  "browserJavaScriptErrors": 0,
+  "browserMissingStaticAssets": 0,
+  "cssParsed": 31,
+  "jsSyntaxChecked": 32,
+  "undefinedCssTokens": 0,
+  "obsoleteTokenAliasesRemoved": 37,
+  "unusedCssClassNamesRemoved": 20,
+  "publicRoutesVerified": 94,
+  "python": {
+    "moduleInputCount": 59,
+    "passed": 445,
+    "subtestsPassed": 33,
+    "failed": 75,
+    "collectionErrors": 1,
+    "newFailureNodes": 0,
+    "newCollectionErrors": 0,
+    "baselineFailed": 99,
+    "baselinePassed": 419,
+    "baselineSubtestsPassed": 30,
+    "knownFailuresNotCountedAsPassing": true,
+    "log": "python-regression.log",
+    "comparison": "regression-comparison.json"
+  },
+  "contractFocused": {
+    "passed": 39,
+    "subtestsPassed": 3
+  },
+  "matrixPrint": {
+    "beforePages": 3,
+    "afterPages": 2,
+    "paper": "A4 landscape",
+    "excelOpenXmlValid": true
+  },
+  "safety": {
+    "realDatabaseMetadataUnchanged": true,
+    "backendPythonFilesUnchanged": 84,
+    "fontBrandVendorAssetsUnchanged": 52,
+    "dotenvLoaded": false,
+    "storage": "temporary",
+    "database": "SQLite memory",
+    "realProviderCalls": 0,
+    "blockedHttpAttempts": 0,
+    "blockedSocketAttempts": 0
+  },
+  "deployed": false,
+  "committed": false
+}

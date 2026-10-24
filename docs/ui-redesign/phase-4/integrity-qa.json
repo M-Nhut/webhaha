@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-14",
+  "changedFiles": [
+    "templates/question_bank_classification.html",
+    "templates/question_banks.html",
+    "templates/classification_evaluation.html",
+    "templates/base.html",
+    "templates/question_bank_form.html",
+    "templates/curriculum_catalog.html",
+    "templates/question_bank_detail.html",
+    "templates/components/bank_overview.html",
+    "templates/components/id6_picker.html",
+    "static/css/main.css",
+    "static/css/question-document.css",
+    "static/css/id6.css",
+    "static/css/components.css",
+    "static/css/question-bank.css",
+    "static/css/pages/workspaces.css",
+    "static/js/manual_question.js",
+    "static/js/modules/question_bank_detail.js",
+    "routes/curriculum.py",
+    "routes/question_bank.py",
+    "tests/test_id6_picker.js",
+    "tests/test_question_overlay_phase3.py",
+    "tests/test_question_overlay_phase2.py",
+    "tests/test_bank_list_phase3.py",
+    "tests/test_classification_evaluation.py"
+  ],
+  "removedFiles": [],
+  "backendFilesChanged": [
+    "routes/curriculum.py",
+    "routes/question_bank.py"
+  ],
+  "sourceInlineStyleCounts": {
+    "question_banks": 0,
+    "question_bank_form": 0,
+    "question_bank_detail": 0,
+    "question_bank_classification": 0,
+    "classification_evaluation": 0,
+    "curriculum_catalog": 0
+  },
+  "undefinedCssVariables": {},
+  "realDatabaseMetadataUnchanged": true,
+  "formulaRendererUnchanged": true,
+  "id6PickerRuntimeUnchanged": true
+}

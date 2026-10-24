@@ -1,0 +1,13 @@
+{
+  "passed": 7,
+  "checks": [
+    "Missing image has readable fallback",
+    "Broken image opener hidden",
+    "Image retry recovers hidden lazy image",
+    "Retry clears error message",
+    "Print opens all explanation disclosures",
+    "Print restores original disclosure state",
+    "Reduced motion no overflow"
+  ],
+  "readOnly": true
+}

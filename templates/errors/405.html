@@ -1,0 +1,6 @@
+{% set status_code = status_code|default(405) %}
+{% set status_name = status_name|default("Method Not Allowed") %}
+{% set badge_text = badge_text|default("PHƯƠNG THỨC KHÔNG HỢP LỆ") %}
+{% set title = title|default("Thao tác không được hỗ trợ") %}
+{% set message = message|default("Máy chủ không hỗ trợ phương thức gửi yêu cầu (" ~ (request.method|default('N/A')) ~ ") cho đường dẫn này. Vui lòng quay lại hoặc thực hiện lại từ giao diện chính thức.") %}
+{% include 'errors/error.html' %}

@@ -1,0 +1,51 @@
+/* Phase 6 exam-taking QA: authentication only; every answer POST is intercepted. */
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const base=process.env.PHASE6_BASE_URL||'http://127.0.0.1:8768', output=path.resolve(__dirname,'..');
+const checks=[],errors=[];const check=(name,passed,detail)=>{checks.push({name,passed:!!passed,detail});assert.ok(passed,name+' '+JSON.stringify(detail||''));};
+(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
+ const context=await browser.newContext({viewport:{width:1440,height:1000},locale:'vi-VN'});const page=await context.newPage();page.on('pageerror',error=>errors.push(error.message));page.on('dialog',dialog=>dialog.type()==='beforeunload'?dialog.accept():dialog.dismiss());
+ await page.addInitScript(()=>{const now=Date.now.bind(Date);window.__takingOffset=0;Date.now=()=>now()+window.__takingOffset;});
+ const fixture=await(await context.request.get(base+'/qa/fixture')).json();
+ await page.goto(base+'/login');await page.locator('[name=username]').fill('qa_student');await page.locator('[name=password]').fill('Academy123!');await Promise.all([page.waitForURL(url=>!url.pathname.includes('/login')),page.locator('[name=submit]').click()]);
+ const routeFor=key=>(['published','graded','history'].includes(key)?'/assessments/':'/practice/')+fixture.exams[key]+'/take';
+ let intercepted=0,lastBody='';
+ await page.route(/\/(assessments|practice)\/\d+\/take(?:\?.*)?$/,async route=>{if(route.request().method()!=='POST')return route.continue();intercepted++;lastBody=route.request().postData();await new Promise(resolve=>setTimeout(resolve,250));await route.fulfill({status:503,contentType:'text/html',body:'Synthetic offline test'});});
+ const go=async key=>{const response=await page.goto(base+routeFor(key),{waitUntil:'networkidle'});check(key+' GET allowed',response.status()===200,response.status());await page.evaluate(async()=>{await document.fonts.ready;if(window.renderFormulas)await window.renderFormulas(document.querySelector('#exam-form'));});};
+ const shot=async name=>page.screenshot({path:path.join(output,'screenshots',name+'.png'),fullPage:true});
+ for(const key of (process.env.TAKING_LEGACY_ONLY?['legacy']:process.env.TAKING_STATE_ONLY?[]:['published','fixed','diagnostic','legacy']))for(const width of [375,768,1024,1440]){
+  await page.setViewportSize({width,height:1000});await go(key);
+  check(key+' '+width+' focused shell',!(await page.locator('.sidebar').isVisible())&&!(await page.locator('.topbar').isVisible()));
+  check(key+' '+width+' question count',await page.locator('[data-question-id]').count()===fixture.questions_by_exam[key].length);
+  const dimensions=await page.evaluate(()=>({page:document.documentElement.scrollWidth,viewport:innerWidth}));check(key+' '+width+' no page overflow',dimensions.page<=dimensions.viewport+1,dimensions);
+  check(key+' '+width+' native form contract',await page.locator('#exam-form input[name=csrf_token]').count()===1&&await page.locator('#time-spent-seconds').count()===1&&await page.locator('input[name^=time_q_]').count()===fixture.questions_by_exam[key].length);
+  check(key+' '+width+' navigation default',await page.locator('[data-taking-navigation]').evaluate(e=>e.open)===(width>=1024));
+  check(key+' '+width+' single timer',await page.locator('[role=timer]').count()===1);
+  check(key+' '+width+' truthful no autosave',await page.getByText('Câu trả lời được gửi khi nộp bài.',{exact:false}).count()===1);
+  if(width===375)check(key+' controls mobile44',await page.locator('.taking-answer-choice,.taking-truth-choices label,.taking-end button').evaluateAll(es=>es.every(e=>e.getBoundingClientRect().height>=44)));
+  if([375,1440].includes(width))await shot('exam-take-'+key+'-'+width);
+ }
+ await page.setViewportSize({width:375,height:1000});await go(process.env.TAKING_LEGACY_ONLY?'legacy':'published');
+ await page.locator('.taking-end button').click();check('blank confirmation',await page.locator('#exam-submit-title').innerText()==='Nộp bài khi chưa trả lời?');check('blank totals',await page.locator('[data-confirm-blank]').innerText()==='3');
+ await page.keyboard.press('Escape');check('Escape closes native modal',!(await page.locator('#exam-submit-dialog').evaluate(e=>e.open)));check('focus restored',await page.locator('.taking-end button').evaluate(e=>document.activeElement===e));
+ const short=page.locator('.taking-short-answer textarea');await short.fill('  2/3  ');await page.waitForFunction(()=>document.querySelector('[data-taking-complete]').textContent==='1');check('short answer counted',await page.locator('[data-taking-complete]').textContent()==='1');await short.fill('   ');await page.waitForFunction(()=>document.querySelector('[data-taking-complete]').textContent==='0');check('short clearing subtracts',await page.locator('[data-taking-complete]').textContent()==='0');
+ const truth=page.locator('.taking-truth-item').first();await truth.locator('input').first().check();check('TF partial not complete',await page.locator('[data-taking-complete]').textContent()==='0'&&await page.locator('[data-taking-partial]').textContent()==='1 câu Đúng / Sai mới trả lời một phần.');
+ await page.locator('.taking-end button').click();check('partial dialog honest',await page.locator('[data-confirm-partial]').innerText()==='1'&&await page.locator('[data-confirm-blank]').innerText()==='2');await shot('exam-submit-partial-375');await page.keyboard.press('Escape');
+ await page.evaluate(()=>{document.querySelectorAll('.taking-truth-item').forEach(item=>item.querySelector('input').click());});await page.locator('.taking-choice-list input').first().check();await short.fill('2/3');check('all complete actual form',await page.locator('[data-taking-complete]').textContent()==='3');
+ await page.locator('.taking-end button').click();check('complete confirmation',await page.locator('#exam-submit-title').innerText()==='Sẵn sàng nộp bài?');
+ const before=intercepted;await page.locator('[data-taking-confirm-submit]').click();await page.evaluate(()=>{document.querySelector('#exam-form').requestSubmit();document.querySelector('#exam-form').requestSubmit();});await page.locator('[data-taking-error]').waitFor({state:'visible'});check('double submit one POST',intercepted===before+1);check('failure retains all answers',await short.inputValue()==='2/3'&&await page.locator('[data-taking-complete]').textContent()==='3');check('failure unlocks form',!(await page.locator('#exam-form').evaluate(e=>e.inert))&&!(await page.locator('.taking-end button').isDisabled()));check('POST original CSRF/time/answer names',/name="csrf_token"/.test(lastBody)&&/name="time_spent_seconds"/.test(lastBody)&&/name="time_q_/.test(lastBody)&&/name="q_\d+_text"/.test(lastBody));await shot('exam-submit-error-375');
+ await page.locator('[data-taking-navigation] summary').click();await page.locator('[data-taking-question-link]').last().click();check('anchor focuses question',await page.locator('[data-question-id]').last().evaluate(e=>document.activeElement===e));check('mobile nav collapses after anchor',!(await page.locator('[data-taking-navigation]').evaluate(e=>e.open)));
+ await page.emulateMedia({reducedMotion:'reduce'});check('reduced motion supported',await page.evaluate(()=>getComputedStyle(document.querySelector('.taking-answer-choice')).transitionDuration==='0s'));await page.emulateMedia({reducedMotion:'no-preference'});
+ await go('legacy');const duration=await page.locator('[data-exam-taking]').getAttribute('data-duration-seconds');await page.evaluate(value=>{window.__takingOffset=(Number(value)-299)*1000;},duration);await page.waitForTimeout(350);check('5min warning with text',await page.locator('[data-taking-clock]').evaluate(e=>e.classList.contains('is-warning'))&&(await page.locator('[data-taking-time-hint]').innerText()).includes('dưới 5 phút'));
+ const expiryBefore=intercepted;await page.evaluate(value=>{window.__takingOffset=(Number(value)+1)*1000;},duration);await page.locator('[data-taking-error]').waitFor({state:'visible'});check('expiry uses same POST guard',intercepted===expiryBefore+1&&await page.locator('[data-taking-clock]').evaluate(e=>e.classList.contains('is-expired')));await page.waitForTimeout(650);check('expiry no repeated POSTs',intercepted===expiryBefore+1);let imageRequests=0;
+ await page.route('**/qa/media/graph.svg',route=>{imageRequests++;return imageRequests===1?route.abort('failed'):route.continue();});
+ await go('legacy');await page.locator('.taking-image-error button').waitFor({state:'visible'});
+ check('failed image exposes retry',await page.locator('.taking-image-error').count()===1);
+ check('failed image hides empty zoom button',await page.locator('[data-taking-image-open]').evaluate(e=>e.hidden));
+ await page.locator('.taking-image-error button').click();await page.locator('.taking-image-error').waitFor({state:'detached'});
+ check('hidden lazy retry loads eagerly',await page.locator('[data-taking-image-open] img').evaluate(e=>e.loading==='eager'&&e.naturalWidth>0&&!e.hidden));
+ await page.locator('[data-taking-image-open]').click();check('native image zoom dialog',await page.locator('#exam-image-dialog').evaluate(e=>e.open));await page.keyboard.press('Escape');
+ check('image modal restores focus',await page.locator('[data-taking-image-open]').evaluate(e=>document.activeElement===e));
+ check('no JS exceptions',errors.length===0,errors);
+ fs.writeFileSync(path.join(output,'taking-qa.json'),JSON.stringify({checks,errors,interceptedAnswerPosts:intercepted,readonly:true,layoutContexts:process.env.TAKING_LEGACY_ONLY?['legacy']:process.env.TAKING_STATE_ONLY?[]:['published','fixed','diagnostic','legacy']},null,2));console.log(checks.length+' intercepted/read-only taking checks passed.');await context.close();
+ }finally{await browser.close();}})().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,678 @@
+[
+  {
+    "endpoint": "index",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/"
+  },
+  {
+    "endpoint": "admin_disable_teacher_ai_group",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/admin/ai-groups/<int:group_id>/disable"
+  },
+  {
+    "endpoint": "ai_reports",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/ai-reports"
+  },
+  {
+    "endpoint": "ai_reports_class",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/ai-reports/class"
+  },
+  {
+    "endpoint": "ai_reports_individual",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/ai-reports/individual"
+  },
+  {
+    "endpoint": "teacher_analytics",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/analytics/teacher"
+  },
+  {
+    "endpoint": "ai_report_data",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/api/ai-reports/<int:course_id>"
+  },
+  {
+    "endpoint": "diagnostic_question_choices",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/api/diagnostics/question-choices"
+  },
+  {
+    "endpoint": "review_diagnostic",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/api/diagnostics/review"
+  },
+  {
+    "endpoint": "render_formula_svg",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/api/formulas/<formula_id>/render.svg"
+  },
+  {
+    "endpoint": "retry_formula_conversion",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/api/formulas/<formula_id>/retry"
+  },
+  {
+    "endpoint": "batch_get_formulas",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/api/formulas/batch"
+  },
+  {
+    "endpoint": "question_bank_question_detail_json",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/api/question-banks/<int:bank_id>/questions/<int:question_id>"
+  },
+  {
+    "endpoint": "assessment_list",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/assessments"
+  },
+  {
+    "endpoint": "assessment_matrix",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/assessments/<int:exam_id>/matrix"
+  },
+  {
+    "endpoint": "assessment_result",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/assessments/<int:exam_id>/result"
+  },
+  {
+    "endpoint": "assessment_take",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/assessments/<int:exam_id>/take"
+  },
+  {
+    "endpoint": "assessment_from_bank",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/assessments/from-bank"
+  },
+  {
+    "endpoint": "assessment_import",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/assessments/import/<session_id>"
+  },
+  {
+    "endpoint": "courses",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/courses"
+  },
+  {
+    "endpoint": "course_detail",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/courses/<int:course_id>"
+  },
+  {
+    "endpoint": "delete_course",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/courses/<int:course_id>/delete"
+  },
+  {
+    "endpoint": "edit_course",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/courses/<int:course_id>/edit"
+  },
+  {
+    "endpoint": "course_lesson4_report",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/courses/<int:course_id>/lesson4-report"
+  },
+  {
+    "endpoint": "review_course_lesson4_report",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/courses/<int:course_id>/lesson4-report/<int:report_id>/review"
+  },
+  {
+    "endpoint": "generate_course_lesson4_report",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/courses/<int:course_id>/lesson4-report/generate"
+  },
+  {
+    "endpoint": "add_course",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/courses/new"
+  },
+  {
+    "endpoint": "curriculum_catalog",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/curriculum"
+  },
+  {
+    "endpoint": "toggle_curriculum_node",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/curriculum/<int:node_id>/toggle"
+  },
+  {
+    "endpoint": "id6_preview_api",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/curriculum/id6-preview"
+  },
+  {
+    "endpoint": "diagnostic_list",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/diagnostics"
+  },
+  {
+    "endpoint": "delete_diagnostic",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/diagnostics/<int:exam_id>/delete"
+  },
+  {
+    "endpoint": "create_diagnostic",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/diagnostics/new"
+  },
+  {
+    "endpoint": "add_enrollment",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/enrollments"
+  },
+  {
+    "endpoint": "favicon",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/favicon.ico"
+  },
+  {
+    "endpoint": "login",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/login"
+  },
+  {
+    "endpoint": "logout",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/logout"
+  },
+  {
+    "endpoint": "my_students",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/my-students"
+  },
+  {
+    "endpoint": "practice_home",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/practice"
+  },
+  {
+    "endpoint": "practice_result",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/practice/<int:exam_id>/result"
+  },
+  {
+    "endpoint": "practice_take",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/practice/<int:exam_id>/take"
+  },
+  {
+    "endpoint": "practice_generate",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/practice/generate"
+  },
+  {
+    "endpoint": "practice_progress",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/practice/progress"
+  },
+  {
+    "endpoint": "practice_continue",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/practice/submissions/<int:submission_id>/continue"
+  },
+  {
+    "endpoint": "practice_end",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/practice/submissions/<int:submission_id>/end"
+  },
+  {
+    "endpoint": "profile",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/profile"
+  },
+  {
+    "endpoint": "question_bank_list",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks"
+  },
+  {
+    "endpoint": "question_bank_detail",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/<int:bank_id>"
+  },
+  {
+    "endpoint": "question_bank_classification",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/<int:bank_id>/classification"
+  },
+  {
+    "endpoint": "accept_classification_suggestions",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/classification/accept-suggestions"
+  },
+  {
+    "endpoint": "bulk_classify_questions",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/classification/bulk"
+  },
+  {
+    "endpoint": "classification_evaluation_page",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/classification/evaluation"
+  },
+  {
+    "endpoint": "classification_evaluation_export",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/<int:bank_id>/classification/evaluation/export"
+  },
+  {
+    "endpoint": "delete_question_bank",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/delete"
+  },
+  {
+    "endpoint": "edit_question_bank",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/edit"
+  },
+  {
+    "endpoint": "update_question_adaptive_control",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/questions/<int:question_id>/adaptive"
+  },
+  {
+    "endpoint": "add_bank_question",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/<int:bank_id>/questions/add"
+  },
+  {
+    "endpoint": "import_questions_page",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/import"
+  },
+  {
+    "endpoint": "import_cancel_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/cancel"
+  },
+  {
+    "endpoint": "import_confirm_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/confirm"
+  },
+  {
+    "endpoint": "import_destination_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/destination"
+  },
+  {
+    "endpoint": "import_duplicate_decision_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/duplicate-decision"
+  },
+  {
+    "endpoint": "retry_preview_formula_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/formulas/<formula_id>/retry"
+  },
+  {
+    "endpoint": "import_preview_api",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/import/<session_id>/preview"
+  },
+  {
+    "endpoint": "import_remove_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/remove"
+  },
+  {
+    "endpoint": "import_scope_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/scope"
+  },
+  {
+    "endpoint": "import_source_file",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/import/<session_id>/source"
+  },
+  {
+    "endpoint": "import_update_api",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/<session_id>/update"
+  },
+  {
+    "endpoint": "download_latex_template",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/question-banks/import/template/latex"
+  },
+  {
+    "endpoint": "import_upload",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/question-banks/import/upload"
+  },
+  {
+    "endpoint": "create_question_bank",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/question-banks/new"
+  },
+  {
+    "endpoint": "delete_bank_question",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/questions/<int:question_id>/delete"
+  },
+  {
+    "endpoint": "toggle_bank_question_answer_json",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/questions/<int:question_id>/toggle-answer"
+  },
+  {
+    "endpoint": "update_bank_question_json",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/questions/<int:question_id>/update"
+  },
+  {
+    "endpoint": "register",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/register"
+  },
+  {
+    "endpoint": "serve_avatar",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/static/avatars/<path:filename>"
+  },
+  {
+    "endpoint": "serve_course_image",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/static/course_images/<path:filename>"
+  },
+  {
+    "endpoint": "teacher_ai_settings",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/teacher/ai-settings"
+  },
+  {
+    "endpoint": "teacher_ai_save_keys",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/ai-settings/keys"
+  },
+  {
+    "endpoint": "teacher_ai_delete_default_key",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/ai-settings/keys/<int:key_id>/delete"
+  },
+  {
+    "endpoint": "teacher_ai_retry_key",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/teacher/ai-settings/keys/<int:key_id>/retry"
+  },
+  {
+    "endpoint": "teacher_ai_test_key",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/teacher/ai-settings/keys/<int:key_id>/test"
+  },
+  {
+    "endpoint": "teacher_practice_list",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/teacher/practice"
+  },
+  {
+    "endpoint": "teacher_practice_detail",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/teacher/practice/<int:student_id>"
+  },
+  {
+    "endpoint": "teacher_run_ai_analysis",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/practice/<int:student_id>/ai-analysis"
+  },
+  {
+    "endpoint": "teacher_review_error",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/practice/<int:student_id>/errors/<int:observation_id>/review"
+  },
+  {
+    "endpoint": "teacher_generate_adaptive_practice",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/practice/<int:student_id>/generate"
+  },
+  {
+    "endpoint": "teacher_review_report",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/teacher/practice/<int:student_id>/reports/<int:report_id>/review"
+  },
+  {
+    "endpoint": "teacher_practice_draft",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/teacher/practice/drafts/<int:exam_id>"
+  },
+  {
+    "endpoint": "add_user",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/users"
+  },
+  {
+    "endpoint": "delete_user",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/users/<int:user_id>/delete"
+  },
+  {
+    "endpoint": "edit_user",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "rule": "/users/<int:user_id>/edit"
+  },
+  {
+    "endpoint": "reset_password",
+    "methods": [
+      "POST"
+    ],
+    "rule": "/users/<int:user_id>/reset-password"
+  },
+  {
+    "endpoint": "manage_users",
+    "methods": [
+      "GET"
+    ],
+    "rule": "/users/<role_name>"
+  }
+]

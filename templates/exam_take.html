@@ -1,179 +1,73 @@
 {% extends "base.html" %}
-
-{% block title %}Đang làm bài: {{ exam.title }} - EduCenter{% endblock %}
-
+{% block title %}Đang làm bài: {{ exam.title }} - LMath{% endblock %}
+{% block page_title %}Đang làm bài{% endblock %}
+{% block body_class %}academy-exam-focus{% endblock %}
 {% block head %}
-<!-- Prevent user from easily navigating away or refreshing accidentally -->
-<script>
-  window.onbeforeunload = function() {
-    return "Bạn có chắc chắn muốn rời khỏi trang? Tiến trình làm bài của bạn có thể bị mất.";
-  };
-  function confirmSubmit() {
-    window.onbeforeunload = null;
-    return true;
-  }
-</script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/exam-taking.css', v='20261019-question-unified') }}">
+<script src="{{ url_for('static', filename='js/modules/exam_take.js', v='20261015-phase6') }}" defer></script>
 {% endblock %}
-
 {% block content %}
-<div x-data="{
-  remaining: {{ exam.duration_minutes }} * 60,
-  answered: {},
-  totalQ: {{ questions|length }},
-  get formattedTime() {
-    const m = Math.floor(this.remaining / 60);
-    const s = this.remaining % 60;
-    return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
-  },
-  get isWarning() { return this.remaining < 300; }
-}"
-x-init="
-  setInterval(() => {
-    if (remaining > 0) {
-      remaining--;
-    } else {
-      window.onbeforeunload = null;
-      document.getElementById('exam-form').submit();
-    }
-  }, 1000)
-">
-
-  <!-- Sticky header with countdown timer and stats -->
-  <div class="card" style="position:sticky; top:56px; z-index:20; background:var(--surface); border-color:var(--border-strong); padding:var(--space-3) var(--space-6); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-3); box-shadow: var(--shadow-md)">
-    <div>
-      <span style="font-weight:600; color: var(--text-1)">{{ exam.title }}</span>
-      <span style="color:var(--text-3); font-size:var(--text-sm)">
-        · {{ questions|length }} câu hỏi · {{ exam.total_points }} điểm
-      </span>
+{% set adaptive = exam.get_adaptive_metadata() %}
+{% set fixed_practice = adaptive.get('aptga', {}).get('version') == 'practice-22-v1' %}
+{% set diagnostic = exam.assessment_purpose == 'initial_diagnostic' %}
+{% set standalone = exam.assessment_purpose == 'standalone' %}
+<div class="taking-workspace" data-exam-taking data-duration-seconds="{{ (exam.duration_minutes or 30) * 60 }}" data-result-url="{{ url_for('assessment_result' if standalone else 'practice_result', exam_id=exam.id) }}">
+  <header class="taking-header">
+    <div class="taking-context">
+      <a class="taking-back" href="{{ url_for('assessment_list') if standalone else url_for('practice_home', course_id=exam.course_id) }}"><i data-lucide="arrow-left" aria-hidden="true"></i>{{ 'Danh sách bài kiểm tra' if standalone else 'Tự luyện kiến thức' }}</a>
+      <span class="taking-purpose">{{ 'Bài kiểm tra' if standalone else 'Đánh giá đầu vào' if diagnostic else 'Bài luyện cá nhân hóa' if fixed_practice else 'Bài luyện' }}</span>
+      <h1>{{ exam.title }}</h1>
+      <p class="taking-meta">{{ exam.course.course_name }} · {{ questions|length }} câu · {{ 10 if standalone else exam.total_points }} điểm · {{ exam.duration_minutes }} phút</p>
     </div>
-    
-    <div style="display:flex; align-items:center; gap:var(--space-4)">
-      <!-- Progress counter -->
-      <span style="font-size:var(--text-sm); color:var(--text-2)">
-        Đã trả lời: <span x-text="Object.keys(answered).length" style="font-weight:600; color: var(--accent)"></span>/{{ questions|length }}
-      </span>
-      
-      <!-- Countdown timer -->
-      <div x-bind:style="isWarning ? 'color:var(--danger); font-weight:700' : 'color:var(--text-1); font-weight:600'"
-           style="font-family:'Fraunces', serif; font-size:var(--text-xl); font-style:italic"
-           x-text="formattedTime">
-      </div>
-    </div>
+    <div class="taking-clock" data-taking-clock><span class="taking-clock-label"><i data-lucide="clock-3" aria-hidden="true"></i>Thời gian còn lại</span><strong data-taking-time role="timer" aria-label="Thời gian còn lại">{{ '%02d:%02d'|format(exam.duration_minutes or 30, 0) }}</strong><span class="taking-clock-hint" data-taking-time-hint>Bài tự nộp khi hết thời gian</span></div>
+  </header>
+  <p class="sr-only" data-taking-announcement role="status" aria-live="polite"></p>
+  <noscript><div class="taking-notice is-warning">Cần bật JavaScript để hiển thị đồng hồ và theo dõi thời gian. Bạn vẫn có thể nhập câu trả lời và nộp bằng biểu mẫu bên dưới.</div></noscript>
+  <div class="taking-layout">
+    <aside class="taking-sidebar" aria-label="Tiến độ bài làm">
+      <details class="taking-navigation" data-taking-navigation open>
+        <summary><span>Tiến độ bài làm</span><span class="taking-nav-summary" data-taking-count>0/{{ questions|length }} câu</span><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+        <div class="taking-navigation-body">
+          <div class="taking-progress-copy"><strong data-taking-complete>0</strong><span>/{{ questions|length }} câu trả lời đầy đủ</span></div>
+          <progress class="taking-progress" data-taking-progress value="0" max="{{ questions|length or 1 }}" aria-label="Số câu trả lời đầy đủ"></progress>
+          <p class="taking-partial" data-taking-partial hidden></p>
+          <nav class="taking-question-grid" aria-label="Đi đến câu hỏi">{% for q in questions %}<a href="#q-{{ loop.index }}" class="taking-question-link" data-taking-question-link="{{ q.id }}" aria-label="Câu {{ loop.index }}: Chưa trả lời"><span>{{ loop.index }}</span><span class="taking-nav-state" aria-hidden="true"></span></a>{% endfor %}</nav>
+          <div class="taking-legend"><span><i class="taking-key is-complete" aria-hidden="true"></i>Đầy đủ</span><span><i class="taking-key is-partial" aria-hidden="true"></i>Một phần</span><span><i class="taking-key" aria-hidden="true"></i>Chưa trả lời</span></div>
+          <p class="taking-draft-note"><i data-lucide="info" aria-hidden="true"></i>Câu trả lời được gửi khi nộp bài. Rời hoặc tải lại trang có thể mất nội dung đang nhập.</p>
+          <button class="btn btn-primary taking-submit" type="submit" form="exam-form" data-taking-submit><i data-lucide="send" aria-hidden="true"></i><span>Nộp bài</span></button>
+        </div>
+      </details>
+    </aside>
+    <form id="exam-form" class="taking-form" method="POST">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="time_spent_seconds" id="time-spent-seconds" value="0">
+      {% if adaptive.get('aptga', {}).get('algorithm_version') %}<details class="taking-selection"><summary><i data-lucide="sparkles" aria-hidden="true"></i>Vì sao bạn nhận bài luyện này?<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div>{% include 'components/selection_audit.html' %}</div></details>
+      {% elif adaptive.explanation %}<details class="taking-selection"><summary>Vì sao hệ thống chọn bài này?<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div><p>{{ adaptive.explanation }}</p></div></details>{% endif %}
+      <div class="taking-notice is-danger" data-taking-error role="alert" tabindex="-1" hidden></div>
+      {% for q in questions %}
+      {% if fixed_practice and loop.changed(q.question_type) %}<section class="taking-section" aria-label="Phần bài luyện"><h2>{{ {'single':'Phần I · Chọn một đáp án', 'true_false':'Phần II · Đúng / Sai', 'short_answer':'Phần III · Trả lời ngắn'}.get(q.question_type, 'Câu hỏi') }}</h2>{% if q.question_type == 'single' %}<p>12 câu · Chọn một đáp án cho mỗi câu.</p>{% elif q.question_type == 'true_false' %}<p>4 câu, mỗi câu 4 ý. Đúng 1 / 2 / 3 / 4 ý: 0,1 / 0,25 / 0,5 / 1 điểm. Ý bỏ trống không được tính đúng.</p>{% elif q.question_type == 'short_answer' %}<p>6 câu · Nhập đáp án theo hướng dẫn ở từng câu.</p>{% endif %}</section>{% endif %}
+      <section class="taking-question tracked-question question-surface" data-question-id="{{ q.id }}" data-question-type="{{ q.question_type }}" data-question-number="{{ loop.index }}" id="q-{{ loop.index }}" aria-labelledby="question-label-{{ q.id }}" tabindex="-1">
+        <input type="hidden" name="time_q_{{ q.id }}" id="time-q-{{ q.id }}" value="0">
+        <header class="taking-question-heading"><div><h2 class="question-label" id="question-label-{{ q.id }}">{% if fixed_practice and q.question_type in ('single', 'true_false', 'short_answer') %}{{ {'single':'Phần I', 'true_false':'Phần II', 'short_answer':'Phần III'}[q.question_type] }} · {% endif %}Câu {{ loop.index }}</h2><span class="taking-question-kind">{{ {'single':'Một lựa chọn', 'multi':'Nhiều lựa chọn', 'truefalse':'Đúng / Sai', 'true_false':'Đúng / Sai', 'short_answer':'Trả lời ngắn', 'essay':'Câu hỏi lịch sử', 'tu_luan':'Câu hỏi lịch sử'}.get(q.question_type, 'Một lựa chọn') }}</span></div><span class="taking-points">{{ ((q.points * 10 / exam.total_points)|round(4)) if standalone and exam.total_points else q.points }} điểm</span></header>
+        {% if q.context %}<div class="taking-question-context question-context">{{ q.context }}</div>{% endif %}
+        <div class="taking-prompt question-reading"><p>{{ q.question_text }}</p></div>
+        {% if q.image_url %}<figure class="taking-image"><button type="button" class="taking-image-open" data-taking-image-open aria-label="Phóng to hình minh họa câu {{ loop.index }}"><img src="{{ q.image_url }}" alt="Hình minh họa câu {{ loop.index }}" loading="lazy"></button><figcaption>Chọn hình để phóng to</figcaption></figure>{% endif %}
+        {% if q.question_type in ('truefalse', 'true_false') %}
+        <div class="taking-truth-list">{% for answer in q._shuffled_answers %}<fieldset class="taking-truth-item question-answer-box"><legend><span class="question-statement"><span class="question-letter">{{ "abcd"[loop.index0] if loop.index0 < 4 else loop.index }}</span><span class="question-option-text">{{ answer.answer_text }}</span></span></legend><div class="taking-truth-choices"><label><input type="radio" name="q_{{ q.id }}_ans_{{ answer.id }}" value="1"><span>Đúng</span></label><label><input type="radio" name="q_{{ q.id }}_ans_{{ answer.id }}" value="0"><span>Sai</span></label></div></fieldset>{% endfor %}</div>
+        {% elif q.question_type == 'short_answer' %}
+        {% set short_rule = q._practice_short_rule or {} %}
+        <div class="taking-short-answer"><label for="answer-{{ q.id }}">{{ 'Đáp án số / phân số' if short_rule.get('mode') == 'numeric' else 'Đáp án bằng văn bản' }}</label><p id="answer-hint-{{ q.id }}">{% if short_rule.get('mode') == 'numeric' %}Nhập số hoặc phân số, không kèm đơn vị. Sai số cho phép: {{ short_rule.get('tolerance', '0') }}.{% else %}Nhập nội dung đáp án; hệ thống đối chiếu không phân biệt hoa thường.{% endif %}</p><textarea class="question-answer-box" id="answer-{{ q.id }}" name="q_{{ q.id }}_text" rows="2" aria-describedby="answer-hint-{{ q.id }}" placeholder="Nhập câu trả lời…" autocomplete="off"></textarea></div>
+        {% else %}
+        <fieldset class="taking-choice-list"><legend class="sr-only">{{ 'Chọn các đáp án phù hợp' if q.question_type == 'multi' else 'Chọn một đáp án' }} cho câu {{ loop.index }}</legend>{% for answer in q._shuffled_answers %}<label class="taking-answer-choice question-option"><input type="{{ 'checkbox' if q.question_type == 'multi' else 'radio' }}" name="q_{{ q.id }}" value="{{ answer.id }}"><span class="taking-answer-letter question-letter" aria-hidden="true">{{ 'ABCD'[loop.index0] if loop.index0 < 4 else loop.index }}</span><span class="taking-answer-text question-option-text">{{ answer.answer_text }}</span><span class="taking-answer-check" aria-hidden="true"><i data-lucide="check"></i></span></label>{% else %}<p class="taking-legacy-note">Câu hỏi lịch sử này không có lựa chọn trả lời khả dụng.</p>{% endfor %}</fieldset>
+        {% endif %}
+        <footer class="taking-question-footer"><span data-taking-question-status>Chưa trả lời</span></footer>
+      </section>
+      {% else %}<section class="taking-empty"><i data-lucide="file-question" aria-hidden="true"></i><h2>Bài chưa có câu hỏi</h2><p>Quay lại danh sách để chọn bài đang khả dụng.</p></section>{% endfor %}
+      <footer class="taking-end" id="taking-end"><div><strong>Kiểm tra lại trước khi nộp</strong><p data-taking-end-summary>Đã trả lời đầy đủ 0/{{ questions|length }} câu.</p></div><button type="submit" class="btn btn-primary" data-taking-submit><i data-lucide="send" aria-hidden="true"></i><span>Nộp bài</span></button></footer>
+    </form>
   </div>
-
-  <form id="exam-form" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmit()">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-    <!-- Loop through questions -->
-    {% for q in questions %}
-    <div class="card" style="margin-bottom:var(--space-4)" id="q-{{ loop.index }}">
-      
-      <!-- Question header -->
-      <div style="display:flex; justify-content:space-between; margin-bottom:var(--space-4); border-bottom:1px solid var(--surface-2); padding-bottom:var(--space-2)">
-        <span style="font-size:var(--text-xs); font-weight:600; letter-spacing:0.5px; color:var(--text-3); text-transform:uppercase">
-          Câu {{ loop.index }} · 
-          {% if q.question_type == 'single' %}
-            Một lựa chọn
-          {% elif q.question_type == 'multi' %}
-            Nhiều lựa chọn
-          {% elif q.question_type in ('truefalse', 'true_false') %}
-            Đúng / Sai
-          {% else %}
-            Tự luận / Trả lời ngắn
-          {% endif %}
-        </span>
-        <span style="font-size:var(--text-sm); color:var(--text-2); font-weight:500">{{ q.points }} điểm</span>
-      </div>
-
-      <!-- Question Text -->
-      <p style="font-weight:500; font-size: var(--text-md); margin-bottom:var(--space-4); line-height:1.6; color: var(--text-1); white-space: pre-wrap;">
-        {{ q.question_text }}
-      </p>
-
-      <!-- Answer Choices -->
-      {% if q.question_type in ('truefalse', 'true_false') %}
-        <!-- True/False Table Form -->
-        <div style="display:flex; flex-direction:column; gap:var(--space-2)">
-          <div style="display:grid; grid-template-columns: 1fr 100px 100px; gap:var(--space-2); padding:var(--space-2) var(--space-4); background:var(--surface-2); border-radius:var(--radius-sm); font-weight:600; font-size:var(--text-xs); color:var(--text-2); text-transform:uppercase">
-            <div>Mệnh đề / Phát biểu</div>
-            <div style="text-align:center">Đúng</div>
-            <div style="text-align:center">Sai</div>
-          </div>
-          {% for answer in q._shuffled_answers %}
-          <div style="display:grid; grid-template-columns: 1fr 100px 100px; gap:var(--space-2); align-items:center; padding:var(--space-3) var(--space-4); border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface)">
-            <div style="font-size:var(--text-sm); color:var(--text-1); font-weight:500">
-              {{ answer.answer_text }}
-            </div>
-            <div style="text-align:center">
-              <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; padding:4px 8px">
-                <input type="radio" name="q_{{ q.id }}_ans_{{ answer.id }}" value="1" @change="answered['{{ q.id }}'] = true">
-                <span style="font-size:var(--text-xs); font-weight:600; color:var(--success)">Đúng</span>
-              </label>
-            </div>
-            <div style="text-align:center">
-              <label style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; padding:4px 8px">
-                <input type="radio" name="q_{{ q.id }}_ans_{{ answer.id }}" value="0" @change="answered['{{ q.id }}'] = true">
-                <span style="font-size:var(--text-xs); font-weight:600; color:var(--danger)">Sai</span>
-              </label>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-
-      {% elif q.question_type in ('short_answer', 'essay', 'tu_luan') %}
-        <!-- Essay / Short Answer / File Upload Form -->
-        <div style="display:flex; flex-direction:column; gap:var(--space-4)">
-          <div>
-            <label style="font-size:var(--text-xs); font-weight:600; color:var(--text-2); margin-bottom:var(--space-1); display:block">
-              Nội dung câu trả lời tự luận:
-            </label>
-            <textarea name="q_{{ q.id }}_text" rows="4" style="width:100%; border:1px solid var(--border); border-radius:var(--radius-sm); padding:var(--space-3); font-family:inherit; font-size:var(--text-sm); background:var(--surface); color:var(--text-1)" placeholder="Nhập câu trả lời hoặc câu đáp của bạn..." @input="if($event.target.value.trim()) answered['{{ q.id }}'] = true"></textarea>
-          </div>
-          <div>
-            <label style="font-size:var(--text-xs); font-weight:600; color:var(--text-2); margin-bottom:var(--space-1); display:block">
-              Đính kèm file / Ảnh chụp bài làm (Tùy chọn):
-            </label>
-            <input type="file" name="q_{{ q.id }}_file" accept="image/*,.pdf,.doc,.docx" style="font-size:var(--text-xs); border:1px solid var(--border); border-radius:var(--radius-sm); padding:var(--space-2); width:100%; background:var(--surface); color:var(--text-1)" @change="if($event.target.files.length) answered['{{ q.id }}'] = true">
-          </div>
-        </div>
-
-      {% else %}
-        <!-- Single / Multi Choice Form -->
-        <div style="display:flex; flex-direction:column; gap:var(--space-2)">
-          {% for answer in q._shuffled_answers %}
-          <label style="display:flex; align-items:center; gap:var(--space-3);
-                        padding:var(--space-3) var(--space-4);
-                        border:1px solid var(--border);
-                        border-radius:var(--radius-sm);
-                        cursor:pointer;
-                        transition:all var(--ease);
-                        background: var(--surface);"
-                 onmouseover="this.style.borderColor='var(--accent)';"
-                 onmouseout="this.style.borderColor='var(--border)';"
-                 class="checkbox-label">
-            
-            <input type="{{ 'checkbox' if q.question_type == 'multi' else 'radio' }}"
-                   name="q_{{ q.id }}"
-                   value="{{ answer.id }}"
-                   @change="answered['{{ q.id }}'] = true">
-            
-            <span style="font-size:var(--text-sm); color: var(--text-2)">{{ answer.answer_text }}</span>
-          </label>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-    {% endfor %}
-
-    <!-- Form submission button -->
-    <div style="display:flex; justify-content:center; padding:var(--space-8) 0">
-      <button type="submit" class="btn btn-primary"
-              onclick="return confirm('Nộp bài kiểm tra? Bạn không thể chỉnh sửa sau khi nộp.')"
-              style="padding:12px 48px; font-size:var(--text-md)">
-        <i data-lucide="send" style="width:16px; height:16px"></i>
-        Nộp bài thi
-      </button>
-    </div>
-  </form>
+  <p class="taking-send-status" data-taking-send-status role="status" aria-live="polite" hidden></p>
+  <dialog class="academy-dialog taking-confirm" id="exam-submit-dialog" data-native-dialog aria-labelledby="exam-submit-title" aria-describedby="exam-submit-description"><div class="dialog-heading"><h2 id="exam-submit-title">Nộp bài làm?</h2><button type="button" class="btn btn-icon" data-dialog-close aria-label="Đóng xác nhận"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><p id="exam-submit-description">Sau khi nộp, bạn không thể sửa câu trả lời.</p><dl class="taking-confirm-counts"><div><dt>Đầy đủ</dt><dd data-confirm-complete>0</dd></div><div><dt>Một phần</dt><dd data-confirm-partial>0</dd></div><div><dt>Chưa trả lời</dt><dd data-confirm-blank>0</dd></div></dl><p class="taking-confirm-hint" data-confirm-hint></p></div><div class="dialog-actions"><button type="button" class="btn btn-secondary" data-dialog-close autofocus>Tiếp tục làm bài</button><button type="button" class="btn btn-primary" data-taking-confirm-submit><i data-lucide="send" aria-hidden="true"></i>Nộp bài</button></div></dialog>
+  <dialog class="academy-dialog taking-image-dialog" id="exam-image-dialog" data-native-dialog aria-labelledby="exam-image-title"><div class="dialog-heading"><h2 id="exam-image-title">Hình minh họa</h2><button type="button" class="btn btn-icon" data-dialog-close aria-label="Đóng hình"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><img data-taking-image-preview alt="Hình minh họa phóng to"></div></dialog>
 </div>
 {% endblock %}

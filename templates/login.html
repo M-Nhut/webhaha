@@ -3,96 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng nhập - EduCenter</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <meta name="theme-color" content="#F5F7FB">
+  <title>Đăng nhập - LMath</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-transparent.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo-transparent.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', v='20261019-persistent-frame') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css', v='20261019-brand-large') }}">
 </head>
-<body style="background: var(--surface)">
-<div class="auth-layout">
-  
-  <!-- Left Panel: Decorative -->
-  <div class="auth-panel">
-    <div>
-      <span style="font-size: var(--text-sm); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-3)">
-        EduCenter
-      </span>
-      <h1>Chào mừng trở lại.</h1>
-      <p style="font-size: var(--text-md); font-weight: 400; line-height: 1.6; color: var(--text-2); max-width: 440px;">
-        Đăng nhập vào hệ thống để theo dõi lịch học, kết quả bài thi, bảng điểm danh và quản lý học vụ trực tuyến của bạn.
-      </p>
-    </div>
-  </div>
-
-  <!-- Right Panel: Login Form -->
-  <div class="auth-form-area">
-    <div class="auth-form">
-      <div style="margin-bottom: var(--space-8)">
-        <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-6)">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="width:48px; height:48px; border-radius:50%; object-fit:cover; flex-shrink:0; border: 1px solid var(--border)">
-          <div>
-            <h1 style="font-size:18px; font-weight:800; color:var(--accent); line-height:1.2; margin:0">EduCenter</h1>
-            <span style="font-size:11px; color:var(--text-3); font-weight:500; margin-top:0">Trung tâm Dạy kèm Chất lượng</span>
-          </div>
+<body class="auth-page auth-page-login">
+  <a class="skip-link" href="#login-form">Đến biểu mẫu đăng nhập</a>
+  <main class="auth-shell auth-shell-login">
+    <div class="auth-layout">
+      <aside class="auth-identity" aria-labelledby="auth-identity-title">
+        <img class="auth-identity-logo" src="{{ url_for('static', filename='images/logo-transparent.png') }}" alt="" width="192" height="192" fetchpriority="high">
+        <div class="auth-identity-copy">
+          <p class="auth-identity-name" id="auth-identity-title">LMath</p>
+          <p class="auth-identity-caption">Không gian học tập và giảng dạy</p>
         </div>
-        <h2 style="font-family: 'Inter', sans-serif; font-size: var(--text-2xl); font-weight: 700; color: var(--text-1)">
-          Đăng nhập
-        </h2>
-        <p style="font-size: var(--text-sm); color: var(--text-2); margin-top: var(--space-1)">
-          Nhập tài khoản của bạn để tiếp tục
-        </p>
-      </div>
-
-      <!-- Flash messages inside auth layout -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div style="margin-bottom: var(--space-4); border-radius: var(--radius-sm); overflow: hidden">
-            {% for category, message in messages %}
-              <div class="flash flash-{{ category }}" style="padding: var(--space-2) var(--space-4)">
-                <span style="font-size: var(--text-xs)">{{ message }}</span>
-              </div>
-            {% endfor %}
-          </div>
+      </aside>
+      <section class="auth-panel" aria-labelledby="login-heading">
+        <header class="auth-heading">
+          <h1 id="login-heading">Đăng nhập</h1>
+          <p>Nhập tài khoản để vào không gian của bạn.</p>
+        </header>
+        {% if form.errors %}
+        <section class="auth-error-summary" tabindex="-1" data-auth-validation-summary aria-labelledby="login-errors-title">
+          <h2 id="login-errors-title">Kiểm tra lại thông tin</h2>
+          <ul>{% for field in form if field.errors %}{% for error in field.errors %}
+            <li>{% if field.type in ('HiddenField', 'CSRFTokenField') %}{{ error }}{% else %}<a href="#{{ field.id }}">{{ field.label.text }}: {{ error }}</a>{% endif %}</li>
+          {% endfor %}{% endfor %}</ul>
+        </section>
         {% endif %}
-      {% endwith %}
-
-      <form method="POST">
-        {{ form.hidden_tag() }}
-        
-        <div class="form-group">
-          {{ form.username.label(class="form-label") }}
-          {{ form.username(placeholder="Tên đăng nhập") }}
-          {% if form.username.errors %}
-            {% for error in form.username.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}
+        <div class="auth-messages">
+          {% for category, message in messages %}
+          <div class="auth-notice auth-notice-{{ category }}" role="{% if category in ('danger', 'error') %}alert{% else %}status{% endif %}" {% if category in ('danger', 'error') %}tabindex="-1" data-auth-server-error{% endif %}>{{ message }}</div>
+          {% endfor %}
         </div>
-
-        <div class="form-group" style="margin-bottom: var(--space-6)">
-          {{ form.password.label(class="form-label") }}
-          {{ form.password(placeholder="••••••••") }}
-          {% if form.password.errors %}
-            {% for error in form.password.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-
-        <div style="margin-bottom: var(--space-6)">
-          {{ form.submit(class="btn btn-primary", style="width: 100%; padding: 10px") }}
-        </div>
-      </form>
-
-      <div style="text-align: center; font-size: var(--text-sm)">
-        <span style="color: var(--text-2)">Chưa có tài khoản?</span>
-        <a href="{{ url_for('register') }}" style="font-weight: 600">Đăng ký ngay</a>
-      </div>
+        {% endif %}{% endwith %}
+        <form method="POST" id="login-form" class="auth-form" tabindex="-1" aria-labelledby="login-heading" data-auth-form>
+          {{ form.hidden_tag() }}
+          <div class="form-group auth-field-group">
+            {{ form.username.label(class="auth-label") }}
+            {{ form.username(class="form-control", placeholder="Tên đăng nhập", autocomplete="username", autocapitalize="none", spellcheck="false", aria_invalid="true" if form.username.errors else "false", aria_describedby="username-errors") }}
+            <div class="auth-field-errors" id="username-errors">{% for error in form.username.errors %}<p>{{ error }}</p>{% endfor %}</div>
+          </div>
+          <div class="form-group auth-field-group">
+            {{ form.password.label(class="auth-label") }}
+            <div class="auth-password-field">
+              {{ form.password(class="form-control", placeholder="Mật khẩu", autocomplete="current-password", aria_invalid="true" if form.password.errors else "false", aria_describedby="password-errors") }}
+              <button type="button" class="auth-password-toggle" data-password-toggle data-password-label="mật khẩu" aria-label="Hiện mật khẩu" aria-controls="{{ form.password.id }}" aria-pressed="false" hidden>Hiện</button>
+            </div>
+            <div class="auth-field-errors" id="password-errors">{% for error in form.password.errors %}<p>{{ error }}</p>{% endfor %}</div>
+          </div>
+          {{ form.submit(class="btn btn-primary auth-submit") }}
+          <p class="auth-submit-status" role="status" data-auth-submit-status hidden>Đang đăng nhập…</p>
+        </form>
+        <footer class="auth-switch"><span>Chưa có tài khoản?</span> <a href="{{ url_for('register') }}">Đăng ký tài khoản</a></footer>
+      </section>
     </div>
-  </div>
-
-</div>
+  </main>
+  <script src="{{ url_for('static', filename='js/login.js', v='academy-phase3') }}" defer></script>
 </body>
 </html>

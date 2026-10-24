@@ -1,0 +1,98 @@
+[
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "1",
+    "category_name": "Viết tập hợp không gian mẫu của một phép thử",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "2",
+    "category_name": "Xác định số phần tử của không gian mẫu của một phép thử",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "3",
+    "category_name": "Tính xác suất của biến cố trong trò chơi Tung đồng xu",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "4",
+    "category_name": "Tính xác suất của biến cố trong trò chơi Gieo xúc sắc",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "5",
+    "category_name": "Tính xác suất của biến cố trong trò chơi Vòng quay số",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "6",
+    "category_name": "Tính xác suất của biến cố trong trò chơi Rút thẻ từ trong hộp",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "7",
+    "category_name": "Tính xác suất của biến cố trong phép thử viết số tự nhiên",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  },
+  {
+    "grade": "9",
+    "chapter_code": "8",
+    "chapter_name": "Một số yếu tố thống kê và xác suất",
+    "lesson_code": "i",
+    "lesson_name": "Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố",
+    "category_code": "8",
+    "category_name": "Tính xác suất của biến cố trong trò chơi chọn một đối tượng trong một nhóm đối tượng",
+    "catalog_version": "math9-c8-i-v1",
+    "topic_code": "thong_ke_xac_suat",
+    "topic_name": "Thống kê và xác suất"
+  }
+]

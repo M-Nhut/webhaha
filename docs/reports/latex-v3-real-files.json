@@ -1,0 +1,26 @@
+[
+  {
+    "file": "D1_VIET_TAP_HOP_KGM.tex",
+    "questions": 14,
+    "tables": 4,
+    "figures": 0,
+    "errors": [],
+    "raw_immini": 0
+  },
+  {
+    "file": "D2_XĐ__SO_PHAN_TU_KGM.tex",
+    "questions": 40,
+    "tables": 23,
+    "figures": 0,
+    "errors": [],
+    "raw_immini": 0
+  },
+  {
+    "file": "D5_TINH_XS_VONG_QUAY_SO.tex",
+    "questions": 6,
+    "tables": 3,
+    "figures": 6,
+    "errors": [],
+    "raw_immini": 0
+  }
+]

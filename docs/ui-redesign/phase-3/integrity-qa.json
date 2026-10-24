@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-14",
+  "templatesParsed": 52,
+  "undefinedCssVariables": {},
+  "changedBaselineFiles": [
+    "templates/profile.html",
+    "templates/index.html",
+    "templates/base.html",
+    "templates/register.html",
+    "templates/login.html",
+    "templates/components/footer.html",
+    "templates/components/header.html",
+    "templates/components/flash_messages.html",
+    "templates/components/navigation.html",
+    "templates/errors/403.html",
+    "templates/errors/405.html",
+    "templates/errors/500.html",
+    "templates/errors/404.html",
+    "templates/errors/error.html",
+    "templates/errors/400.html",
+    "static/css/diagnostic-wizard.css",
+    "static/css/learning.css",
+    "static/css/main.css",
+    "static/css/ai-reports.css",
+    "static/js/ui-shell.js",
+    "static/js/login.js"
+  ],
+  "removedBaselineFiles": [
+    "static/css/neo-pop.css",
+    "static/css/login.css",
+    "static/images/pop-avatar.svg",
+    "static/images/pop-study.svg"
+  ],
+  "backendChanged": [],
+  "realDatabaseMetadataUnchanged": true,
+  "formulaRendererUnchanged": true
+}

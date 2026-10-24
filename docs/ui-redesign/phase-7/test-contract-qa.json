@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-17",
+  "pythonRegressionPassed": 126,
+  "newPhase7Tests": 16,
+  "updates": [
+    {
+      "file": "tests/test_diagnostic_phase2.py",
+      "reason": "Old teacher/automatic-authoring requests predated current admin-only manual wizard. Current route test reviews an exact22/8skill paper with digest; legacy random-recovery compatibility remains tested through frozen service fixtures. No route permission change.",
+      "casesPassed": 10
+    },
+    {
+      "file": "tests/test_diagnostic_delete_and_explanation.py",
+      "reason": "Two explanation assertions now verify native details/summary and original solution content instead of removed inline toggleExplanation handler."
+    },
+    {
+      "file": "tests/test_learning_workspace.py",
+      "reason": "AI mock now supplies ai_summary/cause_hypotheses required by existing service. Test verifies ordinary cache, explicit force creates a new artifact while preserving prior completed response, and roster change produces new input hash. All calls mocked."
+    }
+  ],
+  "unchangedServiceAudit": {
+    "file": "services/class_lesson4_report.py",
+    "sha256": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+    "matchesBeforePhase7": true
+  },
+  "realUiFindingsFixed": [
+    "S19 observed_claim list restored as read-only disclosure, capped20.",
+    "Opened take audit constrained as grid child; scroll remains inside named regions at375px.",
+    "Missing max_score displayed as unavailable on progress and teacher assessment summary; valid zero retained."
+  ],
+  "finalFocusedMissingScaleRegressionPassed": true,
+  "providerCalls": 0
+}

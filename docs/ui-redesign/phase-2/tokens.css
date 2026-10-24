@@ -1,0 +1,109 @@
+/* LinhEdu Modern White Academy, Phase 2 proposal. Not imported by the live app. */
+@font-face { font-family: 'Be Vietnam Pro'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/be-vietnam-pro-400.ttf') format('truetype'); }
+@font-face { font-family: 'Be Vietnam Pro'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/be-vietnam-pro-500.ttf') format('truetype'); }
+@font-face { font-family: 'Be Vietnam Pro'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/be-vietnam-pro-600.ttf') format('truetype'); }
+@font-face { font-family: 'Be Vietnam Pro'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/be-vietnam-pro-700.ttf') format('truetype'); }
+
+/* 1. Primitives */
+:root {
+  color-scheme: light;
+  --white: #ffffff;
+  --slate-25: #fafbfd;
+  --slate-50: #f5f7fb;
+  --slate-100: #eef2f7;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #8895a7;
+  --slate-500: #596579;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-900: #0f172a;
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --green-50: #f0fdf4;
+  --green-800: #166534;
+  --amber-50: #fffbeb;
+  --amber-800: #92400e;
+  --red-50: #fef2f2;
+  --red-700: #b91c1c;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --font-sans: 'Be Vietnam Pro', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --size-xs: 12px;
+  --size-sm: 13px;
+  --size-base: 14px;
+  --size-md: 16px;
+  --size-reading: 18px;
+  --size-lg: 20px;
+  --size-xl: 26px;
+  --size-2xl: 32px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-full: 999px;
+  --duration-fast: 150ms;
+}
+
+/* 2. Semantic aliases */
+:root {
+  --color-canvas: var(--slate-50);
+  --color-surface: var(--white);
+  --color-surface-subtle: var(--slate-25);
+  --color-text: var(--slate-900);
+  --color-text-secondary: var(--slate-600);
+  --color-text-muted: var(--slate-500);
+  --color-border: var(--slate-200);
+  --color-input-border: var(--slate-400);
+  --color-primary: var(--blue-700);
+  --color-primary-hover: var(--blue-800);
+  --color-on-primary: var(--white);
+  --color-primary-subtle: var(--blue-50);
+  --color-primary-border: var(--blue-100);
+  --color-success: var(--green-800);
+  --color-success-subtle: var(--green-50);
+  --color-warning: var(--amber-800);
+  --color-warning-subtle: var(--amber-50);
+  --color-danger: var(--red-700);
+  --color-danger-subtle: var(--red-50);
+  --color-focus: var(--blue-700);
+  --color-overlay: rgb(15 23 42 / .38);
+  --shadow-overlay: 0 20px 60px rgb(15 23 42 / .16);
+  --shadow-subtle: 0 2px 6px rgb(15 23 42 / .04);
+  --layout-sidebar: 240px;
+  --layout-header: 64px;
+  --layout-gutter: var(--space-8);
+  --layout-form: 760px;
+  --layout-reading: 820px;
+}
+
+/* 3. Component aliases */
+:root {
+  --button-height: 40px;
+  --button-bg: var(--color-primary);
+  --button-text: var(--color-on-primary);
+  --button-radius: var(--radius-sm);
+  --input-height: 40px;
+  --input-bg: var(--color-surface);
+  --input-radius: var(--radius-sm);
+  --panel-bg: var(--color-surface);
+  --panel-border: var(--color-border);
+  --panel-radius: var(--radius-md);
+  --panel-padding: var(--space-6);
+  --table-padding-y: var(--space-4);
+  --table-padding-x: var(--space-5);
+  --question-size: var(--size-reading);
+  --question-leading: 1.8;
+  --nav-active-bg: var(--color-primary-subtle);
+  --nav-active-text: var(--color-primary);
+}

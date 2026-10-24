@@ -1,0 +1,33 @@
+% Mẫu nhập nhiều lớp/chủ đề. Không cần dùng mã ID.
+% Giữ cấu trúc ex, choice / choiceTF / shortans, loigiai.
+% @grade áp dụng từ vị trí khai báo. @category có thể đặt riêng trong từng ex.
+% @level: NB, TH, VD, VDC. Giáo viên kiểm tra lại mức độ trước khi lưu.
+% Có thể dùng nhãn cũ %[10C4Ni-1T]; dạng nội dung lấy theo tiêu đề section.
+% @grade: 10
+\section*{Mệnh đề và phủ định}
+\begin{ex}
+% @level: NB
+Mệnh đề nào dưới đây đúng?
+\choice{\True $2+3=5$}{$2+3=6$}{$2+3=7$}{$2+3=8$}
+\loigiai{Ta có $2+3=5$, nên chọn phương án A.}
+\end{ex}
+
+\section*{Các phép toán vectơ}
+\begin{ex}
+% @level: TH
+Cho hình bình hành $ABCD$. Xét các khẳng định:
+\choiceTF
+{\True $\vec{AB}+\vec{AD}=\vec{AC}$}
+{\True $\vec{AB}=\vec{DC}$}
+{$\vec{AB}=\vec{CD}$}
+{$\vec{AC}=\vec{0}$}
+\loigiai{Hai ý đầu đúng theo quy tắc hình bình hành. Hai ý sau sai.}
+\end{ex}
+
+\begin{ex}
+% @category: Tọa độ vectơ
+% @level: TH
+Cho $\vec{u}=(2;3)$. Tổng hai tọa độ của $\vec{u}$ bằng bao nhiêu?
+\shortans{5}
+\loigiai{Tổng hai tọa độ là $2+3=5$.}
+\end{ex}

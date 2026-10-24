@@ -1,0 +1,34 @@
+{
+  "passed": 7,
+  "checks": [
+    {
+      "name": "own synthetic import ready",
+      "passed": true
+    },
+    {
+      "name": "button close clears owner",
+      "passed": true
+    },
+    {
+      "name": "Escape clears owner",
+      "passed": true
+    },
+    {
+      "name": "actual destination POST succeeded",
+      "passed": true
+    },
+    {
+      "name": "destination closes comparison",
+      "passed": true
+    },
+    {
+      "name": "refresh removes comparison safely",
+      "passed": true
+    },
+    {
+      "name": "no JavaScript exceptions during teardown",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

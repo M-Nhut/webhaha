@@ -7,10 +7,8 @@ WTForms==3.2.2
 Werkzeug==3.1.5
 pillow==12.2.0
 psycopg2-binary
-PyMuPDF
-python-docx
-olefile
 gunicorn
 whitenoise
 requests
 python-dotenv
+cryptography

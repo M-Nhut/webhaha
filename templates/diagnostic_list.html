@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Đánh giá đầu vào · LMath{% endblock %}
+{% block page_title %}Đánh giá đầu vào{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/diagnostics.css', v='20261015-phase7') }}">{% endblock %}
+{% block content %}
+<div class="diagnostic-management">
+  <header class="page-header">
+    <div class="page-title-area"><h1>Đánh giá đầu vào</h1></div>
+    {% if current_user.role == 'admin' %}<a href="{{ url_for('create_diagnostic') }}" class="btn btn-primary"><i data-lucide="plus" aria-hidden="true"></i>Tạo đánh giá đầu vào</a>{% endif %}
+  </header>
+  <section class="panel diagnostic-register" aria-labelledby="diagnostic-register-title">
+    <div class="diagnostic-register-heading"><div><h2 id="diagnostic-register-title">Danh sách đánh giá <span class="badge">{{ exams|length }}</span></h2></div></div>
+    {% if exams %}
+    <table class="diagnostic-register-table" aria-labelledby="diagnostic-register-title">
+      <thead><tr><th scope="col">Đánh giá</th><th scope="col">Lớp nhận đề</th><th scope="col">Cấu trúc</th><th scope="col">Trạng thái / bài nộp</th><th scope="col">Thao tác</th></tr></thead>
+      <tbody>{% for exam in exams %}
+        {% set diagnostic = exam.get_adaptive_metadata().get('diagnostic', {}) %}
+        {% set recovery = diagnostic.get('recovery', {}) %}
+        {% set coverage = exam.get_diagnostic_coverage() %}
+        {% set submission_count = exam.submissions|length %}
+        <tr>
+          <td class="diagnostic-register-name"><strong>{{ exam.title }}</strong><span>Tạo {{ exam.created_at.strftime('%d/%m/%Y') if exam.created_at else 'chưa rõ ngày' }}</span>{% if recovery.get('quota_changes', 0) %}<span>Đã thay {{ recovery['quota_changes'] }} câu bằng dạng khác cùng mức độ · Bao phủ {{ recovery.get('covered_skill_count', '—') }}/8 dạng</span>{% endif %}</td>
+          <td><span class="diagnostic-mobile-label" aria-hidden="true">Lớp nhận đề</span>{{ exam.course.course_name if exam.course else 'Chưa có lớp' }}</td>
+          <td><span class="diagnostic-mobile-label" aria-hidden="true">Cấu trúc</span><span>{{ exam.question_count }} câu · {{ exam.duration_minutes }} phút</span>{% if coverage.get('item_count', exam.question_count) != exam.question_count %}<span class="diagnostic-cell-note">{{ coverage.get('item_count') }} câu đã cố định</span>{% endif %}{% if diagnostic.get('selection_policy') != 'manual' %}<span class="diagnostic-cell-note">Đề nguồn lịch sử</span>{% endif %}</td>
+          <td><span class="diagnostic-mobile-label" aria-hidden="true">Trạng thái / bài nộp</span><span class="badge {{ 'badge-success' if exam.is_active else 'badge-neutral' }}">{{ 'Đã giao · đang mở' if exam.is_active else 'Đã đóng' }}</span><span class="diagnostic-cell-note">{{ submission_count|string + ' bài đã nộp' if submission_count else 'Chưa có bài nộp' }}</span></td>
+          <td class="diagnostic-register-action-cell"><div class="diagnostic-register-actions"><a class="btn btn-secondary" href="{{ url_for('practice_result', exam_id=exam.id) }}" aria-label="Xem bài làm: {{ exam.title }}">Xem bài làm</a>{% if current_user.role == 'admin' or exam.created_by == current_user.id or (exam.course and exam.course.teacher_id == current_user.id) %}<form method="POST" action="{{ url_for('delete_diagnostic', exam_id=exam.id) }}" class="diagnostic-delete-form" data-diagnostic-delete data-title="{{ exam.title }}" data-submissions="{{ submission_count }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="button" class="btn btn-ghost diagnostic-delete-button" data-delete-open aria-label="Xóa đánh giá: {{ exam.title }}" hidden><i data-lucide="trash-2" aria-hidden="true"></i>Xóa</button></form>{% endif %}</div></td>
+        </tr>
+      {% endfor %}</tbody>
+    </table>
+    {% else %}<div class="diagnostic-empty"><i data-lucide="clipboard-check" aria-hidden="true"></i><h3>Chưa có đánh giá đầu vào</h3><p>{{ 'Tạo bộ câu hỏi, kiểm tra toàn bộ đề rồi chọn lớp nhận đề để bắt đầu.' if current_user.role == 'admin' else 'Các đánh giá do bạn tạo sẽ xuất hiện tại đây. Quản trị viên phụ trách tạo và giao đề đầu vào mới.' }}</p>{% if current_user.role == 'admin' %}<a href="{{ url_for('create_diagnostic') }}" class="btn btn-secondary">Tạo đề đầu tiên</a>{% endif %}</div>{% endif %}
+  </section>
+  <noscript><p class="diagnostic-footnote">Bật JavaScript để sử dụng hộp xác nhận xóa đánh giá.</p></noscript>
+</div>
+<dialog id="diagnostic-delete-dialog" class="academy-dialog" aria-labelledby="diagnostic-delete-title" aria-describedby="diagnostic-delete-description"><div class="dialog-heading"><h2 id="diagnostic-delete-title">Xóa đánh giá đầu vào</h2><button type="button" class="btn-icon" data-delete-cancel aria-label="Đóng xác nhận xóa"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><p id="diagnostic-delete-description">Bạn sắp xóa <strong id="diagnostic-delete-name"></strong>.</p><p id="diagnostic-delete-impact"></p><p>Đề, các lượt giao và dữ liệu làm bài liên quan sẽ bị xóa. Thao tác này không thể hoàn tác.</p></div><div class="dialog-actions"><button type="button" class="btn btn-secondary" data-delete-cancel autofocus>Giữ lại đề</button><button type="button" class="btn btn-danger" id="diagnostic-delete-confirm">Xóa đánh giá</button></div></dialog>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/diagnostic-list.js', v='20261015-phase7') }}" defer></script>{% endblock %}

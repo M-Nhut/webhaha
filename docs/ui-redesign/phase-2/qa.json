@@ -1,0 +1,402 @@
+{
+  "date": "2026-10-14",
+  "scope": "Isolated Phase 2 prototype only; no live app or database.",
+  "checks": [
+    {
+      "name": "Teacher can edit only own overlay",
+      "pass": true
+    },
+    {
+      "name": "Admin can edit all five demo questions",
+      "pass": true
+    },
+    {
+      "name": "Bank scope keyboard changes active tab and retains focus",
+      "pass": true
+    },
+    {
+      "name": "Common scope shows three questions",
+      "pass": true
+    },
+    {
+      "name": "Local MathJax renders formulas",
+      "pass": true
+    },
+    {
+      "name": "General bank mode has editable private content",
+      "pass": true
+    },
+    {
+      "name": "Bank filter has genuine empty result",
+      "pass": true
+    },
+    {
+      "name": "Add question opens native modal",
+      "pass": true
+    },
+    {
+      "name": "Escape closes modal and returns focus",
+      "pass": true
+    },
+    {
+      "name": "Draft filter shows two rows",
+      "pass": true
+    },
+    {
+      "name": "Assessment search empty state",
+      "pass": true
+    },
+    {
+      "name": "Editor save reflects local state",
+      "pass": true
+    },
+    {
+      "name": "Editor blocks invalid total",
+      "pass": true
+    },
+    {
+      "name": "Publish demo locks editor",
+      "pass": true
+    },
+    {
+      "name": "True/False one statement is partial",
+      "pass": true
+    },
+    {
+      "name": "Clearing short answer removes completed state",
+      "pass": true
+    },
+    {
+      "name": "All three complete counted correctly",
+      "pass": true
+    },
+    {
+      "name": "Demo grading uses entered answers",
+      "pass": true
+    },
+    {
+      "name": "Result context selector matches rendered context",
+      "pass": true
+    },
+    {
+      "name": "Mobile drawer opens and background becomes inert",
+      "pass": true
+    },
+    {
+      "name": "Mobile drawer traps focus",
+      "pass": true
+    },
+    {
+      "name": "Mobile drawer Escape restores trigger focus",
+      "pass": true
+    },
+    {
+      "name": "Scenario empty renders",
+      "pass": true
+    },
+    {
+      "name": "Scenario loading renders",
+      "pass": true
+    },
+    {
+      "name": "Scenario error renders",
+      "pass": true
+    },
+    {
+      "name": "Error retry restores content",
+      "pass": true
+    },
+    {
+      "name": "Preview server excludes application environment",
+      "pass": true
+    },
+    {
+      "name": "No browser page/asset errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "No external requests",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "All 32 responsive layout checks pass",
+      "pass": true
+    }
+  ],
+  "layouts": [
+    {
+      "view": "bank",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "banks",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "assessments",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "editor",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "take",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "result",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "components",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "specs",
+      "width": 1440,
+      "viewport": 1440,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "bank",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "banks",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "assessments",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "editor",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "take",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "result",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "components",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "specs",
+      "width": 1024,
+      "viewport": 1024,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "bank",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "banks",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "assessments",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "editor",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "take",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "result",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "components",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "specs",
+      "width": 768,
+      "viewport": 768,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "bank",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "banks",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "assessments",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "editor",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "take",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "result",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "components",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    },
+    {
+      "view": "specs",
+      "width": 375,
+      "viewport": 375,
+      "h1": 1,
+      "font": true,
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "screenshots": [
+    "screenshots/bank-desktop.png",
+    "screenshots/bank-general-desktop.png",
+    "screenshots/banks-desktop.png",
+    "screenshots/assessments-desktop.png",
+    "screenshots/editor-desktop.png",
+    "screenshots/take-desktop.png",
+    "screenshots/result-desktop.png",
+    "screenshots/components-desktop.png",
+    "screenshots/bank-mobile.png",
+    "screenshots/assessments-mobile.png",
+    "screenshots/take-mobile.png"
+  ],
+  "pass": true
+}

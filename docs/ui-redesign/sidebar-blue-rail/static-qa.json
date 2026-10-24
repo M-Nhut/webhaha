@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "checks": 390,
+  "cases": [
+    {
+      "role": "teacher",
+      "route": "/profile",
+      "menuItems": 10,
+      "activeLabel": "Hồ sơ của Tài khoản kiểm tra"
+    },
+    {
+      "role": "admin",
+      "route": "/profile",
+      "menuItems": 10,
+      "activeLabel": "Hồ sơ của Tài khoản kiểm tra"
+    },
+    {
+      "role": "student",
+      "route": "/profile",
+      "menuItems": 4,
+      "activeLabel": "Hồ sơ của Tài khoản kiểm tra"
+    },
+    {
+      "role": "admin",
+      "route": "/users/1/edit",
+      "menuItems": 10,
+      "activeLabel": "Học sinh"
+    },
+    {
+      "role": "admin",
+      "route": "/users/1/edit",
+      "menuItems": 10,
+      "activeLabel": "Giáo viên"
+    },
+    {
+      "role": "teacher",
+      "route": "/question-banks/1/classification/evaluation",
+      "menuItems": 10,
+      "activeLabel": "Ngân hàng câu hỏi"
+    }
+  ],
+  "undefinedTokens": [],
+  "cssParserErrors": 0,
+  "browserStatus": "blocked: automatic approval review selected model at capacity",
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storageTemporary": true
+}

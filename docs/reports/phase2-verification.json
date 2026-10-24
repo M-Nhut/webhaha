@@ -1,0 +1,40 @@
+{
+  "verified_at_utc": "2026-09-07T07:47:23.687743+00:00",
+  "stage": 2,
+  "database_integrity": "ok",
+  "scope_column_exists": true,
+  "local_bank_question_count": 0,
+  "local_import_session_count": 0,
+  "chapter6_topics": [
+    "Thống kê và xác suất"
+  ],
+  "python_tests": {
+    "passed": 203,
+    "failed": 0
+  },
+  "javascript_suites": [
+    "test_id6_picker.js",
+    "test_import_scope.js"
+  ],
+  "browser_checks": [
+    "Chapter 6, Lesson 4, one topic",
+    "Scope survives page reload",
+    "Three sample questions imported",
+    "Manual true_false and short_answer exam created and reopened with correct answers"
+  ],
+  "docx": {
+    "pages": 1,
+    "round_trip_types": [
+      "single",
+      "true_false",
+      "short_answer"
+    ],
+    "visually_reviewed": true
+  },
+  "not_implemented_in_stage2": [
+    "automatic_duplicate_exclusion (stage 2a)",
+    "automatic_math_category_and_difficulty_classification (stage 3)"
+  ],
+  "remote_deployment": false,
+  "postgresql_integration_tested": false
+}

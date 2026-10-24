@@ -1,0 +1,71 @@
+{
+  "scope": [
+    "S14 diagnostic_list.html",
+    "S15 diagnostic_form.html"
+  ],
+  "files": [
+    "templates/diagnostic_list.html",
+    "templates/diagnostic_form.html",
+    "static/css/diagnostic-wizard.css",
+    "static/css/pages/diagnostics.css",
+    "static/js/modules/diagnostic_wizard.js",
+    "static/js/diagnostic-list.js"
+  ],
+  "design": [
+    "Modern White Academy semantic tokens and existing font/buttons/panels",
+    "Creator-scoped teacher register; admin create action only",
+    "Native delete dialog names paper, actual submissions and irreversible impact; cancel default and Escape returns focus",
+    "Three-step source, bounded selection, full reviewed paper",
+    "Readonly22=12+4+6,8skills,40minutes; local selection metadata only1hour",
+    "All22 end markers must be viewed before confirmation opens; class/title receipt",
+    "Lazy answer detail and media failure retry; request busy and error focus; stale digest resets to selection"
+  ],
+  "preserved": [
+    "Server role/source/creator permissions",
+    "CSRF forms and APIs",
+    "Exact ordered question_ids, server review_digest and final reconfirmation",
+    "Frozen common paper and cohort assignment",
+    "Scoring and duration contracts"
+  ],
+  "cleanup": {
+    "inlineStylesRemoved": 8,
+    "inlineHandlersRemoved": 1,
+    "oldDiagnosticStylesheetReplaced": true,
+    "newLibraries": 0
+  },
+  "qa": {
+    "interceptedBrowserChecks": 68,
+    "realReadOnlyApiBrowserChecks": 16,
+    "widths": [
+      375,
+      768,
+      1024,
+      1440
+    ],
+    "jsErrors": 0,
+    "publicationAndDeletionReachedServer": 0,
+    "static": "diagnostics-static-qa.json",
+    "browser": "diagnostics-browser-qa.json",
+    "realApi": "diagnostics-real-api-qa.json"
+  },
+  "qaNotes": [
+    "Final publication/deletion will be checked by root separately against isolated synthetic data.",
+    "Intercepted browser fixtures are labelled synthetic; real API QA uses97source items across4pages.",
+    "No real database, .env or provider credentials accessed."
+  ],
+  "rootSelectors": {
+    "source": "#dw-bank",
+    "start": "#dw-start",
+    "choice": "#dw-choice-{question_id}",
+    "pageNext": "#dw-next-page",
+    "review": "#dw-review",
+    "readEnd": "[data-review-end]",
+    "title": "#dw-title",
+    "course": "#dw-course",
+    "confirmed": "#dw-confirm",
+    "publish": "#dw-publish",
+    "delete": "[data-diagnostic-delete][data-title=\"title\"] [data-delete-open]",
+    "deleteConfirm": "#diagnostic-delete-confirm"
+  },
+  "remaining": []
+}

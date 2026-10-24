@@ -1,0 +1,234 @@
+% ============================================================================
+% MẪU CẤU TRÚC NGÂN HÀNG CÂU HỎI XÁC SUẤT — LỚP 9, CHƯƠNG 8
+% Dùng chung với các khai báo trong main.tex và gói ex_test.
+% File này là mẫu để sao chép; hiện chưa được \input vào main.tex.
+% ============================================================================
+
+% ----------------------------------------------------------------------------
+% I. CÁCH SỬ DỤNG
+% ----------------------------------------------------------------------------
+% 1. Sao chép file này và đổi tên theo dạng bài, nên đặt trong thư mục Data.
+% 2. Thay X trong "Dạng X", tên dạng bài và tất cả ID bằng số dạng từ 1 đến 8.
+% 3. Chèn từng câu vào đúng mức độ và đúng loại câu hỏi.
+% 4. Trước khi thêm, tìm trong cả 8 file Data để tránh câu trùng hoặc chỉ đổi tên.
+% 5. Mỗi câu phải có:
+%       - môi trường \begin{ex} ... \end{ex};
+%       - ID ngay sau \begin{ex};
+%       - đúng một khối \loigiai{...};
+%       - đáp án đúng được đánh dấu bằng \True.
+% 6. Sau khi hoàn thành, thêm vào main.tex:
+%       \input{Data/TEN_FILE_KHONG_CO_DUOI_TEX}
+
+% ----------------------------------------------------------------------------
+% II. QUY ƯỚC ID
+% ----------------------------------------------------------------------------
+% Cấu trúc: %[9C8Mi-XL]
+%
+%   9  : lớp 9
+%   C8 : chương 8
+%   M  : mức độ, gồm N, H, V, C
+%        N = Nhận biết; H = Thông hiểu; V = Vận dụng; C = Vận dụng cao
+%   i  : nhóm bài 25–26 đang dùng trong ngân hàng hiện tại
+%   X  : số dạng bài, từ 1 đến 8
+%   L  : loại câu hỏi, gồm T, D, S
+%        T = Trắc nghiệm; D = Đúng sai; S = Trả lời ngắn
+%
+% Ví dụ:
+%   %[9C8Ni-1T] : Nhận biết, Dạng 1, Trắc nghiệm
+%   %[9C8Hi-4D] : Thông hiểu, Dạng 4, Đúng sai
+%   %[9C8Vi-6S] : Vận dụng, Dạng 6, Trả lời ngắn
+%   %[9C8Ci-8T] : Vận dụng cao, Dạng 8, Trắc nghiệm
+%
+% ID hiện tại là mã phân loại, vì vậy nhiều câu trong cùng một nhóm có thể dùng
+% cùng một ID. Không tự ý đổi cấu trúc ID nếu chưa sửa quy ước của toàn bộ dự án.
+
+% ----------------------------------------------------------------------------
+% III. DANH MỤC 8 DẠNG BÀI
+% ----------------------------------------------------------------------------
+% Dạng 1: Viết tập hợp không gian mẫu của một phép thử.
+% Dạng 2: Xác định số phần tử của không gian mẫu của một phép thử.
+% Dạng 3: Tính xác suất trong trò chơi tung đồng xu.
+% Dạng 4: Tính xác suất trong trò chơi gieo xúc xắc.
+% Dạng 5: Tính xác suất trong trò chơi vòng quay số.
+% Dạng 6: Tính xác suất trong trò chơi rút thẻ, rút bóng từ hộp hoặc túi.
+% Dạng 7: Tính xác suất trong phép thử viết hoặc chọn số tự nhiên.
+% Dạng 8: Tính xác suất khi chọn, xếp một hoặc nhiều đối tượng trong nhóm.
+
+% ----------------------------------------------------------------------------
+% IV. GỢI Ý PHÂN LOẠI MỨC ĐỘ
+% ----------------------------------------------------------------------------
+% N — Nhận biết:
+%   Nhắc lại định nghĩa, kí hiệu, nhận diện kết quả, liệt kê trực tiếp ít trường hợp.
+% H — Thông hiểu:
+%   Giải thích được cách lập không gian mẫu, phân biệt thứ tự, đếm bằng bảng đơn giản.
+% V — Vận dụng:
+%   Kết hợp nhiều điều kiện; xét chẵn, lẻ, nguyên tố, chia hết; xử lí có/không hoàn lại.
+% C — Vận dụng cao:
+%   Nhiều bước suy luận, nhiều trường hợp, dữ kiện ẩn hoặc cần phát hiện lỗi/ngoại lệ.
+
+% ----------------------------------------------------------------------------
+% V. MẪU CÂU HỎI — SAO CHÉP KHỐI CẦN DÙNG
+% ----------------------------------------------------------------------------
+
+% MẪU T — TRẮC NGHIỆM BỐN PHƯƠNG ÁN
+%
+% \begin{ex}%[9C8Ni-XT]
+%   Nội dung câu hỏi là:
+%   \choice
+%   {Phương án A}
+%   {\True Phương án B đúng}
+%   {Phương án C}
+%   {Phương án D}
+%   \loigiai{
+%     Trình bày lời giải, kiểm tra từng điều kiện và kết luận chọn B.
+%   }
+% \end{ex}
+
+% MẪU D — ĐÚNG SAI BỐN Ý
+%
+% \begin{ex}%[9C8Hi-XD]
+%   Nội dung chung của câu hỏi. Xét tính đúng sai của các khẳng định sau:
+%   \choiceTF
+%   {\True Khẳng định a đúng}
+%   {Khẳng định b sai}
+%   {\True Khẳng định c đúng}
+%   {Khẳng định d sai}
+%   \loigiai{
+%     Nêu không gian mẫu hoặc bảng kết quả trước khi xét từng ý.
+%     \begin{itemchoice}
+%       \itemch \textbf{Đúng.} Giải thích ý a.
+%       \itemch \textbf{Sai.} Giải thích ý b và nêu kết quả đúng.
+%       \itemch \textbf{Đúng.} Giải thích ý c.
+%       \itemch \textbf{Sai.} Giải thích ý d và nêu kết quả đúng.
+%     \end{itemchoice}
+%   }
+% \end{ex}
+
+% MẪU S — TRẢ LỜI NGẮN
+%
+% \begin{ex}%[9C8Vi-XS]
+%   Nội dung câu hỏi.
+%   \shortans{Đáp án ngắn}
+%   \loigiai{
+%     Trình bày lời giải và kết luận đúng bằng đáp án đã khai báo.
+%   }
+% \end{ex}
+%
+% Có thể điều chỉnh độ rộng ô đáp án, ví dụ:
+%   \shortans[6]{$\dfrac{3}{10}$}
+%   \shortans[10]{$\{SS;SN;NS;NN\}$}
+
+% ----------------------------------------------------------------------------
+% VI. KIỂM TRA TRƯỚC KHI LƯU CÂU HỎI
+% ----------------------------------------------------------------------------
+% - Câu hỏi xác định rõ kết quả được ghi nhận là cặp, bộ, tổng, tích hay màu sắc.
+% - Nêu rõ có xét thứ tự hay không; có hoàn lại đối tượng đã rút hay không.
+% - Chỉ dùng công thức xác suất cổ điển khi các kết quả đang đếm đồng khả năng.
+% - Không nhầm số cặp kết quả với số giá trị tổng hoặc tích khác nhau.
+% - Với câu đúng sai, \choiceTF có đúng 4 ý và \loigiai có đúng 4 \itemch.
+% - Với câu trắc nghiệm, chỉ có một phương án được gắn \True.
+% - Với câu trả lời ngắn, đáp án trong \shortans phải khớp kết luận của lời giải.
+% - Đối chiếu phép tính, đáp án nguồn và các trường hợp biên như số 0, số 1.
+% - Nếu có hình, ưu tiên dựng bằng TikZ và giữ đúng dữ kiện của hình gốc.
+
+% ============================================================================
+% DẠNG X: THAY BẰNG TÊN DẠNG BÀI
+% Lớp 9 | Chương 8 | Bài 25–26 (i) | Mức độ: N, H, V, C | Loại: T, D, S
+% Đối chiếu nội dung trong cả 8 file trước khi chèn; không chèn câu trùng.
+% Mỗi câu dùng môi trường ex, gắn ID ngay sau \begin{ex} và có \loigiai{...}.
+% ============================================================================
+\section*{Dạng X. Thay bằng tên dạng bài}
+\setcounter{ex}{0}
+
+% ============================================================================
+% MỨC ĐỘ N — NHẬN BIẾT
+% ============================================================================
+\subsection*{I. Nhận biết}
+
+% ----------------------------------------------------------------------------
+% TRẮC NGHIỆM (T) | ID: %[9C8Ni-XT]
+% Chèn các câu dùng \choice tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{1. Trắc nghiệm}
+
+
+% ----------------------------------------------------------------------------
+% ĐÚNG SAI (D) | ID: %[9C8Ni-XD]
+% Chèn các câu dùng \choiceTF tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{2. Đúng sai}
+
+% ----------------------------------------------------------------------------
+% TRẢ LỜI NGẮN (S) | ID: %[9C8Ni-XS]
+% Chèn các câu dùng \shortans tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{3. Trả lời ngắn}
+
+% ============================================================================
+% MỨC ĐỘ H — THÔNG HIỂU
+% ============================================================================
+\subsection*{II. Thông hiểu}
+
+% ----------------------------------------------------------------------------
+% TRẮC NGHIỆM (T) | ID: %[9C8Hi-XT]
+% Chèn các câu dùng \choice tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{1. Trắc nghiệm}
+
+% ----------------------------------------------------------------------------
+% ĐÚNG SAI (D) | ID: %[9C8Hi-XD]
+% Chèn các câu dùng \choiceTF tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{2. Đúng sai}
+
+% ----------------------------------------------------------------------------
+% TRẢ LỜI NGẮN (S) | ID: %[9C8Hi-XS]
+% Chèn các câu dùng \shortans tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{3. Trả lời ngắn}
+
+% ============================================================================
+% MỨC ĐỘ V — VẬN DỤNG
+% ============================================================================
+\subsection*{III. Vận dụng}
+
+% ----------------------------------------------------------------------------
+% TRẮC NGHIỆM (T) | ID: %[9C8Vi-XT]
+% Chèn các câu dùng \choice tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{1. Trắc nghiệm}
+
+% ----------------------------------------------------------------------------
+% ĐÚNG SAI (D) | ID: %[9C8Vi-XD]
+% Chèn các câu dùng \choiceTF tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{2. Đúng sai}
+
+% ----------------------------------------------------------------------------
+% TRẢ LỜI NGẮN (S) | ID: %[9C8Vi-XS]
+% Chèn các câu dùng \shortans tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{3. Trả lời ngắn}
+
+% ============================================================================
+% MỨC ĐỘ C — VẬN DỤNG CAO
+% ============================================================================
+\subsection*{IV. Vận dụng cao}
+
+% ----------------------------------------------------------------------------
+% TRẮC NGHIỆM (T) | ID: %[9C8Ci-XT]
+% Chèn các câu dùng \choice tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{1. Trắc nghiệm}
+
+% ----------------------------------------------------------------------------
+% ĐÚNG SAI (D) | ID: %[9C8Ci-XD]
+% Chèn các câu dùng \choiceTF tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{2. Đúng sai}
+
+% ----------------------------------------------------------------------------
+% TRẢ LỜI NGẮN (S) | ID: %[9C8Ci-XS]
+% Chèn các câu dùng \shortans tại đây.
+% ----------------------------------------------------------------------------
+\subsubsection*{3. Trả lời ngắn}

@@ -1,0 +1,25 @@
+{% set practice_skill_names = ['Viết không gian mẫu', 'Đếm không gian mẫu', 'Tung đồng xu', 'Gieo xúc xắc', 'Vòng quay số', 'Rút thẻ', 'Viết số tự nhiên', 'Chọn đối tượng'] %}
+{% set practice_levels = [('nhan_biet', 'Nhận biết'), ('thong_hieu', 'Thông hiểu'), ('van_dung', 'Vận dụng'), ('van_dung_cao', 'Vận dụng cao')] %}
+{% set practice_cells = profile.get('practice_skill_mastery', {}) %}
+<section class="knowledge-matrix" aria-label="Kết quả theo dạng kiến thức">
+  <header class="knowledge-matrix-header"><h3>Kết quả theo dạng kiến thức</h3><span class="badge badge-neutral">8 dạng · 4 mức</span></header>
+  <p class="knowledge-matrix-guide">Ô chưa có bằng chứng được giữ là “Chưa biết”. Có kết quả nhưng chưa đủ câu khác nhau và lượt làm thì chưa thể kết luận mức thành thạo.</p>
+  <p class="knowledge-matrix-scroll-hint"><i data-lucide="move-horizontal" aria-hidden="true"></i>Cuộn ngang trong bảng để xem đủ bốn mức nhận thức.</p>
+  <div class="knowledge-matrix-scroll" tabindex="0" role="region" aria-label="Bảng kết quả 8 dạng kiến thức, cuộn ngang">
+    <table class="knowledge-matrix-table">
+      <caption class="sr-only">Kết quả quan sát, trạng thái bằng chứng, số câu khác nhau và lượt làm theo dạng và mức nhận thức. Chưa biết không có nghĩa là yếu.</caption>
+      <thead><tr><th scope="col">Dạng kiến thức</th>{% for _level, level_label in practice_levels %}<th scope="col">{{ level_label }}</th>{% endfor %}</tr></thead>
+      <tbody>{% for skill_name in practice_skill_names %}{% set skill = '9C8-i-' ~ loop.index %}
+        <tr><th scope="row"><span class="knowledge-matrix-code">Dạng {{ loop.index }}</span><span>{{ skill_name }}</span></th>
+          {% for level, _level_label in practice_levels %}{% set cell = practice_cells.get(skill ~ '||' ~ level) %}
+          {% set known = cell and cell.get('mastery') is not none %}
+          <td class="{% if known and cell.get('sufficient') %}{{ 'is-established' if cell.mastery >= 0.7 else 'is-reinforce' }}{% elif known %}is-limited{% else %}is-unknown{% endif %}">
+            {% if known %}<strong class="knowledge-matrix-value">{{ (cell.mastery * 100)|round|int }}%</strong><span class="knowledge-matrix-state">{{ cell.get('state') or 'Chưa đủ dữ liệu' }}</span><span class="knowledge-matrix-sample">{{ cell.get('distinct_count', 0) }} câu khác nhau · {{ cell.get('session_count', 0) }} lượt</span>
+            {% else %}<span class="knowledge-matrix-state">Chưa biết</span><span class="knowledge-matrix-sample">Chưa có bằng chứng</span>{% endif %}
+          </td>{% endfor %}
+        </tr>{% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="knowledge-matrix-note">Phần trăm phản ánh bằng chứng câu trả lời; không phải điểm bài kiểm tra hoặc xác suất làm đúng bài tiếp theo.</p>
+</section>

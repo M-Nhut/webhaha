@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% from "components/id6_picker.html" import id6_picker %}
+{% block title %}Phân loại kiến thức · {{ bank.name }}{% endblock %}
+{% block page_title %}Phân loại kiến thức{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/knowledge.css', v='20261019-question-unified') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/id6.css') }}?v=20261014-phase4">
+{% endblock %}
+{% block content %}
+<section class="knowledge-page" data-classification-workspace>
+  <div class="page-header">
+    <div class="page-title-area">
+      <p><a href="{{ url_for('question_bank_detail', bank_id=bank.id) }}">{{ bank.name }}</a> / Phân loại kiến thức</p>
+      <h1>Duyệt nhãn kiến thức</h1>
+    </div>
+    <div class="knowledge-actions">
+      <a class="btn btn-secondary" href="{{ url_for('classification_evaluation_page', bank_id=bank.id) }}"><i data-lucide="clipboard-check" aria-hidden="true"></i> Đánh giá thí điểm</a>
+      <a class="btn btn-ghost" href="{{ url_for('curriculum_catalog') }}"><i data-lucide="network" aria-hidden="true"></i> Danh mục kiến thức</a>
+    </div>
+  </div>
+  <dl class="knowledge-summary" aria-label="Tổng quan phân loại trong ngân hàng">
+    <div><dt>Tổng câu được xem</dt><dd>{{ visible_question_count }}</dd></div>
+    <div><dt>Đã phân loại</dt><dd>{{ classified_count }}</dd></div>
+    <div><dt>Chưa phân loại</dt><dd>{{ unclassified_count }}</dd></div>
+    <div><dt>Gợi ý chờ duyệt</dt><dd>{{ suggested_count }}</dd></div>
+  </dl>
+  <div class="knowledge-notice"><i data-lucide="info" aria-hidden="true"></i><p>Gán thủ công cho các câu cùng hình thức, hoặc xác nhận gợi ý còn phù hợp. Gợi ý cũ sau khi nội dung thay đổi cần được kiểm tra lại.</p></div>
+  <form class="panel knowledge-filter" method="GET" action="{{ url_for('question_bank_classification', bank_id=bank.id) }}" aria-label="Lọc câu hỏi phân loại">
+    <div class="field knowledge-filter-search"><label for="classification-search">Nội dung câu hỏi</label><input type="search" id="classification-search" name="q" value="{{ request.args.get('q', '') }}" placeholder="Tìm nội dung câu hỏi"></div>
+    <div class="field"><label for="classification-status">Trạng thái</label><select name="status" id="classification-status">{% for value, label in [('all','Tất cả trạng thái'),('unclassified','Chưa phân loại'),('classified','Đã phân loại'),('suggested','Gợi ý chờ duyệt'),('needs_review','Cần kiểm tra'),('teacher_confirmed','Giáo viên đã xác nhận')] %}<option value="{{ value }}" {% if request.args.get('status', 'unclassified') == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div>
+    <div class="field knowledge-filter-node"><label for="classification-node">Dạng kiến thức</label><select name="node_id" id="classification-node"><option value="">Tất cả dạng kiến thức</option>{% for node in nodes %}{% if node.grade == '9' and node.chapter_code == '8' and node.lesson_code == 'i' %}<option value="{{ node.id }}" {% if request.args.get('node_id')|int == node.id %}selected{% endif %}>{{ node.canonical_code }} · {{ node.category_name }}</option>{% endif %}{% endfor %}</select></div>
+    <div class="knowledge-actions"><button class="btn btn-secondary" type="submit">Lọc câu hỏi</button><a class="btn btn-ghost" href="{{ url_for('question_bank_classification', bank_id=bank.id) }}">Đặt lại</a></div>
+  </form>
+  {% if can_edit|default(false) %}
+  <section class="panel classification-actions" aria-labelledby="classification-actions-title">
+    <div class="knowledge-section-heading"><div><h2 id="classification-actions-title">Xác nhận nhãn cho câu đã chọn</h2><p id="selection-count" role="status" aria-live="polite">Đã chọn 0 / {{ questions|length }} câu đang hiển thị</p></div><label class="knowledge-checkbox"><input type="checkbox" id="select-all"> Chọn tất cả câu có quyền sửa đang hiển thị</label></div>
+    <p class="form-hint">Danh sách hiển thị tối đa 500 câu theo bộ lọc. Thao tác chỉ áp dụng cho câu đang hiển thị và được chọn.</p>
+    <div class="classification-action-grid">
+      <form method="POST" action="{{ url_for('bulk_classify_questions', bank_id=bank.id) }}" id="classification-form" data-manual-classification>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h3>Gán thủ công</h3><p class="form-hint" id="selection-type-hint">Chọn các câu cùng hình thức để gán dạng và mức độ. Hình thức trả lời của câu được giữ nguyên.</p>
+        <div x-data="{ selection: {question_type: 'single', difficulty_level: 'nhan_biet'} }">{{ id6_picker('selection', true) }}</div>
+        <button class="btn btn-primary" type="submit" data-manual-submit aria-describedby="selection-type-hint">Xác nhận nhãn thủ công</button>
+      </form>
+      <form method="POST" action="{{ url_for('accept_classification_suggestions', bank_id=bank.id) }}" id="suggestion-form" data-suggestion-classification>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h3>Xác nhận gợi ý</h3><p>Giữ dạng và mức độ trong gợi ý của từng câu. Chỉ xác nhận các gợi ý còn phù hợp với nội dung và danh mục.</p><div data-suggestion-selection></div><p class="form-hint" id="suggestion-selection-hint">Chọn các câu có trạng thái “Gợi ý tự động” còn hiệu lực.</p><button class="btn btn-secondary" type="submit" data-suggestion-submit disabled aria-describedby="suggestion-selection-hint">Xác nhận gợi ý đã chọn</button><noscript><p class="form-hint">Bật JavaScript để chọn và xác nhận nhãn kiến thức. Danh sách câu hỏi vẫn đọc được.</p></noscript>
+      </form>
+    </div>
+  </section>
+  {% endif %}
+  <div class="knowledge-section-heading"><h2>Câu hỏi cần duyệt</h2><span class="knowledge-result-count">{{ questions|length }} câu đang hiển thị</span></div>
+  <div class="classification-list">
+    {% for question in questions %}
+    {% set classification = classification_views.get(question.id, {}) %}
+    {% set permission = (question_permissions|default({})).get(question.id, {}) %}
+    {% set editable = can_edit|default(false) and permission.get('can_edit', false) %}
+    {% set status = classification.get('status') or question.classification_status %}
+    {% set kind = 'true_false' if question.question_type == 'truefalse' else question.question_type %}
+    <article class="question-surface classification-question" id="classification-question-{{ question.id }}">
+      {% if editable %}<label class="classification-select"><input class="question-checkbox" type="checkbox" name="question_ids" value="{{ question.id }}" form="classification-form" data-question-type="{{ kind }}" data-suggestion-current="{{ 'true' if status == 'suggested' else 'false' }}"><span class="sr-only">Chọn câu hỏi {{ question.id }}</span></label>{% else %}<span class="classification-readonly" title="Chỉ đọc"><i data-lucide="lock-keyhole" aria-hidden="true"></i><span class="sr-only">Câu chỉ đọc</span></span>{% endif %}
+      <div class="classification-question-main">
+        <div class="knowledge-meta"><strong class="question-label">Câu #{{ question.id }}</strong><span class="badge badge-neutral">{{ {'single':'Trắc nghiệm', 'multiple_choice':'Trắc nghiệm nhiều đáp án', 'true_false':'Đúng/Sai', 'short_answer':'Trả lời ngắn', 'essay':'Tự luận'}.get(kind, kind) }}</span>{% if permission.get('source_label') %}<span class="badge badge-neutral">{{ permission.source_label }}</span>{% endif %}</div>
+        {% if question.source_id %}<p class="knowledge-source">ID nguồn: <code>{{ question.source_id }}</code></p>{% endif %}
+        {% if question.context %}<div class="question-context question-reading katex-render">{{ question.context }}</div>{% endif %}
+        {% if question.question_text|length > 500 %}<details class="knowledge-question-disclosure"><summary>Xem nội dung câu hỏi</summary><div class="knowledge-question-text question-reading katex-render">{{ question.question_text }}</div></details>{% else %}<div class="knowledge-question-text question-reading katex-render">{{ question.question_text }}</div>{% endif %}
+        {% if question.image_url %}<button type="button" class="knowledge-image-button" data-knowledge-image="{{ question.image_url }}" aria-label="Phóng to hình câu hỏi {{ question.id }}"><img src="{{ question.image_url }}" alt="Hình minh họa câu hỏi {{ question.id }}" loading="lazy"></button>{% endif %}
+        <div class="knowledge-classification-state">
+          {% if status == 'stale' %}<span class="badge badge-warning">Gợi ý cũ · Cần kiểm tra lại</span>{% elif status == 'teacher_confirmed' %}<span class="badge badge-success">Giáo viên đã xác nhận</span>{% elif status == 'suggested' %}<span class="badge badge-info">Gợi ý tự động</span>{% elif status == 'needs_review' %}<span class="badge badge-warning">Cần kiểm tra</span>{% elif status == 'source_labeled' %}<span class="badge badge-neutral">Giữ nhãn từ file</span>{% elif question.curriculum_node_id %}<span class="badge badge-neutral">Đã gán dạng kiến thức</span>{% else %}<span class="badge badge-neutral">Chưa phân loại</span>{% endif %}
+          {% if classification.get('primary_code') %}<code>{{ classification.primary_code }}</code>{% endif %}{% if classification.get('difficulty_level') %}<span>{{ {'nhan_biet':'Nhận biết','thong_hieu':'Thông hiểu','van_dung':'Vận dụng','van_dung_cao':'Vận dụng cao'}.get(classification.difficulty_level, classification.difficulty_level) }}</span>{% endif %}
+        </div>
+        {% if classification.get('rationale') %}<ul class="knowledge-rationale">{% for reason in classification.rationale %}<li>{{ reason }}</li>{% endfor %}</ul>{% endif %}
+        {% if status == 'stale' %}<p class="knowledge-warning">Nội dung đã thay đổi. Không xác nhận gợi ý này; hãy kiểm tra và gán nhãn thủ công.</p>{% endif %}
+        {% if question.curriculum_node %}<p class="knowledge-path">Lớp {{ question.curriculum_node.grade }} · {{ question.curriculum_node.chapter_name }} → {{ question.curriculum_node.lesson_name }} → {{ question.curriculum_node.category_name }}</p>{% endif %}
+      </div>
+    </article>
+    {% else %}<div class="panel knowledge-empty"><i data-lucide="list-filter" aria-hidden="true"></i><h3>Không có câu hỏi phù hợp</h3><p>Thử thay đổi trạng thái, dạng kiến thức hoặc từ khóa.</p><a class="btn btn-secondary" href="{{ url_for('question_bank_classification', bank_id=bank.id, status='all') }}">Xem tất cả trạng thái</a></div>{% endfor %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script>window.ID6_CATALOG = {{ id6_catalog|tojson }};</script><script src="{{ url_for('static', filename='js/id6_picker.js') }}?v=20261014-phase4"></script><script src="{{ url_for('static', filename='js/knowledge.js') }}?v=20261014-phase4"></script>{% endblock %}

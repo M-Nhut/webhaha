@@ -1,76 +1,31 @@
-{% extends "base.html" %}
-
-{% block title %}Chi Tiết Chấm Tự Luyện - EduCenter{% endblock %}
-{% block page_title %}Danh sách bài tự luyện của {{ student.fullname }}{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Quá trình học · {{ student.fullname }}{% endblock %}
+{% block page_title %}{{ 'Học sinh của tôi' if current_user.role == 'teacher' else 'Theo dõi học tập' }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/practice-teacher.css', v='20261023-remove-assessment-panel') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Chi tiết các lần tự luyện của học sinh</p>
-    <h1>Học sinh: {{ student.fullname }}</h1>
-  </div>
-  <div>
-    <a href="{{ url_for('teacher_practice_list') }}" class="btn btn-outline">
-      <i data-lucide="arrow-left" style="width:14px;height:14px"></i> Quay lại
-    </a>
-  </div>
-</div>
-
-<div class="card" style="margin-top: var(--space-4)">
-  <div style="overflow-x: auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Thời gian nộp</th>
-          <th>Đề thi</th>
-          <th>Điểm số</th>
-          <th>Trạng thái</th>
-          <th class="text-right">Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for sub in submissions %}
-        <tr>
-          <td>{{ sub.submitted_at.strftime('%d/%m/%Y %H:%M') if sub.submitted_at else 'Đang làm' }}</td>
-          <td>
-            <div style="font-weight: 500">{{ sub.exam.title }}</div>
-            <div style="font-size: var(--text-xs); color: var(--text-2)">{{ sub.exam.total_questions }} câu</div>
-          </td>
-          <td>
-            {% if sub.submitted_at %}
-              <span style="font-weight: 600; color: var(--accent)">{{ sub.total_score }}/{{ sub.max_score }}</span>
-            {% else %}
-              <span style="color: var(--text-2)">---</span>
-            {% endif %}
-          </td>
-          <td>
-            {% if not sub.submitted_at %}
-              <span class="badge" style="background:var(--surface-3); color:var(--text-2)">Chưa nộp</span>
-            {% elif sub.is_graded %}
-              <span class="badge badge-present">Đã chấm điểm</span>
-            {% else %}
-              <span class="badge badge-partial">Đang chờ chấm</span>
-            {% endif %}
-          </td>
-          <td class="text-right">
-            {% if sub.submitted_at %}
-              <a href="{{ url_for('grade_submission', submission_id=sub.id) }}" class="btn btn-primary btn-sm">
-                {% if sub.is_graded %}Xem điểm{% else %}Chấm bài{% endif %}
-              </a>
-            {% else %}
-              <button class="btn btn-outline btn-sm" disabled>Đang làm</button>
-            {% endif %}
-          </td>
-        </tr>
-        {% else %}
-        <tr>
-          <td colspan="5" class="text-center" style="padding: var(--space-6) 0; color: var(--text-2)">
-            Học sinh này chưa nộp bài tự luyện nào.
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+<div class="teacher-workspace">
+  <header class="page-header teacher-page-header"><div class="page-title-area"><p><a href="{{ url_for('teacher_practice_list', course_id=selected_course_id) }}">{{ 'Học sinh của tôi' if current_user.role == 'teacher' else 'Theo dõi học tập' }}</a> <span aria-hidden="true">/</span> Quá trình học</p><h1>{{ student.fullname }}</h1><p class="teacher-page-description">{{ student.username }}</p></div><a class="btn btn-secondary" href="{{ url_for('teacher_practice_list', course_id=selected_course_id) }}"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách học sinh</a></header>
+  <form class="panel teacher-scope" method="get"><div class="field"><label for="learning-course">Phạm vi lớp học</label><select id="learning-course" name="course_id"><option value="">Các lớp bạn phụ trách</option>{% for course in course_choices %}<option value="{{ course.id }}" {% if selected_course_id == course.id %}selected{% endif %}>{{ course.course_name }} · {{ course.subject }}</option>{% endfor %}</select></div><button class="btn btn-primary" type="submit">Áp dụng phạm vi</button></form>
+  <nav class="teacher-section-nav" aria-label="Nội dung quá trình học"><a href="#learning-results">Hồ sơ học tập</a><a href="#learning-history">Lịch sử bài làm</a><a href="#learning-support">Giao bài củng cố</a></nav>
+  <section id="learning-results" class="teacher-profiles" aria-labelledby="teacher-profiles-title"><div class="teacher-section-heading"><div><h2 id="teacher-profiles-title">Hồ sơ học tập</h2><p>Tổng hợp bài đầu vào và tự luyện đã chấm trong phạm vi lớp đang xem.</p></div></div>
+    {% for subject, profile in profiles.items() %}<article class="panel teacher-profile"><div class="teacher-section-heading"><div><h3>{{ subject }}</h3><p>{{ profile.total_attempts }} bài đã chấm · {{ profile.answer_count }} câu trả lời có bằng chứng</p></div><span class="badge {{ 'badge-info' if profile.answer_count else 'badge-neutral' }}">{% if profile.answer_count %}{{ (profile.overall_mastery * 100)|round|int }}% · Kết quả đã ghi nhận{% else %}Chưa có dữ liệu đã chấm{% endif %}</span></div>
+      {% if profile.cold_start %}<p class="teacher-notice"><i data-lucide="info" aria-hidden="true"></i><span>Dữ liệu ban đầu: {{ profile.answer_count }}/{{ profile.cold_start_min_answers }} câu trả lời. Các nội dung chưa có đủ bằng chứng vẫn được giữ là “Chưa biết”.</span></p>{% endif %}
+      <dl class="teacher-cognitive-grid">{% for level, label in [('nhan_biet','Nhận biết'),('thong_hieu','Thông hiểu'),('van_dung','Vận dụng'),('van_dung_cao','Vận dụng cao')] %}<div><dt>{{ label }}</dt><dd>{% if profile[level ~ '_accuracy'] is not none %}{{ profile[level ~ '_accuracy'] }}%{% else %}<span class="teacher-no-data">Chưa có dữ liệu</span>{% endif %}</dd></div>{% endfor %}</dl>
+      {% if profile.weak_regions %}<div class="teacher-priorities"><h4>Nội dung cần ưu tiên</h4><div>{% for item in profile.weak_regions[:5] %}<span class="badge badge-warning">{{ item.topic }} · {{ {'nhan_biet':'NB','thong_hieu':'TH','van_dung':'VD','van_dung_cao':'VDC'}.get(item.cognitive_level, item.cognitive_level) }} · {{ (item.mastery * 100)|round|int }}%</span>{% endfor %}</div></div>{% endif %}
+      {% set report_courses = available_courses|selectattr('subject', 'equalto', subject)|list %}
+      {% if report_courses %}<div class="teacher-report-action"><a class="btn btn-primary" href="{{ url_for('ai_reports_individual', course_id=report_courses[0].id, student_id=student.id, view='detail') }}"><i data-lucide="file-chart-column" aria-hidden="true"></i>Xem báo cáo AI</a></div>{% endif %}
+    </article>{% else %}<div class="panel teacher-empty"><i data-lucide="book-open" aria-hidden="true"></i><h3>Chưa có hồ sơ trong phạm vi này</h3><p>Chọn lớp mà học sinh đang tham gia để xem dữ liệu học tập theo môn.</p></div>{% endfor %}
+  </section>
+  <section class="panel teacher-history" id="learning-history" aria-labelledby="teacher-history-title"><div class="teacher-section-heading"><div><h2 id="teacher-history-title">Lịch sử bài làm</h2><p>Bài đầu vào, tự luyện và kiểm tra trong phạm vi lớp đã chọn.</p></div><span class="badge badge-neutral">{{ submissions|length }} lượt</span></div>{% if submissions %}<div class="teacher-table-wrap"><table class="teacher-table teacher-history-table"><thead><tr><th scope="col">Bài làm</th><th scope="col">Thời gian nộp</th><th scope="col">Điểm / 10</th><th scope="col">Trạng thái</th><th scope="col"><span class="sr-only">Xem bài</span></th></tr></thead><tbody>{% for sub in submissions %}<tr><th scope="row"><strong>{{ sub.exam.title }}</strong><span class="teacher-table-meta">{{ sub.exam.total_questions if sub.exam.total_questions is not none else sub.exam.questions|length }} câu · {{ 'Kiểm tra' if sub.exam.assessment_purpose == 'standalone' else 'Đầu vào' if sub.exam.assessment_purpose == 'initial_diagnostic' else 'Tự luyện' }}</span></th><td data-label="Thời gian nộp">{{ sub.submitted_at.strftime('%d/%m/%Y · %H:%M') if sub.submitted_at else 'Chưa nộp' }}</td><td data-label="Điểm / 10" class="teacher-score">{% if sub.submitted_at and sub.is_graded and sub.score_on_ten is not none %}{{ sub.score_on_ten }}{% else %}<span class="teacher-no-data">Chưa có điểm chấm</span>{% endif %}</td><td data-label="Trạng thái">{% if not sub.submitted_at %}<span class="badge badge-neutral">Chưa nộp</span>{% elif sub.is_graded %}<span class="badge badge-success">Đã chấm điểm</span>{% else %}<span class="badge badge-neutral">Lịch sử · chưa chấm</span>{% endif %}</td><td class="teacher-table-action">{% if sub.submitted_at %}<a href="{{ url_for('assessment_result' if sub.exam.assessment_purpose == 'standalone' else 'practice_result', exam_id=sub.exam.id, submission_id=sub.id) }}" class="btn btn-secondary btn-sm" aria-label="Xem bài {{ sub.exam.title }}">Xem bài<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>{% else %}<span class="teacher-no-data">Đang làm</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="teacher-empty is-compact"><i data-lucide="history" aria-hidden="true"></i><h3>Chưa có bài làm</h3><p>Học sinh chưa làm bài trong phạm vi đang xem.</p></div>{% endif %}</section>
+  <details class="panel teacher-support" id="learning-support"><summary><span><strong>Giao bài luyện củng cố</strong><small>Tạo bản nháp 22 câu để duyệt trước khi phát hành</small></span><i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="teacher-support-body"><p>Học sinh cần hoàn tất đánh giá đầu vào trước khi nhận bài luyện cá nhân hóa. Nguồn câu hỏi được kiểm tra theo giáo viên đang phụ trách lớp.</p>
+    {% if available_courses and available_banks %}<form method="post" action="{{ url_for('teacher_generate_adaptive_practice', student_id=student.id) }}" id="adaptive-practice-form"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><div class="validation-summary" data-teacher-form-errors role="alert" tabindex="-1" hidden><strong>Kiểm tra cấu hình bài luyện</strong><ul></ul></div>
+      <div class="teacher-form-grid"><div class="field"><label for="adaptive-course">Lớp nhận bài</label><select name="course_id" required id="adaptive-course">{% for course in available_courses %}<option value="{{ course.id }}" data-subject="{{ course.subject }}" {% if selected_course_id == course.id %}selected{% endif %}>{{ course.course_name }} · {{ course.subject }}</option>{% endfor %}</select></div><div class="field"><label for="adaptive-total">Số câu cố định</label><input type="number" id="adaptive-total" name="total_questions" value="22" readonly aria-describedby="adaptive-total-hint"><span class="form-hint" id="adaptive-total-hint">12 chọn đáp án · 4 Đúng/Sai · 6 trả lời ngắn. Thiếu câu hợp lệ: không tạo đề.</span></div></div>
+      <fieldset class="teacher-fieldset" id="adaptive-banks"><legend>Ngân hàng câu hỏi</legend><p class="form-hint">Chỉ hiển thị nguồn hợp lệ với lớp và môn đang chọn. Khi đổi lớp, nguồn không còn hợp lệ sẽ được bỏ chọn.</p><div class="teacher-bank-grid">{% for bank in available_banks %}{% set course_counts = bank_course_counts.get(bank.id, {}) %}<label class="adaptive-bank" data-subject="{{ bank.subject }}" data-course-counts='{{ course_counts|tojson }}'><input type="checkbox" name="bank_ids" value="{{ bank.id }}"><span><strong class="bank-label">{{ bank.name }}</strong><small>{{ 'Ngân hàng dùng chung' if bank.visibility == 'shared' else 'Nguồn theo quyền của lớp' }} · <span class="bank-count">{{ visible_bank_counts[bank.id] }}</span> câu hợp lệ</small></span></label>{% endfor %}</div><p class="teacher-notice is-warning" data-teacher-no-banks hidden>Chưa có nguồn câu hỏi hợp lệ với lớp này. Chọn lớp khác hoặc kiểm tra ngân hàng câu hỏi trước khi tạo bài.</p><p class="form-hint" data-teacher-source-status role="status"></p></fieldset>
+      <fieldset class="teacher-fieldset"><legend>Giới hạn nội dung <span>(không bắt buộc)</span></legend><p class="form-hint">Các giá trị trong cùng ô được phân cách bằng dấu phẩy. Để trống để lấy tất cả nội dung được phép.</p><div class="teacher-form-grid is-three"><div class="field"><label for="adaptive-chapters">Chương</label><input type="text" id="adaptive-chapters" name="chapters" placeholder="Ví dụ: 8"></div><div class="field"><label for="adaptive-sections">Bài</label><input type="text" id="adaptive-sections" name="sections" placeholder="Ví dụ: i"></div><div class="field"><label for="adaptive-topics">Chủ đề</label><input type="text" id="adaptive-topics" name="topics" placeholder="Ví dụ: Thống kê và xác suất"></div></div></fieldset>
+      <fieldset class="teacher-fieldset" id="adaptive-levels"><legend>Mức nhận thức được phép</legend><div class="teacher-checks">{% for level, label in [('nhan_biet','Nhận biết'),('thong_hieu','Thông hiểu'),('van_dung','Vận dụng'),('van_dung_cao','Vận dụng cao')] %}<label><input type="checkbox" name="cognitive_levels" value="{{ level }}" checked><span>{{ label }}</span></label>{% endfor %}</div></fieldset>
+      <fieldset class="teacher-fieldset"><legend>Tỷ lệ phân bổ bài luyện</legend><p class="form-hint" id="adaptive-mix-hint">Tổng ba tỷ lệ phải bằng 100%. Hệ thống vẫn kiểm tra độ phủ câu hỏi trước khi tạo bản nháp.</p><div class="teacher-form-grid is-three">{% for key, label, value in [('weak','Củng cố vùng yếu',60),('middle','Vùng trung bình',25),('strong','Duy trì kiến thức',15)] %}<div class="field"><label for="mix-{{ key }}">{{ label }} (%)</label><input type="number" id="mix-{{ key }}" name="mix_{{ key }}" min="0" max="100" value="{{ value }}" required aria-describedby="adaptive-mix-hint"></div>{% endfor %}</div><p class="teacher-mix-total" data-teacher-mix-total role="status">Tổng tỷ lệ: 100%</p></fieldset><div class="teacher-form-actions"><button class="btn btn-primary" type="submit" data-teacher-generate>Tạo bản nháp để duyệt<i data-lucide="arrow-right" aria-hidden="true"></i></button><p class="form-hint">Bài chưa được phát hành ở bước này.</p></div><p class="form-hint" data-teacher-submit-status role="status" hidden>Đang kiểm tra nguồn và tạo bản nháp…</p>
+    </form>{% else %}<div class="teacher-empty is-compact"><i data-lucide="database" aria-hidden="true"></i><h3>Chưa có nguồn để tạo bài củng cố</h3><p>Cần có lớp hợp lệ và ngân hàng câu hỏi thuộc đúng môn, đúng quyền của giáo viên phụ trách.</p></div>{% endif %}
+  </div></details>
 </div>
 {% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/modules/teacher_practice_detail.js', v='20261023-remove-assessment-panel') }}" defer></script>{% endblock %}

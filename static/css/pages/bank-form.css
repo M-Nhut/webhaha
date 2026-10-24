@@ -1,0 +1,23 @@
+/* One form surface, kept within a readable measure. */
+.bank-form-header .page-title-area p { margin: 8px 0 0; }
+.panel.bank-form-panel { max-width: var(--layout-form); padding: 0; margin: 0 auto 24px; }
+.bank-form-context { display: flex; gap: 12px; padding: 20px 24px; border-bottom: 1px solid var(--color-border); background: var(--color-surface-subtle); border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.bank-form-context > svg { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; color: var(--color-primary); }
+.bank-form-context > div { min-width: 0; }
+.bank-form-context h2 { margin: 0 0 4px; font-size: var(--size-base); }
+.bank-form-context p { margin: 0 0 4px; color: var(--color-text-secondary); font-size: var(--size-sm); overflow-wrap: anywhere; }
+.bank-form-context span { color: var(--color-text-muted); font-size: var(--size-xs); }
+.bank-form-panel form { padding: 24px; }
+.bank-form-panel .validation-summary h2 { margin: 0; font-size: var(--size-base); color: inherit; }
+.bank-form-required { margin-bottom: 24px; color: var(--color-text-muted); font-size: var(--size-xs); }
+.bank-form-panel .form-label > span { color: var(--color-danger); }
+.bank-form-panel .form-hint { margin: 0; }
+.bank-form-panel input, .bank-form-panel select, .bank-form-panel textarea { font-size: var(--size-base); }
+.bank-form-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 20px; border-top: 1px solid var(--color-border); }
+.bank-form-busy { color: var(--color-text-muted); font-size: var(--size-xs); }
+@media (max-width:767px) {
+  .bank-form-context { padding: 16px; }
+  .bank-form-panel form { padding: 20px 16px; }
+  .bank-form-actions .btn { flex: 1; }
+  .bank-form-busy { flex-basis: 100%; }
+}

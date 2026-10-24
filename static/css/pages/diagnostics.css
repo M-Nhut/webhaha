@@ -1,0 +1,37 @@
+/* Diagnostic register: fixed class papers and explicit destructive actions. */
+.diagnostic-management { min-width: 0; }
+.diagnostic-management .page-title-area p:last-child { margin: 8px 0 0; }
+.diagnostic-register { padding: 0; overflow: hidden; }
+.diagnostic-register-heading { padding: 20px 24px; border-bottom: 1px solid var(--color-border); }
+.diagnostic-register-heading h2 { margin-bottom: 4px; font-size: var(--size-md); }
+.diagnostic-register-heading p { color: var(--color-text-muted); font-size: var(--size-sm); margin: 0; }
+.diagnostic-register-table td { vertical-align: top; }
+.diagnostic-register-name { width: 30%; overflow-wrap: anywhere; }
+.diagnostic-register-name > strong, .diagnostic-register-name > span, .diagnostic-cell-note { display: block; }
+.diagnostic-register-name > span, .diagnostic-cell-note { margin-top: 4px; color: var(--color-text-muted); font-size: var(--size-xs); }
+.diagnostic-register-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.diagnostic-delete-form { margin: 0; }
+.diagnostic-delete-button { color: var(--color-danger); }
+.diagnostic-delete-button:hover { color: var(--color-danger); background: var(--color-danger-subtle); }
+.diagnostic-register-action-cell { width: 210px; }
+.diagnostic-mobile-label { display: none; }
+.diagnostic-empty { display: grid; justify-items: center; padding: 48px 24px; text-align: center; }
+.diagnostic-empty > svg { width: 32px; height: 32px; color: var(--color-primary); margin-bottom: 16px; }
+.diagnostic-empty h3 { font-size: var(--size-md); }
+.diagnostic-empty p { max-width: 460px; color: var(--color-text-muted); }
+.diagnostic-footnote { display: flex; align-items: flex-start; gap: 8px; color: var(--color-text-muted); font-size: var(--size-xs); }
+.diagnostic-footnote svg { width: 16px; height: 16px; margin-top: 2px; }
+@media (max-width: 767px) {
+  .diagnostic-management .page-header > .btn { width: 100%; }
+  .diagnostic-register-heading { padding: 20px 16px; }
+  .diagnostic-register-table, .diagnostic-register-table tbody, .diagnostic-register-table tr, .diagnostic-register-table td { display: block; width: auto; }
+  .diagnostic-register-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .diagnostic-register-table tr { padding: 20px 16px; border-bottom: 1px solid var(--color-border); }
+  .diagnostic-register-table tr:last-child { border-bottom: 0; }
+  .diagnostic-register-table td { padding: 6px 0; border: 0; }
+  .diagnostic-register-table td:first-child { padding-top: 0; margin-bottom: 8px; }
+  .diagnostic-register-table td:last-child { padding-bottom: 0; margin-top: 12px; }
+  .diagnostic-mobile-label { display: block; font-size: var(--size-xs); color: var(--color-text-muted); margin-bottom: 4px; }
+  .diagnostic-register-actions .btn-secondary { flex: 1; }
+  .diagnostic-empty { padding: 32px 16px; }
+}

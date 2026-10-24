@@ -1,115 +1,25 @@
-{% extends "base.html" %}
-
-{% block title %}Chỉnh sửa thông tin người dùng - EduCenter{% endblock %}
-{% block page_title %}Cập nhật tài khoản{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Chỉnh sửa tài khoản · LMath{% endblock %}
+{% block page_title %}Chỉnh sửa tài khoản{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/people.css', v='20261020-content-cleanup-v2') }}">{% endblock %}
 {% block content %}
-<div x-data="{ 
-  role: '{{ user.role }}' 
-}">
-
-  <div class="page-header">
-    <div class="page-title-area">
-      <p>Cập nhật hồ sơ tài khoản: {{ user.fullname }}</p>
-      <h1>Chỉnh sửa Người dùng</h1>
-    </div>
-    <div style="display:flex; gap:var(--space-2)">
-      <form action="{{ url_for('reset_password', user_id=user.id) }}" method="POST" onsubmit="return confirm('Đặt lại mật khẩu tài khoản này về mặc định \'123456\'?')">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <button type="submit" class="btn btn-danger">
-          <i data-lucide="key" style="width:14px;height:14px"></i>
-          Reset Mật khẩu
-        </button>
-      </form>
-      <a href="{{ url_for('manage_users', role_name='teachers' if user.role == 'teacher' else 'students') }}" class="btn btn-secondary">Quay lại</a>
-    </div>
-  </div>
-
-  <div class="card" style="max-width: 680px; margin: 0 auto">
-    <div class="card-header">
-      <h3 class="card-title">Hồ sơ tài khoản</h3>
-    </div>
-
-    <form method="POST">
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-      <div class="form-group">
-        <label class="form-label" for="role">Vai trò hệ thống *</label>
-        <select id="role" name="role" x-model="role" required>
-          <option value="student" {% if user.role == 'student' %}selected{% endif %}>Học sinh</option>
-          <option value="teacher" {% if user.role == 'teacher' %}selected{% endif %}>Giáo viên</option>
-          <option value="parent" {% if user.role == 'parent' %}selected{% endif %}>Phụ huynh</option>
-          <option value="manager" {% if user.role == 'manager' %}selected{% endif %}>Nhân viên quản lý (Staff)</option>
-          {% if current_user.role == 'admin' %}
-            <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Quản trị viên (Admin)</option>
-          {% endif %}
-        </select>
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label class="form-label" for="user_code">Mã số người dùng *</label>
-          <input type="text" id="user_code" name="user_code" value="{{ user.user_code }}" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="fullname">Họ và tên *</label>
-          <input type="text" id="fullname" name="fullname" value="{{ user.fullname }}" required>
-        </div>
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          <label class="form-label" for="username">Tên đăng nhập *</label>
-          <input type="text" id="username" name="username" value="{{ user.username }}" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="phone">Số điện thoại liên hệ</label>
-          <input type="tel" id="phone" name="phone" value="{{ user.phone or '' }}" placeholder="09xx xxx xxx">
-        </div>
-      </div>
-
-      <!-- Role-dependent fields -->
-      <div class="form-group" x-show="role === 'student' || role === 'manager' || role === 'admin'">
-        <label class="form-label" for="position">Lớp học / Vị trí chức danh</label>
-        <input type="text" id="position" name="position" value="{{ user.position or '' }}" placeholder="Ví dụ: Lớp 10A2, Quản vụ">
-      </div>
-
-      <div class="form-group" x-show="role === 'teacher'">
-        <label class="form-label" for="salary_rate_per_hour">Mức thù lao dạy học / giờ (VNĐ)</label>
-        <input type="number" id="salary_rate_per_hour" name="salary_rate_per_hour" value="{{ user.salary_rate_per_hour or 0 }}">
-      </div>
-
-      <div class="form-group" x-show="role === 'parent'">
-        <label class="form-label" for="linked_student_id">Liên kết với Học sinh</label>
-        <select id="linked_student_id" name="linked_student_id">
-          <option value="">-- Chọn học sinh để liên kết --</option>
-          {% for student in students %}
-            <option value="{{ student.id }}" {% if user.linked_student_id == student.id %}selected{% endif %}>
-              {{ student.fullname }} ({{ student.user_code }})
-            </option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <div class="form-group" style="margin-top: var(--space-4)">
-        <label class="checkbox-label">
-          <input type="checkbox" name="is_active" value="1" {% if user.is_active %}checked{% endif %}>
-          <span>Tài khoản đang được kích hoạt (Được đăng nhập và thao tác)</span>
-        </label>
-      </div>
-
-      <div style="margin-top: var(--space-6); display: flex; gap: var(--space-3)">
-        <button type="submit" class="btn btn-primary">
-          <i data-lucide="save" style="width:14px;height:14px"></i>
-          Lưu thay đổi
-        </button>
-        <a href="{{ url_for('manage_users', role_name='teachers' if user.role == 'teacher' else 'students') }}" class="btn btn-secondary">
-          Hủy bỏ
-        </a>
-      </div>
-
-    </form>
-  </div>
-
+{% set protected = user.role == 'admin' %}
+{% set back_url = url_for('manage_users', role_name='teachers' if user.role == 'teacher' else 'students') %}
+<div class="academy-people people-editor">
+  <header class="page-header people-header"><div class="page-title-area"><h1>Chỉnh sửa tài khoản</h1><p>{{ user.fullname }} · {{ user.username }}</p></div><a class="btn btn-secondary" href="{{ back_url }}"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách người dùng</a></header>
+  {% if protected %}<div class="people-protected" role="note"><i data-lucide="shield-check" aria-hidden="true"></i><div><h2>Tài khoản quản trị viên được bảo vệ</h2><p>Thông tin, vai trò và mật khẩu của tài khoản này không thể thay đổi tại màn hình này.</p></div></div>{% endif %}
+  <section class="panel people-edit-panel" aria-labelledby="people-profile-title"><div class="people-panel-heading"><h2 id="people-profile-title">Hồ sơ tài khoản</h2><span class="badge {{ 'badge-info' if protected else 'badge-success' if user.is_active else 'badge-neutral' }}">{{ 'Quản trị viên' if protected else 'Đang hoạt động' if user.is_active else 'Đã khóa' }}</span></div>
+  {% if not protected %}<form method="POST" data-people-form><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">{% endif %}
+    <div class="people-edit-body"><p class="people-required-note">{{ 'Thông tin chỉ đọc.' if protected else 'Các trường có dấu * là bắt buộc.' }}</p><fieldset class="people-fieldset people-profile-fields"{% if protected %} disabled{% endif %}><legend class="sr-only">Thông tin tài khoản</legend>
+      <div class="form-group"><label for="role" class="form-label">Vai trò{{ ' *' if not protected }}</label><select id="role" name="role" required data-people-role>{% if protected %}<option value="admin" selected>Quản trị viên</option>{% else %}<option value="student"{{ ' selected' if user.role == 'student' }}>Học sinh</option><option value="teacher"{{ ' selected' if user.role == 'teacher' }}>Giáo viên</option>{% endif %}</select></div>
+      <div class="form-grid-2"><div class="form-group"><label for="user_code" class="form-label">Mã người dùng{{ ' *' if not protected }}</label><input id="user_code" name="user_code" type="text" maxlength="20" required value="{{ user.user_code }}" autocomplete="off"></div><div class="form-group"><label for="fullname" class="form-label">Họ và tên{{ ' *' if not protected }}</label><input id="fullname" name="fullname" type="text" maxlength="100" required value="{{ user.fullname }}" autocomplete="name"></div></div>
+      <div class="form-grid-2"><div class="form-group"><label for="username" class="form-label">Tên đăng nhập{{ ' *' if not protected }}</label><input id="username" name="username" type="text" maxlength="80" required value="{{ user.username }}" autocomplete="off" autocapitalize="none" spellcheck="false"></div><div class="form-group"><label for="phone" class="form-label">Số điện thoại</label><input id="phone" name="phone" type="tel" maxlength="20" value="{{ user.phone or '' }}" autocomplete="tel"></div></div>
+      <div class="form-group"><label for="position" class="form-label" data-people-position-label>{{ 'Lớp / Vị trí' if user.role == 'student' else 'Vị trí' }}</label><input id="position" name="position" type="text" maxlength="100" value="{{ user.position or '' }}"></div>
+      <label class="people-active-control" for="is_active"><input id="is_active" type="checkbox" name="is_active" value="1"{{ ' checked' if user.is_active }}><span><strong>Kích hoạt tài khoản</strong><span>Tài khoản đang hoạt động được phép đăng nhập và sử dụng hệ thống.</span></span></label>
+    </fieldset></div>
+  {% if not protected %}<div class="people-edit-actions"><a class="btn btn-secondary" href="{{ back_url }}">Hủy bỏ</a><button class="btn btn-primary" type="submit"><i data-lucide="save" aria-hidden="true"></i>Lưu thay đổi</button></div></form>{% endif %}
+  </section>
+  {% if not protected %}<section class="panel people-password-panel" aria-labelledby="people-password-title"><div><h2 id="people-password-title">Đặt lại mật khẩu</h2><p>Đặt mật khẩu của <strong>{{ user.username }}</strong> về mặc định <strong>123456</strong>. Thao tác này được thực hiện riêng với việc lưu hồ sơ.</p></div><form action="{{ url_for('reset_password', user_id=user.id) }}" method="POST" class="people-danger-ready" data-people-confirm="Đặt lại mật khẩu của {{ user.fullname }} ({{ user.username }}) về mặc định 123456?"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-secondary people-danger-link" type="submit"><i data-lucide="key-round" aria-hidden="true"></i>Đặt lại mật khẩu</button></form></section><noscript><p class="people-noscript">Cần bật JavaScript để xác nhận đặt lại mật khẩu.</p></noscript>{% endif %}
 </div>
 {% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/people.js', v='20261017-phase8') }}" defer></script>{% endblock %}

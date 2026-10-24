@@ -1,0 +1,12 @@
+{
+  "old_inline_styles": 53,
+  "new_inline_styles": 0,
+  "old_inline_handlers": 1,
+  "new_inline_handlers": 0,
+  "isolated_jinja_render_cases": 27,
+  "static_checks": [
+    "Jinja parse",
+    "Node syntax",
+    "CSS parse"
+  ]
+}

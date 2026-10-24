@@ -1,175 +1,43 @@
-{% extends "base.html" %}
-
-{% block title %}Biểu Đồ Tiến Bộ - EduCenter{% endblock %}
-{% block page_title %}Phân tích tiến bộ học tập{% endblock %}
-
+{% extends 'base.html' %}
+{% block title %}Kết quả và tiến bộ · LMath{% endblock %}
+{% block page_title %}Kết quả và tiến bộ{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/practice-student.css', v='20261015-phase7') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Theo dõi sự thay đổi năng lực qua thời gian</p>
-    <h1>Biểu đồ tiến bộ học tập</h1>
+{% set levels = [('nhan_biet','Nhận biết'), ('thong_hieu','Thông hiểu'), ('van_dung','Vận dụng'), ('van_dung_cao','Vận dụng cao')] %}
+{% set attempts = profile.total_attempts or 0 %}
+<div class="student-practice student-progress">
+  <header class="page-header student-practice-header"><div class="page-title-area"><h1>Kết quả và tiến bộ</h1></div><a href="{{ url_for('practice_home') }}" class="btn btn-secondary"><i data-lucide="book-open" aria-hidden="true"></i>Về tự luyện</a></header>
+  <section class="panel student-context" aria-labelledby="progress-context-title"><div><h2 id="progress-context-title">{{ selected_subject }}</h2><p>Hồ sơ tổng hợp theo môn học, không giới hạn ở một lớp.</p></div><form method="GET" action="{{ url_for('practice_progress') }}" class="student-context-form"><div class="student-select-field"><label for="progress-subject">Môn học</label><select id="progress-subject" name="subject">{% for subject in subjects %}<option value="{{ subject }}"{% if subject == selected_subject %} selected{% endif %}>{{ subject }}</option>{% endfor %}</select></div><button type="submit" class="btn btn-secondary">Xem môn</button></form></section>
+  {% if not attempts and not profile.answer_count %}<section class="student-data-notice" aria-labelledby="progress-empty-title"><i data-lucide="notebook-pen" aria-hidden="true"></i><div><h2 id="progress-empty-title">Chưa có bằng chứng từ đầu vào hoặc tự luyện</h2><p>Hoàn thành bài đầu vào hoặc bài luyện để bắt đầu ghi nhận. Bài kiểm tra đã chấm, nếu có, vẫn xuất hiện trong lịch sử bên dưới.</p></div></section>
+  {% elif profile.cold_start %}<section class="student-data-notice" aria-labelledby="progress-cold-title"><i data-lucide="info" aria-hidden="true"></i><div><h2 id="progress-cold-title">Hồ sơ đang được xây dựng</h2><p>Đã ghi nhận {{ profile.answer_count }} / {{ profile.cold_start_min_answers }} câu trả lời. Bài luyện được giữ cân bằng trong giai đoạn đầu; dữ liệu chưa đủ không đồng nghĩa với kiến thức yếu.</p></div></section>{% endif %}
+  <div class="student-kpis" aria-label="Tổng quan đầu vào và tự luyện">
+    <section class="panel student-kpi"><h2>Điểm trung bình</h2><p class="student-kpi-value">{% if attempts and profile.avg_score is not none %}{{ profile.avg_score }}<span>/ 10</span>{% else %}<span class="student-kpi-missing">Chưa có dữ liệu</span>{% endif %}</p><p>Đầu vào và tự luyện · có trọng số gần đây</p></section>
+    <section class="panel student-kpi"><h2>Điểm cao nhất</h2><p class="student-kpi-value">{% if attempts and profile.best_score is defined and profile.best_score is not none %}{{ profile.best_score }}<span>/ 10</span>{% else %}<span class="student-kpi-missing">Chưa có dữ liệu</span>{% endif %}</p><p>Đầu vào và tự luyện đã chấm</p></section>
+    <section class="panel student-kpi"><h2>Bài đã ghi nhận</h2><p class="student-kpi-value">{{ attempts }}<span>bài</span></p><p>Đầu vào và tự luyện</p></section>
+    <section class="panel student-kpi"><h2>Xu hướng điểm</h2><p class="student-kpi-trend">{% if attempts < 3 %}Chưa đủ dữ liệu{% elif profile.score_trend == 'improving' %}<i data-lucide="trending-up" aria-hidden="true"></i>Đang tiến bộ{% elif profile.score_trend == 'declining' %}<i data-lucide="trending-down" aria-hidden="true"></i>Đang giảm{% else %}<i data-lucide="move-right" aria-hidden="true"></i>Ổn định{% endif %}</p><p>{% if attempts < 3 %}Cần ít nhất 3 bài đã chấm{% else %}Từ các bài đầu vào và tự luyện{% endif %}</p></section>
   </div>
-  <div>
-    <a href="{{ url_for('practice_home') }}" class="btn btn-primary">
-      <i data-lucide="play" style="width:14px;height:14px"></i> Tự luyện ngay
-    </a>
+  <section class="panel student-chart-panel" aria-labelledby="score-chart-title"><div class="student-section-heading"><div><h2 id="score-chart-title">Điểm qua các bài đã chấm</h2><p>Thang điểm 0–10 · gồm cả bài kiểm tra; không dùng thay mức thành thạo.</p></div><span class="badge badge-neutral">{{ history|length }} bản ghi</span></div>
+    {% if history %}<div class="student-chart-frame"><canvas id="scoreChart" role="img" aria-label="Điểm bài làm trên thang 0 đến 10; số liệu đầy đủ trong lịch sử bài làm bên dưới."></canvas></div><p class="student-chart-fallback" data-chart-fallback hidden>Chưa tải được biểu đồ. Bạn vẫn có thể đọc đầy đủ số liệu trong lịch sử bài làm.</p><p class="student-chart-note" data-score-chart-note>Điểm chưa chấm được để trống. Dưới 4 điểm dữ liệu chỉ hiển thị từng điểm, chưa nối đường xu hướng.</p><a class="student-data-link" href="#progress-history-title">Đọc bảng số liệu bài làm<i data-lucide="arrow-down" aria-hidden="true"></i></a>
+    {% else %}<p class="student-chart-empty">Chưa có bài làm cho môn {{ selected_subject }}.</p>{% endif %}
+  </section>
+  <div class="student-chart-grid">
+    <section class="panel student-chart-panel" aria-labelledby="mastery-chart-title"><div class="student-section-heading"><div><h2 id="mastery-chart-title">Mức thành thạo đã ghi nhận</h2><p>Thang 0–1 · ảnh chụp hồ sơ sau các lượt học.</p></div></div>
+      {% if mastery_history %}<div class="student-chart-frame"><canvas id="masteryChart" role="img" aria-label="Mức thành thạo theo từng thời điểm trên thang 0 đến 1; mở bảng dữ liệu ngay bên dưới để đọc số liệu."></canvas></div><p class="student-chart-fallback" data-chart-fallback hidden>Chưa tải được biểu đồ. Bảng bên dưới vẫn có đầy đủ số liệu.</p><details class="student-chart-data"><summary>Xem dữ liệu mức thành thạo</summary><div class="table-wrap" tabindex="0" role="region" aria-label="Bảng dữ liệu mức thành thạo"><table><thead><tr><th scope="col">Thời điểm ghi nhận</th><th scope="col" class="student-number">Mức thành thạo (0–1)</th></tr></thead><tbody>{% for item in mastery_history %}<tr><td>{{ item.date }}</td><td class="student-number">{{ (item.mastery / 100)|round(3) if item.mastery is not none else 'Chưa có dữ liệu' }}</td></tr>{% endfor %}</tbody></table></div></details>
+      {% else %}<p class="student-chart-empty">Chưa có ảnh chụp hồ sơ thành thạo cho môn này.</p>{% endif %}
+    </section>
+    <section class="panel student-chart-panel" aria-labelledby="accuracy-chart-title"><div class="student-section-heading"><div><h2 id="accuracy-chart-title">Kết quả theo mức độ</h2><p>Tỷ lệ tổng hợp có trọng số từ câu trả lời đã ghi nhận.</p></div></div>
+      {% if profile.cognitive_mastery %}<div class="student-chart-frame"><canvas id="accuracyChart" role="img" aria-label="Kết quả tổng hợp theo bốn mức độ trên thang phần trăm. Ô chưa có dữ liệu được để trống; bảng bên dưới có số liệu tương đương."></canvas></div><p class="student-chart-fallback" data-chart-fallback hidden>Chưa tải được biểu đồ. Bảng bên dưới vẫn có đầy đủ số liệu.</p>{% endif %}
+      <details class="student-chart-data"{% if not profile.cognitive_mastery %} open{% endif %}><summary>Xem dữ liệu theo mức độ</summary><div class="table-wrap" tabindex="0" role="region" aria-label="Bảng kết quả theo mức độ"><table><thead><tr><th scope="col">Mức độ</th><th scope="col" class="student-number">Tỷ lệ</th><th scope="col" class="student-number">Câu có dữ liệu</th></tr></thead><tbody>{% for key, label in levels %}{% set item = (profile.cognitive_mastery or {}).get(key) %}<tr><th scope="row">{{ label }}</th><td class="student-number">{% if item and item.mastery is not none and item.sample_count %}{{ (item.mastery * 100)|round(1) }}%{% else %}<span class="student-unknown">Chưa có dữ liệu</span>{% endif %}</td><td class="student-number">{{ item.sample_count if item and item.sample_count else '—' }}</td></tr>{% endfor %}</tbody></table></div></details>
+    </section>
   </div>
-</div>
-
-<!-- Subject Selector -->
-<div class="card" style="padding:var(--space-3) var(--space-4); margin-bottom:var(--space-6)">
-  <form method="GET" style="display:flex; gap:var(--space-3); align-items:center">
-    <label style="font-weight:600">Môn học:</label>
-    <select name="subject" onchange="this.form.submit()" style="width:200px">
-      {% for sub in subjects %}
-        <option value="{{ sub }}" {% if sub == selected_subject %}selected{% endif %}>{{ sub }}</option>
-      {% endfor %}
-    </select>
-  </form>
-</div>
-
-<!-- Summary Cards Grid -->
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:var(--space-4); margin-bottom:var(--space-6)">
-  <div class="card" style="margin-bottom:0">
-    <span style="font-size:var(--text-xs); color:var(--text-3)">ĐIỂM TRUNG BÌNH</span>
-    <h2 style="margin:4px 0 0 0; color:var(--accent)">{{ profile.avg_score }}/10</h2>
-  </div>
-  <div class="card" style="margin-bottom:0">
-    <span style="font-size:var(--text-xs); color:var(--text-3)">ĐIỂM CAO NHẤT</span>
-    <h2 style="margin:4px 0 0 0; color:var(--success)">{{ profile.best_score if profile.best_score is defined else profile.avg_score }}/10</h2>
-  </div>
-  <div class="card" style="margin-bottom:0">
-    <span style="font-size:var(--text-xs); color:var(--text-3)">TỔNG SỐ BÀI LUYỆN</span>
-    <h2 style="margin:4px 0 0 0">{{ profile.total_attempts }} bài</h2>
-  </div>
-  <div class="card" style="margin-bottom:0">
-    <span style="font-size:var(--text-xs); color:var(--text-3)">XU HƯỚNG NĂNG LỰC</span>
-    <h3 style="margin:4px 0 0 0">
-      {% if profile.score_trend == 'improving' %}📈 Đang tiến bộ{% elif profile.score_trend == 'declining' %}📉 Cần cố gắng{% else %}➡️ Ổn định{% endif %}
-    </h3>
-  </div>
-</div>
-
-<!-- Charts Row -->
-<div style="display:grid; grid-template-columns: 2fr 1fr; gap:var(--space-6); align-items:start; margin-bottom:var(--space-6)">
-  
-  <!-- Line Chart: Score history -->
-  <div class="card">
-    <h3 style="margin-bottom:var(--space-4)">Lịch sử điểm số qua các lần luyện</h3>
-    <div style="position:relative; height:300px">
-      <canvas id="scoreChart"></canvas>
-    </div>
-  </div>
-
-  <!-- Radar Chart: Accuracy by Difficulty -->
-  <div class="card">
-    <h3 style="margin-bottom:var(--space-4)">Tỷ lệ đúng theo mức độ</h3>
-    <div style="position:relative; height:300px">
-      <canvas id="accuracyChart"></canvas>
-    </div>
-  </div>
-
-</div>
-
-<!-- Recent Submissions Table -->
-<div class="card" style="padding:0; overflow:hidden">
-  <div class="card-header" style="padding:var(--space-4) var(--space-6)">
-    <h3 class="card-title">Chi tiết lịch sử bài làm</h3>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Thời gian nộp</th>
-        <th>Tên bài làm</th>
-        <th>Loại</th>
-        <th class="text-right">Điểm số</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if history %}
-        {% for h in history %}
-          <tr>
-            <td>{{ h.date }}</td>
-            <td style="font-weight:500">{{ h.title }}</td>
-            <td>
-              <span class="badge {% if h.type == 'practice' %}badge-upcoming{% else %}badge-open{% endif %}">
-                {{ 'Tự luyện' if h.type == 'practice' else 'Kiểm tra' }}
-              </span>
-            </td>
-            <td class="text-right" style="font-weight:600; color:var(--accent)">{{ h.score }}/10</td>
-          </tr>
-        {% endfor %}
-      {% else %}
-        <tr>
-          <td colspan="4" style="text-align:center; color:var(--text-3); padding:var(--space-8)">
-            Chưa có lịch sử làm bài nào cho môn học này.
-          </td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
+  {% if profile.topic_mastery %}<section class="panel student-topics" aria-labelledby="progress-topics-title"><div class="student-section-heading"><div><h2 id="progress-topics-title">Kiến thức theo chủ đề</h2><p>Kết quả tổng hợp từ những câu trả lời có dữ liệu.</p></div></div><ul class="student-topic-list">{% for topic, item in profile.topic_mastery.items() %}<li><div><h3>{{ topic }}</h3><p>{{ item.interpretation }} · {{ item.sample_count }} câu có dữ liệu</p></div><span class="student-topic-value">{{ (item.mastery * 100)|round|int }}%</span></li>{% endfor %}</ul></section>{% endif %}
+  {% if profile.weak_regions %}<section class="panel student-priorities" aria-labelledby="progress-priorities-title"><div class="student-section-heading"><div><h2 id="progress-priorities-title">Phần cần chú ý trong dữ liệu hiện có</h2><p>Gợi ý đọc lại dựa trên kết quả đã ghi nhận, không phải kết luận về dạng chưa có bằng chứng.</p></div></div><ul>{% for item in profile.weak_regions[:6] %}<li><strong>{{ item.topic }}</strong><span>{{ dict(levels).get(item.cognitive_level, item.cognitive_level) }} · {{ (item.mastery * 100)|round|int }}% · {{ item.sample_count }} câu</span></li>{% endfor %}</ul></section>{% endif %}
+  <section class="student-progress-matrix" aria-label="Bản đồ kiến thức">{% include 'components/practice_skill_matrix.html' %}</section>
+  <section class="panel student-history" aria-labelledby="progress-history-title"><div class="student-section-heading"><div><h2 id="progress-history-title">Lịch sử bài làm</h2><p>Điểm đầu vào, tự luyện và kiểm tra được ghi rõ theo từng bài; bài chưa chấm không tính là 0 điểm.</p></div></div>{% if history %}<div class="table-wrap" tabindex="0" role="region" aria-label="Lịch sử bài làm"><table class="student-history-table"><thead><tr><th scope="col">Thời gian nộp</th><th scope="col">Bài làm</th><th scope="col">Loại bài</th><th scope="col" class="student-number">Điểm / 10</th></tr></thead><tbody>{% for item in history|reverse %}<tr><td>{{ item.date }}</td><td>{% if item.result_url %}<a href="{{ item.result_url }}">{{ item.title }}</a>{% else %}<strong>{{ item.title }}</strong>{% endif %}</td><td><span class="badge badge-neutral">{{ 'Đầu vào' if item.purpose == 'initial_diagnostic' else 'Tự luyện' if item.type == 'practice' else 'Kiểm tra' }}</span></td><td class="student-number">{{ item.score if item.score is not none else ('Chưa có thang điểm' if item.is_graded else 'Chưa chấm') }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="student-chart-empty">Chưa có bài làm cho môn học này.</p>{% endif %}</section>
 </div>
 {% endblock %}
-
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const historyData = {{ history | tojson }};
-  
-  // 1. Line Chart Data
-  const labels = historyData.map((h, i) => 'Bài ' + (i+1));
-  const scores = historyData.map(h => h.score);
-
-  const ctxLine = document.getElementById('scoreChart').getContext('2d');
-  new Chart(ctxLine, {
-    type: 'line',
-    data: {
-      labels: labels.length ? labels : ['Chưa có dữ liệu'],
-      datasets: [{
-        label: 'Điểm số (thang 10)',
-        data: scores.length ? scores : [0],
-        borderColor: '#1a40b0',
-        backgroundColor: 'rgba(26, 64, 176, 0.1)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 4,
-        pointBackgroundColor: '#1a40b0'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: { min: 0, max: 10, ticks: { stepSize: 2 } }
-      }
-    }
-  });
-
-  // 2. Bar Chart: Accuracy
-  const ctxBar = document.getElementById('accuracyChart').getContext('2d');
-  new Chart(ctxBar, {
-    type: 'bar',
-    data: {
-      labels: ['Nhận biết', 'Vận dụng', 'Vận dụng cao'],
-      datasets: [{
-        label: 'Tỷ lệ đúng (%)',
-        data: [
-          {{ profile.nhan_biet_accuracy }},
-          {{ profile.van_dung_accuracy }},
-          {{ profile.van_dung_cao_accuracy }}
-        ],
-        backgroundColor: ['#10b981', '#f59e0b', '#ef4444']
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: { min: 0, max: 100 }
-      }
-    }
-  });
-});
-</script>
+<script type="application/json" id="practice-progress-data">{{ {'history': history, 'masteryHistory': mastery_history, 'cognitiveMastery': profile.cognitive_mastery or {}}|tojson }}</script>
+<script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.js', v='20261015-phase7') }}" defer></script>
+<script src="{{ url_for('static', filename='js/modules/practice_progress.js', v='20261019-readable-shell') }}" defer></script>
 {% endblock %}

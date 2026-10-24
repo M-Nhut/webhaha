@@ -1,0 +1,6 @@
+{% set status_code = status_code|default(400) %}
+{% set status_name = status_name|default("Bad Request") %}
+{% set badge_text = badge_text|default("YÊU CẦU KHÔNG HỢP LỆ") %}
+{% set title = title|default("Yêu cầu không thể xử lý") %}
+{% set message = message|default("Dữ liệu gửi lên máy chủ bị thiếu, không đúng định dạng hoặc vượt quá giới hạn cho phép. Vui lòng kiểm tra lại thông tin và thử lại.") %}
+{% include 'errors/error.html' %}

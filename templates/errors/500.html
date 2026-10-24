@@ -1,0 +1,6 @@
+{% set status_code = status_code|default(500) %}
+{% set status_name = status_name|default("Internal Server Error") %}
+{% set badge_text = badge_text|default("SỰ CỐ MÁY CHỦ NỘI BỘ") %}
+{% set title = title|default("Đã xảy ra sự cố ngoài ý muốn") %}
+{% set message = message|default("Hệ thống gặp sự cố tạm thời khi xử lý yêu cầu. Vui lòng thử lại sau giây lát hoặc quay về trang chủ để tiếp tục.") %}
+{% include 'errors/error.html' %}

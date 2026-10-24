@@ -1,0 +1,75 @@
+{
+  "pages": 21,
+  "format": "A4 portrait",
+  "questionHeadings": {
+    "1": [
+      3
+    ],
+    "2": [
+      4
+    ],
+    "3": [
+      5
+    ],
+    "4": [
+      6
+    ],
+    "5": [
+      7
+    ],
+    "6": [
+      8
+    ],
+    "7": [
+      9
+    ],
+    "8": [
+      10
+    ],
+    "9": [
+      11
+    ],
+    "10": [
+      12
+    ],
+    "11": [
+      13
+    ],
+    "12": [
+      14
+    ],
+    "13": [
+      15
+    ],
+    "14": [
+      16
+    ],
+    "15": [
+      17
+    ],
+    "16": [
+      18
+    ],
+    "17": [
+      19
+    ],
+    "18": [
+      19
+    ],
+    "19": [
+      20
+    ],
+    "20": [
+      20
+    ],
+    "21": [
+      21
+    ],
+    "22": [
+      21
+    ]
+  },
+  "questionHeadingsAllPresent": true,
+  "nativeBeforeAfterPrintRestorePassed": true,
+  "printStyles": "Frozen question cards avoid page break; all explanations opened for print and restored afterwards; control focus outlines hidden for print."
+}

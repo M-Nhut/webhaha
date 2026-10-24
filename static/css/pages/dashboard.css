@@ -1,0 +1,92 @@
+/* Soft Minimalism: primary actions, account metrics and quick links. */
+.academy-dashboard { min-width: 0; padding-top: 8px; }
+.dashboard-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: 40px; margin-bottom: 36px; }
+.dashboard-header { min-width: 0; }
+.dashboard-header h1 { margin: 0 0 24px; background: none; color: #17243d; font-size: clamp(32px, 3vw, 42px); font-weight: 800; line-height: 1.25; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.dashboard-name { display: block; }
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .dashboard-name { background: var(--content-title-gradient); background-clip: text; -webkit-background-clip: text; color: transparent; }
+}
+.dashboard-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.dashboard-actions .btn { min-height: 48px; padding: 11px 16px; font-weight: 600; }
+.dashboard-actions .btn-secondary { background: rgb(255 255 255 / .7); border-color: #dce3ef; }
+.dashboard-overview { position: relative; min-width: 0; padding: 12px 6px; isolation: isolate; }
+.dashboard-overview::before, .dashboard-overview::after { content: ''; position: absolute; z-index: -1; border: 1px solid rgb(221 227 244 / .85); border-radius: 28px; background: rgb(255 255 255 / .8); }
+.dashboard-overview::before { inset: 12px 4px; transform: rotate(3deg); }
+.dashboard-overview::after { inset: 12px 8px; transform: rotate(-2deg); background: linear-gradient(140deg, #f5f8ff, #f8f4ff); }
+.dashboard-summary { position: relative; padding: 28px; margin: 0; border-color: #e5eaf3; border-radius: 28px; background: #fff; box-shadow: 0 12px 36px rgb(53 70 123 / .07); }
+.dashboard-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 0; }
+.dashboard-metric { display: grid; grid-template-rows: 1fr auto; min-width: 0; }
+.dashboard-metric + .dashboard-metric { border-left: 1px solid #e8edf6; padding-left: 24px; }
+.dashboard-metric dt { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; }
+.dashboard-metric-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; color: #4b70bf; background: #eff4ff; }
+.dashboard-metric:nth-child(2) .dashboard-metric-icon { color: #8062ad; background: #f5f0fc; }
+.dashboard-metric-icon > svg { width: 20px; height: 20px; }
+.dashboard-metric dd { margin: 10px 0 0; color: #253650; font-size: 40px; font-weight: 700; letter-spacing: -.035em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.dashboard-shortcuts { padding: 24px; margin-bottom: 0; background: #fff; }
+.dashboard-shortcuts h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.dashboard-shortcuts ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; list-style: none; margin: 20px 0 0; padding: 0; }
+.dashboard-shortcuts a { display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 12px; border: 1px solid #e7ebf4; border-radius: 12px; background: #fff; color: var(--color-text-secondary); font-size: 15px; font-weight: 500; transition: background var(--duration-fast), border-color var(--duration-fast); }
+.dashboard-shortcuts a:hover { color: var(--color-primary); background: #f9fbff; border-color: #cfdcf3; text-decoration: none; }
+.dashboard-shortcuts a > svg { width: 18px; height: 18px; flex-shrink: 0; color: #667dab; }
+.dashboard-shortcuts a > svg:last-child { width: 15px; height: 15px; margin-left: auto; color: #8d97ad; }
+/* Keep the layered metrics and quick links moving with the system preference. */
+@media (prefers-reduced-motion: no-preference) {
+  .academy-dashboard { --dashboard-float-x: 4px; --dashboard-float-y: 12px; --dashboard-float-tilt: .7deg; --dashboard-layer-x: 10px; --dashboard-layer-y: 12px; --dashboard-layer-tilt: 3deg; --dashboard-shortcut-y: -3px; }
+  .academy-dashboard[data-dashboard-motion]:not([data-dashboard-motion="off"]) .dashboard-summary { animation: dashboard-summary-float 6.4s ease-in-out infinite; animation-play-state: var(--dashboard-motion-play, running); }
+  .academy-dashboard[data-dashboard-motion]:not([data-dashboard-motion="off"]) .dashboard-overview::before { animation: dashboard-layer-back 8.8s ease-in-out -2.4s infinite; animation-play-state: var(--dashboard-motion-play, running); }
+  .academy-dashboard[data-dashboard-motion]:not([data-dashboard-motion="off"]) .dashboard-overview::after { animation: dashboard-layer-front 7.6s ease-in-out -.8s infinite; animation-play-state: var(--dashboard-motion-play, running); }
+  .academy-dashboard[data-dashboard-motion]:not([data-dashboard-motion="off"]) .dashboard-shortcuts { animation: dashboard-shortcut-float 7.2s ease-in-out -2.2s infinite; animation-play-state: var(--dashboard-motion-play, running); }
+  .academy-dashboard[data-motion-suspended], .dashboard-overview:is(:hover, :focus-within), .dashboard-shortcuts:is(:hover, :focus-within) { --dashboard-motion-play: paused; }
+}
+@keyframes dashboard-summary-float {
+  0%, 100% { transform: translate3d(calc(-1 * var(--dashboard-float-x)), var(--dashboard-float-y), 0) rotate(calc(-1 * var(--dashboard-float-tilt))); }
+  50% { transform: translate3d(var(--dashboard-float-x), calc(-1 * var(--dashboard-float-y)), 0) rotate(var(--dashboard-float-tilt)); }
+}
+@keyframes dashboard-layer-back {
+  0%, 100% { transform: translate3d(calc(-1 * var(--dashboard-layer-x)), var(--dashboard-layer-y), 0) rotate(var(--dashboard-layer-tilt)); }
+  50% { transform: translate3d(var(--dashboard-layer-x), calc(-1 * var(--dashboard-layer-y)), 0) rotate(calc(-.7 * var(--dashboard-layer-tilt))); }
+}
+@keyframes dashboard-layer-front {
+  0%, 100% { transform: translate3d(var(--dashboard-layer-x), calc(-1 * var(--dashboard-layer-y)), 0) rotate(calc(-1 * var(--dashboard-layer-tilt))); }
+  50% { transform: translate3d(calc(-1 * var(--dashboard-layer-x)), var(--dashboard-layer-y), 0) rotate(var(--dashboard-layer-tilt)); }
+}
+@keyframes dashboard-shortcut-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, var(--dashboard-shortcut-y), 0); }
+}
+@media (min-width:1200px) and (max-width:1359px) {
+  .dashboard-hero { gap: 24px; }
+  .dashboard-header h1 { font-size: 36px; }
+  .dashboard-actions .btn { font-size: 14px; }
+}
+@media (max-width:1023px) {
+  .dashboard-hero { gap: 24px; }
+  .dashboard-header h1 { font-size: 32px; }
+  .dashboard-summary { padding: 24px; }
+  .dashboard-metrics { gap: 18px; }
+  .dashboard-metric + .dashboard-metric { padding-left: 18px; }
+}
+@media (max-width:767px) {
+  .academy-dashboard { padding-top: 0; --dashboard-float-x: 2px; --dashboard-float-y: 7px; --dashboard-float-tilt: .35deg; --dashboard-layer-x: 5px; --dashboard-layer-y: 8px; --dashboard-layer-tilt: 2deg; --dashboard-shortcut-y: -2px; }
+  .dashboard-hero { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-bottom: 28px; }
+  .dashboard-header h1 { margin-bottom: 20px; }
+  .dashboard-actions { gap: 10px; }
+  .dashboard-actions .btn { font-size: 14px; padding-inline: 14px; }
+  .dashboard-overview { padding: 6px 4px; }
+  .dashboard-overview::before { transform: rotate(2deg); }
+  .dashboard-summary { padding: 22px; border-radius: 24px; }
+  .dashboard-metrics { gap: 16px; }
+  .dashboard-metric + .dashboard-metric { padding-left: 16px; }
+  .dashboard-metric dt { gap: 10px; min-height: 90px; }
+  .dashboard-metric dd { font-size: 36px; }
+  .dashboard-shortcuts h2 { font-size: 18px; }
+  .dashboard-shortcuts ul { grid-template-columns: minmax(0, 1fr); }
+  .dashboard-shortcuts { padding: 20px 18px; }
+}
+@media print, (forced-colors:active) {
+  .dashboard-header h1, .dashboard-name { background: none; color: var(--color-text); -webkit-text-fill-color: currentColor; }
+  .dashboard-overview::before, .dashboard-overview::after { display: none; }
+  .dashboard-summary { box-shadow: none; }
+  .academy-dashboard .dashboard-summary, .academy-dashboard .dashboard-shortcuts { animation: none !important; }
+}

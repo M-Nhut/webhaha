@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% set is_student = current_user.role == 'student' %}
+{% block title %}Đề kiểm tra · LMath{% endblock %}
+{% block page_title %}Đề kiểm tra{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/assessments.css', v='20261019-phase9') }}">{% endblock %}
+{% block content %}
+<div class="assessment-management">
+  <header class="page-header assessment-management-header">
+    <div class="page-title-area"><h1>Đề kiểm tra</h1></div>
+    {% if not is_student %}<div class="assessment-management-actions"><a class="btn btn-secondary" href="{{ url_for('import_questions_page', purpose='assessment') }}"><i data-lucide="upload" aria-hidden="true"></i>Nhập đề từ LaTeX</a><a class="btn btn-primary" href="{{ url_for('assessment_from_bank') }}"><i data-lucide="plus" aria-hidden="true"></i>Tạo đề từ ngân hàng</a></div>{% endif %}
+  </header>
+  <section class="panel assessment-register" aria-labelledby="assessment-register-title">
+    <div class="assessment-register-heading"><div><h2 id="assessment-register-title">{{ 'Đề được giao' if is_student else 'Danh sách đề' }} <span class="badge">{{ exams|length }}</span></h2></div></div>
+    {% if exams %}
+    <table class="assessment-register-table" aria-labelledby="assessment-register-title">
+      <thead><tr><th scope="col">Tên đề</th><th scope="col">Lớp học</th><th scope="col">Thời gian</th><th scope="col">Trạng thái</th><th scope="col">Thao tác</th></tr></thead>
+      <tbody>{% for exam in exams %}
+        {% set session_id = exam.get_adaptive_metadata().get('import_session_id') %}
+        {% set can_edit_draft = not is_student and not exam.is_active and not exam.submissions and session_id and exam.created_by == current_user.id %}
+        <tr>
+          <td class="assessment-register-name"><strong>{{ exam.title }}</strong><span>{{ exam.question_count }} câu · 10 điểm</span></td>
+          <td class="assessment-register-course"><span class="assessment-mobile-label" aria-hidden="true">Lớp học</span>{{ exam.course.course_name }}</td>
+          <td class="assessment-register-duration"><span class="assessment-mobile-label" aria-hidden="true">Thời gian</span>{{ exam.duration_minutes }} phút</td>
+          <td class="assessment-register-state"><span class="assessment-mobile-label" aria-hidden="true">Trạng thái</span><span class="badge {{ 'badge-success' if exam.is_active else 'badge-neutral' }}">{{ 'Đã giao' if exam.is_active else 'Bản nháp' }}</span></td>
+          <td class="assessment-register-action-cell"><div class="assessment-register-row-actions">
+            {% if is_student %}<a class="btn btn-primary" href="{{ url_for('assessment_take', exam_id=exam.id) }}" aria-label="Làm bài hoặc xem kết quả: {{ exam.title }}">Làm bài / xem kết quả<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+            {% else %}
+              {% if can_edit_draft %}<a class="btn btn-secondary" href="{{ url_for('assessment_import', session_id=session_id) }}" aria-label="Kiểm tra và giao đề: {{ exam.title }}">Kiểm tra và giao đề</a>
+              {% elif exam.is_active or exam.submissions %}<a class="btn btn-secondary" href="{{ url_for('assessment_result', exam_id=exam.id) }}" aria-label="Xem bài làm: {{ exam.title }}">Xem bài làm</a>{% endif %}
+              <a class="assessment-matrix-link" href="{{ url_for('assessment_matrix', exam_id=exam.id) }}" aria-label="Ma trận và Excel: {{ exam.title }}"><i data-lucide="table-2" aria-hidden="true"></i>Ma trận / Excel</a>
+            {% endif %}
+          </div>{% if not is_student and not exam.is_active and not exam.submissions and not can_edit_draft %}<p class="assessment-register-action-note">{{ 'Người tạo quản lý bản nháp này.' if exam.created_by != current_user.id else 'Chưa có phiên biên soạn để mở lại.' }}</p>{% endif %}</td>
+        </tr>
+      {% endfor %}</tbody>
+    </table>
+    {% else %}
+    <div class="assessment-management-empty"><i data-lucide="clipboard-list" aria-hidden="true"></i><h3>{{ 'Chưa có đề được giao' if is_student else 'Chưa có đề kiểm tra' }}</h3><p>{{ 'Đề sẽ xuất hiện tại đây khi giáo viên giao cho lớp học của bạn.' if is_student else 'Chọn câu hỏi từ ngân hàng hoặc nhập đề LaTeX để bắt đầu một bản nháp.' }}</p>{% if not is_student %}<a class="btn btn-secondary" href="{{ url_for('assessment_from_bank') }}">Tạo bản nháp từ ngân hàng</a>{% endif %}</div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

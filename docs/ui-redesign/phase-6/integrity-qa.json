@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-15",
+  "realDatabaseMetadataUnchanged": true,
+  "baselineChangedFiles": [
+    "routes/practice_runtime.py",
+    "static/css/assessments.css",
+    "static/css/main.css",
+    "static/css/pages/workspaces.css",
+    "static/js/modules/exam_take.js",
+    "templates/assessment_list.html",
+    "templates/assessment_matrix.html",
+    "templates/base.html",
+    "templates/exam_result.html",
+    "templates/exam_take.html"
+  ],
+  "deletedBaselineFiles": [],
+  "newPhase6ImplementationAndQaFiles": [
+    "static/css/pages/exam-taking.css",
+    "static/css/pages/exam-results.css",
+    "static/js/exam-results.js",
+    "static/js/assessment-matrix.js",
+    "scripts/preview_ui_phase6.py",
+    "scripts/qa_ui_phase6.cjs",
+    "tests/test_ui_redesign_phase6.py"
+  ],
+  "templatesParsed": 51,
+  "parseErrors": [],
+  "cssParseErrors": [],
+  "undefinedPageCssTokens": [],
+  "sourceInlineStylesBefore": 69,
+  "sourceInlineStyles": {
+    "templates/assessment_list.html": 0,
+    "templates/assessment_matrix.html": 0,
+    "templates/exam_take.html": 0,
+    "templates/exam_result.html": 0
+  },
+  "sourceInlineHandlers": {
+    "templates/assessment_list.html": 0,
+    "templates/assessment_matrix.html": 0,
+    "templates/exam_take.html": 0,
+    "templates/exam_result.html": 0
+  },
+  "removedLegacyCssSelectorOccurrences": 34,
+  "formulaRendererUnchanged": true,
+  "id6PickerUnchanged": true,
+  "allBaselineServiceFilesUnchanged": true,
+  "baselineServiceFilesChecked": 67,
+  "assessmentRoutesUnchanged": true,
+  "diagnosticAuthoringUnchanged": true,
+  "pythonRegressionPassed": 128,
+  "pythonRegressionNewPhase6Cases": 29,
+  "baselineDiagnosticAuthoringFailures": 6,
+  "fullBrowserChecksPassed": 88,
+  "cleanPreviewBrowserChecksPassed": 73,
+  "takingBrowserChecksPassed": 62,
+  "listMatrixBrowserChecksPassed": 149,
+  "resultBrowserChecksPassed": 88,
+  "screenshots": 46,
+  "brokenReportLinks": []
+}

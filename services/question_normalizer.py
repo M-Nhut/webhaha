@@ -1,10 +1,11 @@
 """
-Question Normalizer — Converts parsed data from any format (CSV, DOCX, PDF) 
+Question Normalizer — Converts parsed TeX data
 into a unified schema for validation and preview.
 """
 
 import re
 import unicodedata
+from services.question_policy import TYPE_CODES, canonical_type, is_legacy_essay_type
 
 
 # ──────────────── DIFFICULTY MAPPING ────────────────
@@ -14,16 +15,20 @@ DIFFICULTY_MAP = {
     "nhận biết": "nhan_biet",
     "nhan biet": "nhan_biet",
     "nhan_biet": "nhan_biet",
-    "hiểu": "nhan_biet",
-    "nhận biết/hiểu": "nhan_biet",
     "biết": "nhan_biet",
     "dễ": "nhan_biet",
     "easy": "nhan_biet",
+    # Thông hiểu
+    "hiểu": "thong_hieu",
+    "hieu": "thong_hieu",
+    "thông hiểu": "thong_hieu",
+    "thong hieu": "thong_hieu",
+    "thong_hieu": "thong_hieu",
+    "nhận biết/hiểu": "thong_hieu",
     # Vận dụng
     "vận dụng": "van_dung",
     "van dung": "van_dung",
     "van_dung": "van_dung",
-    "thông hiểu": "van_dung",
     "trung bình": "van_dung",
     "medium": "van_dung",
     # Vận dụng cao
@@ -36,10 +41,11 @@ DIFFICULTY_MAP = {
     "difficult": "van_dung_cao",
 }
 
-VALID_DIFFICULTIES = {"nhan_biet", "van_dung", "van_dung_cao"}
+VALID_DIFFICULTIES = {"nhan_biet", "thong_hieu", "van_dung", "van_dung_cao"}
 
 DIFFICULTY_LABELS = {
     "nhan_biet": "Nhận biết",
+    "thong_hieu": "Thông hiểu",
     "van_dung": "Vận dụng",
     "van_dung_cao": "Vận dụng cao",
 }
@@ -68,6 +74,7 @@ QUESTION_TYPE_MAP = {
     "đúng/sai": "true_false",
     "dung/sai": "true_false",
     "đúng sai": "true_false",
+    "đúng/sai thpt": "true_false",
     # Short answer
     "short_answer": "short_answer",
     "trả lời ngắn": "short_answer",
@@ -78,21 +85,25 @@ QUESTION_TYPE_MAP = {
     "fill in": "short_answer",
     # Essay
     "essay": "essay",
+    "tu_luan": "essay",
     "tự luận": "essay",
     "tu luan": "essay",
     "bài tập tự luận": "essay",
+    "bai tap tu luan": "essay",
     "tự luận mở": "essay",
+    "tu luan mo": "essay",
+    "tự luận cũ": "essay",
+    "tu luan cu": "essay",
+    "tu_luan_cu": "essay",
+    "tự luận (dữ liệu cũ)": "essay",
+    "tu luan (du lieu cu)": "essay",
+    "long answer": "essay",
+    "long_answer": "essay",
+    "free response": "essay",
+    "free_response": "essay",
 }
 
-VALID_QUESTION_TYPES = {"single", "multiple_choice", "true_false", "short_answer", "essay"}
-
-TYPE_LABELS = {
-    "single": "Trắc nghiệm",
-    "multiple_choice": "Trắc nghiệm nhiều đáp án",
-    "true_false": "Đúng/Sai",
-    "short_answer": "Trả lời ngắn",
-    "essay": "Tự luận",
-}
+VALID_QUESTION_TYPES = frozenset(TYPE_CODES)
 
 
 def normalize_text(text):
@@ -131,15 +142,18 @@ def normalize_question_type(raw):
     """Map raw question type string to internal enum."""
     if not raw:
         return None
+    canonical = canonical_type(raw)
+    if canonical in TYPE_CODES:
+        return canonical
     cleaned = normalize_text(raw).lower()
     cleaned_no_diacritics = remove_diacritics(cleaned)
     if cleaned in QUESTION_TYPE_MAP:
-        return QUESTION_TYPE_MAP[cleaned]
+        return canonical_type(QUESTION_TYPE_MAP[cleaned])
     if cleaned_no_diacritics in QUESTION_TYPE_MAP:
-        return QUESTION_TYPE_MAP[cleaned_no_diacritics]
+        return canonical_type(QUESTION_TYPE_MAP[cleaned_no_diacritics])
     for key, value in QUESTION_TYPE_MAP.items():
         if key in cleaned or key in cleaned_no_diacritics:
-            return value
+            return canonical_type(value)
     return None
 
 
@@ -148,9 +162,9 @@ def infer_question_type(options, statements=None, raw_question_text=""):
     if statements and len(statements) > 0:
         return "true_false"
     if not options or len(options) == 0:
-        text_lower = raw_question_text.lower()
-        if any(k in text_lower for k in ["hãy chứng minh", "trình bày", "phân tích", "giải thích", "tự luận"]):
-            return "essay"
+        # The former essay format is intentionally imported as short answer.
+        # A missing answer key remains a normal short-answer review warning;
+        # it must not turn into an unsupported-type error.
         return "short_answer"
     
     correct_count = sum(1 for o in options if o.get("is_correct"))
@@ -192,6 +206,8 @@ def normalize_question(raw_question, index=0):
     """
     q = {
         "index": index + 1,
+        "source_position": index + 1,
+        "source_label": raw_question.get('source_label') or (f"Trang {raw_question['page']} — Câu {raw_question['_header_number']} (mục {index+1})" if raw_question.get('_header_number') else f"Mục {index+1} trong file"),
         "question_text": normalize_text(raw_question.get("question_text", "")),
         "context": normalize_text(raw_question.get("context", "")),
         "image_url": raw_question.get("image_url", ""),
@@ -209,6 +225,13 @@ def normalize_question(raw_question, index=0):
         "image_paths": raw_question.get("image_paths", []),
         "source_line": raw_question.get("source_line", 0),
         "formulas": raw_question.get("formulas", {}),
+        "source_id": normalize_text(raw_question.get("source_id", "")),
+        "grade": normalize_text(raw_question.get("grade", "")),
+        "chapter": normalize_text(raw_question.get("chapter", "")),
+        "section": normalize_text(raw_question.get("section", "")),
+        "question_category": normalize_text(raw_question.get("question_category", "")),
+        "sample_answer": normalize_text(raw_question.get("sample_answer", "")),
+        "raw_correct": normalize_text(raw_question.get("raw_correct", "")),
     }
 
     # Normalize difficulty
@@ -264,6 +287,36 @@ def normalize_question(raw_question, index=0):
         q["question_type"] = normalized_type
     else:
         q["question_type"] = infer_question_type(q["options"], q["statements"], q["question_text"])
+
+    # Keep a small, non-error audit hint in the preview so teachers can see
+    # why an old essay row became short answer.  It is deliberately not put in
+    # ``warnings``: the conversion is automatic and needs no manual repair.
+    if is_legacy_essay_type(raw_type):
+        q["type_conversion"] = {
+            "from": str(raw_type),
+            "to": "short_answer",
+            "label": "Tự luận cũ đã chuyển thành Trả lời ngắn",
+        }
+
+    if q["question_type"] == "short_answer" and q["options"]:
+        if not q["sample_answer"]:
+            q["sample_answer"] = q["options"][0]["text"]
+        if not q["raw_correct"]:
+            q["raw_correct"] = q["options"][0]["text"]
+
+    inline_image_text = "\n".join([
+        q["context"],
+        q["question_text"],
+        q["explanation"],
+        *[option["text"] for option in q["options"]],
+        *[statement["text"] for statement in q["statements"]],
+    ])
+    inline_image_paths = re.findall(
+        r"\[\[image:(/static/uploads/questions/[A-Za-z0-9._-]+)\]\]",
+        inline_image_text,
+    )
+    q["image_paths"] = list(dict.fromkeys(q["image_paths"] + inline_image_paths))
+    q["has_image"] = bool(q["has_image"] or inline_image_paths)
 
     # Construct content blocks
     content_blocks = []

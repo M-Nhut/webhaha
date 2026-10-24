@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-19",
+  "application_css_files": 31,
+  "passed": true,
+  "results": [
+    {
+      "path": "static/css/ai-reports.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/assessments.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/auth.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/base.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/components.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/diagnostic-wizard.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/errors.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/id6.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/import_duplicates.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/learning.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/main.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/ai-settings.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/assessment-composer.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/bank-form.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/bank-list.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/courses.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/dashboard.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/diagnostics.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/exam-results.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/exam-taking.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/import-wizard.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/knowledge.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/people.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/practice-student.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/pages/practice-teacher.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/profile.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/question-bank.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/question-content.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/question-document.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/shell.css",
+      "parse_errors": []
+    },
+    {
+      "path": "static/css/tokens.css",
+      "parse_errors": []
+    }
+  ]
+}

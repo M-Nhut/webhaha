@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-15",
+  "checks": 15,
+  "passed": [
+    "Frozen context visible @375",
+    "Frozen image loaded @375",
+    "Frozen explanation visible @375",
+    "Native image dialog @375",
+    "Image dialog focus restored @375",
+    "Frozen context visible @1440",
+    "Frozen image loaded @1440",
+    "Frozen explanation visible @1440",
+    "Native image dialog @1440",
+    "Image dialog focus restored @1440",
+    "Failed image has visible recovery",
+    "Image retry recovers source",
+    "Print opens all explanations",
+    "Print restores initial disclosure state",
+    "No JavaScript errors"
+  ],
+  "errors": [],
+  "screenshots": [
+    "screenshots/teacher-draft-question-375.png",
+    "screenshots/teacher-draft-question-1440.png"
+  ],
+  "postWrites": "Only authentication"
+}

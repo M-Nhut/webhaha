@@ -1,0 +1,527 @@
+{
+  "files": {
+    "templates/teacher_practice_detail.html": "87d03d23c930ea6f1fac4b75df1f07775c9cb2608570898ee5b975d5555d6267",
+    "templates/profile.html": "70111b48fb204a235651455389f25bcdc0bf7f7ccc89b20e66b5ba6113516fc4",
+    "templates/question_bank_classification.html": "a4c86a58e4517aea7f28a4d9bc3b944786370cbe8914a39b85718e8707df0304",
+    "templates/assessment_list.html": "e0ab015c40470071866c3df360e0bdb61e28cf51abb601d177dec5aac00b4c70",
+    "templates/question_banks.html": "27a69f0ae97c4627d5eb225ed2b685acd5d84dd5a075af80e378617ae8a173d7",
+    "templates/index.html": "496e8ae147928e3d6317083f9b6e76030deedaa92bdef37d009e29458fe02bb7",
+    "templates/.DS_Store": "b45ee12b14b144f6ffed74c773f545cff16bde8edeb243e5774f3d7fe39cd775",
+    "templates/exam_take.html": "324f4518fde5345fdd9d24722de33ae6491b33715014843e4b62a8f91954fd47",
+    "templates/assessment_from_bank.html": "fc22da60760e31bb1779af66902dd8d59c5e00c5086e03fa952544a2436d1f5c",
+    "templates/classification_evaluation.html": "94a0d45b0bbd059486576dada387fc2c5768384814fcd421bec643e32015f014",
+    "templates/base.html": "6d381ea76befc25181aa3fdbb0bd7b4adbeb08541f9659d5d602b18657c3fb68",
+    "templates/register.html": "9dd94736dcbd62c2296a8e013128fedc1cfd79357fb4eb088bf15c252865f10f",
+    "templates/edit_user.html": "ed5e2607892e7af876686936edd1827d9a61d23e84470a578e872818690bd323",
+    "templates/courses.html": "c21a72023087b2117dd766aad57003eada0b7af066b0d184398b12ee53bf68e1",
+    "templates/assessment_matrix.html": "b741a7d96edf218d0339a9cb237b49ccde6e4bb00fa2c64d52724eb772b2a335",
+    "templates/login.html": "bf7a275f7d46d9dfab24ad36839722571b7cb442d9c9273ca50d6f4e1977b45c",
+    "templates/my_students.html": "415150cd5d6df7ad1eec07fc8aa43274bd33f4d700bc6d1e24441b1768c55272",
+    "templates/practice_home.html": "2bb74d39050e318ec15a20af3dcd8234e1dd0dd04e17452e69d98ceac30e99b4",
+    "templates/question_bank_import.html": "4719d8bce46b3e53e39c980e91ece926413197bb570acacd4b464c8314eee939",
+    "templates/assessment_import.html": "18a7ef542c9ec2aa36d06f1ba9e9b976f6dfb5fb578ca9c5ff5bd4322137ace2",
+    "templates/exam_result.html": "81c9b13c4e649734a72c39deaac007372dbf78f98998df6749074d6727f47033",
+    "templates/manage_users.html": "c76cd4e843498d06d3883eefae4c0eb19a945de72baec28a6f320e6312b7d65d",
+    "templates/practice_draft.html": "0a5cf016506461c09aa3bcb06a608750ec8b3d89495baf2c2608ccf8a5ec44bd",
+    "templates/practice_progress.html": "154636d330d40480e7a34bc937d36b168d0c3d57ef71c93c05a0e779433dfc4f",
+    "templates/ai_reports.html": "17151d37a357b137ac6808d4e471b901c707a4f9ed889779d6b10477d036a88c",
+    "templates/diagnostic_list.html": "3cc9bd450e3d90f654e9c6d8262a5ad64949b2fe5efe69e5c8f2a78501e23d62",
+    "templates/question_bank_form.html": "a69b81dac40b4b9d90c5b77d8d9acf25b80f7334e71951e1c5a7c8d117f753bd",
+    "templates/teacher_practice_list.html": "3ee64de257291cb64aef0b7de9a89e541e2cb969f1b8f9f517ebf4e14fda6db6",
+    "templates/teacher_analytics.html": "47345717fcfc239765d30ba26a1d138d2577ff81199908db5a445b0aac6a032a",
+    "templates/course_form.html": "f9f909f2d8bc8465d5be9b35e1d4fbba375c2da7e75cd8462026b4dbb6b43ee9",
+    "templates/course_detail.html": "82f295fb29e79dbc859adf15dba00bc2bb87773ee343befee335ed3025184429",
+    "templates/teacher_ai_settings.html": "2cd7b2b5d5ab857eb59879ca81f9427ed1683874e87fb3b1c880deacc7dbf8f0",
+    "templates/diagnostic_form.html": "d4667e181f8cdbe0e7039bdca51ec8b8e505012b573e039aacd81598e8882f36",
+    "templates/curriculum_catalog.html": "68bba3533941114c5e9c3eb8bca46c8d1909eb7a72de4549ac225005332f888c",
+    "templates/question_bank_detail.html": "6194e451d83cf8bf50df39c23fc65e894b1bafc2e74a939d7922f89ccafc44a7",
+    "templates/components/bank_overview.html": "ae9c82ae651e411b094c5d9cd8094f673e7d91a9eb97ccfcaa1bc49bd57dfe3d",
+    "templates/components/practice_skill_matrix.html": "7b67970f5b566e3b40292091d466eaa5d2beb259945bcfe0c22d74a87e3c7661",
+    "templates/components/selection_audit.html": "ffdd8741a35804db7ac24be4c29d6f402906a0ca479300ff04c80baa8fccbf63",
+    "templates/components/bank_pagination.html": "b46a3a36b909d66112ec8b4e62c6b5090820b9306d54e31c28a582c2f88869f1",
+    "templates/components/id6_picker.html": "c49c6ba550e2ca5e5c7cdf692106c9145bb574befb6e86980cbb621b18c67fbd",
+    "templates/components/footer.html": "525df24c1dc2b74b201e9aed4d8ed1a06b578ea759b14c4bcc169eb9c83cb849",
+    "templates/components/import_duplicates.html": "2c7f6b05aaf97db4268442bd74bec50ffc8122b1ff80ee44c3b31ae40ba68e80",
+    "templates/components/header.html": "182e0d91fbdebb3c3a2806e4e36540b4e0669cf720a351d2687aa2fd47e4d533",
+    "templates/components/flash_messages.html": "aadfb54050c66079008cec907d5c5f0c8cfc937ba73663bc1cc1f51a8a63cd76",
+    "templates/components/navigation.html": "921a799ca7a59c1389e512dfe27263e8efbd3fde603c2eee11464a5d501ffae9",
+    "templates/errors/403.html": "40fccd51e7fb55cdd4ea747d838f8707db8d4935192c134666e437be6dda32fb",
+    "templates/errors/405.html": "e43fe426338c915bec3d81db4cdf2ad353018309375f177e81f7ab0969a84057",
+    "templates/errors/500.html": "5147abb872e4ec1dacc8d1b83996bc596842ae02d874260a66c2ca99535f36e7",
+    "templates/errors/404.html": "fe1b43ee80fc01863ff65421c54d4b26039edd5950abb1b2f4a425346e75e927",
+    "templates/errors/error.html": "b6d60504626e0b93c6c831cb998127c71b6155017b0fc9ae4633b2f39a50225e",
+    "templates/errors/400.html": "ba22506b43c91c9b00e13596131e2b99d741e02571ffa1e6a693c9c39cdeef50",
+    "static/css/diagnostic-wizard.css": "838a054db411cb5eae8b2eb45aa38b25ea7c91f5316756905b33009ca77ff142",
+    "static/css/errors.css": "80713be5970931523d3739bad47943bd6c1295d6da9a121cbe8363a9f8a8ce76",
+    "static/css/learning.css": "de1cef0b89fed50b779325aefb8d3c0ea2fbfa0863e75d79792daa7b4df9f579",
+    "static/css/auth.css": "22f870d43f4296ee65779c20464258897d77ca4dd5792c2ae916109e753a290a",
+    "static/css/tokens.css": "2488683a460914c04c21c653aa627d814db16487520a5279c4f7efc9821287a8",
+    "static/css/assessments.css": "07143813be151cefd6723b2da8935d090625a26658e1ed78df49ef38c3e1acde",
+    "static/css/main.css": "7ad259908687968004c1ee2ba7a8da302306c95a1cfadba98a5197aaea626f81",
+    "static/css/shell.css": "d313503763a0bcd8814b49643650341624fa3bacec47e78cad6ffc18fbc2869b",
+    "static/css/question-document.css": "906c9442b4ce1d720c6e708627cfa9a14c67d8089e75189b5e32c9578c7a096d",
+    "static/css/ai-reports.css": "910dfd16593d010e2732a9c252d55b8b251ae7d9dbedc4261679ff464b30a527",
+    "static/css/id6.css": "ce6d7063ce493418b91643d3266b2258cebbf746f238b41e5c5514c3e3d6f5cc",
+    "static/css/import_duplicates.css": "14c8a2cdb8a7cb660b57a5b67d800eee93ce30cb45e7fc90bb1f35a4e7bb59bf",
+    "static/css/components.css": "49cce90f80644263c73f34771c8367d52a6a062b3bcd57c0beb699ebef471c99",
+    "static/css/question-bank.css": "f461df7b078aa0ed908db4006cead2f1fb24b90b6f73867c4ba22711b6d5ef68",
+    "static/css/question-content.css": "e620e1cfbdee016a82653c8a71e8103b735e21420a8c84b89b3af3239bdb7867",
+    "static/css/base.css": "6f9365c103902060cd5b621cffada3b04dd5d20c4910457807dcb29bca44331a",
+    "static/css/profile.css": "934983e766bc39bcdd60017e41ced2070f96c04916c522ab8d8152bbaed1cc87",
+    "static/css/pages/courses.css": "a8e543a913aaf66635edc9243150ab9b2875f57afb42bdd519fce1589fc93cad",
+    "static/css/pages/exam-taking.css": "1f22e13577836635c81926d12ffbda83bcc8033a6552cd69f24df61d72d524e7",
+    "static/css/pages/dashboard.css": "036dc2372ca3970856f4e3b77465a480aa3499fb9785db07bf745be2690a2cb8",
+    "static/css/pages/knowledge.css": "8d73393651a5929c27e92c0485f9bf542de50a9c77334da1cd2f43e447a3a3ab",
+    "static/css/pages/bank-list.css": "3c36fe9c245ce4dfe7a0ef1b8ed20811a7ba5eff04669a11ebad644c5db719d1",
+    "static/css/pages/practice-teacher.css": "4d2237d8832abb56380f774f04ebd3c47dde9fb304c0e2695dd934d4a5871a4a",
+    "static/css/pages/assessment-composer.css": "1703919d8253a851ffb18326650c0d15836a4dcd02386d320e39e897a1b1d26a",
+    "static/css/pages/people.css": "92ebf80d7bda01c1b77fea823fd7c66d892ef3989bd8f8cb6b5c2e7aede9ebe9",
+    "static/css/pages/bank-form.css": "105214a68a8ae2ffb317456d8bca23971e5f69aff4bcf20b3cd27846a6aab54c",
+    "static/css/pages/exam-results.css": "fe186b3da37537c4ebbe058e6e91a34a1d8f64110b74a260c35bf76070dee8d8",
+    "static/css/pages/import-wizard.css": "b97a9bc83e1404670a4bfff6c507cc23417d33117f87596b42b7ae0ebe951a4d",
+    "static/css/pages/diagnostics.css": "cf73a2ac0898d75d0dd32df0bc66c44fcbf96322f1be1f47336d3237abaab730",
+    "static/css/pages/ai-settings.css": "43f40eed5d14538e0c316d3ebf3c88c6b5e8a31169e7dcf34d3afde3dd67de73",
+    "static/css/pages/practice-student.css": "bf4cfebbd0295f48a8950dc23ed307225d2cff44347e9a3ee3824cfb877df2c0",
+    "static/js/bank_formula_scheduler.js": "861c08b3734e6c318d2174ff7aef61e7b9c9f78eed37120095ab402fe69a82d9",
+    "static/js/profile.js": "3e778596b96d607448c9ab3b60a47cf43c460ee064b963f3ce11f97cdf191c48",
+    "static/js/.DS_Store": "50cc334be48e5b2daa5413e55338d9e97021f0ee220bf4d40c5d760409c3120f",
+    "static/js/ai-settings.js": "5bd88621d90d72f32a5f310be971b2e23a9799893497950261fefe28ba1b02bc",
+    "static/js/assessment-matrix.js": "97fba7b592c6fe704a720512c481dec2e473e3daf60907224e83f1378d8c6df5",
+    "static/js/exam-results.js": "9abdc3070184a2749afad504790d2377b6415ee9ad6bfcf7d04ada1bccd9cfa8",
+    "static/js/import_duplicates.js": "07094b9de2f5cfe8ee3ab32c5dc036a051c9988846d5ddc87d6d076f42f40477",
+    "static/js/ui-shell.js": "9a6b85a7bee8920f98baf0663fff61e0af72d6e401e41a7422df1ab0f1525903",
+    "static/js/bank-list.js": "eed924a5d4d545b8082dd80d934bae5ea694d9aee5e9258322dfa8c3e3265d6b",
+    "static/js/native-dialog.js": "27465c36bcb9bd335e4bc30142738a4ed4fe5cf6cc20f18d68c6a2f31d0a3cfd",
+    "static/js/practice-draft.js": "58b0fc3eef19953d57ef8e2d9cd4c5bd0c84afde82ae22ca01bdd9ea2b92a0a6",
+    "static/js/formula_renderer.js": "a6fa0aa4708b59fa77fafd1c72b006568a20dd3c18c5b6da3417491576daae6b",
+    "static/js/login.js": "08f9174485d06478d58ed538b4f1c77af2c55abbb187ec3072881c129ba016ca",
+    "static/js/manual_question.js": "a8e191f5b23c42c8b1aa5c23499c001469a79f58a013883badb5204e48dd1d01",
+    "static/js/courses.js": "3d64e7b7c975285f97f0433dedb10349956e313e79d80307ccef7cb351b21122",
+    "static/js/diagnostic-list.js": "d2ebebc03060d51742c90522c9da33f9eb5344896d8fbd27ecba5b99ec8af413",
+    "static/js/math-config.js": "ac1393fc67815bc59d78b4d3c38701bd6653ada83a90f0f5b4ed231ea40a251c",
+    "static/js/knowledge.js": "703955ed7bdf246a4baf806fb4801c03e54cd34a178a16501ef0c74639b7a4ec",
+    "static/js/id6_picker.js": "1dc42b38ef99f7b4cd80b2316e18ab85c2c504645637e7fd21514d5ea22080c7",
+    "static/js/people.js": "bae5f81a0a6e0e6ebd8eeef972c249261bcde6c88d587e6a4a3ffefd654c8bad",
+    "static/js/error-page.js": "b61d72ef0a7a4754ddb7e6ca9743ec3c1bc30e7d96b4339d2d274c1905252a81",
+    "static/js/bank-form.js": "b9656c3b7d835ff03425b1dbdb0b4ddffb801d4c8932a15b9462d107c92f7a22",
+    "static/js/ai-report-context.js": "31c08469ed187608850d41a15ebaad0583ac222474a039659e5e205e9118152b",
+    "static/js/assessment_from_bank.js": "6fe17b5726ec072de56b3bb95266c9a062a7b3750ccf8ffb55d68e2f4c5125c9",
+    "static/js/import_scope.js": "a08fd7e686a950e7ad07f41b38afd70492fd3fe2cd7b29aaa5e4693fce5aaa0e",
+    "static/js/modules/teacher_practice_detail.js": "9fd22d39e3e82c83244bdd50617d5e55fc34ac1dbd6c939e559c4ecce0cf6c4a",
+    "static/js/modules/diagnostic_wizard.js": "04ddb6facad856f7d34d024003459b25d84433dff4d18e077ae4b82d7e291ea7",
+    "static/js/modules/practice_progress.js": "6a74f64261014b1b3dcec7857c68768b0470e249d638169107b6d89b3aeb8dd3",
+    "static/js/modules/question_bank_detail.js": "184a9f869108357b649600171736269c982aca0cd647ea5132b0bca954e9f326",
+    "static/js/modules/exam_take.js": "47aea14285994ed9c3711a3fb5b7a269f7e2fbea112befca3cfd35549e50e1bc",
+    "static/js/modules/assessment_editor.js": "b1eac48a7e5ff2a0bdc61122f4e256e0ff01b6bc9f392ef625cf6f50b5e0425b",
+    "static/js/modules/import_wizard.js": "ffda7ed1d2753bf1e3c2ea272cbd2979a383f1ed7637d9f0a18334f32e131ad9",
+    "static/js/modules/ai_reports.js": "d4b92e1f96c60f8019c36647663190cedc37ef87853ff7531006b6d7f340464b",
+    "routes/auth.py": "1ce137d005cd55ee96baa7b8a73fc61d3ced1acf731db10db61a99d8f4ae5d32",
+    "routes/curriculum.py": "7685212c556f271f045e5f0fa77bffb5be878cb9e50c2986c5364fa7f001c3f7",
+    "routes/practice_runtime.py": "9909e93b5a4754f8f8222f7ecfb0e6ce5262221b808e8335136cd3b311613689",
+    "routes/diagnostics.py": "93c84a9c85ec96881ea23ce7f72aebf59d154e772b83198e0f2caa6aae13648a",
+    "routes/__init__.py": "1622b196e241156dc0f71a085d619ee78f469affc3cc77d09957299b34d99014",
+    "routes/practice.py": "b90476c28569fa0989bbaac23805f9767d6cd80cff9f36bb0b1f2c71717a9bf0",
+    "routes/imports.py": "c045ba68819130d390f1fcc08bf30b87a760ec676330521d5d53779b0ac171e3",
+    "routes/question_bank.py": "7a97ca0dded09c8122084972b81aa0086c43a5af3f26c197cc304ef3500f76da",
+    "routes/ai_settings.py": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+    "routes/academic.py": "f139f8e85fba052de4aa404d7139e174d041752eae6c3ed982a7515b6e2164ed",
+    "routes/ai_reports.py": "78337c8f85eca4a30253946879e07899eaf49d8b19afebbe83b4029d919f8ca9",
+    "routes/errors.py": "34a8188ee376446c9fe284455cc491b3615aa1b06f3cb06e3a561680324a4346",
+    "routes/main.py": "2d0b1ab217650d8817940ea9564f7deed5712f6626cbb3567e520c653d2358d9",
+    "routes/assessments.py": "4f13745553f69f44c154483d25f08aa430b64d49244fc797b2658d246f67d0a5",
+    "services/ai_gateway.py": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+    "services/source_resolver.py": "088b1e7c2918f09839bbde01ca43dd43a82d6937f8cbb4a2a5351750cb798a25",
+    "services/import_duplicates.py": "0582280a60e121b63fab4945bf54c8148e20aafde6dcb84ed7629a08a72d63c5",
+    "services/curriculum_migration.py": "bdb5e294258df636f52b548e890eacdae1360c705ae4f601ab60ed54ac2b6a0a",
+    "services/practice_blueprint.py": "7ecfc401a6aae8f5a9fc75a7e0a04bd407d42d0d1684f1fbbae06e473c14b2dd",
+    "services/formula_display.py": "5f48a98ccc67a50d463b6edad86429292d352d948a5577db02355f9c9043b221",
+    "services/question_classification_service.py": "8f09253ea518a132e54f8810263f037aee7ed4d68104f876ee39e3047c5a7ad5",
+    "services/question_latex.py": "21de770b6eb39f2bc734343c6af9dabd1a3aa28ade55ed63034e77c7d0754598",
+    "services/bank_detail_page.py": "c26c65748f2377f67242ac0e9da3aea41f48d7af8eb8ee6bb530bf6eb6a9dd3a",
+    "services/.DS_Store": "05368affd489c264562bc741a6550178d8dab7491f0393fbf85935331a05fd5e",
+    "services/local_tex.py": "337b885d1bd517edddf0bd12201b16870ba81c7aee03ca0132de4bbf1c2f7809",
+    "services/practice_source_inventory.py": "5bf3d29fafd7607de5e4459327e7c863af3fe03c35730bd702530a0ab82cd3be",
+    "services/practice_evidence.py": "b8d701840bde0d424eaff0a2d3cd3112798739b6f43c0973158b0772d0f5b9b2",
+    "services/personalization_evidence.py": "882bbaab9bfd97082e5864f6cce81ea2371fb7d9c27f9aeaea2815f74f12a182",
+    "services/practice_runtime.py": "eacad01b8c4c47afaa727716c908ac0d4f149e7ab646b4e4059829a8d97ff486",
+    "services/import_authorization.py": "6cc1de47fe29db970cc71244bf4d00a25b966b1615ac29022b07b39bfee3047a",
+    "services/question_validator.py": "fd6049236a57eccf57e738a2d07da4bf722dbbcf647fca18654ce257aafe6438",
+    "services/classification_evaluation.py": "130136655cdf90273b11895e48fdc6804d74b01ba89ee4f1cf80eaebf72755b3",
+    "services/question_images.py": "a8a70c8d34d0b4e8d4fe81e3005876864923d42f94150798c9838fb7d94922a2",
+    "services/bank_curriculum.py": "b687949e25144fb7ce7ba42adb5747847c07dffe753acd4684dfc1f8270dcbf8",
+    "services/assessment_matrix.py": "fde69673567db1591a639634c71082feff8e426f5f38439d0e41bcf96abe36cb",
+    "services/evaluation_dataset.py": "d3fa06abeaaafacab5c3ef35a15a2ec3968d77a6e550f26346a2c940db965e68",
+    "services/diagnostic_service.py": "2f89171dddb96f2b471ba01cb01d4dfd174647f5d119978afa40675bee35f33d",
+    "services/chapter6_profile_service.py": "468862f61b90d6cd982a0d3097ad58bb236516c3bb5a39947609b7408521783e",
+    "services/question_scope_phase5.py": "23d091d9c5d13e771d15877b64501aa205f9ab20885e368911535eb77eaa9a9d",
+    "services/teacher_learning.py": "5180d3cbc89faa9c8e68a7e753f013c49581f76cf12bd24eb5ea51c0539fea7a",
+    "services/diagnostic_report_contract.py": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+    "services/chapter8_profile_service.py": "1b842a1c66a9fb53a6944d6dbbb20cce0b7e576ff40d7cdf964244b34f6206fa",
+    "services/__init__.py": "ead7d50fd34abe9de76b5bbe4d79d48825f963ee640022ed8708204ba2e3bf27",
+    "services/ai_profile_analysis.py": "050e8d1e509cf53be51798f19c9235f75369da73e2abd2a4aa12f88a32090217",
+    "services/latex_document.py": "21429ca5722ef0076f4b63ca16bd3d3b65075d5176f80ffb2ea72677774ccfa8",
+    "services/class_lesson4_report.py": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+    "services/media_storage.py": "02e0e0c640aeed97ac2b5caaa9c790e04797781e071cf8692dcbdb2615940bb2",
+    "services/latex_renderer.py": "a63560753719ed45f59a3158734db73fdc342870b520334a822e57ae8b734e77",
+    "services/dashboard.py": "132613a23f68b57b4809c4c7a2d832f2ed99ebef4892c3ba9938e0dd3b9f677a",
+    "services/practice_selector.py": "55a1efc8ad3232a6dfacd75a0ab67e0b929e8a8bcd34dcd8d4ffc3459bbefc92",
+    "services/tex_table.py": "640f7b0ea78663e337af24f11ec4f1a52676e7233e518792e21e7eaa6bac849a",
+    "services/question_normalizer.py": "6a5fae0cd52e35e7c8dcbf49a47eae93fe548af7038be91c076ca4730d631bd7",
+    "services/phase5_cleanup.py": "bb1b7a50a3677e7847c5023273713a5a4e35800885a1aeabc844a9425095a41b",
+    "services/question_policy.py": "e06949f9e842fe0e901383646231d2c9e184333fe51580bca5767d1afdfbd21a",
+    "services/bank_visibility_phase5.py": "d5acc2e9c22a0e9f8596197b14565773a4f1c1b797db0faf9180398bb2bd7aad",
+    "services/assessment_bank.py": "75ed5bdcae5b6fa0425ac7ca1e84e3704b0ee0f5d9973eee22e95f34a648c7d2",
+    "services/import_scope.py": "d170c4138c95194e79b242b40b2980726613edc9946a1056f06e85a3d7678bd2",
+    "services/bank_overview.py": "d29ac767a1b154a6245e88876c7ad47f85cdfaf156de88cf0d54c8d3608dbede",
+    "services/curriculum_service.py": "3ac5fab4fdb535e5c60db247022e239a8cf466dd8617067704d689d59c41b177",
+    "services/aptga.py": "2d77e761103766197011f03cfe02c3e6bb3078996d47148fbffebbe1da09e460",
+    "services/database_startup.py": "1f70c1ccd554104575b018b6ea437317dcfc259efa6bd2e24c710c5655d6bd38",
+    "services/practice_transfer_selector.py": "c48d108b7bacdcf2c632736e0179fb3d7b8a10668c11d6ef54826be500240306",
+    "services/ai_report_overview.py": "31df6a8b262722524f2566c6489b1a4638318d765b9010f1f1eaecc936b9295f",
+    "services/curriculum_data.py": "16cae8b78052d5256339db3cd4547f10341d50b5d32c833fddbbbdf623bdf315",
+    "services/assessment_scoring.py": "54aa241fcac4abde7546c44438c097067e8ae093c274545ff516daf539e008eb",
+    "services/teacher_keys_phase5.py": "60ca1e6312ea6c60200893885c1c6419c03acfdc0c3c58b1ec0db3ab4c756c68",
+    "services/standalone_assessment.py": "bd56fac5a3f026720510dc52aeac386745a94f986db3b5d9418c299f41cc5083",
+    "services/assessment_evidence.py": "4a17bf06988ff547a907e0b68f947a675b488585ff481bd0711034c0ee1072f0",
+    "services/latex_parser.py": "6d45e0a64f6885703e9acc0bfc6fd9f916e9acff122a1d08bd92bc02effc82d2",
+    "services/id6_metadata.py": "47805efdb1f61a00d8e07d0052badc3283c57d03e4efa5a71ef0e14539f59c78",
+    "services/access_control.py": "7418d1223d84db4dae7161a7725422ab44b0f302faaf795fd83c326b925d2110",
+    "services/matrix_xlsx.py": "df8da472e39a268468d00c008b3cffdc15e18b9675d08f56317e37a4b1e1a3c8",
+    "services/lesson4_cleanup.py": "24bec6a48b61ae7c81db034f583607b1bc7d92010c9585c363f5f8a33460901f",
+    "services/import_transactions.py": "6d12a0cd4678084cd0d663f72a5f7e3f922dd99e1151b8a731d35af554b5a447",
+    "services/import_service.py": "2b58d836afeb138894507499d0f07836ef18dcf14c2e4fceb2977d9d11f45377",
+    "services/id6_service.py": "15afa2f6151e9f454390430898d0e7c55ba8499c009e848634a202eb20c47363",
+    "services/practice_recovery.py": "c7a7fc9057af03dca96d10875d21f3f7208d7ae9c297dbb571ec3fa318ee5676",
+    "services/data/cautrucde.tex": "d807addcf717de416323d1b82162f75c55c9243464d7fad4dc2032841edc7eb4",
+    "services/data/math9_c6_evaluation_template.json": "e1b42560c44539b880738362fa5e621f2b7a16ff620f96d026655bcf3aca8551",
+    "services/data/math9_chapter8_rules.json": "867d3b8d8f60a2791e57835abfed34fad3796e77ff8f15b97cd2cb9ee7a1bd45",
+    "services/data/math9_curriculum.json": "edc2678f2e250c0d8394598140ec9652ac1b34555804c738757cab81532d2b66",
+    "tests/test_bank_visibility_phase1.py": "cc77db23699a5e1f5285364718d3d7c25bcf14f23f757ad4b75c04f6a101cb37",
+    "tests/test_ui_phase8_user_validation.py": "fb6d924583d24750f7adfe29c664abdd7833ae3945134c929ed4f2aab8331e4f",
+    "tests/test_ui_redesign_phase6.py": "3333693fb54882f80de4f63f9f6dcc166df48c9055656583408794cc9eec0d5e",
+    "tests/test_standalone_assessment.py": "bf80992a12c73b6896264c65b896fd7fa94a4ea1c25462304649d9ccee70bbe5",
+    "tests/test_id6_picker.js": "b920f04aa7aa037c41a27827e7e8fde778831c938e9c8cc54484c816b96a4d4d",
+    "tests/test_bank_visibility_phase5.py": "79285be966fb15846993fa0a21cefbd96986a233205df6e152dc6711e17ea07f",
+    "tests/test_unified_practice_phase3.py": "28bed147ea267a9c47d55d6f524651316c76b6e7158684a507509ffa2a6e7f2f",
+    "tests/test_assessment_scoring.py": "70b84c12745bf7b567eff1cb52f6530b0d64086ee96c36afba2cf2f6830bb926",
+    "tests/test_ui_redesign_phase3.py": "066d46240f0c99b5502fa2edf4e84104d810ade0ca2a4c64f74a88fe43fdb4b6",
+    "tests/test_phase1_import_review.py": "632f0dc0e94c850809beb89144bcc2ad50f860d5b7a0fccdcf1a256bf2761c1c",
+    "tests/test_import_scope.js": "27aa4244b4a762fb4a96bd2e7bbd0aa5221b161d0d6a5361f07d3d541960cf0d",
+    "tests/test_source_resolver_phase4.py": "b5d6bf627ec08bc86ec97dda580766c4f8dc2673d462e0d49751092fbcfc9b65",
+    "tests/test_aptga.py": "1a2b9cad0089c15b8330767c67f17b3457bed757c3d0f9ed10919b36e5a82bc1",
+    "tests/test_ui_redesign_phase7.py": "7f284a6eac23c66390c87dc6b39eb82423220b96c4fdfa3d86b42aa55cac8bef",
+    "tests/test_question_classification.py": "174d7019e4c98702da6820957b7e5644cf25c07c683d48e832a8e6333ba2f580",
+    "tests/test_practice_same_level_transfer.py": "5ec9f57651a9f24ec456c69c24f18820dc1d13a68b9af00c3112a2a337ab8d20",
+    "tests/test_lesson4_cleanup.py": "33c443ea7e61b63c76f1bcc984fe95087eb17318bca2f59f72f7cb6746c72787",
+    "tests/test_personalization_v2.py": "2545b22d335e7a3e589c02e41039876174e30852c086a605596830956370ee8c",
+    "tests/test_question_overlay_phase3.py": "2b702b7e4df3ebee01e4b111b3fc40fb1b58106bc61e56eb1917463218d7b3e3",
+    "tests/test_formulas.py": "4ab55a4bfc95c2925b60ed5115e8709bf7cf5e8dabb170943d7b6e72cabecb57",
+    "tests/test_ui_redesign_phase8.py": "0e291264b999749388837303a2917e2fc455e8dd88d3bc0bdcecd9f10647f73b",
+    "tests/test_teacher_ai_simplified.py": "0db1140fdc82353404685bbb5d102586187f3f53d9276441ae46c75b4a52cf0f",
+    "tests/test_id6_import.py": "0fd1a9a2ad2315f4ee8f9c50b5913450a150d893a5089ab41b0beb7b1cbc2167",
+    "tests/test_teacher_keys_phase3.py": "7f0e12952a0dd4cb03f7b2866b9e0a604e41b67d4bd675dc1117454635386770",
+    "tests/test_general_bank.py": "effa04d9b1b328698d7b87772287a32ebf529970e00de5871cfce93b66ef0c1a",
+    "tests/test_chapter6_migration.py": "6ddc10342252ac23c43f9e6d4afc37df37bcf5ea4afaaba372bd8094f268b38c",
+    "tests/test_three_type_import.py": "20791b215080f46c86e4977b515bf60d5a64c376c84ca9c268d23e7286bba27b",
+    "tests/test_error_pages.py": "1127f514b0842b05445ccf1846ca2dddb014f2a27bfee29d427171c74955d0f7",
+    "tests/test_question_overlay_phase2.py": "770f1e38262dd24789dd3b406b4813e979af97ded7932bc334cf5591dcde0de6",
+    "tests/test_phase5_reports.py": "f1b2d6473052788a1022901d0c1c28ee59b8612139582f8a28484746dae35e02",
+    "tests/test_evaluation_dataset.py": "4420b738c8e653627d76a00685ec35844615915f725faf597cec97b1d410aa7a",
+    "tests/test_practice_source_inventory.py": "fb6d07c86b790bdb854ffd16089ed4bb8010ac99565fc890617d6b275c093bc7",
+    "tests/test_import_duplicates.py": "b2dd7120e4d374536fba50972b359bea24b09f292e36dcb88383de5ac21b18cd",
+    "tests/test_diagnostic_delete_and_explanation.py": "993b03a3c5e9441a962345c2b57579ccc48d6239ba7a87de3cc10fba4936c3bc",
+    "tests/test_teacher_keys_phase5.py": "9a8b4cb6d4dc04e1d5d74f444e3ff5ff86ad55db32ea84b2b5ace5c3d337a143",
+    "tests/test_question_scope_phase1.py": "3681b83f0f5b9bd37218fc639cdfcd18fc3fb5ac82171c095315dfe17e9fefcf",
+    "tests/test_question_overlay_selection.py": "ce28301215b5a60de9e279865804656a77c305671dab5a1f1fb05772fe6a2e50",
+    "tests/test_personalization_mvp.py": "cfa192a55cf3370282fd0690663778c54e94c7f4c3ad3fd4cb31cbb10f48c043",
+    "tests/test_chapter6_only_catalog.py": "a830bdde06e60526456a8ac38db1c3d836ba4cb84823bfca7cedd5bacf60ff13",
+    "tests/test_latex_display_v3.py": "0a6d49b6491b09e1e681e05a04c00e9ae99c1c07aa54b4c0e417ea89e5bf5a61",
+    "tests/test_phase2_import.py": "2c7458f6d710147c48c469f71fb68a056d0577949fbc1e7abeca9292f368a0af",
+    "tests/test_diagnostic_report_contract.py": "d6f0bb0ca638dab193edc5ec8b9590e36aaaeb02d6be4615778932d281450b90",
+    "tests/test_bank_list_phase3.py": "a69247da86e0e2782f0de2729d44689121a2b078495288d6c9a124b35123c302",
+    "tests/test_teacher_keys_phase4.py": "b9a33ac055f0350cbf81d5f454c2e1186e6a582012ab1cab579b87c51ea31dc2",
+    "tests/test_diagnostic_phase2.py": "cede76139f830046544ceafd9402d4ffeef1e48fdb85bd142eccbf0f014e79bb",
+    "tests/test_practice22.py": "d4f9646b38320b5dd380eeeb3055e291d10b36c03d67d60fb9ad1aa599404ef5",
+    "tests/test_learning_loop_phase4.py": "c57849957c66e7c7711eb06b3c4ac6cb456c30bd20098d66aa934423d54917e0",
+    "tests/test_bank_selection_phase4.py": "15b5115e92dc9f5a4b649078c15a9d0080b1b3e6bc305b14e2e9dad97a3cb44d",
+    "tests/test_curriculum_classification.py": "2b857e84a71ea249b59d163f088a30dbf8b1606de024b2a313d39e27dadd75d5",
+    "tests/test_bank_import_phase2_visibility.py": "81ec16767fec0a22335faf52b826fd8bf5b98d143c04057bd5cebda208ee2b91",
+    "tests/test_ai_gateway_review.py": "b16c704ab5c8c9b47ef8f83b6c29cfbd32d7b08b6cb3f574e24d491f4b4fe7ab",
+    "tests/test_local_tex_bank.py": "352231001d87de36059b3a24c142760bd93632c89cda6c3cc73ae0faa599fe0e",
+    "tests/test_ui_redesign_phase4.py": "1987e6aef61fac97a5358013dc879f452f16ffed94f4dee24792b617d21014d5",
+    "tests/test_assessment_matrix.py": "46123d3baa6b6e73632f90f8d55cfc8941ca5e73532107fb03a1178e1a93ae75",
+    "tests/test_import_regression_guard.py": "dbf74bc26e98e931a9c390ecb99d5d1c2b31cb752509790b699e375c40c42cbc",
+    "tests/test_class_lesson4_report.py": "7b169ce21867ebdc7f4a7b788bb76820d6416311c9bfbda99c33476d65b4a253",
+    "tests/test_ui_redesign_phase5.py": "3bfdd6cebaa293e03f50be93e5f1e1d41599b39c0edf8df61bc578bf88819506",
+    "tests/test_route_contract.py": "2e34d5e9b2f64aa8b48f765c2dcc500fc67e11ec84c35f98aa6f107642681487",
+    "tests/test_classification_evaluation.py": "c896fdfb58f5ec6c813317c05e73a67950ba4e0fa51891b7093b3e2e241f9e82",
+    "tests/test_adaptive_personalization.py": "154739e7a91340fe33da505c0e00fd32360c94082596011637e2f85cfaefce3e",
+    "tests/test_learning_workspace.py": "ecffa880a1f6febd36830d80057cf6dd78f873646e59c7707c7317ff040b2e42",
+    "tests/fixtures/route_contract.json": "33d5f5475f4caa7ae9d0efbd1e363f65328f0943d3aa0d0125c0aad69f6b7190",
+    "scripts/preview_ui_phase8.py": "f245c1a964b58114735245cc560aa8ac57f7a6f1bdda0cf360e8af015fbc242f",
+    "scripts/check_local_tex.py": "1668817d19ef8f339cf6a06f796d43723e5142cd722f3e40cccbde5673952fcd",
+    "scripts/check_tex_figures.py": "16123812316890cffc4546698969512447eb4bb556abf0c351eb8c8c6942ede9",
+    "scripts/render_tex.cjs": "ece3d7950bf6b6ba0d10e1f4d108e5ec04afcd654351c92274dd7a0c76bfa74f",
+    "scripts/evaluate_question_classification.py": "d5f2ba350b0e49285c9888dd573b2bcd688509c13b73ab07ff4a6743d6bdbd39",
+    "scripts/qa_ui_phase5.cjs": "cbba2f7e13bc63b47c11bc06d03d3466d1ed26d76539c7e1888fdb61e796e63f",
+    "scripts/qa_ui_phase4.cjs": "ec9bda79b108a8b05c1ac939eafcd13f8054b0016e3d5c4a19f7bd6151617d6c",
+    "scripts/qa_ui_phase6.cjs": "9648171e03f1398151120b96859e31aa9076aec53234f59be6a0dd0716ddaae0",
+    "scripts/preview_ui_phase6.py": "38139d878bc94851bce49058754dcad062c1f4f55c0ec776d7f07dedab9d602d",
+    "scripts/preview_duplicate_review.py": "87d9a8f34b76f9640435423a194d6cf2e2cca814915bd4ff6103157bf4356e78",
+    "scripts/qa_ui_phase7.cjs": "4d107a726cb8f33222507ff5dfce7e4d63ad05c79da2200f98eca2c7f78c0944",
+    "scripts/build_local_assets.cjs": "a476456ed12b32ea7da7ddbe0e1c6cf6616daa13a8cba7bf8dd9a869e1bc9586",
+    "scripts/qa_ui_phase8_shared.cjs": "9917786bcedf9145ce3dc4391d453594f2657d5632616cebab910820e365d184",
+    "scripts/qa_ui_phase3.cjs": "e7354d0615c9d88398070d774be0c531c93431a0f65cb3617180ee7fe0a3e44b",
+    "scripts/migrate_import_duplicates.py": "d619b678c7d4861df45d25916f8a490777eb42cd5be2774eb7fd992489d18bbd",
+    "scripts/preview_ui_phase7.py": "377ef3b84a8599f246ac93e70ad23d546bfacbdcee1f0fce44c748423572ec32",
+    "scripts/preview_ui_phase3.py": "60c8bdb5a447064eb691afdea21740d087b7ff6d1cfaa4fdc791ef40bfa3c030",
+    "scripts/preview_ui_phase4.py": "823112d95f134ed41ae73f211e21f559c5a1e154875f95b0f0285b9d90f5e3e4",
+    "scripts/migrate_import_scope.py": "f776001a96d157a1225fd9ad8a5f2fbd3618360554591faff4dfec187a61b075",
+    "scripts/migrate_bank_visibility_phase1.py": "fe695f0909eadf5a18cafe9910722aa6c203f37dec47626ebdfaf14362e78b65",
+    "scripts/migrate_bank_visibility_phase5.py": "0938f5e8c37249f07faa5617b144f8774b62f30639f7e8f47b30f7c6d1225a10",
+    "scripts/evaluate_common_diagnostic_transfer.py": "d41297dea12d54d64c991d86ad9b89b19321403c548162377dda8eb13afff299",
+    "scripts/preview_assessment.py": "89847517f414953ddbc2e29418ca3d7c0826affd9d170bd6b6df9da01698dc39",
+    "scripts/migrate_teacher_keys_phase5.py": "ea0acf8f1af1b117deb084b3d3a324458bec9f2696a3e004b8d2dabd5e859d02",
+    "scripts/migrate_question_classification.py": "68121deb1000f31b5468888583054febdd30b78ccb8b26e8e1df919cbba7aafc",
+    "scripts/preview_ui_phase5.py": "94262a31c79bf12a53ba96a1cefc390b9451da3de78036b3fab863cb79cd736d",
+    "scripts/export_classification_review_packet.py": "85a235caec8cf20439866ef15a845cb8bfbdbc4bd91d59962f49ac33ed48032e",
+    "scripts/evaluate_personalization_v2.py": "9399415c347ff579a3b898c81423cbd2e9e7ee468c9a6758e53d6c47be776e2a",
+    "scripts/migrate_math9_chapter6.py": "dd7b0c21aa5854d76b3ec70702f5cfa171c7a7d6c90684783d5388f9d0ff95ad",
+    "scripts/qa_ui_phase8_integrity.py": "9347345a9b186bd9ce92c582e8fea5d227279c471ddb01a7cfdce4d53169974f",
+    "scripts/cleanup_phase5.py": "7a727b9cd5382b0c2712949523faf67b106c81243cb0e363fa838aec56d95c1d",
+    "scripts/migrate_local_chapter8_i.py": "d03ffc8545c35c77f5ff43b4abe1bea6d0d3afa4c04e9487089557030f6ff0f1",
+    "scripts/evaluate_same_level_sources.py": "9197e2bd2457b153fcff9bf71940efd29328b8605c7bc6d4142ae1d1ba780a51",
+    "scripts/migrate_question_scope_phase1.py": "81a60792e3931d4119d35965625a0fce887b799e9ad44a1c39f9fa3ce9fa06c2",
+    "scripts/migrate_question_scope_phase5.py": "f41977198f2aa6b97b94c48bd02df37360419396bf24d63843710972e77a7864",
+    "scripts/preview_latex_v3.py": "5913b5cccce7d15043123af111070d7649785ccee09342b1fbce3e421e981cdc",
+    "scripts/preview_general_bank.py": "3cc45149a024caf8453efba1212cef348febf25596aae1b5ab2a1b1aeb4b3a62",
+    "config.py": "c867407ca653a8cdc1c20756867eb24bf4f31c04f42925a0c0714a8871f0fe9a",
+    "models.py": "0ea7f81fb46c7dbf60b48ffbe961ef75d0a894bf7251187fb37396de6005bd49",
+    "database.py": "80ed315e56743af6c322cbea92e65105b3873dff3a98c99de3ce94ae07becac5",
+    "forms.py": "ed2fa7e824adbbfeaafdc32aeab8b221f92086c1287e00e5efdadad6117d116e",
+    "extensions.py": "ff45372907e55e88f15d1307e297cd531ffacf88922e76d65954c331421e4e95",
+    "app.py": "304e96e68d3443b8a1116552e866260da747d13cebd4707c99710ea91087a01e",
+    "helpers.py": "347858b2a7d918becf5e800c016cd5ce28f5ac2b6a401ba7450972308d01395b",
+    "adaptive_engine.py": "b277871a824a43d5783d209c5d60412e2e43e3087225b98b24878730dc5ed735"
+  },
+  "assets": {
+    "static/images/favicon.ico": {
+      "size": 99004,
+      "sha256": "7b856f56758d138eaf66bd6db96f0e81063afb50fc2d1d0aaf858ff4f8776206"
+    },
+    "static/images/.DS_Store": {
+      "size": 6148,
+      "sha256": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    },
+    "static/images/logo-transparent.png": {
+      "size": 877769,
+      "sha256": "4d07ed32c0d20835436fb14e13aa273e44392f7ed5f525377e6c37efa8d71803"
+    },
+    "static/images/logo.png": {
+      "size": 796034,
+      "sha256": "000c401a89f4de8967521eda1ca5aa9d7c46ee2042c43462e09b375e5b495994"
+    },
+    "static/images/avatar-default.svg": {
+      "size": 373,
+      "sha256": "1a6aff93edb3d9b165888e0e6a9f2ef542e2ab6a33441163673ac5c0cfc8da06"
+    },
+    "static/fonts/be-vietnam-pro/be-vietnam-pro-700.ttf": {
+      "size": 126228,
+      "sha256": "aef76cd15b8c9faa1ff21951bb71963a774aa381526c557e5a52f38d430c4650"
+    },
+    "static/fonts/be-vietnam-pro/OFL.txt": {
+      "size": 4397,
+      "sha256": "6b7f8f73609a25ea78c891e34cf37b06f8a676b7ea986e941e43b009110f2a85"
+    },
+    "static/fonts/be-vietnam-pro/be-vietnam-pro-500.ttf": {
+      "size": 122644,
+      "sha256": "557a1c42a7f8eb83f84255d475017b1235c1101b899367f974a1cbfa19cd7c3d"
+    },
+    "static/fonts/be-vietnam-pro/be-vietnam-pro-400.ttf": {
+      "size": 120228,
+      "sha256": "4ad53eac036092be79a34b5fa0aa32d0ebb3c7e5df4bc058764f5614fbf148a0"
+    },
+    "static/fonts/be-vietnam-pro/be-vietnam-pro-600.ttf": {
+      "size": 123064,
+      "sha256": "cbf437bf71c8536a7aaed632dce2583ea5ec97c07efffc625c31991d1027ba3b"
+    },
+    "static/vendor/alpine/alpine.min.js": {
+      "size": 44660,
+      "sha256": "3d988c906334fada157d7a88ef1eedcd9bdfb478df83e9b705e6468f0d6c8dd2"
+    },
+    "static/vendor/chartjs/LICENSE.md": {
+      "size": 1093,
+      "sha256": "41a84aa2caba645f966a18d9c2056b73e6d3a81d80bc0046bc0011a2634d4cce"
+    },
+    "static/vendor/chartjs/chart.umd.js": {
+      "size": 208480,
+      "sha256": "84d0e233daba702b8f77d669d8c137cad36d441a10f200b6f2d3ab553bdfcf6b"
+    },
+    "static/vendor/mathjax/tex-mml-chtml.js": {
+      "size": 1173007,
+      "sha256": "300480069078b5892d2363a2b65e2dfbbf30fe5c80f83edbfecf4610fd093862"
+    },
+    "static/vendor/lucide/LICENSE": {
+      "size": 3208,
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    },
+    "static/vendor/lucide/lucide.min.js": {
+      "size": 397450,
+      "sha256": "ab85225ecc1daa2033607856f03dd2dabcbc08e2d260a5b97e17c690aa929766"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/tex.js": {
+      "size": 104800,
+      "sha256": "b525b71e41a7fdb124ef6a2b44d5250cb7fc2f56d7e73494ad03d090d0e4f28a"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff": {
+      "size": 21480,
+      "sha256": "870673df72e70f87c91a5a317d558c2c3b54392264ad79bbadc6d424ae8765fe"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff": {
+      "size": 34464,
+      "sha256": "88b98cad3688915e50da55553ff6ad185e0dce134b47f176e91b100f8a9b175c"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Regular.woff": {
+      "size": 19288,
+      "sha256": "c01d3321e89b403c4b811aa153c4e618eda3421f92d8a072a02c8d190782a191"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff": {
+      "size": 12660,
+      "sha256": "b418136e3b384baaadecb70bd3c48a8da9825210130b2897db808c44efc883cb"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff": {
+      "size": 5792,
+      "sha256": "c49810b53ecc0d87d8028762c518924197dd9d3f905b08f99ea241301085b9cb"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Zero.woff": {
+      "size": 1368,
+      "sha256": "481e39042508ae313a60618af1e37146ab93e9324c98e4c78b8f17fe55d41e0b"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff": {
+      "size": 9600,
+      "sha256": "26683bf201fb258a2237d9754616de9d4ecf4cc1cd39dd1902476df7d75f1d16"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff": {
+      "size": 9908,
+      "sha256": "af04542b29eaac04550a140c5f1760a649783989426f2540855bf4157819367d"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff": {
+      "size": 22340,
+      "sha256": "721921bab0d001ebff0206c24cb5de6ca136467bf1843a7aa32030ba061d1e92"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff": {
+      "size": 1116,
+      "sha256": "36e0d72d8a7afc696a3e7a5c7369807634640de9b02257bca447bdf126221a27"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff": {
+      "size": 1136,
+      "sha256": "72bc573386dd1d48c5bbd286302ca9e3400c5eb0f298e7cfbf945b9d08fc688f"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff": {
+      "size": 19360,
+      "sha256": "a009bea404f7a500ded48f8b9ad9cf16e12504b3195dd9e25975289b8256b0f0"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff": {
+      "size": 40808,
+      "sha256": "3de784d07b9fa8f104c10928a878ee879cf3305cae5195cba663c9c2bb0195eb"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff": {
+      "size": 34160,
+      "sha256": "1cb1c39ea642f26a4dfed230b4aea1c3c218689421f6e9c0a7c1811693c4fa07"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff": {
+      "size": 20832,
+      "sha256": "355254db9ca10a09a3b5f0929d74eb4670f44fbe864c07526a06213e0a0caf6c"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff": {
+      "size": 14628,
+      "sha256": "fc6ddf5df402b263cfb158aed8e89972542c34b719cd87b1db30461985f7bd5b"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff": {
+      "size": 5148,
+      "sha256": "3bc6ecaae7ecf6f8d7f8ea07bddbaca8601e2cb6e89d6aef58e78d9f6d8a398f"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff": {
+      "size": 3244,
+      "sha256": "5cda41563a095bd70c78e2dda13d0f8cb922c71c90fffd0a0044c65173a66e83"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff": {
+      "size": 11852,
+      "sha256": "af96f67d7accf5fd2a4a682d0b9f8b339f8ea6fe34c310c1694c8ba7f6ddc96f"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff": {
+      "size": 15944,
+      "sha256": "32792104b5ef69eded905b6d1598ed05d8087684d38e7a94d52e3c38ba16f47e"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff": {
+      "size": 19776,
+      "sha256": "8ea8dbb1b02e6f730f55b4cb5d413b785b9f5c39807d0a0fa7da206a0824a457"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff": {
+      "size": 5464,
+      "sha256": "30e889b58cbc51adfbb038ab1a96dc4025aa3542a3cff7712fc55ece510675e2"
+    },
+    "static/vendor/mathjax/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff": {
+      "size": 17604,
+      "sha256": "c56da8d69f1a0208b8e0703656c3264b6dd748bd452524c82b0385b60f6a68c1"
+    },
+    "vendor/tex/README.md": {
+      "size": 866,
+      "sha256": "355bba89878b67cadc82590abdd0381dd5996bcf6e0b204993dda485b67f94af"
+    },
+    "vendor/tex/tkz-tab/README.md": {
+      "size": 1401,
+      "sha256": "4e1549261a24fb4c04f430ab9779cf9ec620aba7f197a6a607ea2a816b96a4f0"
+    },
+    "vendor/tex/tkz-tab/tkz-tab.sty": {
+      "size": 48513,
+      "sha256": "7df03fc9251e2eec8406dade449ecd0550bf21ede682324078164ce8a0a776d9"
+    },
+    "vendor/tex/xkeyval/xkvview.sty": {
+      "size": 6984,
+      "sha256": "275632d353ab740dd788a9afc1ffdffb7f949d483596c87338572e5a2a0966df"
+    },
+    "vendor/tex/xkeyval/xkeyval.tex": {
+      "size": 19299,
+      "sha256": "adec9c8e36d791b131d9eefd00726d58f531a5a4b8c0ef8f87ffa497d4b16cb8"
+    },
+    "vendor/tex/xkeyval/xkvutils.tex": {
+      "size": 7787,
+      "sha256": "a49b792fa91181b8965091bca36e4e25d54f3e95d5ff7aac7c2f6a425ed7df0e"
+    },
+    "vendor/tex/xkeyval/xkeyval.sty": {
+      "size": 5006,
+      "sha256": "efd9fb88373975a6d1c669eb343c12abb5e51a0d2eb6ca18670b944a78635999"
+    },
+    "vendor/tex/xkeyval/keyval.tex": {
+      "size": 2793,
+      "sha256": "8e19ce03ea9b83fe1a69089f08e16835b1f2ed6baf19f635aaf7cc4d27155f5d"
+    },
+    "vendor/tex/xkeyval/README.md": {
+      "size": 3597,
+      "sha256": "8b5220a4dc4b05a96204a62cb0fe62f2051956852c7a107c2ed17cda12c19727"
+    },
+    "vendor/tex/xkeyval/pst-xkey.sty": {
+      "size": 1762,
+      "sha256": "dcab749fed6bfa705aedfc1e7c654aa7185ea9c497df690e36dc4da33b324d01"
+    },
+    "vendor/tex/xkeyval/xkvltxp.sty": {
+      "size": 3536,
+      "sha256": "96bbd5ddfc9f9d808b55a1b4c90a892882e298c2e0587178515ea78cc3272b82"
+    },
+    "vendor/tex/xkeyval/xkvtxhdr.tex": {
+      "size": 2924,
+      "sha256": "209aadb5e1ab10e1806f80bd68f16b70ebf1ac8cf7b2188c13b42155937ad6aa"
+    },
+    "vendor/tex/xkeyval/pst-xkey.tex": {
+      "size": 2437,
+      "sha256": "c19f15aed7831494c518f50f6113608c6b938eaf057411b7bca9af4fe0b75700"
+    }
+  },
+  "databases": {
+    "tutoring_center.db": {
+      "size": 18952192,
+      "mtime_ns": 1791516234465796610
+    }
+  }
+}

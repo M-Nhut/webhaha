@@ -1,0 +1,1718 @@
+{
+  "date": "2026-10-14",
+  "preview": "http://127.0.0.1:8766",
+  "checks": [
+    {
+      "name": "login 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "login 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "login 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 375: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "register 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "register 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 375: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 375: consistent field heights",
+      "passed": true,
+      "detail": [
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44,
+        44
+      ]
+    },
+    {
+      "name": "error404 375: HTTP",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "error404 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "error404 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 375: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 375: Vietnamese default message",
+      "passed": true
+    },
+    {
+      "name": "login 768: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "login 768: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 768: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "login 768: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 768: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 768: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "register 768: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 768: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "register 768: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 768: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 768: consistent field heights",
+      "passed": true,
+      "detail": [
+        40.796875,
+        40.796875,
+        40.796875,
+        40,
+        40.796875,
+        40.796875,
+        40.796875,
+        40.796875
+      ]
+    },
+    {
+      "name": "error404 768: HTTP",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "error404 768: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 768: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "error404 768: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 768: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 768: Vietnamese default message",
+      "passed": true
+    },
+    {
+      "name": "login 1024: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "login 1024: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 1024: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "login 1024: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 1024: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1024: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "register 1024: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1024: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "register 1024: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1024: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1024: consistent field heights",
+      "passed": true,
+      "detail": [
+        40.796875,
+        40.796875,
+        40.796875,
+        40,
+        40.796875,
+        40.796875,
+        40.796875,
+        40.796875
+      ]
+    },
+    {
+      "name": "error404 1024: HTTP",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "error404 1024: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1024: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "error404 1024: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1024: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1024: Vietnamese default message",
+      "passed": true
+    },
+    {
+      "name": "login 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "login 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "login 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "login 1440: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "register 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "register 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1440: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "register 1440: consistent field heights",
+      "passed": true,
+      "detail": [
+        40.796875,
+        40.796875,
+        40.796875,
+        40,
+        40.796875,
+        40.796875,
+        40.796875,
+        40.796875
+      ]
+    },
+    {
+      "name": "error404 1440: HTTP",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "error404 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "error404 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1440: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": false,
+        "sidebar": null,
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "error404 1440: Vietnamese default message",
+      "passed": true
+    },
+    {
+      "name": "login reveal password",
+      "passed": true
+    },
+    {
+      "name": "login invalid credentials visible and focused",
+      "passed": true
+    },
+    {
+      "name": "login respects next and native CSRF",
+      "passed": true
+    },
+    {
+      "name": "profile 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "profile 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "profile 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 375: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 375: sidebar breakpoint",
+      "passed": true,
+      "detail": "hidden"
+    },
+    {
+      "name": "profile 768: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "profile 768: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 768: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "profile 768: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 768: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 768,
+        "documentWidth": 768,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 768: sidebar breakpoint",
+      "passed": true,
+      "detail": "hidden"
+    },
+    {
+      "name": "profile 1024: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "profile 1024: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1024: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "profile 1024: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1024: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1024,
+        "documentWidth": 1024,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1024: sidebar breakpoint",
+      "passed": true,
+      "detail": "hidden"
+    },
+    {
+      "name": "profile 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "profile 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "profile 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1440: one H1 and unique IDs",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "profile 1440: sidebar breakpoint",
+      "passed": true,
+      "detail": "visible"
+    },
+    {
+      "name": "drawer dialog semantics and background inert",
+      "passed": true
+    },
+    {
+      "name": "drawer moves focus to close",
+      "passed": true
+    },
+    {
+      "name": "drawer backward focus wraps",
+      "passed": true
+    },
+    {
+      "name": "drawer forward focus wraps",
+      "passed": true
+    },
+    {
+      "name": "drawer Escape closes and restores focus",
+      "passed": true
+    },
+    {
+      "name": "drawer scrim closes",
+      "passed": true
+    },
+    {
+      "name": "drawer resize releases background",
+      "passed": true
+    },
+    {
+      "name": "drawer links navigate",
+      "passed": true
+    },
+    {
+      "name": "avatar invalid selection feedback",
+      "passed": true
+    },
+    {
+      "name": "avatar preview has live feedback",
+      "passed": true
+    },
+    {
+      "name": "native profile submit retains submit_profile",
+      "passed": true
+    },
+    {
+      "name": "mobile flash close target is 44px",
+      "passed": true
+    },
+    {
+      "name": "flash close is functional",
+      "passed": true
+    },
+    {
+      "name": "password mismatch feedback and native validity",
+      "passed": true
+    },
+    {
+      "name": "profile password toggle",
+      "passed": true
+    },
+    {
+      "name": "native password submit shows server failure",
+      "passed": true
+    },
+    {
+      "name": "native password submit retains submit_password",
+      "passed": true
+    },
+    {
+      "name": "home 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "home 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "home 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "home 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "home 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "home 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "home 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "home 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "banks 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "banks 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "banks 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "banks 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "banks 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "banks 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "banks 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "banks 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "bank-detail 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-detail 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "bank-detail 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "bank-detail 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "bank-detail 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "bank-detail 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "bank-detail 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "bank-detail 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "courses 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "courses 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "courses 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "courses 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "courses 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "courses 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "courses 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "courses 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "assessments 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "assessments 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "assessments 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "assessments 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "assessments 1440: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "assessments 1440: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "assessments 1440: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "assessments 1440: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 1440,
+        "documentWidth": 1440,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "visible",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "local MathJax still renders bank formula",
+      "passed": true
+    },
+    {
+      "name": "bank navigation selected",
+      "passed": true
+    },
+    {
+      "name": "teacher navigation matches role",
+      "passed": true
+    },
+    {
+      "name": "error 400: status and content",
+      "passed": true
+    },
+    {
+      "name": "error 403: status and content",
+      "passed": true
+    },
+    {
+      "name": "error 404: status and content",
+      "passed": true
+    },
+    {
+      "name": "error 405: status and content",
+      "passed": true
+    },
+    {
+      "name": "error 429: status and content",
+      "passed": true
+    },
+    {
+      "name": "error 500: status and content",
+      "passed": true
+    },
+    {
+      "name": "API error remains JSON",
+      "passed": true
+    },
+    {
+      "name": "error request ID copy",
+      "passed": true
+    },
+    {
+      "name": "error copy failure has manual recovery",
+      "passed": true
+    },
+    {
+      "name": "error direct-entry back uses safe fallback",
+      "passed": true
+    },
+    {
+      "name": "student navigation matches role",
+      "passed": true
+    },
+    {
+      "name": "practice 375: HTTP",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "practice 375: no page overflow",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "practice 375: local typography",
+      "passed": true,
+      "detail": "\"Be Vietnam Pro\", Arial, sans-serif"
+    },
+    {
+      "name": "practice 375: icons and images",
+      "passed": true,
+      "detail": {
+        "overflow": false,
+        "width": 375,
+        "documentWidth": 375,
+        "h1": 1,
+        "font": "\"Be Vietnam Pro\", Arial, sans-serif",
+        "missingIcons": 0,
+        "brokenImages": [],
+        "duplicatedIds": [],
+        "shell": true,
+        "sidebar": "hidden",
+        "background": "rgb(245, 247, 251)"
+      }
+    },
+    {
+      "name": "admin navigation matches role",
+      "passed": true
+    },
+    {
+      "name": "navigation remains available without JS",
+      "passed": true
+    },
+    {
+      "name": "password controls stay hidden without JS",
+      "passed": true
+    },
+    {
+      "name": "no runtime JS errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no external font or script requests",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

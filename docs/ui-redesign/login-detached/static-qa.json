@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "cssErrors": [],
+  "templatesParsed": 2,
+  "loginFormUnchanged": true,
+  "registrationMarkupUnchanged": true,
+  "logoSizesCSSpx": [
+    192,
+    128,
+    88
+  ],
+  "nameSizesCSSpx": [
+    56,
+    44,
+    36
+  ]
+}

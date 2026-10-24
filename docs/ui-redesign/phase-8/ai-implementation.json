@@ -1,0 +1,54 @@
+{
+  "files": [
+    "templates/ai_reports.html",
+    "templates/teacher_ai_settings.html",
+    "static/css/ai-reports.css",
+    "static/css/pages/ai-settings.css",
+    "static/js/modules/ai_reports.js",
+    "static/js/ai-settings.js",
+    "static/js/ai-report-context.js"
+  ],
+  "scope": [
+    "S28 class overview",
+    "S28 individual overview",
+    "S28 class detail",
+    "S28 individual detail",
+    "S29 teacher-owned default credential workspace"
+  ],
+  "removed_inline_template_styles": 15,
+  "removed_generated_inline_style": 1,
+  "removed_inline_handlers": 2,
+  "inline_styles_now": 0,
+  "inline_handlers_now": 0,
+  "stylesheets_fully_replaced": [
+    "static/css/ai-reports.css"
+  ],
+  "charts": "local Chart.js 4.5.1 with semantic palette, visible numeric tables and reduced-motion support",
+  "preserved_contracts": [
+    "class-bound no-store APIs",
+    "request sequence and polling",
+    "skill/source/type query filters",
+    "outcome filtering and 20-event paging",
+    "teacher-only generation/refresh=1",
+    "CSRF generate/review and native key POST routes",
+    "masked credentials and teacher ownership",
+    "archive scope separate from observed data",
+    "null percentages remain unknown"
+  ],
+  "backend_modified": false,
+  "provider_requests_real": 0,
+  "ui_qa_mutations": "All report/key POSTs intercepted; authentication only uses synthetic preview",
+  "limitations": [
+    "AI output in preview is synthetic; provider quality or availability is not evaluated",
+    "Credentials in preview are synthetic; no real key was added, tested, deleted or logged"
+  ],
+  "qa": {
+    "browser_checks": 183,
+    "final_fresh_seed_checks": 38,
+    "isolated_renders": 29,
+    "unique_screenshots": 16,
+    "javascript_errors": 0,
+    "missing_assets": 0,
+    "external_script_font_style_requests": 0
+  }
+}

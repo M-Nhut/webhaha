@@ -1,92 +1,113 @@
 {% extends "base.html" %}
 
-{% block title %}Ngân Hàng Câu Hỏi - EduCenter{% endblock %}
+{% macro bank_rows(items) -%}
+  <div class="bank-rows">
+    {% for bank in items %}
+      {% set stats = bank_question_stats.get(bank.id, {'count': 0, 'difficulty': {'nhan_biet': 0, 'thong_hieu': 0, 'van_dung': 0, 'van_dung_cao': 0}}) %}
+      {% set permissions = bank_permissions[bank.id] %}
+      <article class="bank-row" aria-labelledby="bank-name-{{ bank.id }}">
+        <div class="bank-row-content">
+          <h3 id="bank-name-{{ bank.id }}" class="bank-row-title"><a href="{{ url_for('question_bank_detail', bank_id=bank.id) }}">{{ bank.name }}</a></h3>
+          <div class="bank-row-context">
+            <span>{{ bank.subject }}</span>
+            {% if bank.grade %}<span>{{ bank.grade }}</span>{% endif %}
+            {% if bank.topic %}<span>{{ bank.topic }}</span>{% endif %}
+          </div>
+          <div class="bank-row-counts">
+            <span class="bank-question-total"><strong>{{ stats.count }}</strong> câu hỏi</span>
+            <details class="bank-row-details"><summary aria-label="Thông tin thêm về {{ bank.name }}">Thông tin thêm</summary>
+            {% if bank.description %}<p class="bank-row-description">{{ bank.description }}</p>{% endif %}
+            <dl class="bank-difficulty-counts" aria-label="Số câu theo mức độ">
+              <div><dt>Nhận biết</dt><dd>{{ stats.difficulty.nhan_biet }}</dd></div>
+              <div><dt>Thông hiểu</dt><dd>{{ stats.difficulty.thong_hieu }}</dd></div>
+              <div><dt>Vận dụng</dt><dd>{{ stats.difficulty.van_dung }}</dd></div>
+              <div><dt>Vận dụng cao</dt><dd>{{ stats.difficulty.van_dung_cao }}</dd></div>
+            </dl>
+            <span class="bank-row-date">Ngày tạo: {% if bank.created_at %}<time datetime="{{ bank.created_at.strftime('%Y-%m-%d') }}">{{ bank.created_at.strftime('%d/%m/%Y') }}</time>{% else %}Chưa có thông tin{% endif %}</span>
+            </details>
+          </div>
+        </div>
+        <div class="bank-row-management">
+          {% if current_user.role == 'admin' %}
+            <div class="bank-audit-context">
+              {% if bank.visibility == 'shared' %}
+                <span class="badge badge-info">Dùng chung</span>
+              {% elif bank.visibility == 'private' or (bank.visibility is none and bank.creator and bank.creator.role == 'teacher') %}
+                <span class="badge badge-neutral">Riêng tư của giáo viên</span>
+              {% elif bank.visibility is none %}
+                <span class="badge badge-warning">Chưa xác lập phạm vi</span>
+              {% else %}
+                <span class="badge badge-warning">Phạm vi không hợp lệ</span>
+              {% endif %}
+              <span class="bank-owner">Người tạo: {{ bank.creator.fullname if bank.creator else 'Không còn tài khoản' }}</span>
+            </div>
+          {% endif %}
+          {% if not permissions.can_use %}<span class="badge badge-warning bank-use-status">Tạm ngưng dùng cho bài mới</span>{% endif %}
+          <div class="bank-row-actions">
+            <a href="{{ url_for('question_bank_detail', bank_id=bank.id) }}" class="btn btn-secondary btn-sm" aria-label="Chi tiết {{ bank.name }}">Chi tiết</a>
+            {% if permissions.can_edit %}
+              <a href="{{ url_for('edit_question_bank', bank_id=bank.id) }}" class="btn btn-ghost btn-sm" aria-label="Sửa {{ bank.name }}">Sửa</a>
+              <form action="{{ url_for('delete_question_bank', bank_id=bank.id) }}" method="POST" data-bank-delete-form>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="button" class="btn btn-ghost btn-sm bank-delete-trigger" data-bank-delete-open data-bank-name="{{ bank.name }}" aria-label="Xóa {{ bank.name }}"><i data-lucide="trash-2" aria-hidden="true"></i><span>Xóa</span></button>
+              </form>
+            {% endif %}
+            {% if permissions.can_add %}
+              <a href="{{ url_for('import_questions_page', bank_id=bank.id) }}" class="bank-import-link" aria-label="Nhập câu hỏi vào {{ bank.name }}">Nhập câu hỏi<i data-lucide="arrow-right" aria-hidden="true"></i></a>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro empty_section(title, message, can_create=false) -%}
+  <div class="bank-empty">
+    <i data-lucide="database" aria-hidden="true"></i>
+    <div><h3>{{ title }}</h3><p>{{ message }}</p></div>
+    {% if can_create %}<a href="{{ url_for('create_question_bank') }}" class="btn btn-secondary">Tạo ngân hàng</a>{% endif %}
+  </div>
+{%- endmacro %}
+
+{% block title %}Ngân hàng câu hỏi - LMath{% endblock %}
 {% block page_title %}Ngân hàng câu hỏi{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/bank-list.css', v='20261020-content-cleanup-v2') }}">{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/bank-list.js', v='20261014-phase4') }}" defer></script>{% endblock %}
 
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Quản lý kho dữ liệu câu hỏi & Đề kiểm tra</p>
-    <h1>Ngân hàng câu hỏi</h1>
-  </div>
-  
-  <div style="display:flex; gap:var(--space-3)">
-    <a href="{{ url_for('import_questions_page') }}" class="btn btn-secondary">
-      <i data-lucide="upload-cloud" style="width:14px;height:14px"></i>
-      Import câu hỏi (CSV/DOCX/PDF)
-    </a>
-    <a href="{{ url_for('create_question_bank') }}" class="btn btn-primary">
-      <i data-lucide="plus" style="width:14px;height:14px"></i>
-      Tạo ngân hàng mới
-    </a>
+<div class="page-header bank-page-header">
+  <div class="page-title-area"><h1>Ngân hàng câu hỏi</h1></div>
+  <div class="bank-page-actions">
+    <a href="{{ url_for('import_questions_page') }}" class="btn btn-secondary"><i data-lucide="upload" aria-hidden="true"></i>Nhập câu hỏi</a>
+    <a href="{{ url_for('create_question_bank') }}" class="btn btn-primary"><i data-lucide="plus" aria-hidden="true"></i>Tạo ngân hàng</a>
+    <a href="{{ url_for('download_latex_template') }}" class="btn btn-ghost"><i data-lucide="download" aria-hidden="true"></i>Mẫu LaTeX</a>
   </div>
 </div>
 
-{% if banks %}
-  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-4)">
-    {% for bank in banks %}
-      {% set diff_stats = bank.stats_by_difficulty() %}
-      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: 0">
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-3)">
-            <span class="badge badge-open">{{ bank.subject }}</span>
-            {% if bank.grade %}
-              <span class="badge badge-upcoming">{{ bank.grade }}</span>
-            {% endif %}
-          </div>
 
-          <h3 style="font-size: var(--text-md); font-weight: 600; line-height: 1.4; margin-bottom: var(--space-2)">
-            <a href="{{ url_for('question_bank_detail', bank_id=bank.id) }}" style="color:var(--text-1)">
-              {{ bank.name }}
-            </a>
-          </h3>
-          
-          {% if bank.description %}
-            <p style="font-size: var(--text-xs); color: var(--text-2); margin-bottom: var(--space-3); line-clamp: 2">
-              {{ bank.description }}
-            </p>
-          {% endif %}
-
-          <div style="font-size: var(--text-xs); color: var(--text-2); display: flex; flex-direction: column; gap: 4px; margin-bottom: var(--space-4)">
-            <div><i data-lucide="help-circle" style="width:12px; height:12px; vertical-align:middle"></i> <strong>Tổng số câu:</strong> {{ bank.question_count }} câu</div>
-            <div style="display:flex; gap:6px; margin-top:4px">
-              <span class="badge badge-present" style="font-size:10px">Nhận biết: {{ diff_stats.nhan_biet }}</span>
-              <span class="badge badge-upcoming" style="font-size:10px">Vận dụng: {{ diff_stats.van_dung }}</span>
-              <span class="badge badge-absent" style="font-size:10px">Vận dụng cao: {{ diff_stats.van_dung_cao }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div style="border-top: 1px solid var(--border); padding-top: var(--space-3); display:flex; justify-content:space-between; align-items:center">
-          <span style="font-size:var(--text-xs); color:var(--text-3)">{{ bank.created_at.strftime('%d/%m/%Y') }}</span>
-          <div style="display:flex; gap:var(--space-2); align-items:center">
-            <a href="{{ url_for('question_bank_detail', bank_id=bank.id) }}" class="btn btn-secondary btn-sm" style="border-radius:9999px">
-              Chi tiết
-            </a>
-            <a href="{{ url_for('edit_question_bank', bank_id=bank.id) }}" class="btn btn-ghost btn-sm" style="color:var(--accent); border-radius:9999px">
-              Sửa
-            </a>
-            <form action="{{ url_for('delete_question_bank', bank_id=bank.id) }}" method="POST" style="display:inline" onsubmit="return confirm('Bạn có chắc chắn muốn XÓA HOÀN TOÀN ngân hàng câu hỏi \'{{ bank.name }}\'? Tất cả câu hỏi, đáp án và hình ảnh liên quan sẽ bị xóa sạch khỏi hệ thống!');">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-              <button type="submit" class="btn btn-ghost btn-sm" style="color:#ef4444; border-radius:9999px" title="Xóa ngân hàng">
-                <i data-lucide="trash-2" style="width:14px;height:14px;vertical-align:middle"></i>
-                Xóa
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+{% if teacher_sections %}
+  <section class="bank-section" aria-labelledby="shared-banks-heading">
+    <div class="bank-section-heading"><h2 id="shared-banks-heading">Ngân hàng dùng chung <span class="bank-section-count">{{ shared_banks|length }}</span></h2></div>
+    {% if shared_banks %}{{ bank_rows(shared_banks) }}{% else %}{{ empty_section('Chưa có ngân hàng dùng chung', 'Ngân hàng được quản trị viên chia sẻ sẽ xuất hiện tại đây.') }}{% endif %}
+  </section>
+  <section class="bank-section" aria-labelledby="my-banks-heading">
+    <div class="bank-section-heading"><h2 id="my-banks-heading">Ngân hàng của tôi <span class="bank-section-count">{{ my_banks|length }}</span></h2></div>
+    {% if my_banks %}{{ bank_rows(my_banks) }}{% else %}{{ empty_section('Chưa có ngân hàng riêng', 'Tạo ngân hàng để tổ chức và lưu nội dung câu hỏi của bạn.', true) }}{% endif %}
+  </section>
 {% else %}
-  <div class="card" style="text-align: center; color: var(--text-3); padding: var(--space-10)">
-    <i data-lucide="database" style="width:48px; height:48px; margin-bottom:var(--space-3); color:var(--text-3)"></i>
-    <h3>Chưa có ngân hàng câu hỏi nào</h3>
-    <p style="margin-bottom:var(--space-4)">Bạn có thể tạo ngân hàng câu hỏi mới hoặc import câu hỏi từ file CSV, DOCX, PDF.</p>
-    <div style="display:inline-flex; gap:var(--space-3)">
-      <a href="{{ url_for('import_questions_page') }}" class="btn btn-secondary">Import từ file</a>
-      <a href="{{ url_for('create_question_bank') }}" class="btn btn-primary">Tạo mới</a>
-    </div>
-  </div>
+  <section class="bank-section" aria-labelledby="all-banks-heading">
+    <div class="bank-section-heading"><h2 id="all-banks-heading">Tất cả ngân hàng <span class="bank-section-count">{{ banks|length }}</span></h2></div>
+    {% if banks %}{{ bank_rows(banks) }}{% else %}{{ empty_section('Chưa có ngân hàng câu hỏi', 'Tạo ngân hàng mới hoặc nhập nội dung từ file LaTeX.', true) }}{% endif %}
+  </section>
 {% endif %}
+
+<noscript><p class="bank-no-script">Bật JavaScript để sử dụng hộp xác nhận xóa ngân hàng.</p></noscript>
+<dialog id="bank-delete-dialog" class="academy-dialog bank-delete-dialog" data-native-dialog aria-labelledby="bank-delete-title" aria-describedby="bank-delete-description">
+  <div class="dialog-body">
+    <div class="dialog-heading"><h2 id="bank-delete-title">Xóa ngân hàng câu hỏi?</h2><button type="button" class="icon-btn" data-dialog-close aria-label="Đóng xác nhận xóa"><i data-lucide="x" aria-hidden="true"></i></button></div>
+    <p id="bank-delete-description">Ngân hàng <strong data-bank-delete-name></strong> và toàn bộ câu hỏi, đáp án, hình ảnh liên quan sẽ bị xóa. Thao tác này không thể hoàn tác.</p>
+    <div class="dialog-actions"><button type="button" class="btn btn-secondary" data-dialog-close autofocus>Hủy bỏ</button><button type="button" class="btn btn-danger" data-bank-delete-confirm>Xóa ngân hàng</button></div>
+  </div>
+</dialog>
 {% endblock %}

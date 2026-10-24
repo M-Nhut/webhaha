@@ -1,61 +1,77 @@
 {% extends "base.html" %}
-
-{% block title %}{{ 'Cập nhật' if bank else 'Tạo' }} Ngân Hàng Câu Hỏi - EduCenter{% endblock %}
-{% block page_title %}{{ 'Chỉnh sửa ngân hàng câu hỏi' if bank else 'Tạo ngân hàng câu hỏi mới' }}{% endblock %}
-
-{% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Quản lý kho dữ liệu câu hỏi</p>
-    <h1>{{ 'Chỉnh sửa ngân hàng' if bank else 'Tạo ngân hàng mới' }}</h1>
-  </div>
-  <div>
-    <a href="{{ url_for('question_bank_list') }}" class="btn btn-secondary">Quay lại</a>
-  </div>
-</div>
-
-<div class="card" style="max-width: 700px; margin: 0 auto">
-  <form method="POST">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-    <div class="form-group">
-      <label class="form-label" for="name">Tên ngân hàng câu hỏi *</label>
-      <input type="text" id="name" name="name" value="{{ bank.name if bank else '' }}" required placeholder="Ví dụ: Ngân hàng câu hỏi Toán 9 - Chương 1">
+{% set bank_errors = form_errors|default({}) %}
+{% set data = form_data|default({}) %}
+{% set subjects = ['Toán', 'Tiếng Anh', 'Vật Lý', 'Hóa Học', 'Sinh Học', 'Ngữ Văn', 'Lịch Sử', 'Địa Lý', 'Tin Học'] %}
+{% set subject_value = data.get('subject', bank.subject if bank else '') %}
+{% macro errors_for(field) -%}
+  {% if bank_errors.get(field) %}
+    <div class="field-errors" id="{{ field }}-error">
+      {% set errors = [bank_errors[field]] if bank_errors[field] is string else bank_errors[field] %}
+      {% for message in errors %}<p>{{ message }}</p>{% endfor %}
     </div>
-
+  {% endif %}
+{%- endmacro %}
+{% block title %}{{ 'Chỉnh sửa ngân hàng' if bank else 'Tạo ngân hàng' }} - LMath{% endblock %}
+{% block page_title %}{{ 'Chỉnh sửa ngân hàng' if bank else 'Tạo ngân hàng' }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/bank-form.css', v='20261014-phase4') }}">{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/bank-form.js', v='20261014-phase4') }}" defer></script>{% endblock %}
+{% block content %}
+<div class="page-header bank-form-header">
+  <div class="page-title-area"><h1>{{ 'Chỉnh sửa ngân hàng' if bank else 'Tạo ngân hàng mới' }}</h1></div>
+  <a href="{{ url_for('question_bank_list') }}" class="btn btn-ghost"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách ngân hàng</a>
+</div>
+<div class="panel bank-form-panel">
+  <div class="bank-form-context">
+    <i data-lucide="shield-check" aria-hidden="true"></i>
+    <div><h2>Phạm vi ngân hàng</h2>
+      {% if bank %}
+        {% if bank.visibility == 'shared' %}<p>Dùng chung — giáo viên có thể xem và sử dụng theo quyền hiện có.</p>
+        {% elif bank.visibility == 'private' or (bank.visibility is none and bank.creator and bank.creator.role == 'teacher') %}
+          <p>{{ 'Riêng tư của giáo viên — ' ~ (bank.creator.fullname if bank.creator else 'không còn tài khoản sở hữu') if current_user.role == 'admin' else 'Riêng tư — ngân hàng do bạn sở hữu và quản lý.' }}</p>
+        {% elif bank.visibility is none %}<p>Chưa xác lập phạm vi — ngân hàng cũ chưa được chia sẻ cho giáo viên.</p>
+        {% else %}<p>Phạm vi không hợp lệ — cần kiểm tra dữ liệu quyền truy cập.</p>{% endif %}
+      {% elif current_user.role == 'admin' %}<p>Dùng chung — ngân hàng mới được chia sẻ theo quyền của quản trị viên.</p>
+      {% else %}<p>Riêng tư — ngân hàng mới thuộc sở hữu của bạn.</p>{% endif %}
+    </div>
+  </div>
+  <form method="POST" data-bank-form>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <section class="validation-summary" id="bank-form-errors" tabindex="-1" aria-labelledby="bank-form-errors-title" {% if not bank_errors %}hidden{% endif %} data-form-error-summary {% if bank_errors %}data-server-errors{% endif %}>
+      <h2 id="bank-form-errors-title">Kiểm tra lại thông tin ngân hàng</h2>
+      <ul data-form-error-list>{% for field, messages in bank_errors.items() %}{% set messages = [messages] if messages is string else messages %}{% for message in messages %}<li><a href="#{{ field }}">{{ message }}</a></li>{% endfor %}{% endfor %}</ul>
+    </section>
+    <p class="bank-form-required">Các trường có dấu <span aria-hidden="true">*</span> là bắt buộc.</p>
+    <div class="form-group">
+      <label class="form-label" for="name">Tên ngân hàng câu hỏi <span aria-hidden="true">*</span></label>
+      <input type="text" id="name" name="name" value="{{ data.get('name', bank.name if bank else '') }}" required maxlength="200" placeholder="Ví dụ: Toán 9 — Căn bậc hai" aria-describedby="name-hint{% if bank_errors.get('name') %} name-error{% endif %}" {% if bank_errors.get('name') %}aria-invalid="true"{% endif %}>
+      <p class="form-hint" id="name-hint">Tối đa 200 ký tự.</p>{{ errors_for('name') }}
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="subject">Môn học <span aria-hidden="true">*</span></label>
+      <select id="subject" name="subject" required {% if bank_errors.get('subject') %}aria-invalid="true" aria-describedby="subject-error"{% endif %}>
+        <option value="">Chọn môn học</option>
+        {% if subject_value and subject_value not in subjects %}<option value="{{ subject_value }}" selected>{{ subject_value }}</option>{% endif %}
+        {% for subject in subjects %}<option value="{{ subject }}" {% if subject_value == subject %}selected{% endif %}>{{ subject }}</option>{% endfor %}
+      </select>{{ errors_for('subject') }}
+    </div>
     <div class="form-grid-2">
       <div class="form-group">
-        <label class="form-label" for="subject">Môn học *</label>
-        <select id="subject" name="subject" required>
-          <option value="">-- Chọn môn học --</option>
-          {% for sub in ['Toán', 'Tiếng Anh', 'Vật Lý', 'Hóa Học', 'Sinh Học', 'Ngữ Văn', 'Lịch Sử', 'Địa Lý', 'Tin Học'] %}
-            <option value="{{ sub }}" {% if bank and bank.subject == sub %}selected{% endif %}>{{ sub }}</option>
-          {% endfor %}
-        </select>
-      </div>
-
-      <div class="form-group">
         <label class="form-label" for="grade">Khối / Lớp học</label>
-        <input type="text" id="grade" name="grade" value="{{ bank.grade if bank else '' }}" placeholder="Ví dụ: Lớp 9, Lớp 10">
+        <input type="text" id="grade" name="grade" value="{{ data.get('grade', (bank.grade or '') if bank else '') }}" maxlength="40" placeholder="Ví dụ: Lớp 9" {% if bank_errors.get('grade') %}aria-invalid="true" aria-describedby="grade-error"{% endif %}>{{ errors_for('grade') }}
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="topic">Bài / Chủ đề chính</label>
+        <input type="text" id="topic" name="topic" value="{{ data.get('topic', (bank.topic or '') if bank else '') }}" maxlength="200" placeholder="Ví dụ: Căn bậc hai" {% if bank_errors.get('topic') %}aria-invalid="true" aria-describedby="topic-error"{% endif %}>{{ errors_for('topic') }}
       </div>
     </div>
-
-    <div class="form-group">
-      <label class="form-label" for="topic">Bài / Chủ đề chính</label>
-      <input type="text" id="topic" name="topic" value="{{ bank.topic if bank else '' }}" placeholder="Ví dụ: Căn bậc hai, Thức bị động">
-    </div>
-
     <div class="form-group">
       <label class="form-label" for="description">Mô tả thêm</label>
-      <textarea id="description" name="description" rows="3" placeholder="Ghi chú về nội dung ngân hàng...">{{ bank.description if bank else '' }}</textarea>
+      <textarea id="description" name="description" rows="4" placeholder="Nội dung, mục đích hoặc ghi chú về ngân hàng" {% if bank_errors.get('description') %}aria-invalid="true" aria-describedby="description-error"{% endif %}>{{ data.get('description', (bank.description or '') if bank else '') }}</textarea>{{ errors_for('description') }}
     </div>
-
-    <div style="display:flex; gap:var(--space-3); margin-top:var(--space-6)">
-      <button type="submit" class="btn btn-primary">
-        <i data-lucide="save" style="width:14px;height:14px"></i>
-        {{ 'Cập nhật' if bank else 'Tạo ngân hàng' }}
-      </button>
+    <div class="bank-form-actions">
+      <button type="submit" class="btn btn-primary" data-bank-form-submit><i data-lucide="save" aria-hidden="true"></i>{{ 'Lưu thay đổi' if bank else 'Tạo ngân hàng' }}</button>
       <a href="{{ url_for('question_bank_list') }}" class="btn btn-secondary">Hủy bỏ</a>
+      <span class="bank-form-busy" role="status" data-bank-form-busy hidden>Đang lưu thông tin…</span>
     </div>
   </form>
 </div>

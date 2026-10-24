@@ -1,0 +1,254 @@
+{
+  "date": "2026-10-19",
+  "scope": "Maintenance of four historical test modules and route fixture only; no application logic changes.",
+  "baseline": {
+    "source": "../phase-8/baseline-ai-report-route-audit.json",
+    "passed": 13,
+    "failed": 24,
+    "total": 37
+  },
+  "focused": {
+    "command": "python3 scripts/test_ui_redesign.py tests/test_class_lesson4_report.py tests/test_ai_gateway_review.py tests/test_phase5_reports.py tests/test_route_contract.py -q --tb=short --disable-warnings",
+    "regularTestsPassed": 39,
+    "failed": 0,
+    "subtestsPassed": 3,
+    "runnerPassedReports": 42,
+    "databaseURI": "sqlite:///:memory:",
+    "dotenvLoaded": false,
+    "storageTemporary": true,
+    "blockedRequests": [],
+    "blockedSockets": []
+  },
+  "fixtureRoutes": {
+    "oldCount": 79,
+    "currentCount": 94,
+    "addedKnownPrePhase8Entries": [
+      {
+        "endpoint": "ai_reports",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports"
+      },
+      {
+        "endpoint": "ai_reports_class",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports/class"
+      },
+      {
+        "endpoint": "ai_reports_individual",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports/individual"
+      },
+      {
+        "endpoint": "ai_report_data",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/ai-reports/<int:course_id>"
+      },
+      {
+        "endpoint": "diagnostic_question_choices",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/diagnostics/question-choices"
+      },
+      {
+        "endpoint": "review_diagnostic",
+        "methods": [
+          "POST"
+        ],
+        "rule": "/api/diagnostics/review"
+      },
+      {
+        "endpoint": "question_bank_question_detail_json",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/question-banks/<int:bank_id>/questions/<int:question_id>"
+      },
+      {
+        "endpoint": "assessment_list",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments"
+      },
+      {
+        "endpoint": "assessment_matrix",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments/<int:exam_id>/matrix"
+      },
+      {
+        "endpoint": "assessment_result",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments/<int:exam_id>/result"
+      },
+      {
+        "endpoint": "assessment_take",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/<int:exam_id>/take"
+      },
+      {
+        "endpoint": "assessment_from_bank",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/from-bank"
+      },
+      {
+        "endpoint": "assessment_import",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/import/<session_id>"
+      },
+      {
+        "endpoint": "delete_diagnostic",
+        "methods": [
+          "POST"
+        ],
+        "rule": "/diagnostics/<int:exam_id>/delete"
+      },
+      {
+        "endpoint": "favicon",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/favicon.ico"
+      }
+    ],
+    "methodsCorrected": [
+      {
+        "actual": {
+          "endpoint": "teacher_ai_retry_key",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/retry"
+        },
+        "fixture": {
+          "endpoint": "teacher_ai_retry_key",
+          "methods": [
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/retry"
+        }
+      },
+      {
+        "actual": {
+          "endpoint": "teacher_ai_test_key",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/test"
+        },
+        "fixture": {
+          "endpoint": "teacher_ai_test_key",
+          "methods": [
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/test"
+        }
+      }
+    ],
+    "removedEntries": []
+  },
+  "maintainedContracts": [
+    "Fixed report scope is 9C8-i, skills 9C8-i-1..8; legacy test codes were replaced without changing service scope.",
+    "Report requests require a teacher-owned current default group and verified key. Synthetic fake HTTP responses satisfy required teacher support sections.",
+    "Missing/unverified key requests persist failed ai_api runs; observed facts remain available separately and failed runs are retryable rather than successful caches.",
+    "Completed report caches use owner/group/config revision/provider/model/prompt plus evidence fingerprint; processing coalescing and stale review rejection remain covered.",
+    "Optional invalid risk rows are removed; unrelated student refs never enter personal claims and invented refs/text do not reach persisted successful response. Invalid causes still raise.",
+    "Actual save/retry/test/delete routes enforce teacher/default-key ownership, CSRF, masked rendering, one-key probing and no administrator provider spending.",
+    "Historical course group mapping does not override current teacher default; assignment endpoint remains absent.",
+    "Personal report tenant boundary uses valid 22-question initial diagnostics (12 single/4 TF/6 short) and asserts own-course evidence is sent while foreign-course evidence is absent."
+  ],
+  "sourceFiles": [
+    {
+      "path": "tests/test_class_lesson4_report.py",
+      "beforeSHA256": "7b169ce21867ebdc7f4a7b788bb76820d6416311c9bfbda99c33476d65b4a253",
+      "afterSHA256": "6ef79e39d51fc530ede1049e67e22f6f644873b8c52ab5398ed75aaaa2dbe067"
+    },
+    {
+      "path": "tests/test_ai_gateway_review.py",
+      "beforeSHA256": "b16c704ab5c8c9b47ef8f83b6c29cfbd32d7b08b6cb3f574e24d491f4b4fe7ab",
+      "afterSHA256": "3291984f81a4a47f72dbcc8129f040ea854d7d6b67d77f39101f9a729a6d1c16"
+    },
+    {
+      "path": "tests/test_phase5_reports.py",
+      "beforeSHA256": "f1b2d6473052788a1022901d0c1c28ee59b8612139582f8a28484746dae35e02",
+      "afterSHA256": "64e77f7f7396cedb38393ada8442fce80959cd42c4ff25a6622d4f6d62f7badf"
+    },
+    {
+      "path": "tests/test_route_contract.py",
+      "beforeSHA256": "2e34d5e9b2f64aa8b48f765c2dcc500fc67e11ec84c35f98aa6f107642681487",
+      "afterSHA256": "7869c1f09e8c609ff6eefa240da97e1f7fbc414d2dce3a06a9755a69fc6f0f81"
+    },
+    {
+      "path": "tests/fixtures/route_contract.json",
+      "beforeSHA256": "33d5f5475f4caa7ae9d0efbd1e363f65328f0943d3aa0d0125c0aad69f6b7190",
+      "afterSHA256": "61ab0e1e17a7db166a17b1530abca1bf9a5ec7d4a3a80907b86ff18834739b2d"
+    }
+  ],
+  "applicationUnchanged": [
+    {
+      "path": "services/class_lesson4_report.py",
+      "before": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+      "after": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+      "unchanged": true
+    },
+    {
+      "path": "services/ai_gateway.py",
+      "before": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+      "after": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+      "unchanged": true
+    },
+    {
+      "path": "services/diagnostic_report_contract.py",
+      "before": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+      "after": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+      "unchanged": true
+    },
+    {
+      "path": "services/personalization_evidence.py",
+      "before": "882bbaab9bfd97082e5864f6cce81ea2371fb7d9c27f9aeaea2815f74f12a182",
+      "after": "882bbaab9bfd97082e5864f6cce81ea2371fb7d9c27f9aeaea2815f74f12a182",
+      "unchanged": true
+    },
+    {
+      "path": "routes/ai_settings.py",
+      "before": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+      "after": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+      "unchanged": true
+    },
+    {
+      "path": "routes/academic.py",
+      "before": "f139f8e85fba052de4aa404d7139e174d041752eae6c3ed982a7515b6e2164ed",
+      "after": "f139f8e85fba052de4aa404d7139e174d041752eae6c3ed982a7515b6e2164ed",
+      "unchanged": true
+    },
+    {
+      "path": "routes/ai_reports.py",
+      "before": "78337c8f85eca4a30253946879e07899eaf49d8b19afebbe83b4029d919f8ca9",
+      "after": "78337c8f85eca4a30253946879e07899eaf49d8b19afebbe83b4029d919f8ca9",
+      "unchanged": true
+    }
+  ]
+}

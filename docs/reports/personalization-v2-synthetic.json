@@ -1,0 +1,163 @@
+{
+  "kind": "synthetic_feasibility_only",
+  "results": [
+    {
+      "scenario": "Ngân hàng vừa đủ, câu mới",
+      "baseline_count": 22,
+      "baseline_status": "ready",
+      "v2_count": 22,
+      "v2_status": "ready",
+      "stage": "fresh",
+      "repeated_count": 0,
+      "quota_changes": 0,
+      "milliseconds": 1.12,
+      "unique_content": 22,
+      "shortages": []
+    },
+    {
+      "scenario": "Toàn bộ câu vừa xuất hiện",
+      "baseline_count": 0,
+      "baseline_status": "insufficient_candidates",
+      "v2_count": 22,
+      "v2_status": "ready",
+      "stage": "immediate_review",
+      "repeated_count": 22,
+      "quota_changes": 0,
+      "milliseconds": 1.59,
+      "unique_content": 22,
+      "shortages": []
+    },
+    {
+      "scenario": "Lệch phân bố một vị trí",
+      "baseline_count": 0,
+      "baseline_status": "insufficient_candidates",
+      "v2_count": 22,
+      "v2_status": "ready",
+      "stage": "bounded_quota_repair",
+      "repeated_count": 0,
+      "quota_changes": 1,
+      "milliseconds": 4.02,
+      "unique_content": 22,
+      "shortages": []
+    },
+    {
+      "scenario": "Thiếu hẳn câu Đúng/Sai",
+      "baseline_count": 0,
+      "baseline_status": "insufficient_candidates",
+      "v2_count": 0,
+      "v2_status": "insufficient_candidates",
+      "stage": "unavailable",
+      "repeated_count": 0,
+      "quota_changes": 0,
+      "milliseconds": 0.38,
+      "unique_content": 0,
+      "shortages": [
+        {
+          "dimension": "nội dung khác nhau",
+          "key": "total",
+          "required": 22,
+          "available": 18,
+          "missing": 4
+        },
+        {
+          "dimension": "dạng câu",
+          "key": "true_false",
+          "required": 4,
+          "available": 0,
+          "missing": 4
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "thong_hieu",
+          "required": 6,
+          "available": 5,
+          "missing": 1
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "van_dung",
+          "required": 5,
+          "available": 4,
+          "missing": 1
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "van_dung_cao",
+          "required": 3,
+          "available": 2,
+          "missing": 1
+        }
+      ]
+    },
+    {
+      "scenario": "Các bản sao cùng nội dung",
+      "baseline_count": 0,
+      "baseline_status": "insufficient_candidates",
+      "v2_count": 0,
+      "v2_status": "insufficient_candidates",
+      "stage": "unavailable",
+      "repeated_count": 0,
+      "quota_changes": 0,
+      "milliseconds": 0.29,
+      "unique_content": 0,
+      "shortages": [
+        {
+          "dimension": "nội dung khác nhau",
+          "key": "total",
+          "required": 22,
+          "available": 1,
+          "missing": 21
+        },
+        {
+          "dimension": "dạng câu",
+          "key": "single",
+          "required": 12,
+          "available": 1,
+          "missing": 11
+        },
+        {
+          "dimension": "dạng câu",
+          "key": "true_false",
+          "required": 4,
+          "available": 1,
+          "missing": 3
+        },
+        {
+          "dimension": "dạng câu",
+          "key": "short_answer",
+          "required": 6,
+          "available": 1,
+          "missing": 5
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "nhan_biet",
+          "required": 6,
+          "available": 1,
+          "missing": 5
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "thong_hieu",
+          "required": 6,
+          "available": 1,
+          "missing": 5
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "van_dung",
+          "required": 5,
+          "available": 1,
+          "missing": 4
+        },
+        {
+          "dimension": "mức nhận thức tối thiểu",
+          "key": "van_dung_cao",
+          "required": 3,
+          "available": 1,
+          "missing": 2
+        }
+      ]
+    }
+  ]
+}

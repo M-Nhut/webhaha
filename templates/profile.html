@@ -1,172 +1,150 @@
 {% extends "base.html" %}
 
-{% block title %}Hồ sơ cá nhân - EduCenter{% endblock %}
-{% block page_title %}Thông tin tài khoản{% endblock %}
+{% block title %}Hồ sơ cá nhân - LMath{% endblock %}
+{% block page_title %}Hồ sơ cá nhân{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css', v='20261019-readable-shell') }}">
+{% endblock %}
+
+{% macro field_errors(field) -%}
+  {% if field.errors %}
+  <ul class="profile-field-errors" id="{{ field.id }}-errors">
+    {% for error in field.errors %}<li>{{ error }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+{%- endmacro %}
+
+{% macro error_summary(form, summary_id) -%}
+  {% if form.errors %}
+  <div class="profile-error-summary" id="{{ summary_id }}" role="alert" tabindex="-1" aria-labelledby="{{ summary_id }}-title" data-profile-error-summary>
+    <h3 id="{{ summary_id }}-title">Vui lòng kiểm tra lại thông tin</h3>
+    <ul>
+      {% for field in form %}
+        {% for error in field.errors %}
+        <li>{% if field.type not in ('CSRFTokenField', 'HiddenField') %}<a href="#{{ field.id }}">{{ field.label.text }}: {{ error }}</a>{% else %}{{ error }}{% endif %}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+{%- endmacro %}
+
+{% macro password_field(field, autocomplete, hint='', minlength=none) -%}
+  <div class="form-group profile-field">
+    {{ field.label(class="form-label") }}
+    <div class="profile-password-field">
+      {{ field(class="form-control" ~ (' is-invalid' if field.errors else ''), autocomplete=autocomplete, minlength=minlength if minlength is not none else false, aria_invalid='true' if field.errors else 'false', aria_describedby=((field.id ~ '-hint ') if hint else '') ~ ((field.id ~ '-errors ') if field.errors else '') ~ ('profile-password-match' if field.name == 'confirm_password' else '')) }}
+      <button class="profile-password-toggle" type="button" data-profile-password-toggle="{{ field.id }}" aria-controls="{{ field.id }}" aria-pressed="false" aria-label="Hiện {{ field.label.text|lower }}" hidden>Hiện</button>
+    </div>
+    {% if hint %}<p class="profile-hint" id="{{ field.id }}-hint">{{ hint }}</p>{% endif %}
+    {{ field_errors(field) }}
+  </div>
+{%- endmacro %}
 
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Thông tin cá nhân & Bảo mật</p>
-    <h1>Hồ sơ của bạn</h1>
-  </div>
-</div>
+{% set avatar_fallback = url_for('static', filename='images/avatar-default.svg') %}
+{% set avatar_source = image_file if current_user.avatar and current_user.avatar != 'default.jpg' else avatar_fallback %}
+{% set role_label = ROLE_LABELS.get(current_user.role, 'Thành viên') %}
 
-<div class="form-grid-2">
-  
-  <!-- Cột 1: Thông tin cá nhân -->
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Cập nhật hồ sơ</h3>
-    </div>
-    
-    <form method="POST" enctype="multipart/form-data">
-      {{ profile_form.hidden_tag() }}
+<div class="profile-page">
+  <div class="page-header profile-page-heading">
+    <div class="page-title-area">
+      <h1>Hồ sơ cá nhân</h1>
       
-      <!-- Avatar Preview & Selector -->
-      <div style="display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6)">
-        <div style="position: relative; width: 80px; height: 80px; flex-shrink: 0">
-          <img id="avatar-preview" src="{{ image_file }}" 
-               style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-strong)">
-        </div>
-        <div style="flex: 1">
-          <label class="form-label" style="margin-bottom: var(--space-1)">Ảnh đại diện mới</label>
-          {{ profile_form.avatar(class="form-control", onchange="previewImage(event)", style="font-size: var(--text-xs); border: none; padding: 0") }}
-          {% if profile_form.avatar.errors %}
-            {% for error in profile_form.avatar.errors %}
-              <div class="form-hint" style="color: var(--danger)">{{ error }}</div>
-            {% endfor %}
-          {% endif %}
-          <div class="form-hint">Định dạng JPG, PNG, JPEG.</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        {{ profile_form.fullname.label(class="form-label") }}
-        {{ profile_form.fullname() }}
-        {% if profile_form.fullname.errors %}
-          {% for error in profile_form.fullname.errors %}
-            <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          {{ profile_form.username.label(class="form-label") }}
-          {{ profile_form.username() }}
-          {% if profile_form.username.errors %}
-            {% for error in profile_form.username.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-        <div class="form-group">
-          {{ profile_form.birth_date.label(class="form-label") }}
-          {{ profile_form.birth_date(type="date") }}
-          {% if profile_form.birth_date.errors %}
-            {% for error in profile_form.birth_date.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="form-grid-2">
-        <div class="form-group">
-          {{ profile_form.phone.label(class="form-label") }}
-          {{ profile_form.phone() }}
-          {% if profile_form.phone.errors %}
-            {% for error in profile_form.phone.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-        <div class="form-group">
-          {{ profile_form.parent_phone.label(class="form-label") }}
-          {{ profile_form.parent_phone(placeholder="Bỏ trống nếu không áp dụng") }}
-          {% if profile_form.parent_phone.errors %}
-            {% for error in profile_form.parent_phone.errors %}
-              <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-            {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="form-group">
-        {{ profile_form.position.label(class="form-label") }}
-        {{ profile_form.position() }}
-        {% if profile_form.position.errors %}
-          {% for error in profile_form.position.errors %}
-            <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-
-      <div style="margin-top: var(--space-4)">
-        {{ profile_form.submit_profile(class="btn btn-primary") }}
-      </div>
-    </form>
-  </div>
-
-  <!-- Cột 2: Đổi mật khẩu -->
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Thay đổi mật khẩu</h3>
     </div>
-    
-    <form method="POST">
-      {{ password_form.hidden_tag() }}
-      
-      <div class="form-group">
-        {{ password_form.old_password.label(class="form-label") }}
-        {{ password_form.old_password(placeholder="••••••••") }}
-        {% if password_form.old_password.errors %}
-          {% for error in password_form.old_password.errors %}
-            <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-
-      <div class="form-group">
-        {{ password_form.new_password.label(class="form-label") }}
-        {{ password_form.new_password(placeholder="Tối thiểu 6 ký tự") }}
-        {% if password_form.new_password.errors %}
-          {% for error in password_form.new_password.errors %}
-            <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-
-      <div class="form-group">
-        {{ password_form.confirm_password.label(class="form-label") }}
-        {{ password_form.confirm_password(placeholder="Xác nhận mật khẩu mới") }}
-        {% if password_form.confirm_password.errors %}
-          {% for error in password_form.confirm_password.errors %}
-            <span class="form-hint" style="color: var(--danger)">{{ error }}</span>
-          {% endfor %}
-        {% endif %}
-      </div>
-
-      <div style="margin-top: var(--space-4)">
-        {{ password_form.submit_password(class="btn btn-primary") }}
-      </div>
-    </form>
   </div>
 
+  <section class="profile-identity" aria-label="Tài khoản hiện tại">
+    <img class="profile-identity-avatar" src="{{ avatar_source }}" alt="" width="56" height="56" data-avatar-fallback="{{ avatar_fallback }}">
+    <div class="profile-identity-copy">
+      <h2>{{ current_user.fullname or current_user.username }}</h2>
+      <p><span>{{ role_label }}</span><span class="profile-identity-separator" aria-hidden="true">·</span><span>@{{ current_user.username }}</span>{% if current_user.user_code %}<span class="profile-identity-separator" aria-hidden="true">·</span><span>Mã tài khoản: {{ current_user.user_code }}</span>{% endif %}</p>
+    </div>
+  </section>
+
+  <div class="profile-layout">
+    <section class="panel profile-panel" aria-labelledby="profile-info-heading">
+      <header class="profile-panel-heading">
+        <h2 id="profile-info-heading">Thông tin cá nhân</h2>
+        <p>Thông tin giúp giáo viên và học sinh nhận diện bạn trong lớp học.</p>
+      </header>
+
+      <form class="profile-form" id="profile-info-form" action="{{ url_for('profile') }}" method="POST" enctype="multipart/form-data">
+        {{ profile_form.hidden_tag()|replace('id="csrf_token"', 'id="profile-csrf-token"')|safe }}
+        {{ error_summary(profile_form, 'profile-info-errors') }}
+
+        <div class="profile-avatar-editor">
+          <img id="avatar-preview" class="profile-avatar-preview" src="{{ avatar_source }}" alt="Xem trước ảnh đại diện" width="80" height="80" data-avatar-fallback="{{ avatar_fallback }}">
+          <div class="profile-avatar-controls">
+            <label class="form-label" for="{{ profile_form.avatar.id }}">Ảnh đại diện</label>
+            {{ profile_form.avatar(class="form-control profile-avatar-input" ~ (' is-invalid' if profile_form.avatar.errors else ''), accept='image/jpeg,image/png', aria_invalid='true' if profile_form.avatar.errors else 'false', aria_describedby='profile-avatar-hint profile-avatar-status' ~ (' ' ~ profile_form.avatar.id ~ '-errors' if profile_form.avatar.errors else ''), data_profile_avatar='') }}
+            <p class="profile-hint" id="profile-avatar-hint">Ảnh JPG, JPEG hoặc PNG. Ảnh được cập nhật khi bạn lưu thông tin.</p>
+            {{ field_errors(profile_form.avatar) }}
+            <p class="profile-avatar-status profile-hint" id="profile-avatar-status" role="status" aria-live="polite" data-profile-avatar-status hidden></p>
+          </div>
+        </div>
+
+        <div class="form-group profile-field">
+          {{ profile_form.fullname.label(class="form-label") }}
+          {{ profile_form.fullname(class="form-control" ~ (' is-invalid' if profile_form.fullname.errors else ''), autocomplete='name', minlength=2, aria_invalid='true' if profile_form.fullname.errors else 'false', aria_describedby=profile_form.fullname.id ~ '-errors' if profile_form.fullname.errors else '') }}
+          {{ field_errors(profile_form.fullname) }}
+        </div>
+
+        <div class="profile-field-grid">
+          <div class="form-group profile-field">
+            {{ profile_form.username.label(class="form-label") }}
+            {{ profile_form.username(class="form-control" ~ (' is-invalid' if profile_form.username.errors else ''), autocomplete='username', autocapitalize='none', spellcheck='false', minlength=4, aria_invalid='true' if profile_form.username.errors else 'false', aria_describedby='profile-username-hint' ~ (' ' ~ profile_form.username.id ~ '-errors' if profile_form.username.errors else '')) }}
+            <p class="profile-hint" id="profile-username-hint">Dùng để đăng nhập, tối thiểu 4 ký tự.</p>
+            {{ field_errors(profile_form.username) }}
+          </div>
+          <div class="form-group profile-field">
+            {{ profile_form.birth_date.label(class="form-label") }}
+            {{ profile_form.birth_date(class="form-control" ~ (' is-invalid' if profile_form.birth_date.errors else ''), type='date', autocomplete='bday', aria_invalid='true' if profile_form.birth_date.errors else 'false', aria_describedby=profile_form.birth_date.id ~ '-errors' if profile_form.birth_date.errors else '') }}
+            {{ field_errors(profile_form.birth_date) }}
+          </div>
+          <div class="form-group profile-field">
+            {{ profile_form.phone.label(class="form-label") }}
+            {{ profile_form.phone(class="form-control" ~ (' is-invalid' if profile_form.phone.errors else ''), autocomplete='tel', aria_invalid='true' if profile_form.phone.errors else 'false', aria_describedby=profile_form.phone.id ~ '-errors' if profile_form.phone.errors else '') }}
+            {{ field_errors(profile_form.phone) }}
+          </div>
+          <div class="form-group profile-field">
+            {{ profile_form.position.label(class="form-label") }}
+            {{ profile_form.position(class="form-control" ~ (' is-invalid' if profile_form.position.errors else ''), maxlength=100, placeholder='Ví dụ: Lớp 9A1 hoặc giáo viên Toán', aria_invalid='true' if profile_form.position.errors else 'false', aria_describedby=profile_form.position.id ~ '-errors' if profile_form.position.errors else '') }}
+            {{ field_errors(profile_form.position) }}
+          </div>
+        </div>
+
+        <footer class="profile-form-actions">
+          {{ profile_form.submit_profile(class="btn btn-primary", value='Lưu thông tin') }}
+          <span class="profile-hint">Thay đổi chỉ áp dụng sau khi lưu.</span>
+        </footer>
+      </form>
+    </section>
+
+    <section class="panel profile-panel profile-security-panel" aria-labelledby="profile-security-heading">
+      <header class="profile-panel-heading">
+        <h2 id="profile-security-heading">Bảo mật tài khoản</h2>
+        <p>Đổi mật khẩu bằng mật khẩu hiện tại của bạn.</p>
+      </header>
+
+      <form class="profile-form" id="profile-password-form" action="{{ url_for('profile') }}" method="POST" data-profile-password-form>
+        {{ password_form.hidden_tag()|replace('id="csrf_token"', 'id="password-csrf-token"')|safe }}
+        {{ error_summary(password_form, 'profile-password-errors') }}
+        {{ password_field(password_form.old_password, 'current-password') }}
+        {{ password_field(password_form.new_password, 'new-password', 'Dùng ít nhất 6 ký tự. Chọn mật khẩu khác với các tài khoản khác.', 6) }}
+        {{ password_field(password_form.confirm_password, 'new-password') }}
+        <p class="profile-match-status" id="profile-password-match" role="status" aria-live="polite" data-profile-password-match hidden></p>
+
+        <footer class="profile-form-actions profile-password-actions">
+          {{ password_form.submit_password(class="btn btn-primary") }}
+        </footer>
+      </form>
+    </section>
+  </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-  function previewImage(event) {
-    const input = event.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        document.getElementById('avatar-preview').src = e.target.result;
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-</script>
+<script src="{{ url_for('static', filename='js/profile.js', v='academy-phase3') }}" defer></script>
 {% endblock %}

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "catalog_version": "math9-c8-i-v1",
+  "grade": "9",
+  "chapter_code": "8",
+  "topics": [
+    {
+      "code": "thong_ke_xac_suat",
+      "name": "Thống kê và xác suất",
+      "lesson_codes": [
+        "i"
+      ]
+    }
+  ],
+  "difficulty_rubric": {
+    "nhan_biet": {
+      "label": "NB",
+      "id_code": "N",
+      "rank": 1,
+      "description": "Nhận diện khái niệm hoặc đọc trực tiếp một dữ kiện đã cho, không cần chuyển đổi hay kết hợp điều kiện.",
+      "evidence": [
+        "Nhận biết phép thử, kết quả có thể xảy ra hoặc thành phần của không gian mẫu.",
+        "Nhận biết biến cố trong một tình huống xác suất quen thuộc."
+      ],
+      "example": "Viết các kết quả có thể xảy ra của phép thử tung đồng xu."
+    },
+    "thong_hieu": {
+      "label": "TH",
+      "id_code": "H",
+      "rank": 2,
+      "description": "Giải thích ý nghĩa, chuyển biểu diễn hoặc thực hiện tính toán trực tiếp bằng kiến thức quen thuộc.",
+      "evidence": [
+        "Tính trực tiếp xác suất của biến cố trong một phép thử quen thuộc.",
+        "Giải thích số phần tử của không gian mẫu hoặc kết quả xác suất đơn giản."
+      ],
+      "example": "Tính xác suất xuất hiện mặt ngửa khi tung một đồng xu cân đối."
+    },
+    "van_dung": {
+      "label": "VD",
+      "id_code": "V",
+      "rank": 3,
+      "description": "Tự lựa chọn cách giải, phối hợp các dữ kiện hoặc kiến thức qua các bước phụ thuộc để giải tình huống.",
+      "evidence": [
+        "Phải thiết lập không gian mẫu và xác định biến cố trước khi tính.",
+        "Thiết lập không gian mẫu, xác định biến cố rồi tính xác suất."
+      ],
+      "example": "Lập không gian mẫu và đếm kết quả thuận lợi trong một bài chọn đối tượng."
+    },
+    "van_dung_cao": {
+      "label": "VDC",
+      "id_code": "C",
+      "rank": 4,
+      "description": "Cần suy luận bổ sung không hiển nhiên, tìm cách biểu diễn hoặc xét các trường hợp để xử lý nhiều ràng buộc trong kiến thức đã học.",
+      "evidence": [
+        "Lập luận để tìm tất cả cấu hình thỏa đồng thời các điều kiện.",
+        "Phát hiện ràng buộc ẩn hoặc cách đếm đặc biệt cần được giải thích."
+      ],
+      "example": "Tìm tất cả cách phân bố đối tượng thỏa đồng thời các điều kiện xác suất và dữ kiện thống kê."
+    }
+  },
+  "policies": {
+    "classify_by": "required_mathematical_intent",
+    "default_difficulty": null,
+    "allowed_difficulties": [
+      "nhan_biet",
+      "thong_hieu",
+      "van_dung",
+      "van_dung_cao"
+    ],
+    "true_false_aggregation": "highest_required_statement_level",
+    "teacher_override": true,
+    "examples_are": "guidance_not_teacher_validated_gold_labels",
+    "review_when": [
+      "missing_required_image_table_or_formula",
+      "out_of_catalog",
+      "conflicting_evidence",
+      "ambiguous_primary_category",
+      "insufficient_difficulty_evidence"
+    ],
+    "do_not_infer_difficulty_from": [
+      "question_length_alone",
+      "large_numbers_alone",
+      "keyword_alone",
+      "category_code_alone"
+    ],
+    "drawing_tasks": "Keep taxonomy; a free drawing response must be rewritten by a teacher into a supported format in phase 2."
+  },
+  "categories": [
+    {
+      "canonical_code": "9C8-i-1",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Viết tập hợp không gian mẫu của một phép thử",
+      "required_intent": "Viết tập hợp không gian mẫu của một phép thử",
+      "positive_signals": [
+        "không gian mẫu",
+        "liệt kê/viết tập hợp các kết quả"
+      ],
+      "exclusions": [
+        "Nếu yêu cầu cuối là tính xác suất, chọn dạng 3–8 theo phép thử; viết/đếm không gian mẫu chỉ là bước trung gian."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-2",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Xác định số phần tử của không gian mẫu của một phép thử",
+      "required_intent": "Xác định số phần tử của không gian mẫu của một phép thử",
+      "positive_signals": [
+        "không gian mẫu",
+        "đếm/số phần tử của không gian mẫu"
+      ],
+      "exclusions": [
+        "Nếu yêu cầu cuối là tính xác suất, chọn dạng 3–8 theo phép thử; viết/đếm không gian mẫu chỉ là bước trung gian."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-3",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong trò chơi Tung đồng xu",
+      "required_intent": "Tính xác suất của biến cố trong trò chơi Tung đồng xu",
+      "positive_signals": [
+        "tính xác suất",
+        "tung đồng xu",
+        "mặt sấp/ngửa"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-4",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong trò chơi Gieo xúc sắc",
+      "required_intent": "Tính xác suất của biến cố trong trò chơi Gieo xúc sắc",
+      "positive_signals": [
+        "tính xác suất",
+        "gieo xúc sắc",
+        "gieo xúc xắc"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-5",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong trò chơi Vòng quay số",
+      "required_intent": "Tính xác suất của biến cố trong trò chơi Vòng quay số",
+      "positive_signals": [
+        "tính xác suất",
+        "vòng quay số",
+        "ô trên vòng quay"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-6",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong trò chơi Rút thẻ từ trong hộp",
+      "required_intent": "Tính xác suất của biến cố trong trò chơi Rút thẻ từ trong hộp",
+      "positive_signals": [
+        "tính xác suất",
+        "rút thẻ",
+        "hộp thẻ"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-7",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong phép thử viết số tự nhiên",
+      "required_intent": "Tính xác suất của biến cố trong phép thử viết số tự nhiên",
+      "positive_signals": [
+        "tính xác suất",
+        "viết/lập số tự nhiên",
+        "điều kiện các chữ số"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa."
+      ]
+    },
+    {
+      "canonical_code": "9C8-i-8",
+      "topic_code": "thong_ke_xac_suat",
+      "name": "Tính xác suất của biến cố trong trò chơi chọn một đối tượng trong một nhóm đối tượng",
+      "required_intent": "Tính xác suất của biến cố trong trò chơi chọn một đối tượng trong một nhóm đối tượng",
+      "positive_signals": [
+        "tính xác suất",
+        "chọn một đối tượng trong một nhóm",
+        "chọn học sinh/sản phẩm/đồ vật"
+      ],
+      "exclusions": [
+        "Chỉ yêu cầu viết không gian mẫu thì chọn dạng 1; chỉ đếm số phần tử thì chọn dạng 2.",
+        "Phép thử hỗn hợp hoặc không thuộc danh mục cần kiểm tra, không gán theo một từ khóa.",
+        "Phép thử rút thẻ từ hộp thuộc dạng 6; bài viết số thuộc dạng 7."
+      ]
+    }
+  ]
+}

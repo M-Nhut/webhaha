@@ -1,0 +1,109 @@
+/* Standalone HTTP errors, Modern White Academy. Shared foundation: main.css. */
+body.error-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  line-height: 1.65;
+}
+.error-page .error-header {
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.error-page .error-header-inner {
+  max-width: 1120px;
+  min-height: 80px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.error-page .error-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.error-page .error-brand img { flex-shrink: 0; object-fit: contain; }
+.error-page .error-brand-copy { display: flex; flex-direction: column; }
+.error-page .error-brand-copy strong { font-size: var(--size-lg); font-weight: 600; letter-spacing: -.5px; line-height: 1.35; }
+.error-page .error-brand-copy > span { color: var(--color-text-muted); font-size: var(--size-xs); }
+.error-page .error-header-navigation { flex-shrink: 0; font-size: var(--size-sm); }
+.error-page .error-header-navigation a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-primary); }
+.error-page .error-main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  outline: none;
+}
+.error-page .error-card {
+  width: 100%;
+  max-width: 680px;
+  min-width: 0;
+  padding: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.error-page .error-status { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 24px; }
+.error-page .error-status-code { padding: 4px 9px; border-radius: var(--radius-xs); background: var(--color-primary-subtle); color: var(--color-primary); font-size: var(--size-xs); line-height: 1.5; font-weight: 600; white-space: nowrap; }
+.error-page .error-status-label { min-width: 0; color: var(--color-text-muted); font-size: var(--size-xs); line-height: 1.6; letter-spacing: .04em; overflow-wrap: anywhere; }
+.error-page #error-title { margin: 0 0 14px; font-size: var(--size-xl); line-height: 1.4; font-weight: 600; letter-spacing: -.5px; overflow-wrap: anywhere; }
+.error-page .error-message { margin: 0; color: var(--color-text-secondary); font-size: var(--size-base); line-height: 1.85; overflow-wrap: anywhere; }
+.error-page .error-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.error-page .error-actions .btn { min-height: 44px; white-space: normal; text-align: center; }
+.error-page .error-actions i, .error-page .error-actions svg,
+.error-page .error-copy-row i, .error-page .error-copy-row svg { width: 18px; height: 18px; flex-shrink: 0; }
+.error-page .error-support { margin: 20px 0 0; color: var(--color-text-muted); font-size: var(--size-xs); line-height: 1.75; }
+.error-page .error-technical { margin-top: 28px; border-top: 1px solid var(--color-border); }
+.error-page .error-technical summary { padding: 18px 0 0; color: var(--color-text-secondary); font-size: var(--size-sm); font-weight: 500; cursor: pointer; }
+.error-page .error-summary-note { margin-left: 8px; color: var(--color-text-muted); font-size: var(--size-xs); font-weight: 400; }
+.error-page .error-technical-body { padding-top: 20px; }
+.error-page .error-facts { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px 16px; margin: 0; font-size: var(--size-xs); }
+.error-page .error-facts dt { color: var(--color-text-muted); font-weight: 500; }
+.error-page .error-facts dd { min-width: 0; margin: 0; color: var(--color-text-secondary); overflow-wrap: anywhere; }
+.error-page .error-facts code, .error-page .error-detail { font-family: var(--font-mono); font-size: var(--size-xs); overflow-wrap: anywhere; }
+.error-page .error-reference { display: inline-block; max-width: 100%; padding: 4px 8px; border-radius: var(--radius-xs); background: var(--color-surface-subtle); color: var(--color-text); user-select: all; }
+.error-page .error-detail { max-width: 100%; margin: 0; white-space: pre-wrap; line-height: 1.75; }
+.error-page .error-copy-row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; margin-top: 20px; }
+.error-page .error-copy-row .btn { min-height: 40px; white-space: normal; }
+.error-page .error-copy-feedback { flex: 1 1 160px; min-height: 20px; margin: 0; padding-top: 8px; color: var(--color-success); font-size: var(--size-xs); line-height: 1.65; overflow-wrap: anywhere; }
+.error-page .error-copy-feedback.is-error { color: var(--color-danger); }
+.error-page .error-footer { padding: 0 24px 24px; color: var(--color-text-muted); text-align: center; font-size: var(--size-xs); }
+@media (max-width: 767px) {
+  .error-page .error-header-inner { min-height: 72px; padding: 12px 20px; gap: 16px; }
+  .error-page .error-brand-copy strong { font-size: var(--size-lg); }
+  .error-page .error-main { padding: 32px 16px; }
+  .error-page .error-card { padding: 28px 24px; }
+  .error-page #error-title { font-size: var(--size-xl); }
+  .error-page .error-message { font-size: var(--size-base); }
+  .error-page .error-status { gap: 8px; margin-bottom: 20px; }
+  .error-page .error-status-label { font-size: var(--size-xs); }
+  .error-page .error-actions { flex-direction: column; gap: 10px; margin-top: 24px; }
+  .error-page .error-actions .btn { width: 100%; }
+  .error-page .error-header-navigation { font-size: var(--size-xs); }
+  .error-page .error-summary-note { display: none; }
+  .error-page .error-facts { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .error-page .error-facts dd { margin-bottom: 10px; }
+  .error-page .error-copy-row { gap: 8px; }
+  .error-page .error-copy-row .btn { width: 100%; min-height: 44px; }
+  .error-page .error-copy-feedback { flex-basis: 100%; padding-top: 0; }
+}
+@media print {
+  .error-page .error-header-navigation, .error-page .error-actions,
+  .error-page .error-copy-row { display: none; }
+  .error-page .error-main { padding: 24px 0; }
+  .error-page .error-card { border-color: var(--color-border); }
+}

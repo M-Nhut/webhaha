@@ -1,0 +1,808 @@
+{
+  "status": "baseline reproduced",
+  "pytestExitCode": 1,
+  "command": "python3 /private/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase8-baseline-audit-c00_ucty/run_baseline_audit.py /Users/mac/Downloads/FNWEB2-GIAO DIỆN hihi",
+  "pytestArgs": [
+    "tests/test_class_lesson4_report.py",
+    "tests/test_ai_gateway_review.py",
+    "tests/test_phase5_reports.py",
+    "tests/test_route_contract.py",
+    "-q",
+    "--tb=short",
+    "--disable-warnings"
+  ],
+  "source": {
+    "rootModulesCurrentUnmodifiedPerParent": {
+      "config.py": "c867407ca653a8cdc1c20756867eb24bf4f31c04f42925a0c0714a8871f0fe9a",
+      "models.py": "0ea7f81fb46c7dbf60b48ffbe961ef75d0a894bf7251187fb37396de6005bd49",
+      "database.py": "80ed315e56743af6c322cbea92e65105b3873dff3a98c99de3ce94ae07becac5",
+      "forms.py": "ed2fa7e824adbbfeaafdc32aeab8b221f92086c1287e00e5efdadad6117d116e",
+      "extensions.py": "ff45372907e55e88f15d1307e297cd531ffacf88922e76d65954c331421e4e95",
+      "app.py": "304e96e68d3443b8a1116552e866260da747d13cebd4707c99710ea91087a01e",
+      "helpers.py": "347858b2a7d918becf5e800c016cd5ce28f5ac2b6a401ba7450972308d01395b",
+      "adaptive_engine.py": "b277871a824a43d5783d209c5d60412e2e43e3087225b98b24878730dc5ed735"
+    },
+    "snapshot": "/tmp/linhedu-phase8-source-before",
+    "copiedRoot": "/var/folders/n8/_ylqwjtj3k5bw1wy4kv6xfsr0000gn/T/linhedu-phase8-baseline-audit-c00_ucty",
+    "sourceDirectories": "pre-Phase8 snapshot only",
+    "realDatabaseOrEnvCopied": false
+  },
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "socketConnectionsBlocked": [],
+  "summary": {
+    "passed": 13,
+    "failed": 24,
+    "skipped": 0
+  },
+  "cases": [
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_api_rejects_evidence_from_other_student",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:260: in test_api_rejects_evidence_from_other_student\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: ValueError not raised",
+      "baselineCauseGroup": "risk_cleanup_contract",
+      "baselineCause": "Fixture expects ValueError for unsupported or mismatched risk evidence. Unchanged validate_class_report.clean_risk returns None for invalid evidence/skill, so the row is dropped instead of raising in the default call mode."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_cache_invalidation_includes_correct_attempt_and_roster",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:225: in test_cache_invalidation_includes_correct_attempt_and_roster\n    self.assertTrue(cached)\nE   AssertionError: False is not true",
+      "baselineCauseGroup": "report_configuration_status_cache",
+      "baselineCause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_external_error_copy_keeps_only_answered_wrong_tf_statements",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_fallback_has_observed_error_and_per_student_no_data_detail",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:161: in test_fallback_has_observed_error_and_per_student_no_data_detail\n    self.assertEqual(run.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback",
+      "baselineCauseGroup": "report_configuration_status_cache",
+      "baselineCause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_invalid_api_reference_is_rejected_and_falls_back",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:181: in test_invalid_api_reference_is_rejected_and_falls_back\n    self.assertEqual(run.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback",
+      "baselineCauseGroup": "report_configuration_status_cache",
+      "baselineCause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_large_packet_is_batched_and_reports_omitted_ai_events",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:303: in test_large_packet_is_batched_and_reports_omitted_ai_events\n    self.assertIn(\"expected_answer_text\", serialized)\nE   AssertionError: 'expected_answer_text' not found in '[{\"schema_version\": \"class-lesson4-input-v1\", \"scope\": {\"grade\": \"9\", \"chapter_code\": \"8\", \"lesson_code\": \"i\", \"lesson_name\": \"Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố\", \"scope_code\": \"9C8-i\", \"subject\": \"Toán\", \"course_ref\": \"course:1\"}, \"roster\": [{\"student_ref\": \"dc4fba9d8df5aeeb\"}], \"students\": [{\"student_ref\": \"dc4fba9d8df5aeeb\", \"events\": []}], \"coverage\": {\"policy\": \"strict_in_class_course_only\", \"history_scope\": \"finalized_answer_facts_only\", \"roster_count\": 2, \"students_with_data\": 0, \"students_without_data\": 2, \"event_count\": 0, \"finalized_submission_count\": 0, \"finalized_snapshot_limit_per_student\": 24, \"source_cutoff\": \"2026-10-16T20:00:21.293427\", \"batch_index\": 1, \"batch_count\": 2, \"students_in_batch\": 1, \"events_included\": 0, \"events_omitted_for_ai_batch\": 0, \"events_total_course\": 0, \"external_payload\": \"error_profile_copy_with_observed_counts\"}, \"observed_statistics\": {\"unit\": \"lượt trả lời câu hỏi\", \"class_totals\": {\"correct\": 0, \"wrong\": 0, \"partial\": 0}, \"students\": [{\"student_ref\": \"dc4fba9d8df5aeeb\", \"correct\": 0, \"wrong\": 0, \"partial\": 0}]}}, {\"schema_version\": \"class-lesson4-input-v1\", \"scope\": {\"grade\": \"9\", \"chapter_code\": \"8\", \"lesson_code\": \"i\", \"lesson_name\": \"Bài 25 + 26 (kết hợp): Phép thử ngẫu nhiên và không gian mẫu. Xác suất của biến cố\", \"scope_code\": \"9C8-i\", \"subject\": \"Toán\", \"course_ref\": \"course:1\"}, \"roster\": [{\"student_ref\": \"8aca568dadc28d31\"}], \"students\": [{\"student_ref\": \"8aca568dadc28d31\", \"events\": []}], \"coverage\": {\"policy\": \"strict_in_class_course_only\", \"history_scope\": \"finalized_answer_facts_only\", \"roster_count\": 2, \"students_with_data\": 0, \"students_without_data\": 2, \"event_count\": 0, \"finalized_submission_count\": 0, \"finalized_snapshot_limit_per_student\": 24, \"source_cutoff\": \"2026-10-16T20:00:21.293427\", \"batch_index\": 2, \"batch_count\": 2, \"students_in_batch\": 1, \"events_included\": 0, \"events_omitted_for_ai_batch\": 0, \"events_total_course\": 0, \"external_payload\": \"error_profile_copy_with_observed_counts\"}, \"observed_statistics\": {\"unit\": \"lượt trả lời câu hỏi\", \"class_totals\": {\"correct\": 0, \"wrong\": 0, \"partial\": 0}, \"students\": [{\"student_ref\": \"8aca568dadc28d31\", \"correct\": 0, \"wrong\": 0, \"partial\": 0}]}}]'",
+      "baselineCauseGroup": "legacy_subject_scope",
+      "baselineCause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_packet_is_strictly_in_class_and_keeps_no_data_roster",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:152: in test_packet_is_strictly_in_class_and_keeps_no_data_roster\n    self.assertEqual(packet[\"coverage\"][\"students_with_data\"], 1)\nE   AssertionError: 0 != 1",
+      "baselineCauseGroup": "legacy_subject_scope",
+      "baselineCause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_partial_true_false_event_is_not_reported_as_full_progress",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_processing_row_coalesces_duplicate_generation",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:286: in test_processing_row_coalesces_duplicate_generation\n    self.assertTrue(cached)\nE   AssertionError: False is not true",
+      "baselineCauseGroup": "legacy_subject_scope",
+      "baselineCause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_regrade_revision_and_outcome_invalidate_snapshot",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:254: in test_regrade_revision_and_outcome_invalidate_snapshot\n    self.assertNotEqual(first.input_hash, second.input_hash)\nE   AssertionError: '25966e28db58be00be39d91b594cf8bab749dbb265348088948ab98aacf4e63c' == '25966e28db58be00be39d91b594cf8bab749dbb265348088948ab98aacf4e63c'",
+      "baselineCauseGroup": "legacy_subject_scope",
+      "baselineCause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_routes_enforce_owner_and_return_report",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:359: in test_routes_enforce_owner_and_return_report\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 400 != 200",
+      "baselineCauseGroup": "report_configuration_status_cache",
+      "baselineCause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold."
+    },
+    {
+      "node": "tests/test_class_lesson4_report.py::ClassLesson4ReportTests::test_valid_api_response_is_persisted_and_token_mapped_for_teacher",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_class_lesson4_report.py:190: in test_valid_api_response_is_persisted_and_token_mapped_for_teacher\n    ref = packet[\"students\"][0][\"events\"][0][\"event_ref\"]\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   IndexError: list index out of range",
+      "baselineCauseGroup": "legacy_subject_scope",
+      "baselineCause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_admin_cannot_spend_teacher_key_or_list_teacher_credentials",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bad_request_is_not_rotated_and_provider_body_not_exposed",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:155: in test_bad_request_is_not_rotated_and_provider_body_not_exposed\n    self.complete(client)\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_bulk_add_renders_only_mask_and_never_raw_key",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:230: in test_bulk_add_renders_only_mask_and_never_raw_key\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 404 != 200",
+      "baselineCauseGroup": "retired_group_route",
+      "baselineCause": "Fixture posts obsolete /teacher/ai-settings/groups/... or /courses/<id>/ai-settings endpoints. Those endpoints are absent in the pre-Phase8 registered routes; simplified teacher default-key surface is already in use."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_ciphertext_is_authenticated_and_missing_secret_fails_closed",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_class_fallback_expires_and_configuration_changes_invalidate_cache",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:289: in test_class_fallback_expires_and_configuration_changes_invalidate_cache\n    self.assertEqual(first.status, \"fallback\")\nE   AssertionError: 'failed' != 'fallback'\nE   - failed\nE   + fallback",
+      "baselineCauseGroup": "report_configuration_status_cache",
+      "baselineCause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_cooled_projects_do_not_consume_actual_call_budget",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:140: in test_cooled_projects_do_not_consume_actual_call_budget\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_course_assignment_rejects_foreign_group_and_foreign_teacher",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:277: in test_course_assignment_rejects_foreign_group_and_foreign_teacher\n    self.assertEqual(response.status_code, 400)\nE   AssertionError: 404 != 400",
+      "baselineCauseGroup": "retired_group_route",
+      "baselineCause": "Fixture posts obsolete /teacher/ai-settings/groups/... or /courses/<id>/ai-settings endpoints. Those endpoints are absent in the pre-Phase8 registered routes; simplified teacher default-key surface is already in use."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_course_transfer_invalidates_previously_resolved_configuration",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_credential_write_requires_csrf",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:242: in test_credential_write_requires_csrf\n    self.assertEqual(response.status_code, 400)\nE   AssertionError: 404 != 400",
+      "baselineCauseGroup": "retired_group_route",
+      "baselineCause": "Fixture posts obsolete /teacher/ai-settings/groups/... or /courses/<id>/ai-settings endpoints. Those endpoints are absent in the pre-Phase8 registered routes; simplified teacher default-key surface is already in use."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_disabled_explicit_group_never_uses_shared_key",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_exact_key_test_never_rotates",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_explicit_invalid_assignment_never_uses_shared_key",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_individual_report_sends_only_selected_course_evidence",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:344: in test_individual_report_sends_only_selected_course_evidence\n    self.assertEqual(run.status, \"completed\")\nE   AssertionError: 'failed' != 'completed'\nE   - failed\nE   + completed",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_malformed_json_is_not_retried_with_another_key",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:188: in test_malformed_json_is_not_retried_with_another_key\n    self.complete(client)\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_paused_default_group_never_falls_through_to_shared_key",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_quota_skips_same_project_and_persists_across_gateway_instances",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:126: in test_quota_skips_same_project_and_persists_across_gateway_instances\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_revoked_key_can_use_second_key_in_same_project",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:117: in test_revoked_key_can_use_second_key_in_same_project\n    self.assertEqual(self.complete(client), {\"ok\": True})\n                     ^^^^^^^^^^^^^^^^^^^^^\ntests/test_ai_gateway_review.py:103: in complete\n    return gateway.complete(gateway.resolve_course(self.course), messages=[{\"role\": \"user\", \"content\": \"Synthetic test\"}])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nservices/ai_gateway.py:664: in complete\n    raise AIConfigurationError(\"Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.\")\nE   services.ai_gateway.AIConfigurationError: Nhóm AI chưa có khóa đã kiểm tra thành công và sẵn sàng.",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_teacher_can_assign_own_group_and_restore_default_from_course_page",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:262: in test_teacher_can_assign_own_group_and_restore_default_from_course_page\n    self.assertEqual(response.status_code, 200)\nE   AssertionError: 404 != 200",
+      "baselineCauseGroup": "retired_group_route",
+      "baselineCause": "Fixture posts obsolete /teacher/ai-settings/groups/... or /courses/<id>/ai-settings endpoints. Those endpoints are absent in the pre-Phase8 registered routes; simplified teacher default-key surface is already in use."
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_teacher_cannot_modify_or_test_another_teachers_key",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_ai_gateway_review.py::AIGatewayIndependentReview::test_transfer_during_retry_wait_prevents_second_outbound_call",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_ai_gateway_review.py:202: in test_transfer_during_retry_wait_prevents_second_outbound_call\n    self.assertEqual(len(client.calls), 1)\nE   AssertionError: 0 != 1",
+      "baselineCauseGroup": "unverified_teacher_key",
+      "baselineCause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed)."
+    },
+    {
+      "node": "tests/test_phase5_reports.py::Phase5ReportTests::test_all_correct_finalized_submission_advances_report_revision",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_phase5_reports.py::Phase5ReportTests::test_class_risk_requires_matching_evidence_and_validation_fields",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_phase5_reports.py:88: in test_class_risk_requires_matching_evidence_and_validation_fields\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: ValueError not raised",
+      "baselineCauseGroup": "risk_cleanup_contract",
+      "baselineCause": "Fixture expects ValueError for unsupported or mismatched risk evidence. Unchanged validate_class_report.clean_risk returns None for invalid evidence/skill, so the row is dropped instead of raising in the default call mode."
+    },
+    {
+      "node": "tests/test_phase5_reports.py::Phase5ReportTests::test_initial_diagnostic_is_a_latest_report_target",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_phase5_reports.py::Phase5ReportTests::test_unknown_provider_exception_is_not_persistable_error_text",
+      "when": "call",
+      "outcome": "passed",
+      "message": ""
+    },
+    {
+      "node": "tests/test_route_contract.py::RouteContractTests::test_public_routes_match_the_supported_contract",
+      "when": "call",
+      "outcome": "failed",
+      "message": "tests/test_route_contract.py:39: in test_public_routes_match_the_supported_contract\n    self.assertEqual(current_route_contract(), expected)\nE   AssertionError: Lists differ: [{'en[181 chars]t': 'ai_reports', 'methods': ['GET'], 'rule': [9367 chars]e>'}] != [{'en[181 chars]t': 'teacher_analytics', 'methods': ['GET'], '[7907 chars]e>'}]\nE   \nE   First differing element 2:\nE   {'endpoint': 'ai_reports', 'methods': ['GET'], 'rule': '/ai-reports'}\nE   {'endpoint': 'teacher_analytics', 'methods': ['GET'], '[23 chars]her'}\nE   \nE   First list contains 15 additional elements.\nE   First extra element 79:\nE   {'endpoint': 'teacher_ai_delete_default_key', 'methods': ['POST'], 'rule': '/teacher/ai-settings/keys/<int:key_id>/delete'}\nE   \nE   Diff is 10610 characters long. Set self.maxDiff to None to see it.",
+      "baselineCauseGroup": "stale_route_fixture",
+      "baselineCause": "Fixture contains 79 routes. Pre-Phase8 app already registers 94 routes, including 15 missing fixture entries and two GET+POST vs POST-only method changes."
+    }
+  ],
+  "sourceHashes": [
+    {
+      "file": "services/ai_gateway.py",
+      "snapshotSHA256": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+      "currentSHA256": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+      "copySHA256": "d899c2460cc94b11222aed1bd14a3e83408135e434ebefba417f6c4b7c16b05d",
+      "allEqual": true
+    },
+    {
+      "file": "services/class_lesson4_report.py",
+      "snapshotSHA256": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+      "currentSHA256": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+      "copySHA256": "282300636cae7e3060d0b04b71bc667e985994b12e44398e301d6a94ff4745cf",
+      "allEqual": true
+    },
+    {
+      "file": "services/diagnostic_report_contract.py",
+      "snapshotSHA256": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+      "currentSHA256": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+      "copySHA256": "eb459e0857e045fb1d83af3190ab486d672b27f91c6919b0899119254d88ab75",
+      "allEqual": true
+    },
+    {
+      "file": "services/teacher_keys_phase5.py",
+      "snapshotSHA256": "60ca1e6312ea6c60200893885c1c6419c03acfdc0c3c58b1ec0db3ab4c756c68",
+      "currentSHA256": "60ca1e6312ea6c60200893885c1c6419c03acfdc0c3c58b1ec0db3ab4c756c68",
+      "copySHA256": "60ca1e6312ea6c60200893885c1c6419c03acfdc0c3c58b1ec0db3ab4c756c68",
+      "allEqual": true
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "snapshotSHA256": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+      "currentSHA256": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+      "copySHA256": "dd60f33b4c1e0130388ca9fd99e8da1059853e7cae56bca0df1a132231cda1d8",
+      "allEqual": true
+    },
+    {
+      "file": "tests/test_class_lesson4_report.py",
+      "snapshotSHA256": "7b169ce21867ebdc7f4a7b788bb76820d6416311c9bfbda99c33476d65b4a253",
+      "currentSHA256": "7b169ce21867ebdc7f4a7b788bb76820d6416311c9bfbda99c33476d65b4a253",
+      "copySHA256": "7b169ce21867ebdc7f4a7b788bb76820d6416311c9bfbda99c33476d65b4a253",
+      "allEqual": true
+    },
+    {
+      "file": "tests/test_ai_gateway_review.py",
+      "snapshotSHA256": "b16c704ab5c8c9b47ef8f83b6c29cfbd32d7b08b6cb3f574e24d491f4b4fe7ab",
+      "currentSHA256": "b16c704ab5c8c9b47ef8f83b6c29cfbd32d7b08b6cb3f574e24d491f4b4fe7ab",
+      "copySHA256": "b16c704ab5c8c9b47ef8f83b6c29cfbd32d7b08b6cb3f574e24d491f4b4fe7ab",
+      "allEqual": true
+    },
+    {
+      "file": "tests/test_phase5_reports.py",
+      "snapshotSHA256": "f1b2d6473052788a1022901d0c1c28ee59b8612139582f8a28484746dae35e02",
+      "currentSHA256": "f1b2d6473052788a1022901d0c1c28ee59b8612139582f8a28484746dae35e02",
+      "copySHA256": "f1b2d6473052788a1022901d0c1c28ee59b8612139582f8a28484746dae35e02",
+      "allEqual": true
+    },
+    {
+      "file": "tests/test_route_contract.py",
+      "snapshotSHA256": "2e34d5e9b2f64aa8b48f765c2dcc500fc67e11ec84c35f98aa6f107642681487",
+      "currentSHA256": "2e34d5e9b2f64aa8b48f765c2dcc500fc67e11ec84c35f98aa6f107642681487",
+      "copySHA256": "2e34d5e9b2f64aa8b48f765c2dcc500fc67e11ec84c35f98aa6f107642681487",
+      "allEqual": true
+    },
+    {
+      "file": "tests/fixtures/route_contract.json",
+      "snapshotSHA256": "33d5f5475f4caa7ae9d0efbd1e363f65328f0943d3aa0d0125c0aad69f6b7190",
+      "currentSHA256": "33d5f5475f4caa7ae9d0efbd1e363f65328f0943d3aa0d0125c0aad69f6b7190",
+      "copySHA256": "33d5f5475f4caa7ae9d0efbd1e363f65328f0943d3aa0d0125c0aad69f6b7190",
+      "allEqual": true
+    }
+  ],
+  "routeContractDiff": {
+    "actualCount": 94,
+    "expectedCount": 79,
+    "missingFixtureRoutes": [
+      {
+        "endpoint": "ai_reports",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports"
+      },
+      {
+        "endpoint": "ai_reports_class",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports/class"
+      },
+      {
+        "endpoint": "ai_reports_individual",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/ai-reports/individual"
+      },
+      {
+        "endpoint": "ai_report_data",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/ai-reports/<int:course_id>"
+      },
+      {
+        "endpoint": "diagnostic_question_choices",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/diagnostics/question-choices"
+      },
+      {
+        "endpoint": "review_diagnostic",
+        "methods": [
+          "POST"
+        ],
+        "rule": "/api/diagnostics/review"
+      },
+      {
+        "endpoint": "question_bank_question_detail_json",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/api/question-banks/<int:bank_id>/questions/<int:question_id>"
+      },
+      {
+        "endpoint": "assessment_list",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments"
+      },
+      {
+        "endpoint": "assessment_matrix",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments/<int:exam_id>/matrix"
+      },
+      {
+        "endpoint": "assessment_result",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/assessments/<int:exam_id>/result"
+      },
+      {
+        "endpoint": "assessment_take",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/<int:exam_id>/take"
+      },
+      {
+        "endpoint": "assessment_from_bank",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/from-bank"
+      },
+      {
+        "endpoint": "assessment_import",
+        "methods": [
+          "GET",
+          "POST"
+        ],
+        "rule": "/assessments/import/<session_id>"
+      },
+      {
+        "endpoint": "delete_diagnostic",
+        "methods": [
+          "POST"
+        ],
+        "rule": "/diagnostics/<int:exam_id>/delete"
+      },
+      {
+        "endpoint": "favicon",
+        "methods": [
+          "GET"
+        ],
+        "rule": "/favicon.ico"
+      }
+    ],
+    "removedRoutes": [],
+    "methodsChanged": [
+      {
+        "actual": {
+          "endpoint": "teacher_ai_retry_key",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/retry"
+        },
+        "fixture": {
+          "endpoint": "teacher_ai_retry_key",
+          "methods": [
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/retry"
+        }
+      },
+      {
+        "actual": {
+          "endpoint": "teacher_ai_test_key",
+          "methods": [
+            "GET",
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/test"
+        },
+        "fixture": {
+          "endpoint": "teacher_ai_test_key",
+          "methods": [
+            "POST"
+          ],
+          "rule": "/teacher/ai-settings/keys/<int:key_id>/test"
+        }
+      }
+    ]
+  },
+  "rootModulesVerifiedAgainstPrePhase8Hashes": [
+    {
+      "file": "config.py",
+      "snapshotSHA256": "c867407ca653a8cdc1c20756867eb24bf4f31c04f42925a0c0714a8871f0fe9a",
+      "currentSHA256": "c867407ca653a8cdc1c20756867eb24bf4f31c04f42925a0c0714a8871f0fe9a",
+      "unchanged": true
+    },
+    {
+      "file": "models.py",
+      "snapshotSHA256": "0ea7f81fb46c7dbf60b48ffbe961ef75d0a894bf7251187fb37396de6005bd49",
+      "currentSHA256": "0ea7f81fb46c7dbf60b48ffbe961ef75d0a894bf7251187fb37396de6005bd49",
+      "unchanged": true
+    },
+    {
+      "file": "database.py",
+      "snapshotSHA256": "80ed315e56743af6c322cbea92e65105b3873dff3a98c99de3ce94ae07becac5",
+      "currentSHA256": "80ed315e56743af6c322cbea92e65105b3873dff3a98c99de3ce94ae07becac5",
+      "unchanged": true
+    },
+    {
+      "file": "forms.py",
+      "snapshotSHA256": "ed2fa7e824adbbfeaafdc32aeab8b221f92086c1287e00e5efdadad6117d116e",
+      "currentSHA256": "ed2fa7e824adbbfeaafdc32aeab8b221f92086c1287e00e5efdadad6117d116e",
+      "unchanged": true
+    },
+    {
+      "file": "extensions.py",
+      "snapshotSHA256": "ff45372907e55e88f15d1307e297cd531ffacf88922e76d65954c331421e4e95",
+      "currentSHA256": "ff45372907e55e88f15d1307e297cd531ffacf88922e76d65954c331421e4e95",
+      "unchanged": true
+    },
+    {
+      "file": "app.py",
+      "snapshotSHA256": "304e96e68d3443b8a1116552e866260da747d13cebd4707c99710ea91087a01e",
+      "currentSHA256": "304e96e68d3443b8a1116552e866260da747d13cebd4707c99710ea91087a01e",
+      "unchanged": true
+    },
+    {
+      "file": "helpers.py",
+      "snapshotSHA256": "347858b2a7d918becf5e800c016cd5ce28f5ac2b6a401ba7450972308d01395b",
+      "currentSHA256": "347858b2a7d918becf5e800c016cd5ce28f5ac2b6a401ba7450972308d01395b",
+      "unchanged": true
+    },
+    {
+      "file": "adaptive_engine.py",
+      "snapshotSHA256": "b277871a824a43d5783d209c5d60412e2e43e3087225b98b24878730dc5ed735",
+      "currentSHA256": "b277871a824a43d5783d209c5d60412e2e43e3087225b98b24878730dc5ed735",
+      "unchanged": true
+    }
+  ],
+  "causeGroups": [
+    {
+      "group": "legacy_subject_scope",
+      "count": 5,
+      "cause": "Fixture uses retired 9C6-4 skills/scope or a processing active_key in 9C6-4, while unchanged report service retains 9C8-i. Old-code events are absent, so event/counter/hash/batch/coalescing assertions fail.",
+      "tests": [
+        "test_large_packet_is_batched_and_reports_omitted_ai_events",
+        "test_packet_is_strictly_in_class_and_keeps_no_data_roster",
+        "test_processing_row_coalesces_duplicate_generation",
+        "test_regrade_revision_and_outcome_invalidate_snapshot",
+        "test_valid_api_response_is_persisted_and_token_mapped_for_teacher"
+      ]
+    },
+    {
+      "group": "report_configuration_status_cache",
+      "count": 5,
+      "cause": "Fixture expects fallback or cache success without a verified teacher default configuration. Unchanged service does not fall through to process credentials for teacher-owned courses and returns failed; completed/fallback cache expectations no longer hold.",
+      "tests": [
+        "test_cache_invalidation_includes_correct_attempt_and_roster",
+        "test_fallback_has_observed_error_and_per_student_no_data_detail",
+        "test_invalid_api_reference_is_rejected_and_falls_back",
+        "test_routes_enforce_owner_and_return_report",
+        "test_class_fallback_expires_and_configuration_changes_invalidate_cache"
+      ]
+    },
+    {
+      "group": "risk_cleanup_contract",
+      "count": 2,
+      "cause": "Fixture expects ValueError for unsupported or mismatched risk evidence. Unchanged validate_class_report.clean_risk returns None for invalid evidence/skill, so the row is dropped instead of raising in the default call mode.",
+      "tests": [
+        "test_api_rejects_evidence_from_other_student",
+        "test_class_risk_requires_matching_evidence_and_validation_fields"
+      ]
+    },
+    {
+      "group": "unverified_teacher_key",
+      "count": 7,
+      "cause": "Fixture creates TeacherAIKey without last_test_status=\"ok\"; unchanged gateway only selects verified, unpaused keys. AIConfigurationError occurs before mocked provider calls (or run becomes failed).",
+      "tests": [
+        "test_bad_request_is_not_rotated_and_provider_body_not_exposed",
+        "test_cooled_projects_do_not_consume_actual_call_budget",
+        "test_individual_report_sends_only_selected_course_evidence",
+        "test_malformed_json_is_not_retried_with_another_key",
+        "test_quota_skips_same_project_and_persists_across_gateway_instances",
+        "test_revoked_key_can_use_second_key_in_same_project",
+        "test_transfer_during_retry_wait_prevents_second_outbound_call"
+      ]
+    },
+    {
+      "group": "retired_group_route",
+      "count": 4,
+      "cause": "Fixture posts obsolete /teacher/ai-settings/groups/... or /courses/<id>/ai-settings endpoints. Those endpoints are absent in the pre-Phase8 registered routes; simplified teacher default-key surface is already in use.",
+      "tests": [
+        "test_bulk_add_renders_only_mask_and_never_raw_key",
+        "test_course_assignment_rejects_foreign_group_and_foreign_teacher",
+        "test_credential_write_requires_csrf",
+        "test_teacher_can_assign_own_group_and_restore_default_from_course_page"
+      ]
+    },
+    {
+      "group": "stale_route_fixture",
+      "count": 1,
+      "cause": "Fixture contains 79 routes. Pre-Phase8 app already registers 94 routes, including 15 missing fixture entries and two GET+POST vs POST-only method changes.",
+      "tests": [
+        "test_public_routes_match_the_supported_contract"
+      ]
+    }
+  ],
+  "unchangedCodeEvidence": [
+    {
+      "file": "services/class_lesson4_report.py",
+      "lines": [
+        57,
+        111,
+        211,
+        674,
+        678,
+        686,
+        1113
+      ],
+      "claim": "Current scope 9C8-i, retained-code filtering, risk cleanup and configuration-only teacher resolution predate Phase8."
+    },
+    {
+      "file": "services/ai_gateway.py",
+      "lines": [
+        127,
+        274,
+        290,
+        317,
+        389,
+        664
+      ],
+      "claim": "Teacher default pool only, no process fallback, verified key requirement predate Phase8."
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "lines": [
+        374,
+        375,
+        376,
+        377,
+        378
+      ],
+      "claim": "Simplified key routes already registered before Phase8."
+    },
+    {
+      "file": "tests/test_ai_gateway_review.py",
+      "lines": [
+        92,
+        96,
+        230,
+        240,
+        261,
+        276
+      ],
+      "claim": "Historical tests create unverified keys and call removed group/course assignment routes."
+    },
+    {
+      "file": "tests/test_class_lesson4_report.py",
+      "lines": [
+        97,
+        276,
+        281
+      ],
+      "claim": "Historical fixtures still use 9C6-4."
+    }
+  ],
+  "routeRegistrationsUnchanged": [
+    {
+      "file": "routes/auth.py",
+      "function": "register_auth_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/curriculum.py",
+      "function": "register_curriculum_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/practice_runtime.py",
+      "function": "register_practice_runtime_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/diagnostics.py",
+      "function": "register_diagnostic_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/__init__.py",
+      "function": "register_all_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/practice.py",
+      "function": "register_practice_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/imports.py",
+      "function": "register_imports_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/question_bank.py",
+      "function": "register_question_bank_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/ai_settings.py",
+      "function": "register_ai_settings_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/academic.py",
+      "function": "register_academic_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/ai_reports.py",
+      "function": "register_ai_report_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/errors.py",
+      "function": "register_error_handlers",
+      "unchanged": true
+    },
+    {
+      "file": "routes/main.py",
+      "function": "register_main_routes",
+      "unchanged": true
+    },
+    {
+      "file": "routes/assessments.py",
+      "function": "register_assessment_routes",
+      "unchanged": true
+    }
+  ],
+  "recommendation": "Keep Phase8 UI and credential permissions unchanged. Refresh the route fixture only after parent verification of all 94 supported routes; migrate old AI tests to 9C8-i, verified synthetic teacher keys, simplified key endpoints and current risk-cleanup/status contracts in a separate test maintenance change. Do not restore legacy fallback or removed group management to satisfy historical tests.",
+  "parentCurrentRunComparison": {
+    "failed": 24,
+    "matchesPrePhase8FailedNodeCount": true,
+    "moduleCounts": {
+      "test_class_lesson4_report.py": 10,
+      "test_ai_gateway_review.py": 12,
+      "test_phase5_reports.py": 1,
+      "test_route_contract.py": 1
+    },
+    "otherCurrentModulesReportedPassing": [
+      "test_teacher_ai_simplified.py",
+      "test_teacher_keys_phase5.py",
+      "test_ui_redesign_phase7.py"
+    ],
+    "note": "Parent provided current broad run summary; baseline independently reproduced all 24 failures using old templates/routes/services/tests. This audit did not edit those files or the fixture."
+  },
+  "safety": {
+    "dotenvDisabledBeforeAppImport": true,
+    "onlyMemoryDatabase": true,
+    "copyContainsNoEnvOrRealDatabase": true,
+    "externalSocketConnectPatchedToFail": true,
+    "externalConnectionAttempts": 0,
+    "providerCredentialsRemovedFromProcess": true,
+    "allOutputMutationsWithinTemporaryCopyOrPhase8AuditArtifacts": true
+  }
+}

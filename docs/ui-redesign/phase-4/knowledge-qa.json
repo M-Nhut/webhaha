@@ -1,0 +1,161 @@
+{
+  "checks": [
+    {
+      "name": "Single selection count",
+      "pass": true
+    },
+    {
+      "name": "Partial selection is mixed",
+      "pass": true
+    },
+    {
+      "name": "Only current suggestion enables accept",
+      "pass": true
+    },
+    {
+      "name": "Accept suggestion carries selected id",
+      "pass": true
+    },
+    {
+      "name": "Stale blocks accept suggestions",
+      "pass": true
+    },
+    {
+      "name": "Select-all current scope",
+      "pass": true
+    },
+    {
+      "name": "Mixed answer types block bulk",
+      "pass": true
+    },
+    {
+      "name": "Native forms are separate",
+      "pass": true
+    },
+    {
+      "name": "Clear selection disables both actions",
+      "pass": true
+    },
+    {
+      "name": "Classification viewport 375",
+      "pass": true
+    },
+    {
+      "name": "Classification viewport 768",
+      "pass": true
+    },
+    {
+      "name": "Classification viewport 1440",
+      "pass": true
+    },
+    {
+      "name": "Teacher catalog read-only",
+      "pass": true
+    },
+    {
+      "name": "Catalog viewport 375",
+      "pass": true
+    },
+    {
+      "name": "Catalog mobile card display",
+      "pass": true
+    },
+    {
+      "name": "Catalog viewport 768",
+      "pass": true
+    },
+    {
+      "name": "Catalog viewport 1440",
+      "pass": true
+    },
+    {
+      "name": "Catalog context is real query",
+      "pass": true
+    },
+    {
+      "name": "Evaluation three sections",
+      "pass": true
+    },
+    {
+      "name": "Oversize file inline feedback",
+      "pass": true
+    },
+    {
+      "name": "Oversize upload native invalid",
+      "pass": true
+    },
+    {
+      "name": "Wrong extension client validation",
+      "pass": true
+    },
+    {
+      "name": "File correction clears error",
+      "pass": true
+    },
+    {
+      "name": "Evaluation viewport 375",
+      "pass": true
+    },
+    {
+      "name": "Evaluation viewport 768",
+      "pass": true
+    },
+    {
+      "name": "Evaluation viewport 1440",
+      "pass": true
+    },
+    {
+      "name": "Admin editor opens",
+      "pass": true
+    },
+    {
+      "name": "Admin edit prefill",
+      "pass": true
+    },
+    {
+      "name": "Admin edit identifies canonical",
+      "pass": true
+    },
+    {
+      "name": "Legacy lesson prefill normalizes readonly name",
+      "pass": true
+    },
+    {
+      "name": "Editor scope remains canonical",
+      "pass": true
+    },
+    {
+      "name": "Legacy name normalization has explanation",
+      "pass": true
+    },
+    {
+      "name": "Out-of-scope catalog rows shown readonly",
+      "pass": true
+    },
+    {
+      "name": "Out-of-scope toggle remains available",
+      "pass": true
+    },
+    {
+      "name": "Admin reset blanks code",
+      "pass": true
+    },
+    {
+      "name": "Admin open editor viewport 375",
+      "pass": true
+    },
+    {
+      "name": "Admin open editor viewport 768",
+      "pass": true
+    },
+    {
+      "name": "Admin open editor viewport 1440",
+      "pass": true
+    },
+    {
+      "name": "No browser JS errors",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

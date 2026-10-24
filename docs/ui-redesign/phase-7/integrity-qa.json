@@ -1,0 +1,244 @@
+{
+  "date": "2026-10-17",
+  "realDatabaseMetadataUnchanged": true,
+  "baselineChangedFiles": [
+    "routes/practice.py",
+    "static/css/diagnostic-wizard.css",
+    "static/css/learning.css",
+    "static/css/main.css",
+    "static/css/pages/exam-taking.css",
+    "static/css/pages/workspaces.css",
+    "static/css/question-document.css",
+    "static/js/modules/diagnostic_wizard.js",
+    "static/js/modules/practice_progress.js",
+    "static/js/modules/teacher_practice_detail.js",
+    "templates/base.html",
+    "templates/components/practice_skill_matrix.html",
+    "templates/components/selection_audit.html",
+    "templates/diagnostic_form.html",
+    "templates/diagnostic_list.html",
+    "templates/exam_take.html",
+    "templates/practice_draft.html",
+    "templates/practice_home.html",
+    "templates/practice_progress.html",
+    "templates/teacher_practice_detail.html",
+    "templates/teacher_practice_list.html",
+    "tests/test_diagnostic_delete_and_explanation.py",
+    "tests/test_diagnostic_phase2.py",
+    "tests/test_learning_workspace.py"
+  ],
+  "deletedBaselineFiles": [],
+  "newPhase7Files": [
+    "static/css/pages/diagnostics.css",
+    "static/css/pages/practice-student.css",
+    "static/css/pages/practice-teacher.css",
+    "static/js/diagnostic-list.js",
+    "static/js/practice-draft.js",
+    "static/vendor/chartjs/chart.umd.js",
+    "static/vendor/chartjs/LICENSE.md",
+    "scripts/preview_ui_phase7.py",
+    "scripts/qa_ui_phase7.cjs",
+    "tests/test_ui_redesign_phase7.py"
+  ],
+  "templatesParsed": 51,
+  "parseErrors": [],
+  "cssParseErrors": [],
+  "undefinedPageCssTokens": [],
+  "sourceInlineStylesBefore": 93,
+  "sourceInlineStyles": {
+    "templates/diagnostic_list.html": 0,
+    "templates/diagnostic_form.html": 0,
+    "templates/practice_home.html": 0,
+    "templates/practice_progress.html": 0,
+    "templates/teacher_practice_list.html": 0,
+    "templates/teacher_practice_detail.html": 0,
+    "templates/practice_draft.html": 0,
+    "templates/components/practice_skill_matrix.html": 0,
+    "templates/components/selection_audit.html": 0
+  },
+  "sourceInlineHandlers": {
+    "templates/diagnostic_list.html": 0,
+    "templates/diagnostic_form.html": 0,
+    "templates/practice_home.html": 0,
+    "templates/practice_progress.html": 0,
+    "templates/teacher_practice_list.html": 0,
+    "templates/teacher_practice_detail.html": 0,
+    "templates/practice_draft.html": 0,
+    "templates/components/practice_skill_matrix.html": 0,
+    "templates/components/selection_audit.html": 0
+  },
+  "removedLegacyCssSelectorOccurrences": 38,
+  "removedLegacyCssSelectors": [
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-workspace"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-start"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-course"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-course label"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-course select"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-next"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-next h2"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-next p"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-review-step p"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-next .practice-format"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-action .btn"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-action .btn:disabled"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-action p"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-reason"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-review-step"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-review-step strong"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-evidence"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-assigned"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-evidence > summary"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-paper"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-next"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-start"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".practice-action .btn"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter select"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-subnav"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter select"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-details"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-details>summary"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-details[open]>summary"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter select"
+    },
+    {
+      "file": "static/css/question-document.css",
+      "selector": ".learning-course-filter label"
+    },
+    {
+      "file": "static/css/pages/workspaces.css",
+      "selector": ".question-heading"
+    },
+    {
+      "file": "static/css/pages/workspaces.css",
+      "selector": ".question-heading"
+    },
+    {
+      "file": "static/css/pages/workspaces.css",
+      "selector": ".question-points"
+    },
+    {
+      "file": "static/css/pages/workspaces.css",
+      "selector": ".question-prompt-text"
+    },
+    {
+      "file": "static/css/pages/workspaces.css",
+      "selector": ".question-heading"
+    }
+  ],
+  "formulaRendererUnchanged": true,
+  "id6PickerUnchanged": true,
+  "diagnosticAuthoringRoutesUnchanged": true,
+  "gradingRuntimeUnchanged": true,
+  "allBaselineServiceFilesUnchanged": true,
+  "baselineServiceFilesChecked": 67,
+  "localChartVersion": "4.5.1",
+  "localChartSha256": "84d0e233daba702b8f77d669d8c137cad36d441a10f200b6f2d3ab553bdfcf6b",
+  "missingLiteralAssets": [],
+  "pythonRegressionPassed": 126,
+  "newPhase7Tests": 16,
+  "browserIntegrationPassed": 83,
+  "finalReadOnlyBrowserPassed": 71,
+  "diagnosticsBrowserAndRealApiPassed": 102,
+  "studentBrowserPassed": 303,
+  "teacherBrowserPassed": 197,
+  "teacherJinjaRendersPassed": 57,
+  "screenshots": 71,
+  "brokenReportLinks": []
+}

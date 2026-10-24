@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "viewports": [
+    375,
+    1440
+  ],
+  "accent": "#1d4ed8",
+  "hover": "#1e40af",
+  "canvas": "#f5f7fb"
+}

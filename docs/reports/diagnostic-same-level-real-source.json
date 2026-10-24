@@ -1,0 +1,144 @@
+{
+  "production_database_unchanged": true,
+  "tested_on_disposable_database_copy": true,
+  "ai_called": false,
+  "results": [
+    {
+      "class_reference": "class-01",
+      "bank_reference": "bank-01",
+      "eligible_questions": 129,
+      "post_http_status": 200,
+      "selected_count": 22,
+      "actual_levels": {
+        "nhan_biet": 9,
+        "thong_hieu": 7,
+        "van_dung": 4,
+        "van_dung_cao": 2
+      },
+      "actual_types": {
+        "single": 12,
+        "true_false": 4,
+        "short_answer": 6
+      },
+      "unavailable_skills": [
+        "9C8-i-6"
+      ],
+      "covered_skill_count": 7,
+      "quota_changes": 3,
+      "skill_transfers": [
+        {
+          "count": 1,
+          "level": "nhan_biet",
+          "question_id": 1,
+          "question_type": "single",
+          "reason": "source_cell_empty",
+          "source_available": 0,
+          "source_skill": "9C8-i-6",
+          "target_skill": "9C8-i-2"
+        },
+        {
+          "count": 1,
+          "level": "nhan_biet",
+          "question_id": 55,
+          "question_type": "short_answer",
+          "reason": "source_cell_empty",
+          "source_available": 0,
+          "source_skill": "9C8-i-6",
+          "target_skill": "9C8-i-3"
+        },
+        {
+          "count": 1,
+          "level": "thong_hieu",
+          "question_id": 114,
+          "question_type": "true_false",
+          "reason": "source_cell_empty",
+          "source_available": 0,
+          "source_skill": "9C8-i-6",
+          "target_skill": "9C8-i-8"
+        }
+      ],
+      "source_manifest_valid": true,
+      "cohort_has_identical_frozen_hash": true,
+      "students": [
+        {
+          "assignment_eligible": true,
+          "source_ready": true,
+          "take_http_status": 200
+        },
+        {
+          "assignment_eligible": true,
+          "source_ready": true,
+          "take_http_status": 200
+        },
+        {
+          "assignment_eligible": true,
+          "source_ready": true,
+          "take_http_status": 200
+        }
+      ],
+      "seeded_runs": [
+        {
+          "seed": 0,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 1,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 4
+        },
+        {
+          "seed": 2,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 3,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 4,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 4
+        },
+        {
+          "seed": 5,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 4
+        },
+        {
+          "seed": 6,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 7,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 8,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 3
+        },
+        {
+          "seed": 9,
+          "status": "ready",
+          "count": 22,
+          "quota_changes": 4
+        }
+      ],
+      "distinct_receiving_skill_combinations": 10
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="flash-container">
+  {% for category, message in messages %}
+  <div class="flash flash-{{ category }}" role="{{ 'alert' if category in ('danger', 'error') else 'status' }}">
+    <i data-lucide="{{ 'circle-check' if category == 'success' else 'triangle-alert' if category in ('danger', 'error', 'warning') else 'info' }}" aria-hidden="true"></i>
+    <span>{{ message }}</span>
+    <button type="button" class="flash-close" data-flash-dismiss aria-label="Đóng thông báo"><i data-lucide="x" aria-hidden="true"></i></button>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}

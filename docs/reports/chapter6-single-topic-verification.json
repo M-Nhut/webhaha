@@ -1,0 +1,13 @@
+{
+  "status": "verified",
+  "catalog_version": "math9-c6-v4",
+  "topic_code": "thong_ke_xac_suat",
+  "topic_name": "Thống kê và xác suất",
+  "lessons": ["4"],
+  "categories": 8,
+  "category_identities_unchanged": true,
+  "previous_migration_receipt_preserved": false,
+  "cleanup_receipts_removed": 2,
+  "python_tests_passed": 203,
+  "backup": "/Users/mac/Documents/BTESTWEB 2/uploads/backups/math9-c6-lesson4-before-20260909T022441433393Z.db"
+}

@@ -1,0 +1,105 @@
+/* Labeled blue navigation with a canvas cutout for the current destination. */
+body.academy-shell { background: var(--nav-background); }
+.app-shell { min-height: 100dvh; padding: var(--layout-frame) var(--layout-frame) var(--layout-frame) 0; }
+.sidebar { position: fixed; inset: 0 auto 0 0; z-index: 50; display: flex; flex-direction: column; width: var(--layout-sidebar); background: var(--nav-background); color: var(--nav-text); }
+.sidebar-brand-link { display: flex; align-items: center; justify-content: flex-start; gap: 12px; min-height: 84px; padding: 20px 24px; color: var(--nav-text); flex-shrink: 0; }
+.sidebar-brand-link:hover { text-decoration: none; }
+.sidebar-logo-img { width: 40px; height: 44px; padding: 5px; background: var(--color-surface); border-radius: var(--radius-md); object-fit: contain; flex-shrink: 0; }
+.sidebar-brand-title { display: block; font-size: 23px; letter-spacing: -.7px; font-weight: 600; line-height: 1.35; }
+.sidebar-brand-subtitle { color: rgb(255 255 255 / .85); display: block; font-size: var(--size-xs); margin-top: 3px; }
+.sidebar-close { display: none; align-self: flex-end; margin: 8px 12px 0; }
+.sidebar .sidebar-close { color: var(--nav-text); }
+.sidebar .sidebar-close:hover { color: var(--nav-text); background: rgb(255 255 255 / .12); }
+/* Keep the first and last active curves inside the scrolling region. */
+.nav-section { flex: 1; min-height: 0; padding: 28px 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .3) transparent; }
+.nav-label { padding: 18px 24px 6px; color: rgb(255 255 255 / .85); font-size: var(--size-xs); font-weight: 500; }
+.nav-item { position: relative; display: flex; align-items: center; justify-content: flex-start; gap: 12px; margin: 4px 0 4px 8px; padding: 14px 20px 14px 16px; min-height: 58px; color: var(--nav-text); border-radius: 32px 0 0 32px; font-size: var(--size-sm); isolation: isolate; transition: background var(--duration-fast), color var(--duration-fast); }
+.nav-item-label { min-width: 0; overflow-wrap: anywhere; }
+.nav-item:hover { text-decoration: none; background: rgb(255 255 255 / .12); color: var(--nav-text); }
+.nav-item.active { color: var(--nav-active-text); background: var(--nav-active-bg); font-weight: 600; }
+.nav-item > svg { width: 26px; height: 26px; stroke-width: 1.7; flex-shrink: 0; }
+.sidebar-footer { flex-shrink: 0; min-height: 76px; margin-top: auto; padding: 18px 24px; display: flex; gap: 10px; justify-content: flex-start; align-items: center; color: var(--nav-text); }
+.sidebar-footer:hover { text-decoration: none; background: rgb(255 255 255 / .1); color: var(--nav-text); }
+.sidebar-footer.active { background: var(--nav-active-bg); color: var(--nav-active-text); border-radius: 32px 0 0 32px; margin-left: 8px; }
+.sidebar-footer .avatar-sm { background: var(--color-surface); border: 2px solid rgb(255 255 255 / .6); }
+.sidebar-footer > div { min-width: 0; }
+.user-name { font-size: var(--size-xs); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-role { color: rgb(255 255 255 / .85); font-size: var(--size-xs); }
+.sidebar-footer.active .user-role { color: var(--color-text-muted); }
+.sidebar :is(a, button):focus-visible { outline: 2px solid var(--nav-text); outline-offset: -5px; }
+.sidebar :is(.nav-item.active, .sidebar-footer.active):focus-visible { outline-color: var(--nav-active-text); }
+.main-area { margin-left: var(--layout-sidebar); min-width: 0; min-height: calc(100dvh - 2 * var(--layout-frame)); background: var(--color-canvas); border-radius: var(--layout-frame-radius); }
+/* Keep the blue frame in view while only the gray canvas scrolls. */
+@media screen {
+  .academy-shell:not(.academy-exam-focus) { height: 100dvh; overflow: hidden; }
+  .academy-shell:not(.academy-exam-focus) .app-shell { display: flex; flex-direction: column; height: 100dvh; min-height: 0; }
+  .academy-shell:not(.academy-exam-focus) .main-area {
+    --layout-sticky-top: calc(var(--layout-header) + var(--space-4));
+    --color-canvas: var(--color-content-canvas);
+    --color-border: var(--color-content-border);
+    --button-bg: var(--color-content-cta);
+    --button-hover-bg: var(--color-content-cta-hover);
+    --button-radius: var(--radius-md);
+    --button-shadow: 0 5px 14px rgb(29 78 216 / .13), inset 0 1px 0 rgb(255 255 255 / .14);
+    --button-hover-shadow: 0 7px 20px rgb(29 78 216 / .20), inset 0 1px 0 rgb(255 255 255 / .14);
+    --input-radius: var(--radius-md);
+    --panel-radius: var(--radius-lg);
+    --panel-shadow: var(--content-shadow);
+    flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain;
+    scrollbar-gutter: stable; scroll-padding-top: var(--layout-header); scroll-padding-bottom: var(--space-8); isolation: isolate;
+    background-color: var(--color-canvas);
+    background-image: radial-gradient(ellipse 650px 430px at 86% 9%, rgb(163 156 241 / .16), transparent 75%), radial-gradient(ellipse 780px 450px at 40% 0, rgb(159 201 255 / .16), transparent 72%);
+    background-repeat: no-repeat;
+  }
+  .academy-shell:not(.academy-exam-focus) .topbar { top: 0; }
+}
+@media (min-width:1200px) {
+  .nav-item.active::before, .nav-item.active::after { content: ''; position: absolute; right: 0; width: 28px; height: 28px; pointer-events: none; }
+  .nav-item.active::before { top: -28px; background: radial-gradient(circle at 0 0, transparent 27.5px, var(--nav-active-bg) 28px); }
+  .nav-item.active::after { bottom: -28px; background: radial-gradient(circle at 0 100%, transparent 27.5px, var(--nav-active-bg) 28px); }
+}
+.topbar { position: sticky; top: var(--layout-frame); z-index: 25; min-height: var(--layout-header); display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px var(--layout-gutter); background: rgb(251 252 255 / .86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgb(224 231 243 / .7); border-radius: var(--layout-frame-radius) var(--layout-frame-radius) 0 0; }
+.topbar-title { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.topbar-page-title { font-size: var(--size-sm); font-weight: 500; color: var(--color-text-secondary); margin: 0; overflow-wrap: anywhere; }
+.sidebar-toggle { display: none; }
+.topbar-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.profile-button { max-width: 220px; }
+.topbar .profile-button { border-color: var(--color-border); border-radius: var(--radius-full); background: rgb(255 255 255 / .8); padding-inline: 14px; }
+.profile-button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar svg { width: 20px; height: 20px; }
+.page-content { max-width: 1600px; margin: 0 auto; padding: 30px var(--layout-gutter) 48px; scroll-margin-top: var(--layout-sticky-top); outline: none; min-width: 0; }
+.sidebar-scrim { display: none; }
+@media (max-width:1199px) {
+  :root { --layout-gutter: 24px; --layout-frame: 8px; --layout-frame-radius: 24px; }
+  .app-shell { padding-left: var(--layout-frame); }
+  .sidebar { position: static; width: 100%; }
+  .sidebar-brand-link { justify-content: flex-start; padding: 20px 24px; }
+  .nav-section { display: flex; flex-wrap: wrap; gap: 4px; overflow: visible; padding: 0 16px 16px; }
+  .nav-label, .sidebar-footer { display: none; }
+  .nav-item { justify-content: flex-start; min-height: 48px; padding: 12px 16px; margin: 4px 0; border-radius: var(--radius-md); }
+  .nav-item > svg { width: 22px; height: 22px; }
+  .main-area { margin-left: 0; }
+  .academy-shell:not(.academy-exam-focus):not(.has-ui-shell) .sidebar { flex-shrink: 0; max-height: 45dvh; overflow-y: auto; }
+  .has-ui-shell .sidebar { position: fixed; width: var(--layout-drawer); max-width: calc(100% - 40px); height: 100dvh; transform: translateX(-100%); visibility: hidden; transition: transform var(--duration-fast); }
+  .has-ui-shell .sidebar.is-open { transform: translateX(0); visibility: visible; }
+  .has-ui-shell .nav-section { display: block; overflow-y: auto; overflow-x: hidden; padding: 4px 14px 24px; }
+  .has-ui-shell .nav-label { display: block; height: auto; padding: 18px 16px 6px; color: rgb(255 255 255 / .85); font-size: var(--size-xs); font-weight: 500; }
+  .has-ui-shell .sidebar-footer { display: flex; justify-content: flex-start; padding: 18px 24px; border-top: 1px solid rgb(255 255 255 / .15); }
+  .has-ui-shell .sidebar-footer.active { margin-left: 0; border-radius: 0; }
+  .has-ui-shell .sidebar-close, .has-ui-shell .sidebar-toggle { display: inline-flex; }
+  .sidebar-scrim.is-open { display: block; position: fixed; inset: 0; z-index: 49; background: var(--color-overlay); border: 0; border-radius: 0; width: 100%; height: 100%; }
+  body.nav-open { overflow: hidden; }
+}
+@media (max-width:767px) {
+  :root { --layout-gutter: 16px; --layout-frame: 0px; --layout-frame-radius: 0px; }
+  .academy-shell:not(.academy-exam-focus) { --layout-frame: 6px; --layout-frame-radius: 20px; }
+  .topbar { gap: 8px; padding-top: 8px; padding-bottom: 8px; }
+  .topbar-title { gap: 8px; }
+  .topbar-page-title { font-size: var(--size-xs); }
+  .profile-button span { display: none; }
+  .profile-button { padding: 8px; width: 44px; }
+  .topbar .profile-button { padding: 8px; }
+  .topbar-actions { gap: 2px; }
+  .page-content { padding-top: 24px; padding-bottom: 32px; }
+}
+@media print { body.academy-shell { background: var(--white); } .app-shell { padding: 0; min-height: 0; } .sidebar, .topbar, .sidebar-scrim { display: none !important; } .main-area { margin-left: 0; min-height: 0; border-radius: 0; background: var(--white); } .page-content { padding: 0; max-width: none; } }

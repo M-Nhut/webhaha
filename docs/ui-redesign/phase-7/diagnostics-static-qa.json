@@ -1,0 +1,46 @@
+{
+  "files": [
+    "templates/diagnostic_list.html",
+    "templates/diagnostic_form.html",
+    "static/css/diagnostic-wizard.css",
+    "static/css/pages/diagnostics.css",
+    "static/js/modules/diagnostic_wizard.js",
+    "static/js/diagnostic-list.js"
+  ],
+  "templates": [
+    {
+      "file": "templates/diagnostic_list.html",
+      "parse": true,
+      "oldInlineStyles": 8,
+      "inlineStyles": 0,
+      "oldInlineHandlers": 1,
+      "inlineHandlers": 0
+    },
+    {
+      "file": "templates/diagnostic_form.html",
+      "parse": true,
+      "oldInlineStyles": 0,
+      "inlineStyles": 0,
+      "oldInlineHandlers": 0,
+      "inlineHandlers": 0
+    }
+  ],
+  "css": [
+    {
+      "file": "static/css/diagnostic-wizard.css",
+      "syntaxErrors": 0,
+      "undefinedTokens": []
+    },
+    {
+      "file": "static/css/pages/diagnostics.css",
+      "syntaxErrors": 0,
+      "undefinedTokens": []
+    }
+  ],
+  "legacyRemoved": {
+    "oldDiagnosticStylesheetReplaced": true,
+    "oldNativeConfirmInlineHandlerRemoved": true,
+    "cssValuesUseSemanticTokens": true,
+    "newFrontendDependencies": 0
+  }
+}

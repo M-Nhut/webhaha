@@ -4,9 +4,9 @@ Checks for errors, warnings, and potential duplicates.
 """
 
 import re
-import unicodedata
+from services.question_policy import answer_issues, canonical_type
 from services.question_normalizer import (
-    VALID_DIFFICULTIES, VALID_QUESTION_TYPES, DIFFICULTY_LABELS, TYPE_LABELS,
+    VALID_DIFFICULTIES,
     normalize_text, remove_diacritics
 )
 
@@ -44,10 +44,11 @@ def validate_question(question, existing_texts=None):
     """
     errors = []
     warnings = []
-    q_type = question.get("question_type", "single")
-    if q_type == "truefalse":
-        q_type = "true_false"
-        question["question_type"] = "true_false"
+    q_type = canonical_type(question.get("question_type", "single"))
+    # Validation is also used when reopening old import sessions.  Canonicalise
+    # the type here so legacy essay rows are migrated even if they predate the
+    # current normalizer.
+    question["question_type"] = q_type
     options = question.get("options", [])
     statements = question.get("statements", [])
 
@@ -57,56 +58,13 @@ def validate_question(question, existing_texts=None):
     if not normalize_text(question.get("question_text", "")):
         errors.append("Câu hỏi không có nội dung")
 
-    # 2. Invalid question type
-    if q_type not in VALID_QUESTION_TYPES:
-        errors.append(
-            f'Loại câu hỏi "{q_type}" không hợp lệ. '
-            f'Chỉ chấp nhận: {", ".join(TYPE_LABELS.values())}'
-        )
-
-    # 3. Invalid difficulty
+    policy_errors, policy_warnings = answer_issues(question)
+    errors.extend(policy_errors)
+    warnings.extend(policy_warnings)
+    errors.extend(question.get("scope_errors") or [])
     diff = question.get("difficulty_level", "")
     if diff and diff not in VALID_DIFFICULTIES:
-        errors.append(
-            f'Mức độ "{diff}" không hợp lệ. '
-            f'Chỉ chấp nhận: {", ".join(DIFFICULTY_LABELS.values())}'
-        )
-
-    # 4. Multiple choice / Single choice options validation
-    if q_type in ("single", "multiple_choice"):
-        if not options or len(options) == 0:
-            errors.append("Không có phương án lựa chọn nào (A, B, C, D...)")
-        else:
-            empty_opts = [i for i, o in enumerate(options) if not normalize_text(o.get("text", ""))]
-            if empty_opts:
-                labels = [chr(65 + i) for i in empty_opts]
-                errors.append(f'Phương án {", ".join(labels)} không có nội dung')
-
-            correct_count = sum(1 for o in options if o.get("is_correct"))
-            if correct_count == 0:
-                warnings.append("Chưa chọn đáp án đúng. Giáo viên có thể bổ sung sau.")
-            elif q_type == "single" and correct_count > 1:
-                warnings.append(f"Câu hỏi trắc nghiệm 1 đáp án nhưng có {correct_count} đáp án đúng")
-
-    # 5. True/False multi-statement validation
-    if q_type == "true_false":
-        if not statements and not options:
-            errors.append("Câu Đúng/Sai chưa có các ý phát biểu (a, b, c, d)")
-        else:
-            missing_answers = sum(1 for s in statements if s.get("answer") is None)
-            if missing_answers > 0:
-                warnings.append(f"Có {missing_answers} ý Đúng/Sai chưa chọn đáp án (a, b, c, d)")
-
-    # 6. Short Answer validation
-    if q_type == "short_answer":
-        correct_answers = [o for o in options if o.get("is_correct")]
-        if not correct_answers and not options:
-            warnings.append("Câu trả lời ngắn không có đáp án mẫu. Giáo viên sẽ chấm trực tiếp.")
-
-    # 7. Essay validation
-    if q_type == "essay":
-        # Essay never requires options or answer key
-        pass
+        errors.append("Mức độ không hợp lệ; chọn NB, TH, VD hoặc VDC.")
 
     # ──── WARNING checks ────
 
@@ -121,11 +79,13 @@ def validate_question(question, existing_texts=None):
                     break
 
     # Formula warnings
-    if question.get("pdf_math_warning"):
-        warnings.append("PDF không chứa dữ liệu công thức gốc; không đảm bảo chính xác. Cần kiểm tra lại các biểu thức toán học.")
-        
     formulas = question.get("formulas", {})
-    if any(not f.get("mathml") for f in formulas.values()):
+    from services.tex_table import display_asset
+    formulas = {key: display_asset(value) for key, value in formulas.items()}
+    question['formulas'] = formulas
+    if any(f.get('needs_review') or f.get('conversion_status') in ('failed', 'pending')
+           or not (f.get('mathml') or f.get('latex') or f.get('table') or f.get('preview_url') or f.get('svg_cache_key'))
+           for f in formulas.values()):
         warnings.append("Có công thức phức tạp hoặc bị lỗi cấu trúc, cần giáo viên xem xét lại.")
 
     # 9. Points validation

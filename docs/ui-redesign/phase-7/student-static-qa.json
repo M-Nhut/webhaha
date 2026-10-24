@@ -1,0 +1,78 @@
+{
+  "templates/practice_home.html": {
+    "inlineStyles": 0,
+    "inlineHandlers": 0,
+    "externalSources": [],
+    "jinjaParsed": true
+  },
+  "templates/practice_progress.html": {
+    "inlineStyles": 0,
+    "inlineHandlers": 0,
+    "externalSources": [],
+    "jinjaParsed": true
+  },
+  "static/css/pages/practice-student.css": {
+    "inlineStyles": 0,
+    "inlineHandlers": 0,
+    "externalSources": []
+  },
+  "static/js/modules/practice_progress.js": {
+    "inlineStyles": 0,
+    "inlineHandlers": 0,
+    "externalSources": []
+  },
+  "cssSyntaxErrors": [],
+  "undefinedCSSVariables": [],
+  "legacyChartHexColors": [],
+  "chartEmptyPolicy": "null retained; no synthetic zero/fifty fallback; observed score0..10 and mastery0..1 distinct charts; cognitive values require sample_count>0",
+  "readOnlySafety": "No app import, .env, production DB, provider call or data POST performed by this static check.",
+  "migration": {
+    "templates/practice_home.html": {
+      "inlineStylesBefore": 0,
+      "inlineStylesAfter": 0,
+      "inlineHandlersBefore": 1,
+      "inlineHandlersAfter": 0
+    },
+    "templates/practice_progress.html": {
+      "inlineStylesBefore": 42,
+      "inlineStylesAfter": 0,
+      "inlineHandlersBefore": 1,
+      "inlineHandlersAfter": 0
+    },
+    "chartModule": "Full replacement; four legacy hex colors removed; external Chart.js source replaced by local versioned asset."
+  },
+  "designDecisions": [
+    "S16: class GET context before one server-state primary action; teacher papers secondary; evidence disclosure retains shared 8x4 knowledge matrix.",
+    "S16: resume means reopening the paper, explicitly no answer restoration/autosave promise.",
+    "S17: subject context first; cold start and unknown stay neutral; KPI average and best score require actual attempts.",
+    "S17: observed score 0–10, snapshot mastery0–1 and cognitive weighted rate0–100 use separate charts with local token colors.",
+    "S17: null and unknown gaps remain null, all data tables and result links survive chart-load failure.",
+    "S17: fewer than four chart points remain points without a connected trend; trend labels follow backend only when >=3 attempts."
+  ],
+  "mainBrowserChecks": 263,
+  "matrixBrowserChecks": 40,
+  "screenshots": [
+    "screenshots/student-home-blocked-1440.png",
+    "screenshots/student-home-blocked-375.png",
+    "screenshots/student-home-cold-1440.png",
+    "screenshots/student-home-cold-375.png",
+    "screenshots/student-home-matrix-1440.png",
+    "screenshots/student-home-matrix-375.png",
+    "screenshots/student-home-pending-1440.png",
+    "screenshots/student-home-pending-375.png",
+    "screenshots/student-home-resume-1440.png",
+    "screenshots/student-home-resume-375.png",
+    "screenshots/student-home-student-1440.png",
+    "screenshots/student-home-student-375.png",
+    "screenshots/student-progress-cold-1440.png",
+    "screenshots/student-progress-cold-375.png",
+    "screenshots/student-progress-declining-1440.png",
+    "screenshots/student-progress-declining-375.png",
+    "screenshots/student-progress-matrix-1440.png",
+    "screenshots/student-progress-matrix-375.png",
+    "screenshots/student-progress-one_point-1440.png",
+    "screenshots/student-progress-one_point-375.png",
+    "screenshots/student-progress-student-1440.png",
+    "screenshots/student-progress-student-375.png"
+  ]
+}

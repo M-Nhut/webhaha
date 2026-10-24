@@ -1,0 +1,24 @@
+{
+  "templates": {
+    "teacher_practice_list.html": {
+      "inline_styles": 0,
+      "inline_handlers": 0
+    },
+    "teacher_practice_detail.html": {
+      "inline_styles": 0,
+      "inline_handlers": 0
+    },
+    "practice_draft.html": {
+      "inline_styles": 0,
+      "inline_handlers": 0
+    }
+  },
+  "css_errors": [],
+  "undefined_css_tokens": [],
+  "removed_legacy_inline_styles": 33,
+  "removed_legacy_inline_handlers": 2,
+  "generated_bank_styles_replaced": "hidden + disabled + uncheck; no style.display",
+  "explicit_native_get_scope": true,
+  "assets_local_only": true,
+  "read_only_observations_restored": true
+}

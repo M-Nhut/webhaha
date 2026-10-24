@@ -1,0 +1,307 @@
+{
+  "checks": [
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "List no overflow 375",
+      "passed": true
+    },
+    {
+      "name": "Admin create 375",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics/new",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Source no overflow 375",
+      "passed": true
+    },
+    {
+      "name": "Readonly fixed40 375",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "List no overflow 768",
+      "passed": true
+    },
+    {
+      "name": "Admin create 768",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics/new",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Source no overflow 768",
+      "passed": true
+    },
+    {
+      "name": "Readonly fixed40 768",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "List no overflow 1024",
+      "passed": true
+    },
+    {
+      "name": "Admin create 1024",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics/new",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Source no overflow 1024",
+      "passed": true
+    },
+    {
+      "name": "Readonly fixed40 1024",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "List no overflow 1440",
+      "passed": true
+    },
+    {
+      "name": "Admin create 1440",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics/new",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Source no overflow 1440",
+      "passed": true
+    },
+    {
+      "name": "Readonly fixed40 1440",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics/new",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "25 bounded choices",
+      "passed": true
+    },
+    {
+      "name": "Heading focus on selection",
+      "passed": true
+    },
+    {
+      "name": "Details lazy until opened",
+      "passed": true
+    },
+    {
+      "name": "Blocked reason and native disabled",
+      "passed": true
+    },
+    {
+      "name": "Lazy detail retry with answer",
+      "passed": true
+    },
+    {
+      "name": "22 selection exact quotas",
+      "passed": true
+    },
+    {
+      "name": "Coverage8 and review enabled",
+      "passed": true
+    },
+    {
+      "name": "Selection no overflow 375",
+      "passed": true
+    },
+    {
+      "name": "Selection no overflow 768",
+      "passed": true
+    },
+    {
+      "name": "Selection no overflow 1024",
+      "passed": true
+    },
+    {
+      "name": "Selection no overflow 1440",
+      "passed": true
+    },
+    {
+      "name": "Pagination retains22",
+      "passed": true
+    },
+    {
+      "name": "No-match distinct empty",
+      "passed": true
+    },
+    {
+      "name": "List error keeps selections",
+      "passed": true
+    },
+    {
+      "name": "Kind filter retry",
+      "passed": true
+    },
+    {
+      "name": "Review error focus and preserves selection",
+      "passed": true
+    },
+    {
+      "name": "Complete review22 and answers",
+      "passed": true
+    },
+    {
+      "name": "Unseen review blocked",
+      "passed": true
+    },
+    {
+      "name": "Review digest frozen metadata",
+      "passed": true
+    },
+    {
+      "name": "Review no overflow 375",
+      "passed": true
+    },
+    {
+      "name": "Review no overflow 768",
+      "passed": true
+    },
+    {
+      "name": "Review no overflow 1024",
+      "passed": true
+    },
+    {
+      "name": "Review no overflow 1440",
+      "passed": true
+    },
+    {
+      "name": "22 viewed opens confirmation",
+      "passed": true
+    },
+    {
+      "name": "Course required despite read",
+      "passed": true
+    },
+    {
+      "name": "Explicit class/title receipt",
+      "passed": true
+    },
+    {
+      "name": "Publish error keeps fields and enables retry",
+      "passed": true
+    },
+    {
+      "name": "403 explicit role error preserves22",
+      "passed": true
+    },
+    {
+      "name": "Stale digest returns review gate",
+      "passed": true
+    },
+    {
+      "name": "Within1h restore metadata only",
+      "passed": true
+    },
+    {
+      "name": "Storage excludes answers and review digest",
+      "passed": true
+    },
+    {
+      "name": "Expired restore cleared visibly",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Native delete dialog and safe default",
+      "passed": true
+    },
+    {
+      "name": "Delete Escape returns trigger",
+      "passed": true
+    },
+    {
+      "name": "Delete cancel sends no request",
+      "passed": true
+    },
+    {
+      "name": "Confirmed deletion one existing CSRF POST intercepted",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Teacher no create control",
+      "passed": true
+    },
+    {
+      "name": "Teacher scope explained",
+      "passed": true
+    },
+    {
+      "name": "GET /diagnostics",
+      "passed": true,
+      "detail": 200
+    },
+    {
+      "name": "Reduced motion inherited",
+      "passed": true
+    },
+    {
+      "name": "No JS errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "shots": [
+    "screenshots/diagnostics-list-375.png",
+    "screenshots/diagnostics-source-375.png",
+    "screenshots/diagnostics-list-1440.png",
+    "screenshots/diagnostics-source-1440.png",
+    "screenshots/diagnostics-selection-375.png",
+    "screenshots/diagnostics-selection-1440.png",
+    "screenshots/diagnostics-review-375.png",
+    "screenshots/diagnostics-review-1440.png"
+  ],
+  "intercepted": {
+    "publish": 3,
+    "delete": 1,
+    "detail": 2
+  },
+  "diagnosticWritesReachedServer": 0,
+  "base": "http://127.0.0.1:8769"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "cssFilesParsed": 3,
+  "undefinedTokens": [],
+  "nativeControlTagsUnchanged": true,
+  "templateParsed": true,
+  "style": "Soft UI / soft 3D with light claymorphism",
+  "scope": "student focused exam page only",
+  "palette": "LMath blue",
+  "oldVioletTokensRemoved": true
+}

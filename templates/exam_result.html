@@ -1,272 +1,102 @@
 {% extends "base.html" %}
-
-{% block title %}Kết quả kiểm tra - EduCenter{% endblock %}
-{% block page_title %}Kết quả bài kiểm tra{% endblock %}
-
+{% block title %}Kết quả · {{ exam.title }} - LMath{% endblock %}
+{% block page_title %}Kết quả bài làm{% endblock %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/exam-results.css', v='20261019-answer-icons') }}">{% endblock %}
 {% block content %}
-<div class="page-header">
-  <div class="page-title-area">
-    <p>Đánh giá & Chi tiết bài làm</p>
-    <h1>{{ exam.title }}</h1>
-  </div>
-  <div>
-    <a href="{{ url_for('exam_list') }}" class="btn btn-secondary">Quay lại danh sách</a>
-  </div>
-</div>
-
-{% if single_view %}
-  <!-- Student Detailed Result (single_view = True) -->
-  <div class="form-grid-3" style="grid-template-columns: 1fr 2fr; align-items: start; gap: var(--space-6)">
-    
-    <!-- Left column: Score Ring Widget & Stats -->
-    <div class="card" style="display:flex; flex-direction:column; align-items:center; text-align:center">
-      <div class="card-header" style="width:100%; border-bottom:1px solid var(--border)">
-        <h3 class="card-title" style="margin:0">Điểm số đạt được</h3>
+{% set standalone = exam.assessment_purpose == 'standalone' %}
+{% set diagnostic = exam.assessment_purpose == 'initial_diagnostic' %}
+{% set result_endpoint = 'assessment_result' if standalone else 'practice_result' %}
+{% set adaptive = exam.get_adaptive_metadata() %}
+{% set fixed_practice = adaptive.get('aptga', {}).get('version') == 'practice-22-v1' %}
+{% set kinds = {'single':'Một lựa chọn', 'multi':'Nhiều lựa chọn · lịch sử', 'multiple_choice':'Nhiều lựa chọn · lịch sử', 'truefalse':'Đúng / Sai', 'true_false':'Đúng / Sai', 'short_answer':'Trả lời ngắn', 'essay':'Tự luận · lịch sử', 'tu_luan':'Tự luận · lịch sử'} %}
+{% set labels = {'correct':'Đúng', 'partial':'Đúng một phần', 'incorrect':'Sai', 'blank':'Chưa trả lời', 'ungraded':'Chưa chấm'} %}
+<div class="results-page">
+  <header class="page-header results-header">
+    <div class="page-title-area"><p>{{ 'Kiểm tra độc lập' if standalone else 'Đánh giá đầu vào' if diagnostic else 'Tự luyện kiến thức' }} · {{ 'Bài làm cá nhân' if single_view else 'Bài nộp của học sinh' }}</p><h1>{{ exam.title }}</h1><p class="results-context">{{ exam.course.course_name if exam.course else 'Chưa ghi lớp học' }} · {{ exam.questions|length }} câu · {{ exam.duration_minutes }} phút{% if fixed_practice %} · Bài luyện theo cấu trúc 22 câu{% endif %}</p></div>
+    <nav class="results-header-actions" aria-label="Điều hướng kết quả">
+      {% if current_user.role in ('admin', 'teacher') and single_view %}<a href="{{ url_for(result_endpoint, exam_id=exam.id) }}" class="btn btn-secondary"><i data-lucide="arrow-left" aria-hidden="true"></i>Danh sách bài nộp</a>{% endif %}
+      {% if standalone %}<a href="{{ url_for('assessment_list') }}" class="btn btn-secondary">Danh sách đề kiểm tra</a>{% else %}<a href="{{ url_for('practice_home', course_id=exam.course_id) }}" class="btn btn-secondary">Về tự luyện kiến thức</a>{% endif %}
+    </nav>
+  </header>
+  {% if single_view %}
+    {% set answer_map = {} %}{% set counts = namespace(correct=0, partial=0, incorrect=0, blank=0, ungraded=0) %}
+    {% for sa in submission.answers %}{% set _ = answer_map.update({sa.question_id: sa}) %}{% endfor %}
+    {% set states = {} %}
+    {% for q in exam.questions %}{% set sa = answer_map.get(q.id) %}
+      {% if not sa or not sa.is_answered %}{% set state = 'blank' %}{% set counts.blank = counts.blank + 1 %}
+      {% elif not submission.is_graded or sa.answer_status in ('pending_review', 'legacy_unknown') %}{% set state = 'ungraded' %}{% set counts.ungraded = counts.ungraded + 1 %}
+      {% elif sa.is_correct %}{% set state = 'correct' %}{% set counts.correct = counts.correct + 1 %}
+      {% elif (sa.points_earned or 0) > 0 %}{% set state = 'partial' %}{% set counts.partial = counts.partial + 1 %}
+      {% else %}{% set state = 'incorrect' %}{% set counts.incorrect = counts.incorrect + 1 %}{% endif %}
+      {% set _ = states.update({q.id: state}) %}
+    {% endfor %}
+    <section class="panel result-overview" aria-labelledby="result-summary-title">
+      <div class="result-score"><h2 id="result-summary-title">{{ 'Điểm bài làm' if submission.is_graded else 'Trạng thái bài làm' }}</h2>
+        {% if submission.is_graded and submission.score_on_ten is not none %}<p class="result-score-value">{{ submission.score_on_ten }}<span> / 10</span></p>{% else %}<p class="result-score-unknown">{{ 'Chưa đủ dữ liệu điểm' if submission.is_graded else 'Chưa chấm' }}</p>{% endif %}
+        {% if submission.is_graded %}<span class="badge badge-success">Đã chấm điểm</span>{% else %}<span class="badge badge-neutral">Bài làm lịch sử</span>{% if submission.score_on_ten is not none %}<p class="result-stored-score">Điểm lưu trữ: {{ submission.score_on_ten }} / 10</p>{% endif %}{% endif %}
+        {% if submission.is_graded and submission.max_score and submission.total_score is not none %}<p class="result-score-caption">Tỷ lệ điểm đạt được: <strong>{{ (submission.total_score / submission.max_score * 100)|round(1) }}%</strong></p>{% endif %}
       </div>
-      
-      {% set pct = (submission.total_score / (submission.max_score or 1)) * 100 %}
-      {% set stroke_offset = 314 - (314 * (pct / 100)) %}
-      
-      <div class="score-container">
-        <div class="score-ring">
-          <svg>
-            <circle class="bg" cx="60" cy="60" r="50"></circle>
-            <circle class="progress" cx="60" cy="60" r="50" style="stroke-dashoffset: {{ stroke_offset }};"></circle>
-          </svg>
-          <div class="score-text">
-            {{ submission.total_score }}/{{ submission.max_score }}
-          </div>
-        </div>
-        <p style="font-size: var(--text-sm); font-weight:600; color:var(--text-2); margin-top:var(--space-2)">
-          Tỷ lệ đúng: {{ pct | round(1) }}%
-        </p>
+      <div class="result-identity"><h3>{{ submission.student.fullname }}</h3><p>{{ submission.student.user_code }} · {{ 'Bài kiểm tra độc lập' if standalone else 'Bài đánh giá đầu vào' if diagnostic else 'Bài luyện kiến thức' }}</p>
+        <dl class="result-dates"><div><dt>Bắt đầu</dt><dd>{{ submission.started_at.strftime('%H:%M:%S · %d/%m/%Y') if submission.started_at else 'Chưa ghi thời gian' }}</dd></div><div><dt>Nộp bài</dt><dd>{{ submission.submitted_at.strftime('%H:%M:%S · %d/%m/%Y') if submission.submitted_at else 'Chưa nộp bài' }}</dd></div></dl>
+        {% if standalone %}<p class="result-scope-note">Kết quả kiểm tra độc lập không cập nhật hồ sơ năng lực luyện tập.</p>{% endif %}
       </div>
-
-      <div style="width:100%; font-size:var(--text-xs); color:var(--text-2); display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--border); padding-top:var(--space-4); text-align:left">
-        <div><strong>Học sinh:</strong> {{ submission.student.fullname }} ({{ submission.student.user_code }})</div>
-        <div><strong>Khóa học:</strong> {{ exam.course.course_name }}</div>
-        <div><strong>Bắt đầu lúc:</strong> {{ submission.started_at.strftime('%H:%M:%S %d/%m/%Y') }}</div>
-        {% if submission.submitted_at %}
-          <div><strong>Nộp bài lúc:</strong> {{ submission.submitted_at.strftime('%H:%M:%S %d/%m/%Y') }}</div>
-        {% endif %}
-      </div>
-    </div>
-
-    <!-- Right column: Question review breakdown -->
-    <div style="display:flex; flex-direction:column; gap:var(--space-4)">
-      
-      <h2 style="font-family:'Fraunces', serif; font-size:var(--text-lg); margin-bottom:var(--space-1)">Chi tiết bài làm</h2>
-      
-      {% set submission_answers_map = {} %}
-      {% for sa in submission.answers %}
-        {% set _ = submission_answers_map.update({sa.question_id: sa}) %}
-      {% endfor %}
-
+    </section>
+    {% if not submission.is_graded %}<div class="result-notice is-warning" role="note"><i data-lucide="history" aria-hidden="true"></i><p><strong>Bài làm lịch sử chưa chấm.</strong> Bài này không hỗ trợ chấm lại và không được dùng làm bằng chứng năng lực. Đáp án đã nhập vẫn được giữ để đối chiếu.</p></div>{% endif %}
+    {% if diagnostic_complete %}<div class="result-notice is-success" role="note"><i data-lucide="circle-check" aria-hidden="true"></i><p><strong>Đã hoàn tất đánh giá đầu vào.</strong> Hồ sơ năng lực ban đầu đã được lưu. Quay lại Tự luyện kiến thức để tạo bài phù hợp với bằng chứng mới nhất.</p></div>{% endif %}
+    {% if can_decide %}
+    <section class="panel result-next-step" aria-labelledby="result-next-title">
+      <div><h2 id="result-next-title">Chọn bước tiếp theo</h2><p>Kết quả và hồ sơ năng lực đã được lưu. Bạn có thể luyện tiếp với hồ sơ mới nhất hoặc kết thúc phiên.</p>{% if not can_continue %}<p class="result-source-warning"><i data-lucide="triangle-alert" aria-hidden="true"></i>Nguồn câu hỏi của lớp đã thay đổi. Chưa thể tạo bài tiếp theo với nguồn hiện tại.</p>{% endif %}</div>
+      <div class="result-next-actions">{% if can_continue %}<form method="POST" action="{{ url_for('practice_continue', submission_id=submission.id) }}" data-result-decision><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-primary">Tiếp tục luyện<i data-lucide="arrow-right" aria-hidden="true"></i></button></form>{% endif %}<form method="POST" action="{{ url_for('practice_end', submission_id=submission.id) }}" data-result-decision><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button type="submit" class="btn btn-secondary">Kết thúc phiên</button></form></div>
+      <p class="result-decision-status" role="status" hidden>Đang lưu lựa chọn…</p>
+    </section>
+    {% elif practice_session is defined and practice_session and practice_session.status == 'ended' %}<p class="result-session-ended"><i data-lucide="circle-check" aria-hidden="true"></i>Phiên luyện đã kết thúc. Bạn vẫn có thể xem lại bài làm này.</p>{% endif %}
+    {% if adaptive.get('aptga', {}).get('algorithm_version') %}<details class="result-audit"><summary>Vì sao hệ thống chọn bài luyện này?</summary>{% include 'components/selection_audit.html' %}</details>{% elif adaptive.get('explanation') %}<details class="result-audit"><summary>Căn cứ lựa chọn bài luyện</summary><div class="result-audit-copy">{{ adaptive.explanation }}</div></details>{% endif %}
+    <section class="result-review" aria-labelledby="result-review-title">
+      <div class="result-review-heading"><div><h2 id="result-review-title">Chi tiết bài làm</h2><p>Đối chiếu câu trả lời, đáp án và lời giải của từng câu.</p></div><span class="badge badge-neutral">{{ exam.questions|length }} câu hỏi</span></div>
+      <dl class="result-totals" aria-label="Tổng hợp trạng thái câu trả lời"><div class="is-correct"><dt>Đúng</dt><dd>{{ counts.correct }}</dd></div><div class="is-partial"><dt>Đúng một phần</dt><dd>{{ counts.partial }}</dd></div><div class="is-incorrect"><dt>Sai</dt><dd>{{ counts.incorrect }}</dd></div><div class="is-blank"><dt>Chưa trả lời</dt><dd>{{ counts.blank }}</dd></div>{% if counts.ungraded or not submission.is_graded %}<div class="is-ungraded"><dt>Chưa chấm</dt><dd>{{ counts.ungraded }}</dd></div>{% endif %}</dl>
+      {% if exam.questions %}<nav class="result-question-nav" aria-label="Đi đến câu hỏi">{% for q in exam.questions %}<a href="#result-q-{{ q.id }}" class="result-question-link is-{{ states[q.id] }}" aria-label="Câu {{ loop.index }} · {{ labels[states[q.id]] }}">{{ loop.index }}</a>{% endfor %}</nav>{% endif %}
+      <div class="result-questions">
       {% for q in exam.questions %}
-        {% set sa = submission_answers_map.get(q.id) %}
-        {% set selected_ids = sa.get_selected_ids() if sa else [] %}
-        {% set sa_payload = sa.get_answer_payload() if sa else {} %}
-        
-        <div class="card" style="border-left: 3px solid {% if sa and sa.is_correct %}var(--success){% elif sa and sa.points_earned > 0 %}var(--warning){% else %}var(--danger){% endif %}; margin-bottom:0">
-          
-          <div style="display:flex; justify-content:space-between; margin-bottom:var(--space-3)">
-            <span style="font-size:var(--text-xs); font-weight:600; color:var(--text-3); text-transform:uppercase">
-              Câu {{ loop.index }} · 
-              {% if q.question_type == 'single' %}
-                Một lựa chọn
-              {% elif q.question_type == 'multi' %}
-                Nhiều lựa chọn
-              {% elif q.question_type in ('truefalse', 'true_false') %}
-                Đúng / Sai
-              {% else %}
-                Tự luận / Trả lời ngắn
-              {% endif %}
-            </span>
-            <span style="font-size:var(--text-xs); font-weight:600; color:{% if sa and sa.is_correct %}var(--success){% elif sa and sa.points_earned > 0 %}var(--warning){% else %}var(--danger){% endif %}">
-              {% if sa %}
-                Đạt: {{ sa.points_earned }} / {{ q.points }}đ
-              {% else %}
-                Không trả lời (0 / {{ q.points }}đ)
-              {% endif %}
-            </span>
-          </div>
-
-          <p style="font-weight:500; font-size: var(--text-md); margin-bottom:var(--space-4); line-height:1.6; color: var(--text-1); white-space: pre-wrap;">
-            {{ q.question_text }}
-          </p>
-
+        {% set question_number = loop.index %}{% set sa = answer_map.get(q.id) %}{% set selected_ids = sa.get_selected_ids() if sa else [] %}{% set payload = sa.get_answer_payload() if sa else {} %}{% set state = states[q.id] %}{% set ungraded = not submission.is_graded or (sa and sa.answer_status in ('pending_review', 'legacy_unknown')) %}
+        <article class="question-surface result-question is-{{ state }}" id="result-q-{{ q.id }}" aria-labelledby="result-question-title-{{ q.id }}" data-result-question>
+          <header class="result-question-heading"><div><h3 class="question-label" id="result-question-title-{{ q.id }}">Câu {{ loop.index }}</h3><span class="result-question-kind">{{ kinds.get(q.question_type, 'Dạng câu hỏi lịch sử') }}</span></div><span class="result-status is-{{ state }}">{{ labels[state] }}</span></header>
+          <p class="result-question-points">{% if ungraded %}Chưa có điểm chấm cho câu này{% elif exam.total_points %}Đạt <strong>{{ (((sa.points_earned or 0) if sa else 0) * 10 / exam.total_points)|round(4) }}</strong> / {{ ((q.points or 0) * 10 / exam.total_points)|round(4) }} điểm{% else %}Chưa đủ dữ liệu để quy đổi điểm câu hỏi{% endif %}</p>
+          {% if q.context %}<div class="question-context result-question-context">{{ q.context }}</div>{% endif %}<div class="question-reading result-question-prompt">{{ q.question_text }}</div>
+          {% if q.image_url %}<figure class="result-figure"><button type="button" class="result-image-button" data-result-image-open aria-label="Phóng to hình minh họa câu {{ question_number }}"><img src="{{ q.image_url }}" alt="Hình minh họa câu {{ question_number }}" loading="lazy" decoding="async" data-result-image></button><figcaption>Hình minh họa · nhấn để phóng to</figcaption><p class="result-image-error" hidden>Không tải được hình minh họa. <button type="button" class="btn btn-secondary btn-sm" data-result-image-retry>Thử lại hình</button></p></figure>{% endif %}
           {% if q.question_type in ('truefalse', 'true_false') %}
-            <!-- True/False Review Table -->
-            <div style="display:flex; flex-direction:column; gap:var(--space-2)">
-              {% for answer in q.answers %}
-                {% set st_val = sa_payload.get(answer.id | string) %}
-                {% set expected_val = answer.is_correct %}
-                {% set is_st_correct = (st_val == expected_val) %}
-
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:var(--space-3);
-                            padding:var(--space-3) var(--space-4);
-                            border:1px solid {% if is_st_correct %}var(--success){% else %}var(--danger){% endif %};
-                            background: {% if is_st_correct %}var(--success-light){% else %}var(--danger-light){% endif %};
-                            border-radius:var(--radius-sm);">
-                  
-                  <div style="font-size:var(--text-sm); color:var(--text-1); font-weight:500; flex:1">
-                    {{ answer.answer_text }}
-                  </div>
-
-                  <div style="display:flex; align-items:center; gap:var(--space-2)">
-                    <span style="font-size:var(--text-xs); color:var(--text-2)">
-                      Lựa chọn: 
-                      {% if st_val is true %}
-                        <strong style="color:var(--accent)">Đúng</strong>
-                      {% elif st_val is false %}
-                        <strong style="color:var(--accent)">Sai</strong>
-                      {% else %}
-                        <em style="color:var(--text-3)">Chưa chọn</em>
-                      {% endif %}
-                    </span>
-                    <span style="font-size:var(--text-xs); color:var(--text-2); margin-left:var(--space-2)">
-                      Đáp án: <strong>{{ 'Đúng' if expected_val else 'Sai' }}</strong>
-                    </span>
-
-                    {% if is_st_correct %}
-                      <span class="badge badge-present" style="font-size:10px; padding:2px 8px">Đúng</span>
-                    {% else %}
-                      <span class="badge badge-absent" style="font-size:10px; padding:2px 8px">Sai</span>
-                    {% endif %}
-                  </div>
-                </div>
+            <div class="result-truth-table" role="table" aria-label="Đối chiếu Đúng / Sai câu {{ question_number }}"><div class="result-truth-heading" role="row"><span role="columnheader">Mệnh đề</span><span role="columnheader">{{ 'Bạn trả lời' if current_user.role == 'student' else 'Học sinh trả lời' }}</span><span role="columnheader">Đáp án</span><span role="columnheader">Kết quả</span></div>
+              {% for answer in q.answers %}{% set value = payload.get(answer.id|string) %}{% set answered = value is true or value is false %}{% set truth_state = 'blank' if not answered else 'ungraded' if ungraded else 'correct' if value == answer.is_correct else 'incorrect' %}
+                <div class="question-answer-box result-truth-row is-{{ truth_state }}" role="row"><div class="result-truth-statement question-statement" role="cell"><strong class="question-letter">{{ 'abcd'[loop.index0] if loop.index0 < 4 else loop.index }}</strong><div class="question-option-text">{{ answer.answer_text }}</div></div><div class="result-truth-answer" role="cell"><span class="result-mobile-label">{{ 'Bạn trả lời' if current_user.role == 'student' else 'Học sinh trả lời' }}</span><strong>{{ 'Đúng' if value is true else 'Sai' if value is false else 'Chưa chọn' }}</strong></div><div class="result-truth-answer" role="cell"><span class="result-mobile-label">Đáp án</span><strong>{{ 'Đúng' if answer.is_correct else 'Sai' }}</strong></div><div class="result-truth-verdict" role="cell"><span class="result-status is-{{ truth_state }}">{{ labels[truth_state] }}</span></div></div>
               {% endfor %}
             </div>
-
           {% elif q.question_type in ('short_answer', 'essay', 'tu_luan') %}
-            <!-- Essay Review -->
-            <div style="display:flex; flex-direction:column; gap:var(--space-3); padding:var(--space-3); border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--surface)">
-              <div>
-                <strong style="font-size:var(--text-xs); color:var(--text-2)">Bài làm tự luận:</strong>
-                <p style="font-size:var(--text-sm); color:var(--text-1); margin-top:4px; white-space:pre-wrap">
-                  {{ sa_payload.get('text') if sa_payload.get('text') else 'Không có văn bản nhập' }}
-                </p>
-              </div>
-
-              {% if sa_payload.get('file_url') %}
-                <div style="margin-top:var(--space-2)">
-                  <strong style="font-size:var(--text-xs); color:var(--text-2); display:block; margin-bottom:4px">File / Ảnh bài làm đính kèm:</strong>
-                  <a href="{{ sa_payload.get('file_url') }}" target="_blank" class="btn btn-secondary btn-sm" style="display:inline-flex; align-items:center; gap:6px">
-                    <i data-lucide="paperclip" style="width:14px; height:14px"></i> Xem / Tải về file bài làm
-                  </a>
-                  {% if sa_payload.get('file_url').endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')) %}
-                    <div style="margin-top:var(--space-2)">
-                      <img src="{{ sa_payload.get('file_url') }}" alt="Ảnh bài làm đính kèm" style="max-width:100%; max-height:300px; border-radius:var(--radius-md); border:1px solid var(--border)">
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-            </div>
-
+            <dl class="result-text-answers"><div class="question-answer-box"><dt>{{ 'Bạn trả lời' if current_user.role == 'student' else 'Học sinh trả lời' }}</dt><dd class="question-reading" data-latex-answer>{% if payload.get('text') %}{{ payload.get('text') }}{% elif payload.get('file_url') %}Bài làm có tệp đính kèm lịch sử; không có văn bản nhập.{% else %}Chưa nhập câu trả lời{% endif %}</dd></div>{% if q.question_type == 'short_answer' %}<div class="question-answer-box"><dt>Đáp án</dt><dd class="question-reading" data-latex-answer>{% set keys = q.answers|selectattr('is_correct')|list %}{% for answer in keys %}{{ answer.answer_text }}{% if not loop.last %} | {% endif %}{% else %}Chưa có đáp án văn bản để đối chiếu{% endfor %}</dd></div>{% endif %}</dl>
           {% else %}
-            <!-- Single / Multi Choice Review -->
-            <div style="display:flex; flex-direction:column; gap:var(--space-2)">
-              {% for answer in q.answers %}
-                {% set is_selected = answer.id in selected_ids %}
-                
-                <div style="display:flex; align-items:center; gap:var(--space-3);
-                            padding:var(--space-2) var(--space-4);
-                            border:1px solid {% if answer.is_correct %}var(--success){% elif is_selected %}var(--danger){% else %}var(--border){% endif %};
-                            background: {% if answer.is_correct %}var(--success-light){% elif is_selected %}var(--danger-light){% else %}var(--surface){% endif %};
-                            border-radius:var(--radius-sm);">
-                  
-                  <!-- Icon choice check indicators -->
-                  {% if q.question_type == 'multi' %}
-                    <i data-lucide="{% if is_selected %}check-square{% else %}square{% endif %}" 
-                       style="width:14px; height:14px; color:{% if answer.is_correct %}var(--success){% elif is_selected %}var(--danger){% else %}var(--text-3){% endif %}"></i>
-                  {% else %}
-                    <i data-lucide="{% if is_selected %}circle-dot{% else %}circle{% endif %}" 
-                       style="width:14px; height:14px; color:{% if answer.is_correct %}var(--success){% elif is_selected %}var(--danger){% else %}var(--text-3){% endif %}"></i>
-                  {% endif %}
-                  
-                  <span style="font-size:var(--text-sm); 
-                               color:{% if answer.is_correct %}var(--success){% elif is_selected %}var(--danger){% else %}var(--text-2){% endif %};
-                               font-weight:{% if answer.is_correct or is_selected %}500{% else %}400{% endif %}">
-                    {{ answer.answer_text }}
-                  </span>
-
-                  <!-- Indicators tags -->
-                  {% if answer.is_correct %}
-                    <span class="badge badge-present" style="margin-left:auto; font-size:9px; padding:1px 6px">Đáp án đúng</span>
-                  {% elif is_selected %}
-                    <span class="badge badge-absent" style="margin-left:auto; font-size:9px; padding:1px 6px">Bạn chọn sai</span>
-                  {% endif %}
-
-                </div>
-              {% endfor %}
-            </div>
+            <p class="result-answer-caption">{{ 'Bạn trả lời' if current_user.role == 'student' else 'Học sinh trả lời' }}: {% if not selected_ids %}<strong>Chưa chọn đáp án</strong>{% else %}<strong>{{ selected_ids|length }} lựa chọn</strong>{% endif %}</p>
+            <ol class="result-choices" aria-label="Đối chiếu lựa chọn câu {{ question_number }}">
+              {% for answer in q.answers %}{% set selected = answer.id in selected_ids %}{% set selected_label = 'Bạn đã chọn' if current_user.role == 'student' else 'Học sinh đã chọn' %}
+              <li class="question-option result-choice{% if answer.is_correct %} is-key{% elif selected and not ungraded %} is-selected-incorrect{% elif selected %} is-selected{% endif %}" data-answer-selected="{{ 'true' if selected else 'false' }}">
+                <span class="question-letter result-choice-letter" aria-hidden="true">{{ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[loop.index0] if loop.index0 < 26 else loop.index }}</span>
+                <div class="question-option-text result-choice-text">{{ answer.answer_text }}</div>
+                {% if answer.is_correct %}<span class="result-answer-mark is-correct" role="img" aria-label="Đáp án đúng{% if selected %}. {{ selected_label }}{% if ungraded %}. Bài chưa chấm{% endif %}{% endif %}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m20 6-11 11-5-5"></path></svg></span>
+                {% elif selected and not ungraded %}<span class="result-answer-mark is-incorrect" role="img" aria-label="{{ selected_label }} đáp án sai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m18 6-12 12M6 6l12 12"></path></svg></span>
+                {% elif selected %}<span class="result-answer-mark is-ungraded" role="img" aria-label="{{ selected_label }}. Bài chưa chấm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{% if q.question_type in ('multi', 'multiple_choice') %}<rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="m9 12 2 2 4-4"></path>{% else %}<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle>{% endif %}</svg></span>{% endif %}
+              </li>{% endfor %}
+            </ol>
           {% endif %}
-        </div>
-      {% endfor %}
-
-    </div>
-  </div>
-
-{% else %}
-  <!-- Teacher / Manager view of all submissions (single_view = False) -->
-  <div class="card" style="padding:0; overflow:hidden">
-    <div class="card-header" style="padding: var(--space-4) var(--space-6); margin-bottom: 0">
-      <h3 class="card-title">Danh sách bài nộp của học sinh ({{ submissions|length }} lượt nộp)</h3>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Học sinh</th>
-          <th>Mã học sinh</th>
-          <th>Ngày nộp bài</th>
-          <th class="text-right">Điểm số đạt được</th>
-          <th class="text-right">Tỷ lệ đúng</th>
-          <th>Trạng thái</th>
-          <th class="text-right">Hành động</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% if submissions %}
-          {% for sub in submissions %}
-          <tr>
-            <td>
-              <div style="display:flex; align-items:center; gap:var(--space-2)">
-                <img src="{{ url_for('serve_avatar', filename=sub.student.avatar or 'default.jpg') }}" 
-                     style="width:28px; height:28px; border-radius:50%; object-fit:cover">
-                <span style="font-weight: 500">{{ sub.student.fullname }}</span>
-              </div>
-            </td>
-            <td><span class="badge badge-upcoming">{{ sub.student.user_code }}</span></td>
-            <td>{{ sub.submitted_at.strftime('%H:%M:%S %d/%m/%Y') if sub.submitted_at else 'Chưa nộp' }}</td>
-            <td class="text-right money" style="font-weight: 600; color: var(--accent)">
-              {{ sub.total_score }} / {{ sub.max_score }}
-            </td>
-            {% set sub_pct = (sub.total_score / (sub.max_score or 1)) * 100 %}
-            <td class="text-right money">{{ sub_pct | round(1) }}%</td>
-            <td>
-              {% if sub.is_graded %}
-                <span class="badge badge-present">Đã chấm điểm</span>
-              {% else %}
-                <span class="badge badge-partial">Đang chờ chấm</span>
-              {% endif %}
-            </td>
-            <td class="text-right">
-              <a href="{{ url_for('grade_submission', submission_id=sub.id) }}" class="btn btn-primary btn-sm">
-                {% if sub.is_graded %}Xem điểm{% else %}Chấm bài{% endif %}
-              </a>
-            </td>
-          </tr>
-          {% endfor %}
-        {% else %}
-          <tr>
-            <td colspan="7" style="text-align: center; color: var(--text-3); padding: var(--space-8)">
-              Chưa có học sinh nào nộp bài kiểm tra này.
-            </td>
-          </tr>
-        {% endif %}
-      </tbody>
-    </table>
-  </div>
-{% endif %}
+          {% set explanation = q.explanation or (q.bank_question.explanation if q.bank_question else '') %}<details class="result-explanation" data-result-explanation><summary><i data-lucide="lightbulb" aria-hidden="true"></i>Lời giải câu {{ question_number }}</summary><div class="question-solution result-explanation-content">{% if explanation and explanation.strip() %}<div class="question-reading result-rich-text">{{ explanation }}</div>{% else %}<p class="result-explanation-empty">Chưa có lời giải chi tiết cho câu hỏi này.</p>{% endif %}</div></details>
+        </article>
+      {% else %}<div class="panel results-empty"><i data-lucide="file-question" aria-hidden="true"></i><h3>Chưa có nội dung câu hỏi</h3><p>Bài làm này không có câu hỏi để đối chiếu.</p></div>{% endfor %}
+      </div>
+    </section>
+    <dialog class="academy-dialog result-image-dialog" id="result-image-dialog" aria-labelledby="result-image-title" data-native-dialog><div class="dialog-heading"><h2 id="result-image-title">Hình minh họa câu hỏi</h2><button type="button" class="btn-icon" data-dialog-close aria-label="Đóng hình minh họa"><i data-lucide="x" aria-hidden="true"></i></button></div><div class="dialog-body"><img alt="Hình minh họa phóng to" data-result-lightbox-image><p class="result-lightbox-error" hidden>Không tải được hình minh họa.</p></div></dialog>
+  {% else %}
+    {% set list_counts = namespace(graded=0, historical=0) %}{% for sub in submissions %}{% if sub.is_graded %}{% set list_counts.graded = list_counts.graded + 1 %}{% else %}{% set list_counts.historical = list_counts.historical + 1 %}{% endif %}{% endfor %}
+    <div class="results-list-summary"><span><strong>{{ submissions|length }}</strong> lượt làm bài</span><span><strong>{{ list_counts.graded }}</strong> đã chấm</span><span><strong>{{ list_counts.historical }}</strong> chưa chấm · lịch sử</span></div>
+    <section class="panel results-submissions" aria-labelledby="result-submissions-title"><div class="results-list-heading"><h2 id="result-submissions-title">Danh sách bài nộp</h2><p>Điểm quy về thang 10; tỷ lệ thể hiện phần điểm đạt được.</p></div>
+      {% if submissions %}<div class="results-table-wrap"><table class="results-table"><thead><tr><th scope="col">Học sinh</th><th scope="col">Thời gian nộp</th><th scope="col" class="result-numeric">Điểm / 10</th><th scope="col" class="result-numeric">Tỷ lệ điểm</th><th scope="col">Trạng thái</th><th scope="col"><span class="sr-only">Xem bài làm</span></th></tr></thead><tbody>{% for sub in submissions %}<tr><th scope="row"><div class="results-student"><span class="results-student-initial" aria-hidden="true">{{ sub.student.fullname[:1] }}</span><div><span class="results-student-name">{{ sub.student.fullname }}</span><span class="results-student-code">{{ sub.student.user_code }}</span></div></div></th><td data-label="Thời gian nộp">{{ sub.submitted_at.strftime('%H:%M:%S · %d/%m/%Y') if sub.submitted_at else 'Chưa nộp bài' }}</td><td data-label="Điểm / 10" class="result-numeric result-list-score">{% if sub.is_graded and sub.score_on_ten is not none %}{{ sub.score_on_ten }}{% else %}—{% endif %}</td><td data-label="Tỷ lệ điểm" class="result-numeric">{% if sub.is_graded and sub.max_score and sub.total_score is not none %}{{ (sub.total_score / sub.max_score * 100)|round(1) }}%{% else %}—{% endif %}</td><td data-label="Trạng thái">{% if sub.is_graded %}<span class="badge badge-success">Đã chấm điểm</span>{% else %}<span class="badge badge-neutral">Lịch sử · chưa chấm</span>{% endif %}</td><td class="results-submission-action"><a href="{{ url_for(result_endpoint, exam_id=exam.id, submission_id=sub.id) }}" class="btn btn-secondary btn-sm" aria-label="Xem bài làm của {{ sub.student.fullname }}">Xem bài làm<i data-lucide="arrow-up-right" aria-hidden="true"></i></a></td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="results-empty"><i data-lucide="inbox" aria-hidden="true"></i><h3>Chưa có bài nộp</h3><p>Khi học sinh hoàn thành bài, kết quả sẽ xuất hiện tại đây.</p></div>{% endif %}
+    </section>
+  {% endif %}
+</div>
 {% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/exam-results.js', v='20261015-phase6') }}" defer></script>{% endblock %}

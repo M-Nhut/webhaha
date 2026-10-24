@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "args": [
+    "tests/test_ui_redesign_phase4.py",
+    "tests/test_ui_redesign_phase5.py",
+    "tests/test_ui_redesign_phase6.py",
+    "-q",
+    "--tb=short",
+    "--disable-warnings"
+  ],
+  "exitCode": 0,
+  "passed": 82,
+  "failed": 0,
+  "skipped": 0,
+  "collectionErrors": [],
+  "subtests": [],
+  "failedCases": [],
+  "skippedCases": [],
+  "databaseURI": "sqlite:///:memory:",
+  "dotenvLoaded": false,
+  "storageTemporary": true,
+  "blockedRequests": [],
+  "blockedSockets": []
+}
