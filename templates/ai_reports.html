@@ -41,7 +41,8 @@
     <a id="ai-detail-link" {% if detail %}aria-current="page"{% endif %} href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail', refresh=1 if current_user.role == 'teacher' and course.teacher_id == current_user.id else none, skill=request.args.get('skill'), source=request.args.get('source'), question_type=request.args.get('question_type')) }}">{{ 'Chi tiết và phân tích AI' if current_user.role == 'teacher' and course.teacher_id == current_user.id else 'Chi tiết báo cáo' }}</a>
     {% if student %}<a class="ai-back-link" href="{{ url_for('ai_reports_class', course_id=course.id) }}">Về báo cáo lớp</a>{% endif %}
   </nav>
-  {% if current_user.role == 'teacher' and course.teacher_id == current_user.id %}<p class="ai-cost-note"><i data-lucide="info" aria-hidden="true"></i> Mở chi tiết hoặc phân tích lại dùng khóa của bạn, có thể tốn hạn mức và phí. “Tải lại” chỉ đọc báo cáo đã lưu.</p>{% endif %}
+  {% if detail %}<p class="ai-disclaimer">Phân tích AI là gợi ý — hãy đối chiếu với bài làm gốc trước khi kết luận.</p>{% endif %}
+  {% if current_user.role == 'teacher' and course.teacher_id == current_user.id %}<p class="ai-cost-note"><i data-lucide="info" aria-hidden="true"></i> Phân tích lại dùng khóa của bạn (có thể tốn hạn mức). “Tải lại” chỉ đọc báo cáo đã lưu.</p>{% endif %}
   <div class="ai-status-line"><span id="ai-status" class="badge">Đang tải</span><span id="ai-updated"></span></div>
   <p id="ai-message" class="ai-notice" role="status" aria-live="polite">Đang tải dữ liệu báo cáo…</p>
   <noscript><p class="ai-notice">Bật JavaScript để xem biểu đồ, lọc bằng chứng và đọc bản phân tích đã lưu.</p></noscript>
@@ -55,29 +56,20 @@
     </form>
     <div id="ai-kpis" class="ai-kpis" aria-label="Số liệu bài làm đã chấm"></div>
     <div class="ai-charts">
-      <section class="card ai-chart-card"><div class="ai-section-heading"><h3>Kết quả theo dạng kiến thức</h3><span class="badge badge-neutral">Số liệu quan sát</span></div><p>Chọn cột hoặc tên dạng trong bảng để lọc bài làm.</p><div class="ai-legend"><span class="ai-key is-correct">Đúng</span><span class="ai-key is-wrong">Sai</span><span class="ai-key is-partial">Chưa đủ ý</span></div><div id="ai-bars"></div></section>
-      <section class="card ai-chart-card"><h3>Phân bố kết quả</h3><div id="ai-donut"></div><div id="ai-distribution" class="ai-distribution"></div></section>
+      <section class="card ai-chart-card"><div class="ai-section-heading"><h3>Kết quả theo dạng kiến thức</h3></div><p>Xếp từ dạng yếu nhất lên. Chọn một cột để lọc theo dạng đó.</p><div class="ai-legend"><span class="ai-key is-correct">Đúng</span><span class="ai-key is-wrong">Sai</span><span class="ai-key is-partial">Chưa đủ ý</span></div><div id="ai-bars"></div></section>
     </div>
-    <details class="card ai-skill-disclosure">
-      <summary class="ai-section-heading"><h3>Số liệu theo dạng</h3><span>Lượt trả lời câu hỏi</span></summary>
-      <div id="ai-skill-table" class="ai-table-scroll" role="region" aria-label="Bảng kết quả theo dạng kiến thức" tabindex="0"></div>
-    </details>
+    <section class="card ai-highlights" id="ai-highlights" hidden><div class="ai-section-heading"><h3>Nhận xét nổi bật</h3><a class="btn btn-secondary btn-sm" href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail') }}">Xem phân tích chi tiết</a></div><div id="ai-summary"></div><div id="ai-progress-line"></div></section>
     {% else %}
-    <div id="ai-facts" class="ai-detail-facts" aria-label="Bằng chứng quan sát trong báo cáo"></div>
-    <section class="card ai-summary-card"><div class="ai-section-heading"><h3>Tóm tắt AI</h3><span class="badge badge-info">Gợi ý cần đối chiếu</span></div><p class="ai-analysis-scope">{{ 'Tóm tắt của học sinh trong lớp này' if student else 'Tóm tắt toàn lớp' }} · Bài 25 + 26. Bộ lọc biểu đồ chỉ lọc số liệu, không đổi phạm vi phân tích AI.</p><div id="ai-summary"></div></section>
+    <section class="card ai-summary-card"><div class="ai-section-heading"><h3>Tóm tắt AI</h3></div><div id="ai-summary"></div><div id="ai-progress-line"></div></section>
     {% endif %}
-    <section class="card" id="ai-progress-section" hidden><div class="ai-section-heading"><h3>Dấu hiệu tiến bộ</h3><span class="badge badge-neutral">Quan sát từ bài làm</span></div><p>Có câu trả lời đúng sau một lần sai ở cùng dạng. Đây là dấu hiệu để tiếp tục theo dõi.</p><div id="ai-progress"></div></section>
     {% if detail %}
-    <nav class="ai-detail-nav" aria-label="Các phần báo cáo"><a href="#ai-causes">Nguyên nhân có thể có</a><a href="#ai-risks">Nguy cơ sai tiếp</a><a href="#ai-recommendations">Hướng dạy</a><a href="#ai-evidence-section">Bằng chứng</a></nav>
-    <section id="ai-causes" class="card"><div class="ai-section-heading"><h3>Giả thuyết nguyên nhân</h3><span class="badge badge-warning">Cần kiểm chứng</span></div><p>Những cách lý giải có thể có từ lỗi đã quan sát. Dùng câu hỏi gợi mở và bài làm gốc để xác minh.</p><div id="ai-cause-list"></div></section>
-    <section id="ai-risks" class="card"><div class="ai-section-heading"><h3>Nguy cơ sai ở lần tiếp theo</h3><span class="badge badge-warning">Dự đoán của AI</span></div><p>Lỗi có thể lặp lại, điều kiện dễ xuất hiện và cách kiểm tra trước lần làm tiếp theo.</p><div id="ai-risk-list"></div></section>
     <section id="ai-recommendations" class="card"><h3>Hướng dạy dành cho giáo viên</h3><div id="ai-recommendation-list"></div></section>
+    <section id="ai-weakness" class="card"><div class="ai-section-heading"><h3>Vì sao sai &amp; nguy cơ lặp lại</h3></div><p>Giả thuyết nguyên nhân từ lỗi đã quan sát và nguy cơ lỗi lặp lại ở lần làm tiếp theo. Mở “Đối chiếu bằng chứng” dưới mỗi ý để xem bài làm gốc.</p><div id="ai-cause-risk-list"></div></section>
     {% else %}
     {% if not student %}<section class="card"><div class="ai-section-heading"><h3>Học sinh trong lớp</h3><span id="ai-roster-count"></span></div><div id="ai-student-table" class="ai-table-scroll" role="region" aria-label="Bảng học sinh trong lớp" tabindex="0"></div></section>{% endif %}
     {% endif %}
-    <section class="card" id="ai-evidence-section"><div class="ai-section-heading"><div><h3>{{ 'Bài làm làm căn cứ' if detail else 'Bài làm trong phạm vi đang chọn' }}</h3></div><label class="ai-evidence-filter" for="ai-outcome">Kết quả<select id="ai-outcome"><option value="">Tất cả</option><option value="wrong">Sai</option><option value="correct">Đúng</option><option value="partial">Chưa đủ ý</option></select></label></div><div id="ai-evidence"></div><div id="ai-evidence-pagination" class="ai-pagination" aria-label="Phân trang bài làm"></div></section>
     {% if detail %}
-    <details class="card ai-metadata"><summary>Thông tin báo cáo và đối chiếu</summary><div id="ai-meta"></div>{% if current_user.role in ['teacher', 'admin'] %}<button type="button" id="ai-review" class="btn btn-secondary" hidden>Ghi nhận đã đối chiếu</button>{% endif %}</details>
+    <details class="card ai-metadata"><summary>Thông tin báo cáo</summary><div id="ai-meta"></div>{% if current_user.role in ['teacher', 'admin'] %}<button type="button" id="ai-review" class="btn btn-secondary" hidden>Ghi nhận đã đối chiếu</button>{% endif %}</details>
     {% if student %}<details id="ai-archive-section" class="card ai-metadata" hidden><summary>Phân tích cá nhân đã lưu trước đây</summary><div id="ai-archive"></div></details>{% endif %}
     {% endif %}
   </div>

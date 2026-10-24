@@ -8,9 +8,9 @@
   const series = [{key:'correct', label:'Đúng', token:'--color-success'}, {key:'wrong', label:'Sai', token:'--color-danger'}, {key:'partial', label:'Chưa đủ ý', token:'--color-warning'}];
   const number = value => value === null || value === undefined ? '—' : escape(value);
   const canFilterSkill = code => Array.from(el('skill')?.options || []).some(option => option.value === code);
-  let barChart, donutChart;
+  let barChart;
   const sources = {standalone:'Đề kiểm tra', initial_diagnostic:'Đánh giá đầu vào', practice:'Tự luyện'};
-  let data, sequence = 0, generating = false, evidencePage = 0, pollTimer, pollUntil = 0;
+  let data, sequence = 0, generating = false, pollTimer, pollUntil = 0;
   const date = value => {
     if (!value) return 'Chưa tạo';
     const parsed = new Date(/(?:Z|[+-]\d\d:\d\d)$/.test(value) ? value : value + 'Z');
@@ -55,22 +55,23 @@
   }
   function renderKpis(overview) {
     const n = overview.counts;
+    const weak = overview.by_skill.filter(row => row.total && (row.wrong || row.partial)).sort((a, b) => (b.wrong - a.wrong) || ((b.wrong + b.partial) - (a.wrong + a.partial)) || ((a.correct_percent ?? 101) - (b.correct_percent ?? 101)))[0];
     const items = [root.dataset.studentId ? ['Bài đã chấm', n.submission_count, 'trong phạm vi đang chọn'] : ['Học sinh có dữ liệu', `${overview.students_with_data}/${overview.roster_count}`, 'trong phạm vi đang chọn'],
-      ['Tỷ lệ đúng', n.correct_percent == null ? '—' : `${n.correct_percent}%`, n.total ? `${n.correct}/${n.total} lượt trả lời` : 'Chưa có dữ liệu']];
-    el('kpis').innerHTML = items.map(([label, value, note]) => `<div class="ai-kpi"><span>${escape(label)}</span><strong>${number(value)}</strong><small>${escape(note)}</small></div>`).join('');
+      ['Tỷ lệ đúng', n.correct_percent == null ? '—' : `${n.correct_percent}%`, n.total ? `${n.correct}/${n.total} lượt trả lời` : 'Chưa có dữ liệu'],
+      ['Dạng cần xem lại nhất', weak ? weak.name : '—', weak ? `${weak.wrong} sai · ${weak.partial} chưa đủ ý trên ${weak.total} lượt` : (n.total ? 'Chưa ghi nhận lỗi trong phạm vi này' : 'Chưa có dữ liệu'), 'is-text']];
+    el('kpis').innerHTML = items.map(([label, value, note, cls]) => `<div class="ai-kpi"><span>${escape(label)}</span><strong class="${cls || ''}">${escape(value)}</strong><small>${escape(note)}</small></div>`).join('');
   }
   function renderCharts(overview) {
-    barChart?.destroy(); donutChart?.destroy();
-    barChart = null; donutChart = null;
-    const rows = overview.by_skill;
+    barChart?.destroy();
+    barChart = null;
+    const rows = [...overview.by_skill].sort((a, b) => ((b.total ? 0 : 1) - (a.total ? 0 : 1)) || ((a.correct_percent ?? 101) - (b.correct_percent ?? 101)) || (b.total - a.total));
     const total = overview.counts.total;
     const style = getComputedStyle(document.documentElement);
     const color = name => style.getPropertyValue(name).trim();
     const animation = matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {duration: 180};
     const chartFont = {family: color('--font-sans'), size: parseFloat(color('--size-xs')) || 14};
-    const missingChart = '<p class="ai-empty">Biểu đồ chưa tải được. Bạn vẫn có thể đọc và lọc đầy đủ số liệu trong bảng bên dưới.</p>';
-    el('bars').innerHTML = total ? '<div class="ai-chart-scroll" tabindex="0" role="region" aria-label="Biểu đồ kết quả theo dạng, cuộn ngang để xem đủ"><div class="ai-chart-plot"><canvas id="ai-bar-canvas" role="img" aria-label="Biểu đồ kết quả theo dạng. Số liệu và nút lọc có trong bảng bên dưới."></canvas></div></div><p class="ai-chart-scale">Đơn vị: lượt trả lời đã chấm. Dạng chưa có dữ liệu không có cột.</p>' : '<p class="ai-empty">Chưa có câu trả lời đã chấm trong bộ lọc này.</p>';
-    el('donut').innerHTML = total ? `<div class="ai-donut-plot"><canvas id="ai-donut-canvas" role="img" aria-label="${number(overview.counts.correct)} đúng, ${number(overview.counts.wrong)} sai, ${number(overview.counts.partial)} chưa đủ ý trên ${number(total)} lượt."></canvas></div>` : '<p class="ai-empty">Chưa có dữ liệu để tính tỷ trọng.</p>';
+    const missingChart = '<p class="ai-empty">Biểu đồ chưa tải được. Các số liệu chính vẫn có ở phần KPI phía trên.</p>';
+    el('bars').innerHTML = total ? '<div class="ai-chart-scroll" tabindex="0" role="region" aria-label="Biểu đồ kết quả theo dạng kiến thức, cuộn ngang để xem đủ"><div class="ai-chart-plot"><canvas id="ai-bar-canvas" role="img" aria-label="Biểu đồ cột kết quả theo dạng kiến thức, xếp từ dạng yếu nhất lên."></canvas></div></div><p class="ai-chart-scale">Đơn vị: lượt trả lời đã chấm. Số phần trăm dưới tên dạng là tỷ lệ đúng của dạng đó. Dạng chưa có dữ liệu không có cột.</p>' : '<p class="ai-empty">Chưa có câu trả lời đã chấm trong bộ lọc này.</p>';
     if (total && window.Chart) {
       try {
         barChart = new window.Chart(document.getElementById('ai-bar-canvas'), {
@@ -79,23 +80,17 @@
           options: {
             responsive: true, maintainAspectRatio: false, animation,
             plugins: {legend: {display: false}, tooltip: {titleFont: {...chartFont, weight: '600'}, bodyFont: chartFont, callbacks: {title: items => rows[items[0]?.dataIndex]?.name || '', label: item => `${item.dataset.label}: ${item.formattedValue} lượt`}}},
-            scales: {y: {beginAtZero: true, ticks: {precision: 0, color: color('--color-text-muted'), font: chartFont}, grid: {color: color('--color-border')}, border: {display: false}}, x: {ticks: {color: color('--color-text-muted'), font: chartFont, maxRotation: 0}, grid: {display: false}, border: {display: false}}},
+            scales: {y: {beginAtZero: true, ticks: {precision: 0, color: color('--color-text-muted'), font: chartFont}, grid: {color: color('--color-border')}, border: {display: false}}, x: {ticks: {color: color('--color-text-muted'), font: chartFont, maxRotation: 0, callback: function (value) { const row = rows[value]; const short = row.name.match(/^Dạng \d+/)?.[0] || row.name; return row.total && row.correct_percent != null ? `${short} · ${row.correct_percent}%` : short; }}, grid: {display: false}, border: {display: false}}},
             onClick: (_event, items) => { const code = rows[items[0]?.index]?.code; if (code && canFilterSkill(code)) { el('skill').value = code; el('filters').requestSubmit(); } }
           }
         });
-        donutChart = new window.Chart(document.getElementById('ai-donut-canvas'), {
-          type: 'doughnut', data: {labels: series.map(item => item.label), datasets: [{data: series.map(item => overview.counts[item.key]), backgroundColor: series.map(item => color(item.token)), borderColor: color('--color-surface'), borderWidth: 3}]},
-          options: {responsive: true, maintainAspectRatio: false, animation, cutout: '72%', plugins: {legend: {display: false}, tooltip: {titleFont: {...chartFont, weight: '600'}, bodyFont: chartFont, callbacks: {label: item => `${item.label}: ${item.formattedValue} lượt`}}}, onClick: (_event, items) => { const outcome = series[items[0]?.index]?.key; if (outcome) { el('outcome').value = el('outcome').value === outcome ? '' : outcome; evidencePage = 0; renderEvidence(); } }}
-        });
-      } catch (_) { barChart?.destroy(); donutChart?.destroy(); el('bars').innerHTML = missingChart; el('donut').innerHTML = missingChart; }
-    } else if (total) { el('bars').innerHTML = missingChart; el('donut').innerHTML = missingChart; }
-    el('distribution').innerHTML = series.map(item => `<button type="button" data-outcome="${item.key}" aria-pressed="false"><span class="ai-key is-${item.key}">${item.label}</span><strong>${number(overview.counts[item.key])} · ${total && overview.counts[item.key] != null ? (overview.counts[item.key] * 100 / total).toFixed(1) + '%' : '—'}</strong></button>`).join('');
-    el('skill-table').innerHTML = `<table><caption class="sr-only">Kết quả đã chấm theo dạng kiến thức trong bộ lọc hiện tại</caption><thead><tr><th scope="col">Dạng kiến thức</th><th scope="col">Đúng</th><th scope="col">Sai</th><th scope="col">Chưa đủ ý</th><th scope="col">Tỷ lệ đúng</th></tr></thead><tbody>${rows.map(row => `<tr><th scope="row">${canFilterSkill(row.code) ? `<button type="button" class="btn btn-ghost btn-sm" data-skill="${escape(row.code)}">${escape(row.name)}</button>` : escape(row.name)}</th><td>${number(row.correct)}</td><td>${number(row.wrong)}</td><td>${number(row.partial)}</td><td>${row.correct_percent == null ? 'Chưa có dữ liệu' : number(row.correct_percent) + '%'}</td></tr>`).join('')}</tbody></table>`;
+      } catch (_) { barChart?.destroy(); el('bars').innerHTML = missingChart; }
+    } else if (total) { el('bars').innerHTML = missingChart; }
   }
   function renderStudents(overview) {
     if (!el('student-table')) return;
     el('roster-count').textContent = `${overview.students_with_data}/${overview.roster_count} học sinh có dữ liệu`;
-    el('student-table').innerHTML = overview.students.length ? `<table><thead><tr><th>Học sinh</th><th>Đúng</th><th>Sai</th><th>Chưa đủ ý</th><th>Tỷ lệ đúng</th><th>Dạng cần xem lại</th><th></th></tr></thead><tbody>${overview.students.map(student => `<tr><td><strong>${escape(student.display_name)}</strong><br><small>${number(student.submission_count)} bài đã chấm</small></td><td>${number(student.correct)}</td><td>${number(student.wrong)}</td><td>${number(student.partial)}</td><td>${student.correct_percent == null ? 'Chưa có dữ liệu' : student.correct_percent + '%'}</td><td>${student.focus_skill ? escape(skillName(student.focus_skill)) : student.total ? 'Chưa ghi nhận lỗi' : 'Chưa có dữ liệu'}</td><td>${student.student_id ? `<a class="btn btn-secondary btn-sm" href="${escape(pageLink(student.student_id))}">Xem cá nhân</a>` : '—'}</td></tr>`).join('')}</tbody></table>` : '<p>Chưa có học sinh trong lớp.</p>';
+    el('student-table').innerHTML = overview.students.length ? `<table><thead><tr><th>Học sinh</th><th>Tỷ lệ đúng</th><th>Dạng cần xem lại</th><th></th></tr></thead><tbody>${overview.students.map(student => `<tr><td><strong>${escape(student.display_name)}</strong><br><small>${number(student.submission_count)} bài đã chấm · ${number(student.total)} lượt trả lời</small></td><td>${student.correct_percent == null ? 'Chưa có dữ liệu' : student.correct_percent + '%'}</td><td>${student.focus_skill ? escape(skillName(student.focus_skill)) : student.total ? 'Chưa ghi nhận lỗi' : 'Chưa có dữ liệu'}</td><td>${student.student_id ? `<a class="btn btn-secondary btn-sm" href="${escape(pageLink(student.student_id))}">Xem cá nhân</a>` : '—'}</td></tr>`).join('')}</tbody></table>` : '<p>Chưa có học sinh trong lớp.</p>';
   }
   function evidenceItem(event, open = false) {
     let image = '';
@@ -140,15 +135,21 @@
   }
   function renderAnalysis() {
     const analysis = data.analysis;
-    if (el('summary')) el('summary').innerHTML = analysis?.summary?.length ? `<ul class="ai-summary-list">${analysis.summary.map(row => `<li>${escape(row.text)}${evidenceDetails(row.basis_evidence_refs)}</li>`).join('')}</ul>` : data.status === 'observed' ? '<p>Đang tải tóm tắt AI đã lưu…</p>' : '<p>Chưa có tóm tắt AI trong bản báo cáo này.</p>';
-    el('progress-section').hidden = !data.progress?.length;
-    el('progress').innerHTML = (data.progress || []).slice(0, 8).map(row => `<article class="ai-analysis-item"><h4>${escape(skillName(row.skill))}</h4><p>${escape(row.claim)}</p>${evidenceDetails(row.evidence_refs)}</article>`).join('');
+    const progressRows = (data.progress || []).slice(0, 3);
+    if (el('progress-line')) el('progress-line').innerHTML = progressRows.length ? `<div class="ai-progress-block"><h4>Dấu hiệu tiến bộ</h4>${progressRows.map(row => `<article class="ai-analysis-item"><p><strong>${escape(skillName(row.skill))}</strong> — ${escape(row.claim)}</p>${evidenceDetails(row.evidence_refs)}</article>`).join('')}</div>` : '';
+    if (el('summary')) {
+      const summaryRows = detail ? (analysis?.summary || []) : (analysis?.summary || []).slice(0, 3);
+      el('summary').innerHTML = summaryRows.length ? `<ul class="ai-summary-list">${summaryRows.map(row => `<li>${escape(row.text)}${evidenceDetails(row.basis_evidence_refs)}</li>`).join('')}</ul>` : !detail ? '' : data.status === 'observed' ? '<p>Đang tải tóm tắt AI đã lưu…</p>' : '<p>Chưa có tóm tắt AI trong bản báo cáo này.</p>';
+    }
+    if (el('highlights')) el('highlights').hidden = !(analysis?.summary?.length || progressRows.length);
     if (!detail) return;
-    el('cause-list').innerHTML = analysisRows(analysis?.causes, 'cause');
-    el('risk-list').innerHTML = analysisRows(analysis?.risks, 'risk');
     el('recommendation-list').innerHTML = analysisRows(analysis?.recommendations, 'recommendation');
+    const hasCauses = !!analysis?.causes?.length, hasRisks = !!analysis?.risks?.length;
+    el('cause-risk-list').innerHTML = (hasCauses || hasRisks)
+      ? (hasCauses ? analysisRows(analysis.causes, 'cause') : '') + (hasRisks ? analysisRows(analysis.risks, 'risk') : '')
+      : analysisRows(null, 'cause');
     const meta = data.metadata;
-    el('meta').innerHTML = `<dl><dt>Phạm vi</dt><dd>${escape(data.scope_label)}</dd><dt>Thời điểm tạo</dt><dd>${escape(date(meta.generated_at))}</dd><dt>Mô hình</dt><dd>${escape(meta.model_name || 'Chưa có bản AI')}</dd><dt>Phiên bản phân tích</dt><dd>${escape(meta.prompt_version || '—')}</dd><dt>Độ phủ dữ liệu</dt><dd>${number(data.coverage.event_count)} lượt trả lời, ${number(data.coverage.students_with_data)}/${number(data.coverage.roster_count)} học sinh có dữ liệu. Bỏ trống/chưa chấm không thuộc thống kê.</dd>${meta.review_note ? `<dt>Ghi chú đối chiếu</dt><dd>${escape(meta.review_note)}</dd>` : ''}</dl>`;
+    el('meta').innerHTML = `<p class="ai-meta-line">Tạo lúc ${escape(date(meta.generated_at))} · Mô hình ${escape(meta.model_name || 'Chưa có bản AI')} · ${number(data.coverage.event_count)} lượt trả lời, ${number(data.coverage.students_with_data)}/${number(data.coverage.roster_count)} học sinh có dữ liệu${meta.review_note ? ` · Ghi chú đối chiếu: ${escape(meta.review_note)}` : ''}</p>`;
     if (el('review')) { el('review').hidden = !meta.id; el('review').disabled = data.status !== 'completed' || meta.review_status === 'confirmed'; el('review').textContent = meta.review_status === 'confirmed' ? 'Đã ghi nhận đối chiếu' : 'Ghi nhận đã đối chiếu'; }
     if (el('archive-section')) {
       el('archive-section').hidden = !data.personal_archive;
@@ -163,17 +164,9 @@
       }
     }
   }
-  function renderEvidence() {
-    const outcome = el('outcome').value;
-    const events = (detail ? data.evidence : data.overview.events).filter(event => !outcome || event.outcome === outcome);
-    const pages = Math.max(1, Math.ceil(events.length / 20));
-    evidencePage = Math.min(evidencePage, pages - 1);
-    el('evidence').innerHTML = events.length ? events.slice(evidencePage * 20, evidencePage * 20 + 20).map(event => evidenceItem(event)).join('') : '<p>Chưa có bài làm phù hợp với bộ lọc này.</p>';
-    el('evidence-pagination').innerHTML = events.length ? `<button type="button" class="btn btn-ghost btn-sm" data-page="previous" ${evidencePage === 0 ? 'disabled' : ''}>Trang trước</button><span>Trang ${evidencePage + 1}/${pages} · ${events.length} lượt</span><button type="button" class="btn btn-ghost btn-sm" data-page="next" ${evidencePage === pages - 1 ? 'disabled' : ''}>Trang sau</button>` : '';
-    el('distribution')?.querySelectorAll('[data-outcome]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.outcome === outcome)));
-    window.renderFormulas?.(el('evidence'));
-  }
   function render(result) {
+    if (!result.analysis && data?.analysis) result.analysis = data.analysis;
+    if (!result.progress?.length && data?.progress?.length) result.progress = data.progress;
     data = result;
     root.setAttribute('aria-busy', 'false');
     el('content').hidden = false;
@@ -182,8 +175,7 @@
     el('updated').textContent = `Số liệu đến ${date(data.coverage.source_cutoff)}${detail && data.metadata.generated_at ? ' · AI: ' + date(data.metadata.generated_at) : ''}`;
     notice(!detail || data.status === 'completed' ? '' : data.error || (data.status === 'observed' ? 'Số liệu bài làm đã sẵn sàng. Đang tải bản phân tích AI đã lưu…' : data.status === 'processing' ? 'AI đang xử lý. Báo cáo sẽ tự cập nhật khi có kết quả.' : data.status === 'stale' ? 'Bản phân tích cần cập nhật. Bấm Phân tích lại bằng AI để nhận báo cáo mới.' : 'Chưa có báo cáo AI. Giáo viên phụ trách lớp có thể bấm Phân tích lại bằng AI.'), data.status === 'failed');
     if (!detail) { renderKpis(data.overview); renderCharts(data.overview); renderStudents(data.overview); }
-    else if (el('facts')) el('facts').innerHTML = `<span><strong>${number(data.overview.counts.total)}</strong> lượt trả lời đã chấm</span><span><strong>${number(data.overview.students_with_data)}/${number(data.overview.roster_count)}</strong> học sinh có dữ liệu</span><span>Số liệu quan sát · Chưa chấm và bỏ trống không thuộc thống kê</span>`;
-    renderAnalysis(); renderEvidence();
+    renderAnalysis();
     if (el('generate')) el('generate').disabled = generating || !data.overview.counts.total || data.status === 'processing';
     clearTimeout(pollTimer);
     if (detail && data.status === 'processing' && pollUntil > Date.now()) pollTimer = setTimeout(load, 5000);
@@ -194,7 +186,7 @@
     const current = ++sequence;
     root.setAttribute('aria-busy', 'true');
     el('reload').disabled = true;
-    try { const result = await request(apiUrl()); if (current === sequence) { evidencePage = 0; render(result); } return result; }
+    try { const result = await request(apiUrl()); if (current === sequence) { render(result); } return result; }
     catch (error) { if (current === sequence) { notice(error.message, true); el('status').textContent = 'Chưa tải được dữ liệu'; } }
     finally { if (current === sequence) { root.setAttribute('aria-busy', String(generating)); el('reload').disabled = generating; } }
   }
@@ -211,16 +203,7 @@
     root.querySelectorAll('.ai-view-tabs a').forEach(link => { const target = new URL(link.href); for (const key of ['skill', 'source', 'question_type']) { const value = url.searchParams.get(key); value ? target.searchParams.set(key, value) : target.searchParams.delete(key); } link.href = target; });
     load();
   });
-  el('reset')?.addEventListener('click', () => { for (const key of ['skill','source','question_type']) el('filters').elements[key].value = ''; el('outcome').value = ''; el('filters').requestSubmit(); });
-  root.addEventListener('click', event => {
-    const skill = event.target.closest('[data-skill]');
-    if (skill && el('filters') && canFilterSkill(skill.dataset.skill)) { el('skill').value = skill.dataset.skill; el('filters').requestSubmit(); }
-    const outcome = event.target.closest('[data-outcome]');
-    if (outcome) { el('outcome').value = el('outcome').value === outcome.dataset.outcome ? '' : outcome.dataset.outcome; evidencePage = 0; renderEvidence(); }
-    const page = event.target.closest('[data-page]');
-    if (page && !page.disabled) { evidencePage += page.dataset.page === 'next' ? 1 : -1; renderEvidence(); }
-  });
-  el('outcome').addEventListener('change', () => { evidencePage = 0; renderEvidence(); });
+  el('reset')?.addEventListener('click', () => { for (const key of ['skill','source','question_type']) el('filters').elements[key].value = ''; el('filters').requestSubmit(); });
   root.addEventListener('toggle', event => { if (event.target.open) window.renderFormulas?.(event.target); }, true);
   async function refreshAnalysis() {
     if (generating) return;
@@ -231,16 +214,16 @@
     root.setAttribute('aria-busy', 'true');
     el('status').textContent = 'Đang nhận phân tích mới';
     notice('Đang gửi bài làm để AI phân tích lại. Kết quả sẽ hiển thị khi API trả về.');
-    for (const name of ['summary', 'cause-list', 'risk-list', 'recommendation-list']) el(name).textContent = 'Đang nhận kết quả từ AI…';
+    for (const name of ['summary', 'cause-risk-list', 'recommendation-list']) el(name).textContent = 'Đang nhận kết quả từ AI…';
     if (el('review')) el('review').hidden = true;
     try {
       await request(root.dataset.generateUrl, {force:true});
       pollUntil = Date.now() + 360000;
       const result = await load();
-      if (!result) for (const name of ['summary', 'cause-list', 'risk-list', 'recommendation-list']) el(name).textContent = 'Chưa tải được kết quả. Bấm Tải lại báo cáo để thử lại.';
+      if (!result) for (const name of ['summary', 'cause-risk-list', 'recommendation-list']) el(name).textContent = 'Chưa tải được kết quả. Bấm Tải lại báo cáo để thử lại.';
     } catch (error) {
       const result = await load();
-      if (!result) for (const name of ['summary', 'cause-list', 'risk-list', 'recommendation-list']) el(name).textContent = 'Chưa nhận được kết quả AI. Hãy thử lại.';
+      if (!result) for (const name of ['summary', 'cause-risk-list', 'recommendation-list']) el(name).textContent = 'Chưa nhận được kết quả AI. Hãy thử lại.';
       notice(`Chưa nhận được phân tích mới: ${error.message}`, true);
     } finally {
       generating = false;
