@@ -1,4 +1,4 @@
-# FNWEB2 — bản gọn đã tích hợp đề kiểm tra và ma trận
+# webhihi — FNWEB2: bản gọn đã tích hợp đề kiểm tra và ma trận
 
 Ứng dụng hỗ trợ quản lý ngân hàng câu hỏi, kiểm tra trên lớp và luyện tập cá nhân hóa. Bản này giữ cấu trúc đã tinh gọn, bổ sung chức năng mới từ FNWEB2; không cần dịch vụ biên dịch LaTeX riêng.
 
