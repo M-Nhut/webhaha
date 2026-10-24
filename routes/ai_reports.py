@@ -55,7 +55,7 @@ def ai_reports():
         student_id = people[0].id
     student = _student(course, student_id) if course else None
     detail = request.args.get("view") == "detail"
-    initial_data = _report_payload(course, student_id, include_analysis=False, filtered=not detail) if course and (not individual or student) else None
+    initial_data = _report_payload(course, student_id, include_analysis=not detail, filtered=not detail) if course and (not individual or student) else None
     return render_template("ai_reports.html", courses=courses, course=course, students=people,
                            student=student, detail=detail, skill_names=SKILL_NAMES, individual=individual,
                            report_endpoint=request.endpoint, initial_data=initial_data,
@@ -73,7 +73,7 @@ def ai_report_data(course_id):
 
 
 def _report_payload(course, student_id, *, include_analysis=False, filtered=True):
-    """Overview reads only server facts; AI configuration/output is read on detail."""
+    """Overview embeds the saved analysis sections for highlights; detail loads the full analysis payload."""
     skill = request.args.get("skill", "").strip() if filtered else ""
     source = request.args.get("source", "").strip() if filtered else ""
     qtype = request.args.get("question_type", "").strip() if filtered else ""
