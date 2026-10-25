@@ -9,6 +9,7 @@
   {% if current_user.role == 'teacher' %}<a class="btn btn-secondary" href="{{ url_for('teacher_ai_settings') }}"><i data-lucide="key-round" aria-hidden="true"></i> Khóa AI của tôi</a>{% endif %}
 </header>
 <nav class="ai-report-sections" aria-label="Phạm vi báo cáo AI">
+  <span class="ai-nav-label">Phạm vi:</span>
   <a {% if not individual %}aria-current="page"{% endif %} href="{{ url_for('ai_reports_class', course_id=course.id if course else none) }}"><i data-lucide="users" aria-hidden="true"></i> Cả lớp</a>
   <a {% if individual %}aria-current="page"{% endif %} href="{{ url_for('ai_reports_individual', course_id=course.id if course else none, student_id=student.id if student else none) }}"><i data-lucide="user-round" aria-hidden="true"></i> Cá nhân</a>
 </nav>
@@ -19,6 +20,7 @@
   <label for="ai-course">Lớp học<select id="ai-course" name="course_id">{% for item in courses %}<option value="{{ item.id }}" {% if item.id == course.id %}selected{% endif %}>{{ item.course_name }}</option>{% endfor %}</select></label>
   {% if individual %}<label for="ai-person">Học sinh<select id="ai-person" name="student_id" {% if not students %}disabled{% endif %}>{% if not students %}<option value="">Chưa có học sinh</option>{% endif %}{% for person in students %}<option value="{{ person.id }}" {% if student and student.id == person.id %}selected{% endif %}>{{ person.fullname }}</option>{% endfor %}</select></label>{% endif %}
   {% for key in ['skill', 'source', 'question_type'] %}<input type="hidden" name="{{ key }}" value="{{ request.args.get(key, '') }}">{% endfor %}
+  {% if detail %}<input type="hidden" name="view" value="detail">{% endif %}
   <button class="btn btn-secondary" type="submit">Xem báo cáo</button>
 </form>
 {% if individual and not student %}
@@ -28,7 +30,6 @@
   data-api-url="{{ url_for('ai_report_data', course_id=course.id) }}"
   data-page-url="{{ url_for(report_endpoint, course_id=course.id) }}"
   data-personal-url="{{ url_for('ai_reports_individual', course_id=course.id) }}"
-  data-refresh="{{ 'true' if detail and request.args.get('refresh') == '1' else 'false' }}"
   data-student-id="{{ student.id if student else '' }}" data-detail="{{ 'true' if detail else 'false' }}"
   data-generate-url="{{ url_for('generate_course_lesson4_report', course_id=course.id) }}"
   data-review-url="{{ url_for('review_course_lesson4_report', course_id=course.id, report_id=0) }}">
@@ -37,11 +38,12 @@
     <div class="ai-report-actions"><button id="ai-reload" class="btn btn-secondary" type="button"><i data-lucide="refresh-cw" aria-hidden="true"></i> {{ 'Tải lại báo cáo' if detail else 'Tải lại số liệu' }}</button>{% if detail and current_user.role == 'teacher' and course.teacher_id == current_user.id %}<button id="ai-generate" class="btn btn-primary" type="button"><i data-lucide="sparkles" aria-hidden="true"></i> Phân tích lại bằng AI</button>{% endif %}</div>
   </header>
   <nav class="ai-view-tabs" aria-label="Chế độ báo cáo">
+    <span class="ai-nav-label">Chế độ:</span>
     <a {% if not detail %}aria-current="page"{% endif %} href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, skill=request.args.get('skill'), source=request.args.get('source'), question_type=request.args.get('question_type')) }}">Tổng quan số liệu</a>
-    <a id="ai-detail-link" {% if detail %}aria-current="page"{% endif %} href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail', refresh=1 if current_user.role == 'teacher' and course.teacher_id == current_user.id else none, skill=request.args.get('skill'), source=request.args.get('source'), question_type=request.args.get('question_type')) }}">{{ 'Chi tiết và phân tích AI' if current_user.role == 'teacher' and course.teacher_id == current_user.id else 'Chi tiết báo cáo' }}</a>
-    {% if student %}<a class="ai-back-link" href="{{ url_for('ai_reports_class', course_id=course.id) }}">Về báo cáo lớp</a>{% endif %}
+    <a id="ai-detail-link" {% if detail %}aria-current="page"{% endif %} href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail', skill=request.args.get('skill'), source=request.args.get('source'), question_type=request.args.get('question_type')) }}">Chi tiết báo cáo</a>
   </nav>
-  {% if detail %}<p class="ai-disclaimer">Phân tích AI là gợi ý — hãy đối chiếu với bài làm gốc trước khi kết luận.</p>{% endif %}
+  {% if student %}<p class="ai-back-row"><a href="{{ url_for('ai_reports_class', course_id=course.id) }}">← Về báo cáo lớp</a></p>{% endif %}
+  <p class="ai-disclaimer">Phân tích AI là gợi ý — hãy đối chiếu với bài làm gốc trước khi kết luận.</p>
   {% if current_user.role == 'teacher' and course.teacher_id == current_user.id %}<p class="ai-cost-note"><i data-lucide="info" aria-hidden="true"></i> Phân tích lại dùng khóa của bạn (có thể tốn hạn mức). “Tải lại” chỉ đọc báo cáo đã lưu.</p>{% endif %}
   <div class="ai-status-line"><span id="ai-status" class="badge">Đang tải</span><span id="ai-updated"></span></div>
   <p id="ai-message" class="ai-notice" role="status" aria-live="polite">Đang tải dữ liệu báo cáo…</p>
@@ -53,7 +55,7 @@
     <form id="ai-filters" class="ai-filters-bar">
       <label for="ai-skill">Dạng kiến thức<select id="ai-skill" name="skill"><option value="">Tất cả dạng</option>{% for code, label in skill_names.items() %}<option value="{{ code }}" {% if request.args.get('skill') == code %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
       <label for="ai-source">Nguồn bài làm<select id="ai-source" name="source">{% for value, label in [('', 'Tất cả nguồn'), ('standalone', 'Đề kiểm tra'), ('initial_diagnostic', 'Đánh giá đầu vào'), ('practice', 'Tự luyện')] %}<option value="{{ value }}" {% if request.args.get('source', '') == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
-      <label for="ai-type">Loại câu<select id="ai-type" name="question_type">{% for value, label in [('', 'Tất cả loại câu'), ('single', 'Trắc nghiệm'), ('true_false', 'Đúng / Sai'), ('short_answer', 'Trả lời ngắn')] %}<option value="{{ value }}" {% if request.args.get('question_type', '') == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+      <label for="ai-type">Loại câu<select id="ai-type" name="question_type">{% for value, label in [('', 'Tất cả loại câu'), ('single', 'Trắc nghiệm'), ('true_false', 'Đúng / Sai'), ('short_answer', 'Trả lời ngắn'), ('multiple_choice', 'Trắc nghiệm chọn nhiều đáp án'), ('multi', 'Câu nhiều đáp án')] %}<option value="{{ value }}" {% if request.args.get('question_type', '') == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
       <div class="ai-filter-actions"><button class="btn btn-secondary" type="submit">Áp dụng</button><button id="ai-reset" class="btn btn-ghost" type="button">Đặt lại</button></div>
     </form>
     <section class="card"><span class="ai-eyebrow">1 · Kết quả</span><div class="ai-section-heading"><h3>Kết quả theo dạng kiến thức</h3></div><p>Xếp từ dạng yếu nhất lên. Chọn một dạng để lọc theo dạng đó.</p><div id="ai-bars"></div></section>
@@ -65,13 +67,15 @@
     <section id="ai-weakness" class="card"><span class="ai-eyebrow">3 · Vì sao sai</span><div class="ai-section-heading"><h3>Vì sao sai &amp; nguy cơ lặp lại</h3></div><p>Giả thuyết nguyên nhân từ lỗi đã quan sát và nguy cơ lỗi lặp lại ở lần làm tiếp theo. Mở “Đối chiếu bằng chứng” dưới mỗi ý để xem bài làm gốc.</p><div id="ai-cause-risk-list"></div></section>
     {% else %}
     {% if not student %}<section class="card"><span class="ai-eyebrow">2 · Học sinh</span><div class="ai-section-heading"><h3>Học sinh trong lớp</h3><span id="ai-roster-count"></span></div><div id="ai-student-table" class="ai-table-scroll" role="region" aria-label="Bảng học sinh trong lớp" tabindex="0"></div></section>{% endif %}
-    <section class="card ai-highlights" id="ai-highlights" hidden><span class="ai-eyebrow">3 · Nhận xét</span><div class="ai-section-heading"><h3>Nhận xét nổi bật</h3><a class="btn btn-secondary btn-sm" href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail') }}">Xem phân tích chi tiết</a></div><div id="ai-summary"></div><div id="ai-progress-line"></div></section>
+    <section class="card ai-highlights" id="ai-highlights" hidden><span class="ai-eyebrow">3 · Nhận xét</span><div class="ai-section-heading"><h3>Nhận xét nổi bật</h3><a class="btn btn-secondary btn-sm" href="{{ url_for(report_endpoint, course_id=course.id, student_id=student.id if student else none, view='detail') }}">Xem phân tích chi tiết</a></div><p>Xem tóm tắt AI đầy đủ, hướng dạy và phân tích vì sao sai trong tab Chi tiết báo cáo.</p><div id="ai-progress-line"></div></section>
     {% endif %}
     {% if detail %}
-    <details class="card ai-metadata"><summary>Thông tin báo cáo</summary><div id="ai-meta"></div>{% if current_user.role in ['teacher', 'admin'] %}<button type="button" id="ai-review" class="btn btn-secondary" hidden>Ghi nhận đã đối chiếu</button>{% endif %}</details>
+    <details class="card ai-metadata"><summary>Thông tin báo cáo</summary><div id="ai-meta"></div></details>
+    {% if current_user.role in ['teacher', 'admin'] %}<div class="ai-review-row"><button type="button" id="ai-review" class="btn btn-secondary" hidden>Ghi nhận đã đối chiếu</button></div>{% endif %}
     {% if student %}<details id="ai-archive-section" class="card ai-metadata" hidden><summary>Phân tích cá nhân đã lưu trước đây</summary><div id="ai-archive"></div></details>{% endif %}
     {% endif %}
   </div>
+  {% if initial_data and not detail %}<noscript><section class="card"><h3>Số liệu tóm tắt</h3><p>{{ initial_data.overview.counts.correct }} / {{ initial_data.overview.counts.total }} lượt trả lời đúng{% if initial_data.overview.counts.correct_percent is not none %} ({{ initial_data.overview.counts.correct_percent }}%){% endif %} · {{ initial_data.overview.students_with_data }} / {{ initial_data.overview.roster_count }} học sinh có dữ liệu.</p><ul>{% for row in initial_data.overview.by_skill %}<li>{{ row.name }}: {% if row.correct_percent is not none %}{{ row.correct_percent }}%{% else %}Chưa có dữ liệu{% endif %} ({{ row.correct }} / {{ row.total }} lượt)</li>{% endfor %}</ul><p>Để xem biểu đồ, bộ lọc và phân tích AI đầy đủ, hãy bật JavaScript.</p></section></noscript>{% endif %}
 </section>
 <script id="ai-initial-data" type="application/json">{{ initial_data | tojson }}</script>
 {% endif %}
@@ -79,6 +83,6 @@
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/ai-report-context.js', v='20261017-phase8') }}" defer></script>
+<script src="{{ url_for('static', filename='js/ai-report-context.js', v='20261025-ai-report-fixes') }}" defer></script>
 {% if course %}<script src="{{ url_for('static', filename='js/modules/ai_reports.js', v=asset_versions.js) }}" defer></script>{% endif %}
 {% endblock %}
