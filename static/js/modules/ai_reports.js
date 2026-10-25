@@ -69,6 +69,15 @@
   function weakestSkill(overview) {
     return overview.by_skill.filter(row => row.total).sort((a, b) => ((a.correct_percent ?? 101) - (b.correct_percent ?? 101)) || (((b.wrong + b.partial) - (a.wrong + a.partial)) || ((b.wrong - a.wrong) || (b.total - a.total))))[0];
   }
+  function updateFilterSummary() {
+    if (!el('filter-summary') || !el('filters')) return;
+    const parts = [];
+    for (const id of ['skill', 'source', 'question_type']) {
+      const select = el(id === 'skill' ? 'skill' : id === 'source' ? 'source' : 'type');
+      if (select?.value) parts.push(select.options[select.selectedIndex]?.text || select.value);
+    }
+    el('filter-summary').textContent = parts.length ? parts.join(' · ') : 'Tất cả';
+  }
   function renderKpis(overview) {
     const n = overview.counts;
     const weak = weakestSkill(overview);
@@ -76,8 +85,9 @@
     const status = pct == null ? '' : pct >= 75 ? '<span class="ai-status-dot is-ok"></span>Đạt' : pct >= 50 ? '<span class="ai-status-dot is-warn"></span>Cần củng cố' : '<span class="ai-status-dot is-bad"></span>Cần hỗ trợ nhiều';
     el('kpis').innerHTML =
       `<div class="ai-kpi"><span>${root.dataset.studentId ? 'Bài đã chấm' : 'Học sinh có dữ liệu'}</span><strong>${root.dataset.studentId ? number(n.submission_count) : `${overview.students_with_data}/${overview.roster_count}`}</strong><small>trong phạm vi đang chọn</small></div>` +
-      `<div class="ai-kpi"><span>Tỷ lệ đúng</span><strong>${pct == null ? '—' : `${pct}%`}</strong><small>${n.total ? `${n.correct}/${n.total} lượt trả lời` : 'Chưa có dữ liệu'}${status ? ` · ${status}` : ''}</small><span class="ai-kpi-threshold">Ngưỡng: từ 75% là đạt · 50–74% cần củng cố · dưới 50% cần hỗ trợ nhiều</span></div>` +
-      `<div class="ai-kpi"><span>Dạng cần xem lại nhất</span><strong class="is-text">${weak ? `<button type="button" class="ai-kpi-link" data-scroll-skill="${escape(weak.code)}" aria-label="Cuộn tới dạng ${escape(weak.name)} trong bảng kết quả">${escape(weak.name)}</button>` : '—'}</strong><small>${weak ? `${weak.wrong} sai · ${weak.partial} chưa đủ ý trên ${weak.total} lượt` : (n.total ? 'Chưa ghi nhận lỗi trong phạm vi này' : 'Chưa có dữ liệu')}</small></div>`;
+      `<div class="ai-kpi"><span>Tỷ lệ đúng</span><strong>${pct == null ? '—' : `${pct}%`}</strong><small>${n.total ? `${n.correct}/${n.total} lượt trả lời` : 'Chưa có dữ liệu'}${status ? ` · ${status}` : ''}</small></div>` +
+      `<div class="ai-kpi"><span>Dạng cần xem lại nhất</span><strong class="is-text">${weak ? `<button type="button" class="ai-kpi-link" data-scroll-skill="${escape(weak.code)}" aria-label="Cuộn tới dạng ${escape(weak.name)} trong bảng kết quả">${escape(weak.name)}</button>` : '—'}</strong><small>${weak ? `${weak.wrong} sai · ${weak.partial} chưa đủ ý trên ${weak.total} lượt` : (n.total ? 'Chưa ghi nhận lỗi trong phạm vi này' : 'Chưa có dữ liệu')}</small></div>` +
+      `<p class="ai-kpi-note">Ngưỡng: từ 75% là đạt · 50–74% cần củng cố · dưới 50% cần hỗ trợ nhiều</p>`;
     bindScrollLinks(el('kpis'));
   }
   function renderSkillBars(overview) {
@@ -85,12 +95,19 @@
     const total = overview.counts.total;
     if (!total) { el('bars').innerHTML = '<p class="ai-empty">Chưa có câu trả lời đã chấm trong bộ lọc này.</p>'; return; }
     const weakest = weakestSkill(overview);
-    el('bars').innerHTML = rows.map(row => {
-      if (!row.total) return `<div class="ai-skill-row is-empty"><span class="ai-skill-name">${escape(row.name)}</span><span class="ai-skill-meta">Chưa có dữ liệu</span></div>`;
+    const activeSkill = el('skill')?.value || '';
+    const withData = rows.filter(row => row.total);
+    const emptyRows = rows.filter(row => !row.total);
+    const dataRows = withData.map(row => {
       const pct = row.correct_percent ?? 0;
+      const correctW = Math.round(row.correct * 100 / row.total);
+      const wrongW = Math.round(row.wrong * 100 / row.total);
+      const partialW = Math.max(0, 100 - correctW - wrongW);
       const flag = row === weakest ? '<span class="ai-skill-flag">Cần xem lại</span>' : '';
-      return `<button type="button" class="ai-skill-row${row === weakest ? ' is-weak' : ''}" id="ai-skill-${escape(row.code)}" data-skill="${escape(row.code)}" aria-label="Lọc theo dạng ${escape(row.name)}: ${pct}% đúng"><span class="ai-skill-name">${escape(row.name)}${flag}</span><span class="ai-skill-track" aria-hidden="true"><span class="ai-skill-fill" style="width:${pct}%"></span></span><span class="ai-skill-meta">${pct}% · ${row.correct}/${row.total} lượt · ${row.wrong} sai · ${row.partial} chưa đủ ý</span></button>`;
+      return `<button type="button" class="ai-skill-row${row === weakest ? ' is-weak' : ''}${row.code === activeSkill ? ' is-active' : ''}" id="ai-skill-${escape(row.code)}" data-skill="${escape(row.code)}" aria-label="Lọc theo dạng ${escape(row.name)}: ${pct}% đúng"><span class="ai-skill-name">${escape(row.name)}${flag}</span><span class="ai-skill-track" aria-hidden="true"><span class="ai-skill-fill is-correct" style="width:${correctW}%"></span><span class="ai-skill-fill is-wrong" style="width:${wrongW}%"></span><span class="ai-skill-fill is-partial" style="width:${partialW}%"></span></span><span class="ai-skill-meta">${pct}% · ${row.correct}/${row.total} lượt · ${row.wrong} sai · ${row.partial} chưa đủ ý</span></button>`;
     }).join('');
+    const emptyBlock = emptyRows.length ? `<details class="ai-skill-empty"><summary>Các dạng chưa có dữ liệu (${emptyRows.length})</summary>${emptyRows.map(row => `<div class="ai-skill-row is-empty"><span class="ai-skill-name">${escape(row.name)}</span><span class="ai-skill-meta">Chưa có dữ liệu</span></div>`).join('')}</details>` : '';
+    el('bars').innerHTML = dataRows + emptyBlock;
     el('bars').querySelectorAll('.ai-skill-row[data-skill]').forEach(button => button.addEventListener('click', () => {
       const code = button.dataset.skill;
       if (code && canFilterSkill(code)) { el('skill').value = code; el('filters').requestSubmit(); }
@@ -167,12 +184,14 @@
   function renderAnalysis() {
     const analysis = data.analysis;
     const progressRows = (data.progress || []).slice(0, 3);
-    if (el('progress-line')) el('progress-line').innerHTML = progressRows.length ? `<div class="ai-progress-block"><h4>Dấu hiệu tiến bộ</h4>${progressRows.map(row => `<p class="ai-progress-line-item"><span aria-hidden="true">✓ </span><strong>${escape(skillName(row.skill))}</strong> — ${escape(row.claim)}</p>${evidenceDetails(row.evidence_refs)}`).join('')}</div>` : '';
+    const progressRest = (data.progress || []).slice(3);
+    const progressItem = row => `<p class="ai-progress-line-item"><span aria-hidden="true">✓ </span><strong>${escape(skillName(row.skill))}</strong> — ${escape(row.claim)}</p>${evidenceDetails(row.evidence_refs)}`;
+    if (el('progress-line')) el('progress-line').innerHTML = progressRows.length ? `<div class="ai-progress-block"><h4>Dấu hiệu tiến bộ</h4>${progressRows.map(progressItem).join('')}${progressRest.length ? `<details class="ai-more"><summary>Xem thêm ${progressRest.length} dấu hiệu tiến bộ</summary>${progressRest.map(progressItem).join('')}</details>` : ''}</div>` : '';
     if (el('summary')) {
       const summaryRows = detail ? (analysis?.summary || []) : (analysis?.summary || []).slice(0, 3);
       el('summary').innerHTML = summaryRows.length ? `<div class="ai-summary-prose">${summaryRows.map(row => `<div class="ai-summary-item"><p>${boldFacts(row.text)}</p>${evidenceDetails(row.basis_evidence_refs)}</div>`).join('')}</div>` : !detail ? '' : data.status === 'observed' ? '<p>Đang tải tóm tắt AI đã lưu…</p>' : '<p>Chưa có tóm tắt AI trong bản báo cáo này.</p>';
     }
-    if (el('highlights')) el('highlights').hidden = !(analysis?.summary?.length || progressRows.length);
+    if (el('highlights')) el('highlights').hidden = !progressRows.length;
     if (!detail) return;
     const recs = analysis?.recommendations || [];
     el('recommendation-list').innerHTML = analysisRows(recs.slice(0, 3), 'recommendation') + (recs.length > 3 ? `<details class="ai-more"><summary>Xem thêm ${recs.length - 3} hướng dạy</summary>${analysisRows(recs.slice(3), 'recommendation')}</details>` : '');
@@ -207,13 +226,15 @@
     const next = !filtered && data?.analysis?.recommendations?.[0];
     const nextText = next?.practice_suggestion || next?.teaching_strategy || '';
     if (!n.total && !summaryFirst) { box.hidden = true; return; }
+    const scopeWord = root.dataset.studentId ? 'Em' : 'Lớp';
     const verdict = summaryFirst
       ? boldFacts(summaryFirst)
-      : (weak ? `Lớp đúng ${n.correct_percent}% trên ${n.total} lượt trả lời — yếu nhất ở ${escape(weak.name)} (${weak.correct_percent}% đúng).` : `Lớp đúng ${n.correct_percent}% trên ${n.total} lượt trả lời.`);
+      : (weak ? `${scopeWord} đúng ${n.correct_percent}% trên ${n.total} lượt trả lời — yếu nhất ở ${escape(weak.name)} (${weak.correct_percent}% đúng).` : `${scopeWord} đúng ${n.correct_percent}% trên ${n.total} lượt trả lời.`);
+    const weakLine = weak ? `Dạng cần xem lại nhất: <button type="button" class="ai-kpi-link" data-scroll-skill="${escape(weak.code)}" aria-label="Cuộn tới dạng ${escape(weak.name)} trong bảng kết quả">${escape(weak.name)}</button>.` : '';
+    const nextLine = nextText ? `Nên làm ngay: ${escape(nextText)}` : `<a href="${escape(pageLink(root.dataset.studentId || '', 'detail'))}">Xem hướng dạy trong tab Chi tiết</a>`;
     el('verdict-body').innerHTML =
       `<p class="ai-verdict-main">${verdict}</p>` +
-      (weak ? `<p class="ai-verdict-weak">Dạng cần xem lại nhất: <button type="button" class="ai-kpi-link" data-scroll-skill="${escape(weak.code)}" aria-label="Cuộn tới dạng ${escape(weak.name)} trong bảng kết quả">${escape(weak.name)}</button> — ${weak.wrong} sai · ${weak.partial} chưa đủ ý trên ${weak.total} lượt.</p>` : '') +
-      (nextText ? `<p class="ai-verdict-next">Nên làm ngay: ${escape(nextText)}</p>` : `<p class="ai-verdict-next"><a href="${escape(pageLink(root.dataset.studentId || '', 'detail'))}">Xem hướng dạy trong tab Chi tiết</a></p>`);
+      ((weakLine || nextLine) ? `<p class="ai-verdict-meta">${weakLine}${weakLine ? ' ' : ''}${nextLine}</p>` : '');
     box.hidden = false;
     bindScrollLinks(box);
   }
@@ -228,7 +249,7 @@
     el('status').textContent = !detail ? 'Số liệu bài làm đã chấm' : data.status === 'completed' && data.metadata.review_status === 'confirmed' ? 'Đã đối chiếu báo cáo' : (statuses[data.status] || 'Chưa tải phân tích AI');
     el('updated').textContent = `Số liệu đến ${date(data.coverage.source_cutoff)}${detail && data.metadata.generated_at ? ' · AI: ' + date(data.metadata.generated_at) : ''}`;
     notice(!detail || data.status === 'completed' ? '' : data.error || (data.status === 'observed' ? 'Số liệu bài làm đã sẵn sàng. Đang tải bản phân tích AI đã lưu…' : data.status === 'processing' ? 'AI đang xử lý. Báo cáo sẽ tự cập nhật khi có kết quả.' : data.status === 'stale' ? 'Bản phân tích cần cập nhật. Bấm Phân tích lại bằng AI để nhận báo cáo mới.' : 'Chưa có báo cáo AI. Giáo viên phụ trách lớp có thể bấm Phân tích lại bằng AI.'), data.status === 'failed');
-    if (!detail) { renderKpis(data.overview); renderSkillBars(data.overview); renderStudents(data.overview); }
+    if (!detail) { renderKpis(data.overview); renderSkillBars(data.overview); renderStudents(data.overview); updateFilterSummary(); }
     renderAnalysis();
     if (!detail) renderVerdict(data.overview);
     if (el('generate')) el('generate').disabled = generating || !data.overview.counts.total || data.status === 'processing';
