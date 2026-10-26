@@ -94,6 +94,7 @@
           {{ form.submit(class="btn btn-primary auth-submit") }}
           <p class="auth-submit-status" role="status" data-auth-submit-status hidden>Đang tạo tài khoản…</p>
         </form>
+        {% if google_enabled %}<div class="auth-social"><p>Hoặc đăng ký bằng</p><a class="btn btn-secondary" href="{{ url_for('google_login') }}">Đăng ký bằng Google</a><p>Bạn sẽ chọn vai trò giáo viên hoặc học sinh ở bước tiếp theo.</p></div>{% endif %}
         <footer class="auth-switch"><span>Đã có tài khoản?</span> <a href="{{ url_for('login') }}">Đăng nhập</a></footer>
       </section>
     </div>

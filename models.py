@@ -10,6 +10,9 @@ from database import db
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    # Verified email from a social provider, if any. Local accounts created
+    # before social sign-in keep NULL here; it is never a password substitute.
+    email = db.Column(db.String(255), unique=True, nullable=True, index=True)
     fullname = db.Column(db.String(100), nullable=False)
     user_code = db.Column(db.String(20), unique=True, nullable=False)
     role = db.Column(db.String(20), nullable=False, default="student")
@@ -37,6 +40,30 @@ class User(db.Model, UserMixin):
     def is_admin(self):
         return self.role == "admin"
 
+class SocialAccount(db.Model):
+    """One external identity linked to one local account.
+
+    The provider's user id is the stable key; the email is the verified
+    address returned by the provider at link time.  A second provider
+    (Facebook, later) is another row, never a second local account.
+    """
+
+    __tablename__ = "social_account"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False, index=True)
+    provider = db.Column(db.String(30), nullable=False, index=True)
+    provider_user_id = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+
+    user = db.relationship("User", backref="social_accounts")
+
+    __table_args__ = (
+        db.UniqueConstraint("provider", "provider_user_id", name="uq_social_provider_user"),
+    )
+
+
 class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     course_name = db.Column(db.String(120), nullable=False)
@@ -46,6 +73,9 @@ class Course(db.Model):
     # teacher's configured default group; it never searches another teacher.
     ai_key_group_id = db.Column(db.Integer, db.ForeignKey("teacher_ai_key_group.id"), nullable=True, index=True)
     classroom = db.Column(db.String(40))
+    # Short code a teacher shares so students can join by code or link.
+    # NULL on legacy rows until the teacher first opens the class.
+    join_code = db.Column(db.String(12), unique=True, nullable=True, index=True)
     description = db.Column(db.Text)
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)

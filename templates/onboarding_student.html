@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Tham gia lớp học · LMath{% endblock %}
+{% block page_title %}Tham gia lớp học{% endblock %}
+{% block content %}
+<div class="courses-workspace">
+  <header class="page-header"><div class="page-title-area"><h1>{% if just_registered %}Chào mừng, {{ current_user.fullname }}!{% else %}Lớp học của bạn{% endif %}</h1><p class="courses-description">Nhập mã lớp giáo viên đã gửi, hoặc mở link lớp học để tham gia.</p></div></header>
+  <section class="panel">
+    <h2>Nhập mã lớp</h2>
+    <form action="{{ url_for('join_by_code') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field"><label for="join-code">Mã lớp</label><input type="text" id="join-code" name="code" required placeholder="Ví dụ: K7X9Q2" autocomplete="off"></div>
+      <button type="submit" class="btn btn-primary">Tìm lớp học</button>
+    </form>
+  </section>
+  {% if enrollments %}
+  <section class="panel">
+    <h2>Lớp bạn đã tham gia</h2>
+    <ul>
+      {% for enrollment in enrollments %}
+      <li><a href="{{ url_for('course_detail', course_id=enrollment.course.id) }}">{{ enrollment.course.course_name }}</a> · {{ enrollment.course.subject }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+  <p><a href="{{ url_for('index') }}">Để sau, vào trang chính</a></p>
+</div>
+{% endblock %}

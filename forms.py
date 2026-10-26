@@ -35,6 +35,37 @@ class RegistrationForm(FlaskForm):
             raise ValidationError("Vai trò đăng ký không hợp lệ.")
 
 
+class SocialCompleteForm(FlaskForm):
+    """Finish a social sign-in: pick a role and claim local identifiers.
+
+    Google supplies only a verified email and a name, while local accounts
+    still require a unique username and user_code, so this step cannot be
+    skipped or auto-invented. It runs once per new social identity.
+    """
+
+    user_code = StringField("Mã người dùng", validators=[DataRequired(), Length(min=3, max=20)])
+    fullname = StringField("Họ và tên", validators=[DataRequired(), Length(min=2, max=100)])
+    username = StringField("Tên đăng nhập", validators=[DataRequired(), Length(min=4, max=80)])
+    role = SelectField(
+        "Vai trò",
+        choices=[("student", "Học sinh"), ("teacher", "Giáo viên")],
+        validators=[DataRequired()],
+    )
+    submit = SubmitField("Hoàn tất đăng ký")
+
+    def validate_username(self, username):
+        if User.query.filter_by(username=username.data).first():
+            raise ValidationError("Tên đăng nhập đã tồn tại.")
+
+    def validate_user_code(self, user_code):
+        if User.query.filter_by(user_code=user_code.data).first():
+            raise ValidationError("Mã người dùng đã tồn tại.")
+
+    def validate_role(self, role):
+        if role.data not in {"student", "teacher"}:
+            raise ValidationError("Vai trò đăng ký không hợp lệ.")
+
+
 class LoginForm(FlaskForm):
     username = StringField("Tên đăng nhập", validators=[DataRequired()])
     password = PasswordField("Mật khẩu", validators=[DataRequired()])

@@ -18,6 +18,7 @@ from models import (
     ClassAIAnalysisRun,
 )
 from services.access_control import role_required
+from services.class_codes import ensure_join_code, normalize_join_code
 from services.dashboard import (
     get_accessible_student_ids,
     student_dashboard_data,
@@ -219,6 +220,12 @@ def course_detail(course_id):
             flash("Bạn không có quyền truy cập khóa học này.", "danger")
             return redirect(url_for("courses"))
 
+    # A legacy class gains its shareable code the first time its teacher
+    # or an admin opens it; students never see a blank code.
+    if current_user.role in ("teacher", "admin") and (
+        current_user.role == "admin" or course.teacher_id == current_user.id
+    ):
+        ensure_join_code(course)
     # Active enrollments
     active_enrollments = Enrollment.query.filter_by(course_id=course.id, status="active").all()
     # List of all active students for select dropdown (excluding already enrolled)
@@ -552,11 +559,90 @@ def add_enrollment():
 
 
 
+@login_required
+@role_required("teacher")
+def teacher_add_course():
+    """Let a teacher create only their own class.
+
+    The admin course form is reused, but the submitted teacher is ignored:
+    a forged teacher_id can never assign a class to another teacher.
+    """
+    if request.method == "POST":
+        course = Course(
+            course_name=request.form["course_name"],
+            subject=request.form["subject"],
+            teacher_id=current_user.id,
+            ai_key_group_id=None,
+            classroom=request.form.get("classroom"),
+            description=request.form.get("description"),
+            start_date=parse_date(request.form.get("start_date")),
+            end_date=parse_date(request.form.get("end_date")),
+            is_active=bool(request.form.get("is_active")),
+        )
+        db.session.add(course)
+        db.session.flush()
+        ensure_join_code(course)
+        flash("Đã tạo lớp học. Gửi mã lớp hoặc link lớp cho học sinh tham gia.", "success")
+        return redirect(url_for("course_detail", course_id=course.id))
+    return render_template("course_form.html", course=None, teachers=[current_user])
+
+
+@login_required
+def join_by_code():
+    """Enter a class code, then continue to the confirm-join page."""
+    if current_user.role != "student":
+        flash("Chỉ học sinh mới tham gia lớp bằng mã lớp.", "danger")
+        return redirect(url_for("courses"))
+    if request.method == "POST":
+        code = normalize_join_code(request.form.get("code"))
+        if code:
+            return redirect(url_for("join_class", code=code))
+        flash("Vui lòng nhập mã lớp.", "danger")
+    return render_template("join_class.html", course=None, already_enrolled=False)
+
+
+@login_required
+def join_class(code):
+    """Join a class from its link (/join/<code>) or from a typed code."""
+    if current_user.role != "student":
+        flash("Chỉ học sinh mới tham gia lớp bằng mã lớp.", "danger")
+        return redirect(url_for("courses"))
+    normalized = normalize_join_code(code)
+    course = Course.query.filter_by(join_code=normalized).first()
+    if not course or not course.is_active:
+        flash("Mã lớp không tồn tại hoặc lớp đã tạm ngưng.", "danger")
+        return redirect(url_for("onboarding"))
+    enrollment = Enrollment.query.filter_by(student_id=current_user.id, course_id=course.id).first()
+    if enrollment and enrollment.status == "active":
+        return render_template("join_class.html", course=course, already_enrolled=True)
+    if request.method == "POST":
+        if enrollment:
+            enrollment.status = "active"
+        else:
+            enrollment = Enrollment(student_id=current_user.id, course_id=course.id, status="active")
+            db.session.add(enrollment)
+        db.session.commit()
+        try:
+            from services.diagnostic_service import assign_existing_diagnostics_for_enrollment
+
+            assign_existing_diagnostics_for_enrollment(enrollment, assigned_by=course.teacher_id)
+        except Exception:
+            # Diagnostics are a bonus on join; a failure there must not undo
+            # an enrollment the student has just confirmed.
+            pass
+        flash(f"Bạn đã tham gia lớp {course.course_name}.", "success")
+        return redirect(url_for("course_detail", course_id=course.id))
+    return render_template("join_class.html", course=course, already_enrolled=False)
+
+
 def register_academic_routes(app) -> None:
     """Register handlers while preserving the legacy route contract."""
     app.add_url_rule("/", endpoint="index", view_func=index)
     app.add_url_rule("/courses", endpoint="courses", view_func=courses)
     app.add_url_rule("/courses/new", endpoint="add_course", view_func=add_course, methods=["GET", "POST"])
+    app.add_url_rule("/courses/teacher-new", endpoint="teacher_add_course", view_func=teacher_add_course, methods=["GET", "POST"])
+    app.add_url_rule("/join", endpoint="join_by_code", view_func=join_by_code, methods=["GET", "POST"])
+    app.add_url_rule("/join/<code>", endpoint="join_class", view_func=join_class, methods=["GET", "POST"])
     app.add_url_rule("/courses/<int:course_id>/edit", endpoint="edit_course", view_func=edit_course, methods=["GET", "POST"])
     app.add_url_rule("/courses/<int:course_id>/delete", endpoint="delete_course", view_func=delete_course, methods=["POST"])
     app.add_url_rule("/courses/<int:course_id>", endpoint="course_detail", view_func=course_detail)

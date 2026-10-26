@@ -414,9 +414,31 @@ def ensure_bank_read_indexes():
                 index.create(bind=db.engine, checkfirst=True)
 
 
+def migrate_social_auth_schema():
+    """Add social sign-in columns to existing deployments.
+
+    New deployments get them from ``db.create_all()``; existing tables gain
+    the columns here.  Unique indexes are best-effort: uniqueness is also
+    checked in application code (email lookup, join-code generation), so a
+    failed index creation must never block startup.
+    """
+    add_column_if_missing("user", "email", "VARCHAR(255)")
+    add_column_if_missing("course", "join_code", "VARCHAR(12)")
+    for statement in (
+        'CREATE UNIQUE INDEX IF NOT EXISTS ix_user_email ON "user" (email)',
+        'CREATE UNIQUE INDEX IF NOT EXISTS ix_course_join_code ON "course" (join_code)',
+    ):
+        try:
+            db.session.execute(db.text(statement))
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+
+
 def initialize_database():
     db.create_all()
     migrate_existing_sqlite_schema()
+    migrate_social_auth_schema()
     ensure_bank_read_indexes()
     disable_removed_roles()
     migrate_legacy_question_types()

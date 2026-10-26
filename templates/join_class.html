@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{% if course %}Tham gia {{ course.course_name }}{% else %}Tham gia lớp học{% endif %} · LMath{% endblock %}
+{% block page_title %}Tham gia lớp học{% endblock %}
+{% block content %}
+<div class="courses-workspace">
+  {% if course %}
+  <header class="page-header"><div class="page-title-area"><h1>{{ course.course_name }}</h1><p class="courses-description">{{ course.subject }}{% if course.teacher %} · Giáo viên: {{ course.teacher.fullname }}{% endif %}{% if course.classroom %} · {{ course.classroom }}{% endif %}</p></div></header>
+  <section class="panel">
+    {% if already_enrolled %}
+    <p>Bạn đã tham gia lớp này rồi.</p>
+    <a class="btn btn-primary" href="{{ url_for('course_detail', course_id=course.id) }}">Vào lớp học</a>
+    {% else %}
+    <p>Bấm xác nhận để tham gia lớp học này và làm các bài tập của lớp.</p>
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn btn-primary">Xác nhận tham gia lớp</button>
+      <a class="btn btn-secondary" href="{{ url_for('onboarding') }}">Quay lại</a>
+    </form>
+    {% endif %}
+  </section>
+  {% else %}
+  <header class="page-header"><div class="page-title-area"><h1>Tham gia lớp học</h1><p class="courses-description">Nhập mã lớp giáo viên đã gửi cho bạn.</p></div></header>
+  <section class="panel">
+    <form action="{{ url_for('join_by_code') }}" method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field"><label for="join-code">Mã lớp</label><input type="text" id="join-code" name="code" required placeholder="Ví dụ: K7X9Q2" autocomplete="off"></div>
+      <button type="submit" class="btn btn-primary">Tìm lớp học</button>
+    </form>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

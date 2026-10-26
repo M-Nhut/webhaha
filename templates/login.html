@@ -59,6 +59,7 @@
           {{ form.submit(class="btn btn-primary auth-submit") }}
           <p class="auth-submit-status" role="status" data-auth-submit-status hidden>Đang đăng nhập…</p>
         </form>
+        {% if google_enabled %}<div class="auth-social"><p>Hoặc đăng nhập bằng</p><a class="btn btn-secondary" href="{{ url_for('google_login', next=request.args.get('next')) }}">Đăng nhập bằng Google</a></div>{% endif %}
         <footer class="auth-switch"><span>Chưa có tài khoản?</span> <a href="{{ url_for('register') }}">Đăng ký tài khoản</a></footer>
       </section>
     </div>

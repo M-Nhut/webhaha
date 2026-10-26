@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Tạo lớp học đầu tiên · LMath{% endblock %}
+{% block page_title %}Bắt đầu dạy học{% endblock %}
+{% block content %}
+<div class="courses-workspace">
+  <header class="page-header"><div class="page-title-area"><h1>{% if just_registered %}Chào mừng, {{ current_user.fullname }}!{% else %}Lớp học của bạn{% endif %}</h1><p class="courses-description">Tạo lớp học đầu tiên, sau đó gửi mã lớp hoặc link lớp cho học sinh tham gia.</p></div></header>
+  <section class="panel">
+    <h2>Tạo lớp học</h2>
+    <p>Điền tên lớp và môn học, lớp sẽ thuộc về bạn và chỉ bạn mới quản lý được lớp đó.</p>
+    <a class="btn btn-primary" href="{{ url_for('teacher_add_course') }}">Tạo lớp học</a>
+    <a class="btn btn-secondary" href="{{ url_for('courses') }}">Xem danh sách lớp</a>
+    <a class="btn btn-ghost" href="{{ url_for('index') }}">Để sau, vào trang chính</a>
+  </section>
+  {% if courses %}
+  <section class="panel">
+    <h2>Lớp bạn đã tạo</h2>
+    <ul>
+      {% for course in courses %}
+      <li><a href="{{ url_for('course_detail', course_id=course.id) }}">{{ course.course_name }}</a> · {{ course.subject }}{% if course.join_code %} · Mã lớp: <strong>{{ course.join_code }}</strong>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

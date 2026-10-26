@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Hoàn tất đăng ký bằng Google · LMath{% endblock %}
+{% block page_title %}Hoàn tất đăng ký{% endblock %}
+{% block content %}
+<div class="courses-workspace">
+  <header class="page-header"><div class="page-title-area"><h1>Hoàn tất đăng ký</h1><p class="courses-description">Google đã xác minh email {{ email }}. Chọn vai trò và thông tin đăng nhập LMath của bạn để hoàn tất.</p></div></header>
+  <section class="panel">
+    <form method="post">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="field"><label for="{{ form.fullname.id }}">Họ và tên *</label>{{ form.fullname(class="form-control") }}{% for error in form.fullname.errors %}<p>{{ error }}</p>{% endfor %}</div>
+      <div class="field"><label for="{{ form.username.id }}">Tên đăng nhập *</label>{{ form.username(class="form-control") }}{% for error in form.username.errors %}<p>{{ error }}</p>{% endfor %}</div>
+      <div class="field"><label for="{{ form.user_code.id }}">Mã người dùng *</label>{{ form.user_code(class="form-control") }}{% for error in form.user_code.errors %}<p>{{ error }}</p>{% endfor %}</div>
+      <div class="field"><label for="{{ form.role.id }}">Vai trò *</label>{{ form.role(class="form-control") }}{% for error in form.role.errors %}<p>{{ error }}</p>{% endfor %}</div>
+      <p>Tài khoản này sẽ đăng nhập bằng Google, không cần mật khẩu LMath. Vai trò đã chọn không thể đổi tại đây; hãy liên hệ quản trị viên nếu chọn nhầm.</p>
+      <button type="submit" class="btn btn-primary">Hoàn tất đăng ký</button>
+    </form>
+  </section>
+</div>
+{% endblock %}
