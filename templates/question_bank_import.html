@@ -176,7 +176,7 @@
       <fieldset :disabled="busy">
         <div x-show="bankTarget === 'new'" class="import-new-bank-fields">
           <label class="field">Tên ngân hàng mới<input id="new-bank-name" type="text" name="new_bank_name" x-model="newBankName" maxlength="200" :required="bankTarget === 'new'" placeholder="Ví dụ: Toán 9 · Không gian mẫu và xác suất"></label>
-          <div class="form-grid-2"><label class="field">Môn học<select name="subject" x-model="newBankSubject"><option value="Toán">Toán</option><option value="Tiếng Anh">Tiếng Anh</option><option value="Vật Lý">Vật Lý</option><option value="Hóa Học">Hóa Học</option><option value="Tin Học">Tin Học</option><option value="Ngữ Văn">Ngữ Văn</option></select></label><label class="field">Khối/lớp<input type="text" name="grade" x-model="newBankGrade" maxlength="40" placeholder="Ví dụ: Lớp 9"></label></div>
+          <label class="field">Khối/lớp<input type="text" name="grade" x-model="newBankGrade" maxlength="40" placeholder="Ví dụ: Lớp 9"></label>
         </div>
         <p class="form-hint">ID phân loại giữ từ tài liệu; số thứ tự được cấp khi lưu vào ngân hàng.</p>
         <label class="checkbox-label import-review-check"><input type="checkbox" name="reviewed" x-model="reviewed" required><span>Tôi đã kiểm tra nội dung, nhãn học tập và đáp án của các câu được lưu. Các câu này sẽ sẵn sàng sử dụng ngay.</span></label>

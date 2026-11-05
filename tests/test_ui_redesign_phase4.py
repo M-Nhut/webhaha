@@ -84,16 +84,16 @@ def test_shared_scope_and_pagination_never_disclose_foreign_private(bank_ui):
 def test_metadata_save_has_csrf_validation_and_retains_draft(bank_ui):
     login(bank_ui)
     client = bank_ui.client
-    assert client.post("/question-banks/new", data={"name": "Không CSRF", "subject": "Toán"}).status_code == 400
+    assert client.post("/question-banks/new", data={"name": "Không CSRF"}).status_code == 400
     before = QuestionBank.query.count()
-    response = client.post("/question-banks/new", data={"csrf_token": token(client.get("/question-banks/new")), "name": " ", "subject": "", "description": "Bản nhập vẫn còn"})
+    response = client.post("/question-banks/new", data={"csrf_token": token(client.get("/question-banks/new")), "name": " ", "description": "Bản nhập vẫn còn"})
     assert response.status_code == 200 and QuestionBank.query.count() == before
     html = response.get_data(as_text=True)
-    assert 'href="#name"' in html and 'href="#subject"' in html and "Bản nhập vẫn còn" in html
-    response = client.post("/question-banks/new", data={"csrf_token": token(client.get("/question-banks/new")), "name": "Ngân hàng kiểm thử mới", "subject": "Toán", "grade": "10", "topic": "Đại số", "description": "Bản mô tả", "visibility": "shared", "created_by": bank_ui.data['users']['admin']})
+    assert 'href="#name"' in html and 'href="#subject"' not in html and "Chọn môn học" not in html and "Bản nhập vẫn còn" in html
+    response = client.post("/question-banks/new", data={"csrf_token": token(client.get("/question-banks/new")), "name": "Ngân hàng kiểm thử mới", "grade": "10", "topic": "Đại số", "description": "Bản mô tả", "visibility": "shared", "created_by": bank_ui.data['users']['admin']})
     assert response.status_code == 302
     created = QuestionBank.query.filter_by(name="Ngân hàng kiểm thử mới").one()
-    assert created.created_by == bank_ui.data['users']['teacher'] and created.visibility == "private"
+    assert created.created_by == bank_ui.data['users']['teacher'] and created.visibility == "private" and created.subject == "Toán"
 
 
 def test_metadata_edit_validates_before_change_and_saves_timestamp(bank_ui):
@@ -101,9 +101,9 @@ def test_metadata_edit_validates_before_change_and_saves_timestamp(bank_ui):
     client, url = bank_ui.client, bank_url(bank_ui, suffix="/edit")
     bank = db.session.get(QuestionBank, bank_ui.data['banks']['general'])
     original = bank.name
-    response = client.post(url, data={"csrf_token": token(client.get(url)), "name": "x" * 201, "subject": "Toán"})
+    response = client.post(url, data={"csrf_token": token(client.get(url)), "name": "x" * 201})
     assert response.status_code == 200 and bank.name == original
-    response = client.post(url, data={"csrf_token": token(client.get(url)), "name": "Đổi tên ngân hàng", "subject": "Toán", "grade": "10", "topic": "Chủ đề", "description": "Mô tả"})
+    response = client.post(url, data={"csrf_token": token(client.get(url)), "name": "Đổi tên ngân hàng", "grade": "10", "topic": "Chủ đề", "description": "Mô tả"})
     assert response.status_code == 302 and bank.name == "Đổi tên ngân hàng" and bank.updated_at is not None
     assert client.get(bank_url(bank_ui, "shared", "/edit")).status_code == 403
 

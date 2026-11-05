@@ -430,7 +430,7 @@ def import_confirm_api(session_id):
         _route_import_context(session_id, require_open=False)
         bank_id = _strict_optional_bank_id(data.get('bank_id'))
         result = ImportService.confirm_import(session_id,bank_id,current_user.id,
-            new_bank=dict(name=data.get('new_bank_name') or '',subject=data.get('subject','Toán'),grade=data.get('grade','')),
+            new_bank=dict(name=data.get('new_bank_name') or '',grade=data.get('grade','')),
             confirmation_token=data.get('confirmation_token'))
         return jsonify(result)
     except (ValueError,TypeError) as exc:

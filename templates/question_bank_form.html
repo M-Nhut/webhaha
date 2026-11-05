@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% set bank_errors = form_errors|default({}) %}
 {% set data = form_data|default({}) %}
-{% set subjects = ['Toán', 'Tiếng Anh', 'Vật Lý', 'Hóa Học', 'Sinh Học', 'Ngữ Văn', 'Lịch Sử', 'Địa Lý', 'Tin Học'] %}
-{% set subject_value = data.get('subject', bank.subject if bank else '') %}
 {% macro errors_for(field) -%}
   {% if bank_errors.get(field) %}
     <div class="field-errors" id="{{ field }}-error">
@@ -45,14 +43,6 @@
       <label class="form-label" for="name">Tên ngân hàng câu hỏi <span aria-hidden="true">*</span></label>
       <input type="text" id="name" name="name" value="{{ data.get('name', bank.name if bank else '') }}" required maxlength="200" placeholder="Ví dụ: Toán 9 — Căn bậc hai" aria-describedby="name-hint{% if bank_errors.get('name') %} name-error{% endif %}" {% if bank_errors.get('name') %}aria-invalid="true"{% endif %}>
       <p class="form-hint" id="name-hint">Tối đa 200 ký tự.</p>{{ errors_for('name') }}
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="subject">Môn học <span aria-hidden="true">*</span></label>
-      <select id="subject" name="subject" required {% if bank_errors.get('subject') %}aria-invalid="true" aria-describedby="subject-error"{% endif %}>
-        <option value="">Chọn môn học</option>
-        {% if subject_value and subject_value not in subjects %}<option value="{{ subject_value }}" selected>{{ subject_value }}</option>{% endif %}
-        {% for subject in subjects %}<option value="{{ subject }}" {% if subject_value == subject %}selected{% endif %}>{{ subject }}</option>{% endfor %}
-      </select>{{ errors_for('subject') }}
     </div>
     <div class="form-grid-2">
       <div class="form-group">

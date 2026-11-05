@@ -180,6 +180,7 @@ def create_question_bank():
             return render_template("question_bank_form.html", bank=None, form_data=form_data, form_errors=form_errors)
         bank = QuestionBank(
             **form_data,
+            subject="Toán",
             created_by=current_user.id
         )
         # Visibility is a server-owned invariant.  The create form has no say
@@ -193,11 +194,11 @@ def create_question_bank():
 
 
 def _bank_form_values():
-    """Validate the existing metadata fields without discarding a form draft."""
-    values = {key: request.form.get(key, "").strip() for key in ("name", "subject", "grade", "topic", "description")}
+    """Validate editable metadata; this site stores every bank under Toán."""
+    values = {key: request.form.get(key, "").strip() for key in ("name", "grade", "topic", "description")}
     errors = {}
-    for key, label, limit in (("name", "Tên ngân hàng", 200), ("subject", "Môn học", 80), ("grade", "Khối / Lớp học", 40), ("topic", "Bài / Chủ đề", 200)):
-        if key in ("name", "subject") and not values[key]:
+    for key, label, limit in (("name", "Tên ngân hàng", 200), ("grade", "Khối / Lớp học", 40), ("topic", "Bài / Chủ đề", 200)):
+        if key == "name" and not values[key]:
             errors[key] = [f"{label} không được để trống."]
         elif len(values[key]) > limit:
             errors[key] = [f"{label} tối đa {limit} ký tự."]
@@ -616,6 +617,7 @@ def edit_question_bank(bank_id):
             return render_template("question_bank_form.html", bank=bank, form_data=form_data, form_errors=form_errors)
         for key, value in form_data.items():
             setattr(bank, key, value)
+        bank.subject = "Toán"
         bank.updated_at = dt.datetime.utcnow()
         db.session.commit()
         flash("Đã cập nhật thông tin ngân hàng câu hỏi.", "success")

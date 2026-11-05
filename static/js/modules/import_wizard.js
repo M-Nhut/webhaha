@@ -31,7 +31,6 @@ function importWizard(config = {}) {
     bankTarget: 'existing',
     selectedBankId: '',
     newBankName: '',
-    newBankSubject: 'Toán',
     newBankGrade: '',
     isSubmitting: false,
     requestBusy: false,
@@ -346,7 +345,7 @@ function importWizard(config = {}) {
           method: 'POST', headers: {'Content-Type': 'application/json', 'X-CSRFToken': config.csrfToken},
           body: JSON.stringify({bank_id: this.bankTarget === 'existing' ? this.selectedBankId : null,
             new_bank_name: this.bankTarget === 'new' ? this.newBankName.trim() : null,
-            subject: this.newBankSubject, grade: this.newBankGrade, confirmation_token: this.duplicateReport.revision})
+            grade: this.newBankGrade, confirmation_token: this.duplicateReport.revision})
         }));
         this.importResult = data;
         if (data.bank_id) { this.selectedBankId = String(data.bank_id); this.lockedBankId = data.bank_id; this.bankTarget = 'existing'; }

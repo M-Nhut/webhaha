@@ -362,7 +362,7 @@ class ImportService:
         if not report['eligible'] and not report['duplicate'] and not report['review']:
             raise ValueError('Không có câu hợp lệ để lưu.')
         if not bank and report['eligible']:
-            bank = QuestionBank(name=new_bank['name'].strip(), subject=new_bank.get('subject','Toán'),
+            bank = QuestionBank(name=new_bank['name'].strip(), subject='Toán',
                                 grade=new_bank.get('grade',''),created_by=user_id)
             # New scope is derived from the authenticated actor, never from
             # the request's ``new_bank`` payload.

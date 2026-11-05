@@ -465,12 +465,7 @@ def practice_progress():
         flash("Trang này dành cho học sinh.", "info")
         return redirect(url_for("index"))
 
-    enrollments = Enrollment.query.filter_by(student_id=current_user.id, status="active").all()
-    subjects = sorted({e.course.subject for e in enrollments if e.course and e.course.subject})
-    if not subjects:
-        subjects = ["Toán", "Tiếng Anh"]
-
-    selected_subject = request.args.get("subject", subjects[0] if subjects else "Toán")
+    selected_subject = "Toán"
     profile = AdaptiveEngine.analyze_performance(current_user.id, selected_subject)
 
     # Submission history
@@ -517,7 +512,6 @@ def practice_progress():
 
     return render_template(
         "practice_progress.html",
-        subjects=subjects,
         selected_subject=selected_subject,
         profile=profile,
         history=history,

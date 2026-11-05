@@ -4,7 +4,7 @@
 {% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/practice-student.css', v='20261015-phase7') }}">{% endblock %}
 {% block content %}
 <div class="student-practice student-practice-home">
-  <header class="page-header student-practice-header"><div class="page-title-area"><h1>Tự luyện kiến thức</h1></div><a href="{{ url_for('practice_progress', subject=selected_course.subject) if selected_course else url_for('practice_progress') }}" class="btn btn-secondary"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>Kết quả và tiến bộ</a></header>
+  <header class="page-header student-practice-header"><div class="page-title-area"><h1>Tự luyện kiến thức</h1></div><a href="{{ url_for('practice_progress') }}" class="btn btn-secondary"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>Kết quả và tiến bộ</a></header>
   {% if not courses %}
   <section class="panel student-empty" aria-labelledby="practice-empty-title"><i data-lucide="book-open" aria-hidden="true"></i><h2 id="practice-empty-title">Chưa có lớp học</h2><p>Giáo viên cần ghi danh bạn vào một lớp đang hoạt động để giao bài đầu vào và mở tự luyện.</p></section>
   {% else %}
